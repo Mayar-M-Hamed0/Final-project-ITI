@@ -25,7 +25,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css","node_modules/@fortawesome/fontawesome-free/css/all.css"
             ],
               
             "server": "src/main.server.ts",
@@ -97,7 +98,5 @@
       }
     }
   },
-  "cli": {
-    "analytics": "39c04c6f-f056-4b63-bcb8-56125c3246c0"
-  }
+
 }
