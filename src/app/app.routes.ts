@@ -6,4 +6,5 @@ export const routes: Routes = [
  { path:"service",
   component:PageOfServiceComponent
 }
+
 ];
