@@ -1,0 +1,18 @@
+body {
+
+  background: url('https://i.pinimg.com/564x/fe/43/38/fe43380c25add0d9fd3890e81d64a14a.jpg') ;
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: auto;
+}
+
+#main{
+  background-color: #ffffff75;
+  background-attachment: fixed;
+  height: 100%;
+}
