@@ -3,7 +3,7 @@ import path from 'node:path';
 import { PageOfServiceComponent } from './page-of-service/page-of-service.component';
 
 export const routes: Routes = [
- { path:"",
+ { path:"service",
   component:PageOfServiceComponent
 }
 ];
