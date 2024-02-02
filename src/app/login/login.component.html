@@ -1,1 +1,48 @@
-<p>login works!</p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="imgbody "></div>
+    <div class="img2"></div>
+    <div class="wrapper">
+
+        <form [formGroup]="gameForm" (ngSubmit)="handelForm()">
+            <h1>Log In</h1>
+            <div class="mb-3">
+                <input class="inputBox" type="text" class="form-control" id="fname" formControlName="fname" placeholder="Username"> @if(gameForm.controls['fname'].invalid && gameForm.controls['fname'].touched) { @if(gameForm.controls['fname'].errors?.['required'])
+                {
+                <span> This field is required </span> } @if(gameForm.controls['fname'].errors?.['minlength']) {
+                <span>Min length is 3 </span> } }
+            </div>
+
+            <div class="mb-3">
+                <input class="inputBox" type="email" class="form-control" id="exampleInputEmail1" formControlName="email" placeholder="Email"> @if(gameForm.controls['email'].invalid && gameForm.controls['email'].touched) { @if(gameForm.controls['email'].errors?.['required'])
+                {
+                <span> This field is required </span> } @if(gameForm.controls['email'].errors?.['pattern']) {
+                <span>invalid format email </span> } }
+            </div>
+
+            <div class="mb-3">
+                <input class="inputBox" type="password" class="form-control" id="exampleInputPassword1" formControlName="password" placeholder="Password" /> @if(gameForm.controls['password'].invalid && gameForm.controls['password'].touched) { @if(gameForm.controls['password'].errors?.['required'])
+                {
+                <span> This field is required </span> } @if(gameForm.controls['password'].errors?.['minlength']) {
+                <span>Min length is 8 </span> } }
+            </div>
+
+            <a class="btn active-classbtn " routerLink="/login">LoG In</a>
+            <br>
+            <p class="d-inline-block register_link">You Don't have an account? </p>
+
+            <a class="register_link d-inline-block " routerLink="/Singup">Sign Up</a>
+
+        </form>
+    </div>
+</body>
+
+</html>
