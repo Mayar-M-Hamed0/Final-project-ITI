@@ -4,7 +4,7 @@ import { PageOfServiceComponent } from './page-of-service/page-of-service.compon
 import { DetailsServiceComponent } from './details-service/details-service.component';
 
 export const routes: Routes = [
- { path:"",
+ { path:"service",
   component:PageOfServiceComponent
 }, { path:"details-service",
 component:DetailsServiceComponent
