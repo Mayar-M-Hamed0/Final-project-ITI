@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import path from 'node:path';
+
 import { PageOfServiceComponent } from './page-of-service/page-of-service.component';
 import { DetailsServiceComponent } from './details-service/details-service.component';
 import { SingUpComponent } from './sing-up/sing-up.component';
@@ -7,16 +7,16 @@ import { LoginComponent } from './login/login.component';
 
 export const routes: Routes = [
  { path:"service",
-  component:PageOfServiceComponent
+  component:PageOfServiceComponent , title:"service"
 }, { path:"details-service",
-component:DetailsServiceComponent
+component:DetailsServiceComponent , title:"details-service"
 },
 
 { path:"Singup",
-component:SingUpComponent
+component:SingUpComponent , title:"signup"
 },
 { path:"login",
-component:LoginComponent
+component:LoginComponent, title:"Login"
 }
 
 
