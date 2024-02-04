@@ -5,6 +5,7 @@ import { DetailsServiceComponent } from './details-service/details-service.compo
 import { SingUpComponent } from './sing-up/sing-up.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 export const routes: Routes = [
   {
@@ -22,6 +23,11 @@ component:SingUpComponent , title:"signup"
 },
 { path:"login",
 component:LoginComponent, title:"Login"
+},
+
+{ path:"**",
+
+component:NotfoundComponent, title:"Not Found 404"
 },
 
 
