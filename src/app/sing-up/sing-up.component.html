@@ -1,0 +1,50 @@
+
+    <div class="img"></div>
+    <div class="img2"></div>
+    <div class="wrapper">
+
+        <form [formGroup]="gameForm" (ngSubmit)="handelForm()">
+            <h1>Sign Up</h1>
+            <div class="mb-3">
+                <input class="inputBox" type="text" class="form-control" id="fname" formControlName="fname" placeholder="Username"> @if(gameForm.controls['fname'].invalid && gameForm.controls['fname'].touched) { @if(gameForm.controls['fname'].errors?.['required'])
+                {
+                <span> This field is required </span> } @if(gameForm.controls['fname'].errors?.['minlength']) {
+                <span>Min length is 3 </span> } }
+            </div>
+
+            <div class="mb-3">
+                <input class="inputBox" type="text" class="form-control" id="lname" formControlName="lname" placeholder="Lastname"> @if(gameForm.controls['lname'].invalid && gameForm.controls['lname'].touched) { @if(gameForm.controls['lname'].errors?.['required'])
+                {
+                <span> This field is required </span> } @if(gameForm.controls['lname'].errors?.['minlength']) {
+                <span>Min length is 3 </span> } }
+            </div>
+            <div class="mb-3">
+                <input class="inputBox" id="birthday" class="form-control" name="birthday" formControlName="birthday" placeholder="Your Birthdata   ex:yyyy/mm/dd"> @if(gameForm.controls['birthday'].invalid && gameForm.controls['birthday'].touched) { @if(gameForm.controls['birthday'].errors?.['required'])
+                {
+                <span> This field is required </span> } @if(gameForm.controls['birthday'].errors?.['pattern']) {
+                <span>invalition format </span> } }
+            </div>
+
+
+            <div class="mb-3">
+                <input class="inputBox" type="email" class="form-control" id="exampleInputEmail1" formControlName="email" placeholder="Email"> @if(gameForm.controls['email'].invalid && gameForm.controls['email'].touched) { @if(gameForm.controls['email'].errors?.['required'])
+                {
+                <span> This field is required </span> } @if(gameForm.controls['email'].errors?.['pattern']) {
+                <span>invalid format email </span> } }
+            </div>
+
+            <div class="mb-3">
+                <input class="inputBox" type="password" class="form-control" id="exampleInputPassword1" formControlName="password" placeholder="Password" /> @if(gameForm.controls['password'].invalid && gameForm.controls['password'].touched) { @if(gameForm.controls['password'].errors?.['required'])
+                {
+                <span> This field is required </span> } @if(gameForm.controls['password'].errors?.['minlength']) {
+                <span>Min length is 8 </span> } }
+            </div>
+
+            <a class="btn active-classbtn " routerLink="/login">Sign Up</a>
+            <br>
+            <p class="d-inline-block register_link">You have already account ? </p>
+
+            <a class="register_link d-inline-block " routerLink="/login">Log In</a>
+
+        </form>
+    </div>
