@@ -1,0 +1,24 @@
+.naving{
+    background-color: #293241;
+    font-weight: bold;
+}
+#navbarSupportedContent a{
+    color: white;
+}
+#navbarSupportedContent a:hover{
+    color: #ee6c4d;
+}
+#nav-img{
+    width:100px;
+    height: 50px;
+}
+.nav-btn{
+    outline: 1px solid #ee6c4d;
+}
+.nav-btn{
+    background-color: #ee6c4d;
+    color: black;
+}
+.nav-btn:hover{
+    color: white;
+}
