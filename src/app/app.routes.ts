@@ -7,6 +7,10 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 
 export const routes: Routes = [
+  {
+    path:"/",
+    component:HomeComponent , title:"Home"
+  },
  { path:"service",
   component:PageOfServiceComponent , title:"service"
 }, { path:"details-service",
