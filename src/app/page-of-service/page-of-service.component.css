@@ -18,10 +18,12 @@ section {
   height: 100%;
 }
 button{
-  background-color: #E69C31 !important;
+  background-color: #ee6c4d !important;
+  color: #293241 !important;
+  
 }
 .intro{
-  color: #033C67;
+  color: #293241;
   background: #00000003;
 }
 
@@ -43,4 +45,10 @@ a
 }
 .accordion-body{
   text-align: left;
+}
+
+.smallnav
+{
+  color: #fff !important;
+  background-color: #293241;
 }

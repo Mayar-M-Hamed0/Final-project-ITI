@@ -13,18 +13,18 @@
 
       </div>
 
-      <div class="mt-3 bg-white text-center">
+      <div class="mt-3 smallnav rounded-1 text-center">
         <nav class="p-3" aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Service</li>
-          </ol>
+          <ul class="breadcrumb text-white">
+            <li class="breadcrumb-item  text-white"><a routerLink="">Home</a></li>
+
+            <li class="breadcrumb-item active  text-white" aria-current="page">> Service</li>
+          </ul>
         </nav>
             <button class="d-inline d-md-none my-2 btn " data-bs-toggle="modal" data-bs-target="#exampleModal"> <i class="fa-solid fa-filter"></i> Filter </button>
-            <!-- Button trigger modal -->
 
 
-<!-- Modal -->
+
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -149,16 +149,15 @@
               data-bs-parent="#accordionExample"
             >
               <div class="accordion-body">
-                <tr>
-                 <td><input type="radio" name="Type" value="Mechanical" id="21"></td>
-                  <td><label for="21">&nbsp;Mechanical</label> <br></td>
 
-                </tr>
-                <tr>
+                 <input type="radio" name="Type" value="Mechanical" id="21">
+                  <label for="21">&nbsp;Mechanical</label> <br>
 
-                  <td><input type="radio" name="Type" value="Electrecity" id="22"></td>
-                  <td><label for="22">&nbsp;Electrecity</label> <br></td>
-                </tr>
+
+
+                  <input type="radio" name="Type" value="Electrecity" id="22">
+                <label for="22">&nbsp;Electrecity</label> <br>
+
 
                 <input type="radio" name="Type" value="suspintion" id="23">
                 <label for="23">&nbsp;suspintion</label> <br>
