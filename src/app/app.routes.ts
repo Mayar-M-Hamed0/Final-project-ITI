@@ -23,10 +23,7 @@ component:SingUpComponent , title:"signup"
 { path:"login",
 component:LoginComponent, title:"Login"
 },
-{
-  path:"home",
-  component:HomeComponent, title:"home"
-}
+
 
 
 ];
