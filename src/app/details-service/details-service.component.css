@@ -106,3 +106,18 @@
     background-position: center center;
     background-size: cover;
   }
+
+
+  #texxxt{
+    color: var(--main-color);
+ 
+  }
+
+  #btnstyle{
+    background-color: var(--main-color);
+  }
+
+  :host {
+    --main-color: rgb(6, 35, 57); /* Define your CSS variable */
+  }
+  
