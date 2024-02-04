@@ -6,6 +6,42 @@
     <title>Document</title>
   </head>
   <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
     <div class="container-fluid pb-5"  id="main">
       <div class="intro py-5 rounded-1">
         <div class="Introduction px-3 py-1 w-50">
@@ -23,13 +59,13 @@
       <div class="container-fluid bg-light px-3 mt-5 mb-5">
         <div class="row pt-5">
           <div class="intro col-3 bg-light rounded-2 lh-1 h-100 p-3">
-            <div>
+            <div class=" d-none d-sm-block lh-lg">
               <h4>classify according to</h4>
               <div class="accordion" id="accordionExample">
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="headingOne">
                     <button
-                      class="accordion-button"
+                      class="accordion-button by-3"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#collapseOne"
@@ -125,9 +161,9 @@
               </div>
             </div>
           </div>
-          <div class="col-9 ">
+          <div class="col-9 mycard ">
             <div class="row">
-              <div class="card mb-3 w-100 ms-1" >
+              <div class="card mb-5 w-100 ms-1" >
                 <div class="row g-0">
                   <div class="col-md-3">
                     <img src="../../assets/comp.webp" class="img-fluid rounded-start" alt="..." />
@@ -164,7 +200,7 @@
             </div>
 
             <div class="row">
-              <div class="card mb-3 w-100 ms-1" >
+              <div class="card mb-5 w-100 ms-1" >
                 <div class="row g-0">
                   <div class="col-md-3">
                     <img src="../../assets/comp.webp" class="img-fluid rounded-start" alt="..." />
@@ -200,7 +236,7 @@
             </div>
 
             <div class="row">
-              <div class="card mb-3 w-100 ms-1" >
+              <div class="card mb-5 w-100 ms-1" >
                 <div class="row g-0">
                   <div class="col-md-3">
                     <img src="../../assets/comp.webp" class="img-fluid rounded-start" alt="..." />
@@ -236,7 +272,7 @@
             </div>
 
             <div class="row">
-              <div class="card mb-3 w-100 ms-1" >
+              <div class="card mb-5 w-100 ms-1" >
                 <div class="row g-0">
                   <div class="col-md-3">
                     <img src="../../assets/comp.webp" class="img-fluid rounded-start" alt="..." />
@@ -272,7 +308,7 @@
             </div>
 
             <div class="row">
-              <div class="card mb-3 w-100 ms-1" >
+              <div class="card mb-5 w-100 ms-1" >
                 <div class="row g-0">
                   <div class="col-md-3">
                     <img src="../../assets/comp.webp" class="img-fluid rounded-start" alt="..." />
@@ -313,4 +349,6 @@
       </div>
     </div>
   </body>
+
+
 </html>

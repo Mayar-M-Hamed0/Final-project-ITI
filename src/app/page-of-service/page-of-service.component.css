@@ -24,3 +24,13 @@ button{
   color: #033C67;
   background: #00000003;
 }
+
+.card{
+  box-shadow: 0 15px 30px 1px grey;
+  width: 250px;
+  background: rgba(255, 255, 255, 0.90);
+
+}
+.card:hover{
+  transform: scale(1.02);
+}
