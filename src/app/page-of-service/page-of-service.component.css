@@ -26,11 +26,21 @@ button{
 }
 
 .card{
-  box-shadow: 0 15px 30px 1px grey;
+  box-shadow: 0 10px 20px 1px grey;
   width: 250px;
   background: rgba(255, 255, 255, 0.90);
 
 }
 .card:hover{
   transform: scale(1.02);
+}
+a
+{
+  text-decoration: none;
+}
+.highlit{
+  font-size: 20px;
+}
+.accordion-body{
+  text-align: left;
 }
