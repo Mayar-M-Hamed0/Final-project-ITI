@@ -10,5 +10,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './page-of-service.component.css'
 })
 export class PageOfServiceComponent {
-
+  goToTop(){
+    window.scrollTo({top:0,behavior:'smooth'})
+  }
 }

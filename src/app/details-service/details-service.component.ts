@@ -8,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './details-service.component.css'
 })
 export class DetailsServiceComponent {
-
+  goToTop(){
+    window.scrollTo({top:0,behavior:'smooth'})
+  }
 }

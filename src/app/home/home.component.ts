@@ -9,5 +9,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-
+  goToTop(){
+    window.scrollTo({top:0,behavior:'smooth'})
+  }
 }

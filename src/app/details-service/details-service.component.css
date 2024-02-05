@@ -21,6 +21,20 @@
     line-height: 30px;
   }
 
+  #pointer{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    z-index: 3;
+  }
+
 
 
   .card-des {
@@ -110,7 +124,7 @@
 
   #texxxt{
     color: var(--main-color);
- 
+
   }
 
   #btnstyle{
@@ -120,4 +134,3 @@
   :host {
     --main-color: rgb(6, 35, 57); /* Define your CSS variable */
   }
-  
