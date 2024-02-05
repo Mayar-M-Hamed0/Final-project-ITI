@@ -11,11 +11,16 @@ export const routes: Routes = [
   {
     path:"Home",
     component:HomeComponent , title:"Home"
+  },  {
+    path:"",
+    component:HomeComponent , title:"Home"
   },
+
   {
     path:"",
     component:HomeComponent , title:"Home"
   },
+
  { path:"service",
   component:PageOfServiceComponent , title:"service"
 }, { path:"details-service",
