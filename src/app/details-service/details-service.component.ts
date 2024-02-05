@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-details-service',
@@ -11,4 +12,7 @@ export class DetailsServiceComponent {
   goToTop(){
     window.scrollTo({top:0,behavior:'smooth'})
   }
+
+
+  
 }

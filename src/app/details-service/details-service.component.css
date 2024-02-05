@@ -1,9 +1,7 @@
-.card {
-    margin-top: 30px;
-  }
+
 
   .card-img-top {
-    height: 300px;
+    height: 40vh;
     object-fit: cover;
   }
 
@@ -26,7 +24,7 @@
     bottom: 20px;
     right: 20px;
     padding: 10px;
-    background-color: #007bff;
+    background-color: rgb(6, 35, 57);
     color: #fff;
     border: none;
     border-radius: 5px;
