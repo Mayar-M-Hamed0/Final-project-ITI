@@ -7,20 +7,19 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { CenterOrdersComponent } from './center-orders/center-orders.component';
+import { BookingnowComponent } from './details-service/bookingnow/bookingnow.component';
 
 export const routes: Routes = [
   {
-    path:"Home",
-    component:HomeComponent , title:"Home"
-  },  {
     path:"",
     component:HomeComponent , title:"Home"
   },
 
+ 
   {
-    path:"",
+    path:"Home",
     component:HomeComponent , title:"Home"
-  },
+  }, 
 
  { path:"service",
   component:PageOfServiceComponent , title:"service"
@@ -38,6 +37,10 @@ component:LoginComponent, title:"Login"
 { path:"orders",
 
 component:CenterOrdersComponent, title:"center order"
+},
+{ path:"bookingnow",
+
+component:BookingnowComponent, title:"order"
 },
 { path:"**",
 
