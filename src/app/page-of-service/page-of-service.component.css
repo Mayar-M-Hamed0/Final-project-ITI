@@ -12,7 +12,7 @@ section {
 }
 
 #main{
-  background-color: #ffffff75;
+  background-color:#00000065;
   background-attachment: fixed;
   min-height: 100vh;
   height: 100%;
@@ -23,7 +23,7 @@ button{
 
 }
 .intro{
-  color: #293241;
+  color: #fff;
   background: #00000003;
 }
 
@@ -39,6 +39,7 @@ button{
 a
 {
   text-decoration: none;
+  color: #293241;
 }
 .highlit{
   font-size: 20px;

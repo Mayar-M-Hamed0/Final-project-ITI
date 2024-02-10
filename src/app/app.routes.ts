@@ -6,6 +6,7 @@ import { SingUpComponent } from './sing-up/sing-up.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { CenterOrdersComponent } from './center-orders/center-orders.component';
 
 export const routes: Routes = [
   {
@@ -34,6 +35,10 @@ component:SingUpComponent , title:"signup"
 component:LoginComponent, title:"Login"
 },
 
+{ path:"orders",
+
+component:CenterOrdersComponent, title:"center order"
+},
 { path:"**",
 
 component:NotfoundComponent, title:"Not Found 404"
