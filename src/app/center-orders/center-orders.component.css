@@ -2,11 +2,19 @@
 {
   background-color: #EEE;
 }
+.card{
+  color:#425980 !important;
+}
 .component{
-  background-color: #293241;
+  background-color: #293241 ;
 }
 button
 {
   background-color:  #ee6c4d !important;
   color: #293241;
+}
+
+img
+{
+  max-height: 200px !important;
 }
