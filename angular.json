@@ -30,7 +30,7 @@
               "node_modules/@fortawesome/fontawesome-free/css/all.css"
             ],
             "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.js"],
-              
+
             "server": "src/main.server.ts",
             "prerender": true,
             "ssr": {
@@ -101,7 +101,6 @@
     }
   },
   "cli": {
-    "analytics": "bdaab48e-6fb8-448f-982b-658346c06397"
+    "analytics": false
   }
-
 }

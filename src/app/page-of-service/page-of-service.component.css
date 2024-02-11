@@ -1,4 +1,4 @@
-body {
+section {
 
   background: url('https://i.pinimg.com/564x/fe/43/38/fe43380c25add0d9fd3890e81d64a14a.jpg') ;
   background-size:cover;
@@ -12,7 +12,57 @@ body {
 }
 
 #main{
-  background-color: #ffffff75;
+  background-color:#00000065;
   background-attachment: fixed;
+  min-height: 100vh;
   height: 100%;
+}
+button{
+  background-color: #ee6c4d !important;
+  color: #293241 !important;
+
+}
+.intro{
+  color: #fff;
+  background: #00000003;
+}
+
+.card{
+  box-shadow: 0 10px 20px 1px grey;
+  width: 250px;
+  background: rgba(255, 255, 255, 0.90);
+
+}
+.card:hover{
+  transform: scale(1.02);
+}
+a
+{
+  text-decoration: none;
+  color: #293241;
+}
+.highlit{
+  font-size: 20px;
+}
+.accordion-body{
+  text-align: left;
+}
+
+.smallnav
+{
+  color: #fff !important;
+  background-color: #293241;
+}
+#pointer{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+  z-index: 3;
 }
