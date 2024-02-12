@@ -22,36 +22,50 @@ section{
 
       <div >
        
-          <form >
+          <form  [formGroup]="bookingnow" (ngSubmit)="handelForm()" >
             <div class="mb-3 mt-4">
-              <label for="exampleInputEmail1" class="form-label">Email</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <label for="exampleInputEmail" class="form-label">Email</label>
+              <input type="email" class="form-control" formControlName="email"  id="exampleInputEmail" aria-describedby="emailHelp">
+
+     
+              @if(bookingnow.controls['email'].invalid && bookingnow.controls['email'].touched) { @if(bookingnow.controls['email'].errors?.['required'])
+              {
+              <span> This field is required </span> } @if(bookingnow.controls['email'].errors?.['minlength']) {
+              <span>Min length is 3 </span> }
+          
+          }
+
+
+
+
+
+
             </div>
       
             <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">First Name</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <label for="FirstName" class="form-label">First Name</label>
+              <input type="email" class="form-control"  formControlName="fname"     id="FirstName"   >
             </div>
       
             <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Last Name</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <label for="lastname" class="form-label">Last Name</label>
+              <input type="email" class="form-control" formControlName="lname"  id="lastname" >
             </div>
       
       
             <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Phone</label>
-              <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <label for="Phone" class="form-label">Phone</label>
+              <input type="number" class="form-control"  formControlName="phone"  id="Phone" >
             </div>
             <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Write the service you need</label>
-              <textarea class="form-control" id="floatingTextarea2" style="height: 100px"></textarea>
+              <label for="textarea" class="form-label">Write the service you need</label>
+              <textarea class="form-control"  formControlName="textarea"        id="textarea" style="height: 100px"></textarea>
       
             </div>
             <div class="mb-3">
       
-              <label for="exampleInputEmail1" class="form-label">Date</label>
-              <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <label for="Date" class="form-label">Date</label>
+              <input type="date" class="form-control"  formControlName="date"        id="Date" >
             </div>
       
       <div class="d-flex justify-content-center">

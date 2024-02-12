@@ -6,10 +6,16 @@
         <form [formGroup]="gameForm" (ngSubmit)="handelForm()">
             <h1>Sign Up</h1>
             <div class="mb-3">
-                <input class="inputBox" type="text" class="form-control" id="fname" formControlName="fname" placeholder="Username"> @if(gameForm.controls['fname'].invalid && gameForm.controls['fname'].touched) { @if(gameForm.controls['fname'].errors?.['required'])
+                <input class="inputBox" type="text" class="form-control" id="fname" formControlName="fname" placeholder="Username">
+                
+                
+                
+                @if(gameForm.controls['fname'].invalid && gameForm.controls['fname'].touched) { @if(gameForm.controls['fname'].errors?.['required'])
                 {
                 <span> This field is required </span> } @if(gameForm.controls['fname'].errors?.['minlength']) {
-                <span>Min length is 3 </span> } }
+                <span>Min length is 3 </span> }
+            
+            }
             </div>
 
             <div class="mb-3">
