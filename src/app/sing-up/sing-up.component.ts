@@ -9,7 +9,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   templateUrl: './sing-up.component.html',
   styleUrl: './sing-up.component.css'
 })
-export class SingUpComponent { gameForm: FormGroup;
+export class SingUpComponent { 
+  gameForm: FormGroup;
   constructor() {
     this.gameForm = new FormGroup({
        fname: new FormControl('', [
