@@ -30,32 +30,25 @@ section{
               <input type="email" class="form-control" formControlName="email"  id="exampleInputEmail" aria-describedby="emailHelp">
 
      <!-- error -->
-              @if(bookingnow.controls['email'].invalid && 
-              
-              bookingnow.controls['email'].touched) 
-              
-              { @if(bookingnow.controls['email'].errors?.['required'])
-
-
-              {
-                <div class="alert alert-warning p-2" role="alert">
-                  This field is required
-                </div>
-      
-            
-            }
-              
-              
-              @if(bookingnow.controls['email'].errors?.['email']) 
-              
-              {
-
-                <div class="alert alert-warning p-2" role="alert">
-                  Please Enter A valid Emai
-                </div>
-           }
-          
-          }
+     @if(bookingnow.controls['email'].invalid && bookingnow.controls['email'].touched) 
+     {
+         @if(bookingnow.controls['email'].errors?.['required'])
+         {
+             <div class="alert alert-warning p-2" role="alert">
+                 This field is required
+             </div>
+         }
+         @if(bookingnow.controls['email'].errors?.['email']) 
+         {
+             <div class="alert alert-danger p-2" role="alert">
+                 Please Enter A valid Email
+             </div>
+         }
+     }
+     @else if(bookingnow.controls['email'].valid)
+     {
+      Success<i class="fa-solid fa-check" style="color: #083248;"></i>
+     }
 
 
 <!-- error -->
@@ -79,17 +72,20 @@ section{
   
   @if(bookingnow.controls['fname'].errors?.['minlength']) 
   {
-    <div class="alert alert-warning p-2" role="alert">
+    <div class="alert alert-danger p-2" role="alert">
    min length 4 char
     </div>
   }
   
   @if(bookingnow.controls['fname'].errors?.['maxlength']) 
   {
-    <div class="alert alert-warning p-2" role="alert">
+    <div class="alert alert-danger p-2" role="alert">
       min length 10 char
     </div>
   }
+}  @else if(bookingnow.controls['fname'].valid)
+{
+ Success<i class="fa-solid fa-check" style="color: #083248;"></i>
 }
 
 
@@ -139,17 +135,20 @@ section{
   
   @if(bookingnow.controls['lname'].errors?.['minlength']) 
   {
-    <div class="alert alert-warning p-2" role="alert">
+    <div class="alert alert-danger p-2" role="alert">
    min length 4 char
     </div>
   }
   
   @if(bookingnow.controls['lname'].errors?.['maxlength']) 
   {
-    <div class="alert alert-warning p-2" role="alert">
+    <div class="alert alert-danger p-2" role="alert">
       min length 10 char
     </div>
   }
+}  @else if(bookingnow.controls['lname'].valid)
+{
+ Success<i class="fa-solid fa-check" style="color: #083248;"></i>
 }
 <!-- error -->
 
@@ -192,12 +191,15 @@ section{
   
   @if(bookingnow.controls['phone'].errors?.['pattern']) 
   {
-    <div class="alert alert-warning p-2" role="alert">
+    <div class="alert alert-danger p-2" role="alert">
    please insert a valid phone like 010********
     </div>
   }
   
 
+}  @else if(bookingnow.controls['phone'].valid)
+{
+ Success<i class="fa-solid fa-check" style="color: #083248;"></i>
 }
 <!-- error -->
 
@@ -225,7 +227,7 @@ section{
                 
                 @if(bookingnow.controls['textarea'].errors?.['minlength']) 
                 {
-                  <div class="alert alert-warning p-2" role="alert">
+                  <div class="alert alert-danger p-2" role="alert">
                  min length 10 char
                   </div>
                 }
@@ -236,6 +238,9 @@ section{
                     min length 90 char
                   </div>
                 }
+              }  @else if(bookingnow.controls['textarea'].valid)
+              {
+               Success<i class="fa-solid fa-check" style="color: #083248;"></i>
               }
 
 
@@ -261,6 +266,9 @@ section{
                 }
                
           
+              }  @else if(bookingnow.controls['date'].valid)
+              {
+               Success<i class="fa-solid fa-check" style="color: #083248;"></i>
               }
 
 
