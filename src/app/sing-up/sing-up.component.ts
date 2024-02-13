@@ -40,5 +40,4 @@ export class SingUpComponent { gameForm: FormGroup;
    console.log(this.gameForm);
  }
 
-
 }
