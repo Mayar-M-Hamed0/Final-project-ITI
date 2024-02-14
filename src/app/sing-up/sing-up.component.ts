@@ -41,5 +41,4 @@ export class SingUpComponent {
    console.log(this.gameForm);
  }
 
-
 }
