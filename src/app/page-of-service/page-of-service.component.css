@@ -12,16 +12,18 @@ section {
 }
 
 #main{
-  background-color: #ffffff75;
+  background-color:#00000065;
   background-attachment: fixed;
   min-height: 100vh;
   height: 100%;
 }
 button{
-  background-color: #E69C31 !important;
+  background-color: #ee6c4d !important;
+  color: #293241 !important;
+
 }
 .intro{
-  color: #033C67;
+  color: #fff;
   background: #00000003;
 }
 
@@ -37,10 +39,30 @@ button{
 a
 {
   text-decoration: none;
+  color: #293241;
 }
 .highlit{
   font-size: 20px;
 }
 .accordion-body{
   text-align: left;
+}
+
+.smallnav
+{
+  color: #fff !important;
+  background-color: #293241;
+}
+#pointer{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+  z-index: 3;
 }

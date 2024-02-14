@@ -1,0 +1,55 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.divdetails {
+    margin: auto;
+    width: 100%;
+    position: relative;
+    height: 620px;
+}
+
+.img2 {
+    background-image: url(/assets/oil.jpeg);
+    position: absolute;
+    width: 430px;
+    padding: 80px 40px;
+    margin-top: 10px;
+    height: 600px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    left: 20%;
+}
+
+.wrapper {
+    color: rgb(6, 35, 57);
+    position: absolute;
+    width: 430px;
+    padding: 10px 40px;
+    margin-top: 10px;
+    height: 450px;
+    left: 43%;
+    background-color: rgba(255, 255, 255);
+    height: 600px;
+}
+
+p {
+    display: inline-block;
+}
+
+.margin {
+    display: flex;
+    float: right;
+}
+
+#visaimg {
+    display: flex;
+    float: right;
+    width: 30px;
+}
+
+.cardnumspace {
+    margin-left: 15px;
+}
