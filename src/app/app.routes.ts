@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { CenterOrdersComponent } from './center-orders/center-orders.component';
 import { BookingnowComponent } from './details-service/bookingnow/bookingnow.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
 
 export const routes: Routes = [
   {
@@ -41,6 +42,10 @@ component:CenterOrdersComponent, title:"center order"
 { path:"bookingnow",
 
 component:BookingnowComponent, title:"order"
+},
+{ path:"orderdetails",
+
+component:OrderDetailsComponent, title:"orderdetails"
 },
 { path:"**",
 

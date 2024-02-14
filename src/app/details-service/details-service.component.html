@@ -15,6 +15,9 @@
       <p class="card-text">فرع (مدينة نصر2) شارع النزهة أمام الرقابة الإدارية</p>
       <p class="card-text">KIA BYD CHERY-SPERANZA DAEWOO HONDA HYUNDAI MAZDA MITSUBISHI RENAULT TOYOTA NISSAN SEAT SKODA
         SUBARU SUZUKI SSANGYONG VOLVO CITROËN DAIHATSU FIAT LADA OPEL PEUGEOT BMW Chevrolet VW Ford MERCEDES</p>
+        <div class="ratingCar">
+          <app-rating-stars [actualRating]="4"></app-rating-stars>
+        </div>
         <button id="pointer" (click)="goToTop()"           class="rounded-5 "><i class="fa-solid fa-up-long"></i> </button>
 
     </div>
@@ -36,8 +39,21 @@
   </div>
 <div class="d-flex justify-content-center">
   <button type="submit" class="btn btn-danger   p-3 border-0" id="btnstyle" routerLink="/bookingnow" >Booking Now</button>
-
 </div>
+
+<!------------ rating ------------>
+<div class="rate">
+  <h1>Rate us</h1>
+  <div class="starsClient mb-3">
+    <fa-icon [icon]="faStar" (click)="setRating(1)" [class.rated]="rating >=1"></fa-icon>
+    <fa-icon [icon]="faStar" (click)="setRating(2)" [class.rated]="rating >=2"></fa-icon>
+    <fa-icon [icon]="faStar" (click)="setRating(3)" [class.rated]="rating >=3"></fa-icon>
+    <fa-icon [icon]="faStar" (click)="setRating(4)" [class.rated]="rating >=4"></fa-icon>
+    <fa-icon [icon]="faStar" (click)="setRating(5)" [class.rated]="rating >=5"></fa-icon>
+  </div>
+</div>
+
+
   <div class="container px-4 py-5 shadow-lg" id="hanging-icons">
     <h2 class="pb-2 border-bottom" style="color: #083248;"> <span class="fw-bold "
         style="color: #083248;">S</span>ervice</h2>
@@ -297,22 +313,44 @@
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3456.074084649587!2d31.135070424090987!3d29.977300821748116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14584f7de239bbcd%3A0xca7474355a6e368b!2z2KPZh9ix2KfZhdin2Kog2KfZhNis2YrYstip!5e0!3m2!1sar!2seg!4v1706989210083!5m2!1sar!2seg" frameborder="0"
          allowfullscreen></iframe>
     </div>
-
-
-
-
-
-
-
-
-
-
-
     </div>
     <div class="col-3">
-
-
     </div>
   </div>
 </div>
+
+
+
+<!------------------ comments --------------->
+<div class="commentContainer">
+  <div class="CommentHolder">
+    <div class="input-group mb-1 comment">
+      <input type="text" class="form-control " placeholder="write your comment" aria-label="Recipient's username" aria-describedby="button-addon2">
+      <button class="btn btn-outline-info" type="button" id="button-addon2"><i class="fa-solid fa-share"></i></button>
+    </div> 
+    <div class="audienceComments">
+      @for(comment of comments ; track comment.id){
+        <div class="commentCard">
+        <h5><i class="fa-regular fa-user"></i>{{comment.user}}<span class="CommentDate">{{comment.date}}</span></h5>
+        <p>{{comment.comment}}</p>
+        <div class="likeDislike"><div><span>{{comment.like}}</span><i class="fa-regular fa-thumbs-up" id="like"></i></div> <div><i class="fa-regular fa-thumbs-down"></i></div>
+        </div>
+      </div>
+    } 
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 

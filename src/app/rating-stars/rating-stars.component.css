@@ -1,0 +1,15 @@
+
+  
+  fa-icon{
+    color: rgb(191, 176, 176);
+    font-size: 25px;
+   
+    &.rated{
+      color:gold ;
+    }
+    transition: color 0.3s eass-in-out;
+  }
+  
+  
+  
+  
