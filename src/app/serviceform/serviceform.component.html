@@ -6,16 +6,18 @@
       </div>
 
     </div>
-    <div class="col-md-6 col-sm-12">
+    <div class="col-md-6 col-sm-12 mt-2">
         <h2 class="text-center" style="font-weight: bolder;">Add Service</h2>
         <div class="form-container">
             <form class="form-control" [formGroup]="serviceform" (ngSubmit)="handelForm()">
-                <label for="inputName" class="col-sm-2 col-form-label">Service Name</label>
+                <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                 <div class="col-sm-10">
                   <input type="text" class="form-control" id="inputName" formControlName="servicename" placeholder="service Name"/>
                   @if(serviceform.controls['servicename'].invalid && serviceform.controls['servicename'].touched) { @if(serviceform.controls['servicename'].errors?.['required'])
                   {
-                   <span>This field is required</span>
+                    <div class="alert alert-warning p-2" role="alert">
+                      field is required
+                     </div>
                   } }
                 </div>
                 <label for="comapanyName" class="col-sm-2 col-form-label">Company</label>
@@ -23,24 +25,30 @@
                   <input type="text" class="form-control" id="comapanyName" placeholder="Company who produce this service"  formControlName="companyName"/>
                   @if(serviceform.controls['companyName'].invalid && serviceform.controls['companyName'].touched) { @if(serviceform.controls['companyName'].errors?.['required'])
                   {
-                   <span>This field is required</span>
+                    <div class="alert alert-warning p-2" role="alert">
+                      field is required
+                     </div>
                   } }
                 </div>
-                <label for="details" class="col-sm-2 col-form-label">Service details</label>
+                <label for="details" class="col-sm-2 col-form-label">details</label>
                 <div class="col-sm-10">
                   <textarea type="text" class="form-control" id="details" placeholder="servie details" formControlName="servicedetails"></textarea>
                   @if(serviceform.controls['servicedetails'].invalid && serviceform.controls['servicedetails'].touched) { @if(serviceform.controls['servicedetails'].errors?.['required'])
                   {
-                   <span>This field is required</span>
+                    <div class="alert alert-warning p-2" role="alert">
+                      field is required
+                     </div>
                   } }
                 </div>
             
-                <label for="price" class="col-sm-2 col-form-label">Service price</label>
+                <label for="price" class="col-sm-2 col-form-label">price</label>
                 <div class="col-sm-10">
                   <input type="number" class="form-control" id="price"  formControlName="serviceprice"/>
                   @if(serviceform.controls['serviceprice'].invalid && serviceform.controls['serviceprice'].touched) { @if(serviceform.controls['serviceprice'].errors?.['required'])
                   {
-                   <span>This field is required</span>
+                    <div class="alert alert-warning p-2" role="alert">
+                      field is required
+                     </div>
                   } }
                 </div>
 
@@ -49,7 +57,9 @@
                   <input type="text" class="form-control" id="model" formControlName="model" />
                   @if(serviceform.controls['model'].invalid && serviceform.controls['model'].touched) { @if(serviceform.controls['model'].errors?.['required'])
                   {
-                   <span>This field is required</span>
+                    <div class="alert alert-warning p-2" role="alert">
+                      field is required
+                     </div>
                   } }
                 </div>
                 
@@ -58,11 +68,13 @@
                   <input type="text" class="form-control" id="tag"  formControlName="tag"/>
                   @if(serviceform.controls['tag'].invalid && serviceform.controls['tag'].touched) { @if(serviceform.controls['tag'].errors?.['required'])
                   {
-                   <span>This field is required</span>
+                    <div class="alert alert-warning p-2" role="alert">
+                      field is required
+                     </div>
                   } }
                 </div>
                 
-                <input type="submit" class="btn  d-block btn-service" value="Add" (click)="resetForm()"/>
+                <input type="submit" class="btn btn-primary d-block btn-service mt-2 " value="Add" (click)="resetForm()"/>
     
                 
             </form>

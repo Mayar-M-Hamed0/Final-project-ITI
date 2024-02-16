@@ -9,6 +9,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { CenterOrdersComponent } from './center-orders/center-orders.component';
 import { BookingnowComponent } from './details-service/bookingnow/bookingnow.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
+import { ServiceformComponent } from './serviceform/serviceform.component';
 
 export const routes: Routes = [
   {
@@ -31,6 +32,14 @@ component:DetailsServiceComponent , title:"details-service"
 { path:"Singup",
 component:SingUpComponent , title:"signup"
 },
+
+{ path:"serviceform",
+component:ServiceformComponent , title:"serviceform"
+},
+
+
+
+
 { path:"login",
 component:LoginComponent, title:"Login"
 },
