@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { ServicesService } from '../services/services.service';
 @Component({
   selector: 'app-serviceform',
   standalone: true,
@@ -13,7 +14,7 @@ export class ServiceformComponent {
   serviceform: FormGroup;
 
  
-  constructor(){
+  constructor(private ser:ServicesService){
     this.serviceform =new FormGroup({
       servicename: new FormControl('', [
         Validators.required,
@@ -24,7 +25,7 @@ export class ServiceformComponent {
       servicedetails: new FormControl('',[
         Validators.required,
       ]),
-      serviceprice: new FormControl('',[
+      descrption: new FormControl('',[
         Validators.required
       ]),
       model : new FormControl('',[
@@ -33,11 +34,45 @@ export class ServiceformComponent {
       tag : new FormControl('',[
         Validators.required
       ])
+      ,
+
+      
+      location : new FormControl('',[
+        Validators.required
+      ]) ,
+      imageurl : new FormControl('',[
+        Validators.required
+      ]) ,
+      services : new FormControl('',[
+        Validators.required
+      ])
+      ,
+      rate : new FormControl('',[
+        Validators.required
+      ])
+
+      ,
+      Workingtime : new FormControl('',[
+        Validators.required
+      ]) ,
+      Workingdays : new FormControl('',[
+        Validators.required
+      ])
+
+    
     })
+    
+
+
+
   }
   
+
+  
   handelForm(){
-    console.log(this.serviceform);
+    console.log(this.serviceform.value);
+   
+    this.ser.pushdata(this.serviceform.value).subscribe();
   }
   resetForm() {
     this.serviceform.reset();
