@@ -10,11 +10,16 @@ export class ServicesService {
 
   }
   
-  pushdataall(){
-   return this.HttpClient_.get(`https://fakestoreapi.com/products`)
+  getdata(){
+   return this.HttpClient_.get(`https://api-generator.retool.com/5746Su/service`)
   
   }
-  
+
+  pushdata(formdata:any){
+    return this.HttpClient_.post(`https://api-generator.retool.com/5746Su/service`,formdata)
+   
+   }
+
 
 
 

@@ -17,7 +17,7 @@ export class PageOfServiceComponent {
   datafromapi : any = [];
 constructor( private ApisService_:ServicesService){
 
-  this.ApisService_.pushdataall().subscribe(res => {
+  this.ApisService_.getdata().subscribe(res => {
 
     this.datafromapi = res;
      console.log("this is the response of api",this.datafromapi)
