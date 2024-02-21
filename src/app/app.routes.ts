@@ -25,7 +25,9 @@ export const routes: Routes = [
 
  { path:"service",
   component:PageOfServiceComponent , title:"service"
-}, { path:"details-service",
+
+
+}, { path:"details-service/:id",
 component:DetailsServiceComponent , title:"details-service"
 },
 

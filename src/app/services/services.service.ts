@@ -9,6 +9,10 @@ export class ServicesService {
   constructor(private HttpClient_:HttpClient){
 
   }
+  getsinglepage(id:any){
+    return this.HttpClient_.get(`https://api-generator.retool.com/5746Su/service/`+id)
+   
+   }
   
   getdata(){
    return this.HttpClient_.get(`https://api-generator.retool.com/5746Su/service`)
