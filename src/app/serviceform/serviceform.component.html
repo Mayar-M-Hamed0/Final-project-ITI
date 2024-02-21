@@ -130,31 +130,36 @@
 
 
 
+<!-- model -->
+<p>Model</p>
+<div formArrayName="model">
+  <ng-container *ngFor="let model of modelz; let i = index">
+    <label class="checkbox-label">
+      <input type="checkbox" [value]="model.key" [formControlName]="model.key" (change)="handleCheckboxChange($event, model.key, 'model')">
+      {{ model.value }}
+    </label>
+  </ng-container>
+</div>
+
+
+<hr>
+<p>Tags</p>
+<div formArrayName="tag">
+  <ng-container *ngFor="let tag of tagz; let i = index">
+    <label class="checkbox-label">
+      <input type="checkbox" [value]="tag.key" [formControlName]="tag.key" (change)="handleCheckboxChange($event, tag.key, 'tag')">
+      {{ tag.value }}
+    </label>
+  </ng-container>
+</div>
+
+<!-- model -->
 
 
 
-                <label for="model" class="col-sm-2 col-form-label">Model</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="model" formControlName="model" />
-                  @if(serviceform.controls['model'].invalid && serviceform.controls['model'].touched) { @if(serviceform.controls['model'].errors?.['required'])
-                  {
-                    <div class="alert alert-warning p-2" role="alert">
-                      field is required
-                     </div>
-                  } }
-                </div>
                 
-                <label for="tag" class="col-sm-2 col-form-label">Tag</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="tag"  formControlName="tag"/>
-                  @if(serviceform.controls['tag'].invalid && serviceform.controls['tag'].touched) { @if(serviceform.controls['tag'].errors?.['required'])
-                  {
-                    <div class="alert alert-warning p-2" role="alert">
-                      field is required
-                     </div>
-                  } }
 
-                </div>
+            
 
 
                 
