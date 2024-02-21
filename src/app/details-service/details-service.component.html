@@ -6,15 +6,14 @@
 
 
   <div class="card " >
-    <img src="../../assets/ser.jpg" class="card-img-top img-fluid" alt="Service Center Cover Image">
+    <img src="{{data.imageurl}}" class="card-img-top img-fluid" alt="Service Center Cover Image">
     <div class="card-img-overlay">
       <div class="position-relative d-inline-block">
-        <img src="../../assets/ser.jpg" class="rounded-circle" alt="Circle Image" width="200">
+        <img src="{{data.imageurl}}" class="rounded-circle" alt="Circle Image" width="200">
       </div>
-      <h3 class="card-title fw-bold fs-1">El Mikaneeky - ElNozha</h3>
-      <p class="card-text">فرع (مدينة نصر2) شارع النزهة أمام الرقابة الإدارية</p>
-      <p class="card-text">KIA BYD CHERY-SPERANZA DAEWOO HONDA HYUNDAI MAZDA MITSUBISHI RENAULT TOYOTA NISSAN SEAT SKODA
-        SUBARU SUZUKI SSANGYONG VOLVO CITROËN DAIHATSU FIAT LADA OPEL PEUGEOT BMW Chevrolet VW Ford MERCEDES</p>
+      <h3 class="card-title fw-bold fs-1">{{data.servicename}}</h3>
+      <p class="card-text">Location : {{data.location}} </p>
+      <p class="card-text"> @for (item of data.model; track $index) { {{item}} }</p>
         <div class="ratingCar">
           <app-rating-stars [actualRating]="4"></app-rating-stars>
         </div>
@@ -24,16 +23,14 @@
   </div>
   <div class="card border mb-3 w-50 m-auto pt-3">
     <div class="card-header  fw-bold   text-center  text-body-tertiary" style="background-color: #083248; color: white !important;">
-      Express Bosch Car Service - El Mikaneeky</div>
+      {{data.servicename}}</div>
     <div class="card-body ">
 
-      <p class="card-text text-dark fw-lighter text-center  card-des "> Express Bosch Car Service - El Mikaneeky is a
-        trusted professional car servicing company that provides affordable solutions; with dealer accountability
-        warranty and professionalism. El Mikaneeky is a trusted professional car servicing company that provides
-        affordable solutions to the entire car market; with dealer accountability warranty and professionalism. We aim
-        to grow our network to provide full coverage of our services and fill the gap between dealerships and regular
-        local mechanic shops across the entire country. We strive to provide our customers with highest quality and
-        guarantee, best prices, and the convenience that they deserve.</p>
+      <p class="card-text text-dark fw-lighter text-center  card-des fs-4"> 
+
+        {{data.servicedetails}}
+
+      </p>
     </div>
 
   </div>
@@ -105,37 +102,16 @@
     <div class="row">
       <div class="col-9 lh-1 mt-3">
         <div class="row">
+          @for (item of data.tag; track $index) {
           <div class="col-lg-4 col-6">
-            <p> <i class="fa-solid fa-tag"></i> Mechanical</p>
+          
+              <p> <i class="fa-solid fa-tag"></i> {{item}}</p>
+        
+           
 
-            <p> <i class="fa-solid fa-tag"></i> Car Denting</p>
-            <p> <i class="fa-solid fa-tag"></i> lubricants</p>
-            <p> <i class="fa-solid fa-tag"></i> A/C Charge</p>
-            <p> <i class="fa-solid fa-tag"></i> Computer detection</p>
-            <p> <i class="fa-solid fa-tag"></i> Oil Change Offers + Preventive</p>
-
+          
           </div>
-          <div class="col-lg-4 col-6">
-            <p> <i class="fa-solid fa-tag"></i> Electricity</p>
-
-            <p> <i class="fa-solid fa-tag"></i> paints</p>
-            <p> <i class="fa-solid fa-tag"></i> Tires and batteries</p>
-            <p> <i class="fa-solid fa-tag"></i> Radiator</p>
-            <p> <i class="fa-solid fa-tag"></i> Car wash and care</p>
-            <p> <i class="fa-solid fa-tag"></i> El-Mikaneeky BOSCH</p>
-
-          </div>
-
-          <div class="col-lg-4 col-6">
-            <p> <i class="fa-solid fa-tag"></i> Suspensions</p>
-
-            <p> <i class="fa-solid fa-tag"></i> brakes</p>
-            <p> <i class="fa-solid fa-tag"></i> gear box</p>
-            <p> <i class="fa-solid fa-tag"></i> Fast Service</p>
-            <p> <i class="fa-solid fa-tag"></i> Insurance companies</p>
-            <p> <i class="fa-solid fa-tag"></i> Labor fees Discount</p>
-
-          </div>
+        }
 
         </div>
 
@@ -158,55 +134,18 @@
     <div class="row">
       <div class="col-9 lh-1 mt-3">
         <div class="row">
-          <div class="col-lg-4 col-6">
-            <p> <i class="fa-solid fa-tag"></i> LADA</p>
-
-            <p> <i class="fa-solid fa-tag"></i> OPEL</p>
-            <p> <i class="fa-solid fa-tag"></i> PEUGEOT</p>
-            <p> <i class="fa-solid fa-tag"></i> BMW</p>
-            <p> <i class="fa-solid fa-tag"></i> Chevrolet</p>
-            <p> <i class="fa-solid fa-tag"></i> VW</p>
-            <p> <i class="fa-solid fa-tag"></i> Ford</p>
-            <p> <i class="fa-solid fa-tag"></i> MERCEDES</p>
-          </div>
-          <div class="col-lg-4 col-6">
-            <p> <i class="fa-solid fa-tag"></i> SEAT</p>
-
-            <p> <i class="fa-solid fa-tag"></i> NISSAN</p>
-            <p> <i class="fa-solid fa-tag"></i> SKODA</p>
-            <p> <i class="fa-solid fa-tag"></i> SUBARU</p>
-            <p> <i class="fa-solid fa-tag"></i> SUZUKI</p>
-            <p> <i class="fa-solid fa-tag"></i> SSANGYONG</p>
-            <p> <i class="fa-solid fa-tag"></i> VOLVO</p>
-            <p> <i class="fa-solid fa-tag"></i> CITROËN</p>
-            <p> <i class="fa-solid fa-tag"></i> DAIHATSU</p>
-            <p> <i class="fa-solid fa-tag"></i> FIAT</p>
-
-          </div>
-
-          <div class="col-lg-4 col-6">
-
-
-
-
-
-
-
-
-
-
-            <p> <i class="fa-solid fa-tag"></i> KIA</p>
-            <p> <i class="fa-solid fa-tag"></i>BYD </p>
-            <p> <i class="fa-solid fa-tag"></i>CHERY-SPERANZA </p>
-            <p> <i class="fa-solid fa-tag"></i> DAEWOO </p>
-            <p> <i class="fa-solid fa-tag"></i> HYUNDAI </p>
-            <p> <i class="fa-solid fa-tag"></i> HONDA </p>
-            <p> <i class="fa-solid fa-tag"></i> MAZDA</p>
-            <p> <i class="fa-solid fa-tag"></i> MITSUBISHI </p>
-            <p> <i class="fa-solid fa-tag"></i> RENAULT </p>
-            <p> <i class="fa-solid fa-tag"></i>TOYOTA </p>
-
-          </div>
+          @for (item of data.model; track $index) {
+            <div class="col-lg-4 col-6">
+            
+                <p> <i class="fa-solid fa-tag"></i> {{item}}</p>
+          
+             
+  
+            
+            </div>
+          }
+  
+     
 
         </div>
 

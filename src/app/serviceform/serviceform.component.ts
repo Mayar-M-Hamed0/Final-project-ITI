@@ -1,59 +1,51 @@
+import { CheckboxModule } from 'primeng/checkbox';
 import { Component } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
-import { FormArray, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { ServicesService } from '../services/services.service';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-serviceform',
   standalone: true,
-  imports: [ReactiveFormsModule ,NgFor , FormsModule ,NgbAlertModule],
+  imports: [
+    ReactiveFormsModule,
+    NgFor,
+    FormsModule,
+    NgbAlertModule,
+    CheckboxModule,
+    MatCheckboxModule,
+  ],
   templateUrl: './serviceform.component.html',
-  styleUrl: './serviceform.component.css'
+  styleUrl: './serviceform.component.css',
 })
 export class ServiceformComponent {
   serviceform: FormGroup;
 
- 
-  constructor(private fb: FormBuilder,private sr:ServicesService) {
+  constructor(private fb: FormBuilder, private sr: ServicesService) {
     this.serviceform = new FormGroup({
-      servicename: new FormControl('', [
-        Validators.required,
-      ]), 
-      companyName: new FormControl('',[
-        Validators.required,
-      ]),
-      servicedetails: new FormControl('',[
-        Validators.required,
-      ]),
-      descrption: new FormControl('',[
-        Validators.required
-      ]),
-      location : new FormControl('',[
-        Validators.required
-      ]) ,
-      imageurl : new FormControl('',[
-        Validators.required
-      ]) ,
-      services : new FormControl('',[
-        Validators.required
-      ]),
-      rate : new FormControl('',[
-        Validators.required
-      ]),
-      Workingtime : new FormControl('',[
-        Validators.required
-      ]),
-      Workingdays : new FormControl('',[
-        Validators.required
-      ]),
-      tag: this.fb.array([], Validators.required), // FormArray للـ models
-
-      model: this.fb.array([], Validators.required) // Use FormArray for multiple values
+      servicename: new FormControl('', [Validators.required]),
+      Category: new FormControl('', [Validators.required]),
+      servicedetails: new FormControl('', [Validators.required]),
+      location: new FormControl('', [Validators.required]),
+      imageurl: new FormControl('', [Validators.required]),
+      services: new FormControl('', [Validators.required]),
+      rate: new FormControl('', [Validators.required]),
+      Workingtime: new FormControl('', [Validators.required]),
+      Workingdays: new FormControl('', [Validators.required]),
+      tag: this.fb.array([], Validators.required), 
+      model: this.fb.array([], Validators.required),
     });
   }
-
-
 
   get modelArray(): FormArray {
     return this.serviceform.get('model') as FormArray;
@@ -62,27 +54,25 @@ export class ServiceformComponent {
   get tagArray(): FormArray {
     return this.serviceform.get('tag') as FormArray;
   }
-
   modelz = [
-    { key: ' KIA', value: 'KIA' },
-    { key: 'MAZDA', value: 'MAZDA' },
-    { key: 'TOYOTA', value: 'TOYOTA' },
-    { key: 'SKODA', value: 'SKODA' },
-    { key: 'SSANGYONG', value: 'SSANGYONG' },
-    { key: ' Ford', value: ' Ford' },
-    { key: 'BMW', value: 'BMW' },
-    { key: 'LADA', value: 'LADA' },
-    { key: 'CITROËN', value: 'CITROËN' },
-    { key: 'SUZUKI', value: 'SUZUKI' },
-    { key: 'SEAT', value: 'SEAT' },
-    { key: 'RENAULT', value: 'RENAULT' },
-    { key: 'HYUNDAI', value: 'HYUNDAI' },
-    { key: ' NISSAN', value: ' NISSAN' },
-    { key: 'VOLVO', value: 'VOLVO' },
-    { key: 'HONDA', value: 'HONDA' },
-    { key: 'BYD', value: 'BYD' }
+    'KIA',
+    'MAZDA',
+    'TOYOTA',
+    'SKODA',
+    'SSANGYONG',
+    'Ford',
+    'BMW',
+    'LADA',
+    'CITROËN',
+    'SUZUKI',
+    'SEAT',
+    'RENAULT',
+    'HYUNDAI',
+    'NISSAN',
+    'VOLVO',
+    'HONDA',
+    'BYD',
   ];
-
 
   tagz = [
     { key: 'Mechanical', value: 'Mechanical' },
@@ -94,27 +84,24 @@ export class ServiceformComponent {
     { key: 'lubricants', value: 'lubricants' },
     { key: 'Tires and batteries', value: 'Tires and batteries' },
     { key: 'gear box', value: 'gear box' },
-    { key: 'A/C Charge', value: 'A/C Charge' },
+    { key: 'A/C Charge', value: 'A/C/Charge' },
     { key: 'Radiator', value: 'Radiator' },
     { key: 'Fast Service', value: 'Fast Service' },
     { key: 'Computer detection', value: 'Computer detection' },
     { key: 'Car wash and care', value: 'Car wash and care' },
     { key: 'Insurance companies', value: 'Insurance companies' },
-    { key: 'Oil Change Offers + Preventive Maintenance', value: 'Oil Change Offers + Preventive Maintenance' },
+    {
+      key: 'Oil Change Offers + Preventive Maintenance',
+      value: 'Oil Change Offers + Preventive Maintenance',
+    },
     { key: 'El-Mikaneeky BOSCH', value: 'El-Mikaneeky BOSCH' },
-    { key: 'Labor fees Discount', value: 'Labor fees Discount' }
+    { key: 'Labor fees Discount', value: 'Labor fees Discount' },
   ];
-
-
-
-
-
-  
 
   handleCheckboxChange(event: any, value: any, formArrayName: string) {
     const isChecked = event.target.checked;
     const formArray = this.serviceform.get(formArrayName) as FormArray;
-  
+
     if (isChecked) {
       // If checkbox is checked, add the value to the FormArray
       formArray.push(this.fb.control(value));
@@ -125,25 +112,9 @@ export class ServiceformComponent {
         formArray.removeAt(index);
       }
     }
+  }
 
- }
-
-
-
-
-
-
-
-
-
-
-
-
-  
-    
-  handelForm(){
-    console.log(this.serviceform.value);
-
+  handelForm() {
     this.sr.pushdata(this.serviceform.value).subscribe();
   }
   resetForm() {
@@ -151,10 +122,4 @@ export class ServiceformComponent {
     this.serviceform.markAsPristine();
     this.serviceform.markAsUntouched();
   }
-
-
-  }
-  
-
-  
-
+}
