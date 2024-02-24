@@ -1,0 +1,175 @@
+<div class="container mt-3">
+    <div class="row">
+    <div class="col-md-6 col-sm-12">
+      <div class="img-container">
+        <img src="assets/mechanic-using-wrench-while-working-600nw-2184125681.jpg" alt="" class="w-100" style="height:600px;"/>
+      </div>
+
+    </div>
+    <div class="col-md-6 col-sm-12 mt-2">
+        <h2 class="text-center" style="font-weight: bolder;">Add Service</h2>
+        <div class="form-container">
+            <form class="form-control" [formGroup]="serviceform" (ngSubmit)="handelForm()">
+                <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="inputName" formControlName="servicename" placeholder="service   Name"/>
+                  @if(serviceform.controls['servicename'].invalid && serviceform.controls['servicename'].touched) { @if(serviceform.controls['servicename'].errors?.['required'])
+                  {
+                    <div class="alert alert-warning p-2" role="alert">
+                      field is required
+                     </div>
+                  } }
+                </div>
+                <label for="Category" class="col-sm-2 col-form-label">Category</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="Category" placeholder="Category"  formControlName="Category"/>
+                  @if(serviceform.controls['Category'].invalid && serviceform.controls['Category'].touched) { @if(serviceform.controls['Category'].errors?.['required'])
+                  {
+                    <div class="alert alert-warning p-2" role="alert">
+                      field is required
+                     </div>
+                  } }
+                </div>
+                <label for="servicedetails" class="col-sm-2 col-form-label">details</label>
+                <div class="col-sm-10">
+                  <textarea type="text" class="form-control" id="servicedetails" placeholder="servie details" formControlName="servicedetails"></textarea>
+                  @if(serviceform.controls['servicedetails'].invalid && serviceform.controls['servicedetails'].touched) { @if(serviceform.controls['servicedetails'].errors?.['required'])
+                  {
+                    <div class="alert alert-warning p-2" role="alert">
+                      field is required
+                     </div>
+                  } }
+                </div>
+            
+           
+
+
+                <label for="imageurl" class="col-sm-2 col-form-label">imageurl </label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="imageurl"  formControlName="imageurl"/>
+                  @if(serviceform.controls['imageurl'].invalid && serviceform.controls['imageurl'].touched) { @if(serviceform.controls['imageurl'].errors?.['required'])
+                  {
+                    <div class="alert alert-warning p-2" role="alert">
+                      field is required
+                     </div>
+                  } }
+                </div>
+
+
+
+                
+                <label for="rate" class="col-sm-2 col-form-label">rate </label>
+                <div class="col-sm-10">
+                  <input type="number" min="1" max="5" class="form-control" id="rate"  formControlName="rate"/>
+                  @if(serviceform.controls['rate'].invalid && serviceform.controls['rate'].touched) { @if(serviceform.controls['rate'].errors?.['required'])
+                  {
+                    <div class="alert alert-warning p-2" role="alert">
+                      field is required
+                     </div>
+                  } }
+                </div>
+
+
+                    
+                <label for="Workingdays" class="col-sm-2 col-form-label">Workingdays </label>
+                <div class="col-sm-10">
+                  <input type="text"  class="form-control" id="Workingdays"  formControlName="Workingdays"/>
+                  @if(serviceform.controls['Workingdays'].invalid && serviceform.controls['Workingdays'].touched) { @if(serviceform.controls['Workingdays'].errors?.['required'])
+                  {
+                    <div class="alert alert-warning p-2" role="alert">
+                      field is required
+                     </div>
+                  } }
+                </div>
+
+
+
+
+
+
+
+
+
+                <label for="location" class="col-sm-2 col-form-label">location </label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="location"  formControlName="location"/>
+                  @if(serviceform.controls['location'].invalid && serviceform.controls['location'].touched) { @if(serviceform.controls['location'].errors?.['required'])
+                  {
+                    <div class="alert alert-warning p-2" role="alert">
+                      field is required
+                     </div>
+                  } }
+                </div>
+
+
+
+                <label for="services" class="col-sm-2 col-form-label">services </label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="services"  formControlName="services"/>
+                  @if(serviceform.controls['services'].invalid && serviceform.controls['services'].touched) { @if(serviceform.controls['services'].errors?.['required'])
+                  {
+                    <div class="alert alert-warning p-2" role="alert">
+                      field is required
+                     </div>
+                  } }
+                </div>
+
+
+
+
+
+
+
+
+<!-- model -->
+<p>Model</p>
+<div formArrayName="model">
+  <ng-container *ngFor="let model of modelz; let i = index">
+    <label class="checkbox-label">
+      <input type="checkbox" [value]="model" [formControlName]="model" (change)="handleCheckboxChange($event, model, 'model')">
+      {{ model }}
+    </label>
+  </ng-container>
+</div>
+
+<hr>
+<p>Tags</p>
+<div formArrayName="tag">
+  <ng-container *ngFor="let tag of tagz; let i = index">
+    <label class="checkbox-label">
+      <input type="checkbox" [value]="tag.key" [formControlName]="tag.key" (change)="handleCheckboxChange($event, tag.key, 'tag')">
+      {{ tag.value }}
+    </label>
+  </ng-container>
+</div>
+
+
+
+
+
+                
+
+            
+
+
+                
+                <label for="Workingtime" class="col-sm-2 col-form-label">Workingtime</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="Workingtime" formControlName="Workingtime" />
+                  @if(serviceform.controls['Workingtime'].invalid && serviceform.controls['Workingtime'].touched) { @if(serviceform.controls['Workingtime'].errors?.['required'])
+                  {
+                    <div class="alert alert-warning p-2" role="alert">
+                      field is required
+                     </div>
+                  } }
+                </div>
+                <button type="button"class="btn btn-info d-block btn-service mt-2 " (click)="resetForm()">Reset Form</button>
+
+                <input type="submit" class="btn btn-primary d-block btn-service mt-2 "/>
+    
+                
+            </form>
+        </div>
+    </div>
+</div>
+</div>

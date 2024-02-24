@@ -8,6 +8,8 @@ import { HomeComponent } from './home/home.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { CenterOrdersComponent } from './center-orders/center-orders.component';
 import { BookingnowComponent } from './details-service/bookingnow/bookingnow.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
+import { ServiceformComponent } from './serviceform/serviceform.component';
 
 export const routes: Routes = [
   {
@@ -23,13 +25,23 @@ export const routes: Routes = [
 
  { path:"service",
   component:PageOfServiceComponent , title:"service"
-}, { path:"details-service",
+
+
+}, { path:"details-service/:id",
 component:DetailsServiceComponent , title:"details-service"
 },
 
 { path:"Singup",
 component:SingUpComponent , title:"signup"
 },
+
+{ path:"serviceform",
+component:ServiceformComponent , title:"serviceform"
+},
+
+
+
+
 { path:"login",
 component:LoginComponent, title:"Login"
 },
@@ -41,6 +53,10 @@ component:CenterOrdersComponent, title:"center order"
 { path:"bookingnow",
 
 component:BookingnowComponent, title:"order"
+},
+{ path:"orderdetails",
+
+component:OrderDetailsComponent, title:"orderdetails"
 },
 { path:"**",
 
