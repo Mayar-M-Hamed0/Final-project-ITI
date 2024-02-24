@@ -4,6 +4,11 @@
 }
 .card{
   color:#425980 !important;
+  box-shadow: 2px 8px 12px 2px #f0e7e769;
+
+}
+.card:hover{
+  transform: scale(1.025);
 }
 .component{
   background-color: #293241 ;
