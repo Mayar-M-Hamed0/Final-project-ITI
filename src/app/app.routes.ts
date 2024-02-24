@@ -10,6 +10,7 @@ import { CenterOrdersComponent } from './center-orders/center-orders.component';
 import { BookingnowComponent } from './details-service/bookingnow/bookingnow.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { ServiceformComponent } from './serviceform/serviceform.component';
+import { CommenteditComponent } from './commentedit/commentedit.component';
 
 export const routes: Routes = [
   {
@@ -39,7 +40,8 @@ component:SingUpComponent , title:"signup"
 component:ServiceformComponent , title:"serviceform"
 },
 
-
+{ path:"comment/:id/edit", component:CommenteditComponent},
+    
 
 
 { path:"login",
