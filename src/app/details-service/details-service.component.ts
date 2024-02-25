@@ -8,10 +8,12 @@ import { NgFor } from '@angular/common';
 import {comments} from '../../comments'
 import { ServicesService } from '../services/services.service';
 
+import { FormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-details-service',
   standalone: true,
-  imports: [RouterLink,FontAwesomeModule,RatingStarsComponent,NgFor],
+  imports: [RouterLink,FontAwesomeModule,RatingStarsComponent,NgFor,FormsModule],
   templateUrl: './details-service.component.html',
   styleUrl: './details-service.component.css'
 })
@@ -44,7 +46,70 @@ id:any
     this.rating = value;
   } 
 
-  comments:any = comments
+ // comments:any = comments
+
+
+  
+  posts: any;
+  countlike: number = 0
+  countdislike: number = 0
+
+
+
+
+  ngOnInit() {
+    this.serv.getlike().subscribe((value) => this.countlike = value)
+    this.serv.getdislike().subscribe((value) => this.countdislike = value)
+
+    this.serv.getAllposts().subscribe((res) => { this.posts = res });
+
+  }
+
+  comment!: string
+  CommentId!: number
+  Date!: Date
+  Username!: string
+  savecomment() {
+    var inputsdata = {
+
+      CommentId: '',
+      Date: '',
+      comment: this.comment,
+      Username: this.Username,
+    }
+    this.serv.savecomment(inputsdata).subscribe({
+      next: (res: any) => {
+        console.log(res, 'res')
+      }
+    });
+  }
+
+  deletecomment(event: any, commentid: any) {
+
+    if (confirm('Are you sure you want delete comment?')) {
+      event.target.innerTex = "Deleting..."
+      this.serv.destroycomment(commentid).subscribe((res: any) => {
+        this.serv.getAllposts().subscribe((res) => { console.log(res) });
+
+      })
+    }
+  }
+
+
+
+  decrese() {
+    if (this.countdislike > 0) {
+      this.serv.Updatadislikecount(this.countdislike - 1)
+
+    }
+
+  }
+  increse() {
+    this.serv.Updatalikecount(this.countlike + 1)
+  }
+
 
 }
+
+
 
