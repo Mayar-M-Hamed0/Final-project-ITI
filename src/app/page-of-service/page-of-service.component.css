@@ -19,7 +19,7 @@ section {
 }
 button{
   background-color: #ee6c4d !important;
-  color: #293241 !important;
+
 
 }
 .intro{
@@ -37,6 +37,11 @@ button{
   transform: scale(1.02);
 }
 a
+{
+  text-decoration: none;
+;
+}
+button a
 {
   text-decoration: none;
   color: #293241;

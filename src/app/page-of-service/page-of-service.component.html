@@ -23,6 +23,9 @@
             <li class="breadcrumb-item active  text-white" aria-current="page">> Service</li>
           </ul>
         </nav>
+        <nav class="p-3" aria-label="search">
+          <input type="search" id="search" [(ngModel)]="searchtext" class="form-control w-50 m-auto" placeholder="search">
+        </nav>
             <button class="d-inline d-md-none my-2 btn " data-bs-toggle="modal" data-bs-target="#exampleModal"> <i class="fa-solid fa-filter"></i> Filter </button>
 
 
@@ -39,7 +42,7 @@
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
               <button
-                class="accordion-button by-3"
+                class="accordion-button by-3 text-white"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#collapseOne"
@@ -197,7 +200,7 @@
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="headingOne">
                     <button
-                      class="accordion-button by-3"
+                      class="accordion-button by-3 text-white fw-bold"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#collapseOne"
@@ -246,7 +249,7 @@
                 <div class="accordion-item py-5">
                   <h2 class="accordion-header" id="headingTwo">
                     <button
-                      class="accordion-button collapsed"
+                      class="accordion-button collapsed text-white fw-bold"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#collapseTwo"
@@ -291,7 +294,7 @@
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="headingThree">
                     <button
-                      class="accordion-button collapsed"
+                      class="accordion-button collapsed text-white fw-bold"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#collapseThree"
@@ -336,20 +339,22 @@
               </div>
             </div>
           </div>
+
           <div class="col-md-9 col-12 mycard ">
+            @for (item of datafromapi | filter:searchtext| paginate: { itemsPerPage: 5, currentPage: crntpage }     ; track $index ) {
             <div class="row">
               <div class="card mb-5 w-100 ms-1" >
                 <div class="row g-0">
                   <div class="col-md-3">
-                    <img src="../../assets/comp.webp" class="img-fluid rounded-start" alt="..." />
+                    <img src="{{item.imageurl}}" class="img-fluid rounded-start" alt="..." />
                   </div>
                   <div class="col-md-9">
                     <div class="row " >
                       <div class="col-7">
                         <div class="card-body">
-                          <h5 class="card-title">New Shahin</h5>
-                          <p class="card-text">
-                            General rating from 1 visitors
+                          <h5 class="card-title">{{item.servicename}}</h5>
+                          <p class="card-text fw-medium">
+                            Rating <span class="text-warning fw-bold">{{item.rate}}</span>
                           </p>
                           <p class="card-text">
                             <small class="text-muted"
@@ -359,9 +364,9 @@
                         </div>
                       </div>
                       <div class="col-5 pt-1 lh-lg fw-bold">
-                        <div>Working days : every day</div>
-                        <div>Working date : from 9am to 5pm</div>
-                        <button class="btn rounded-pill my-2"><a routerLink="/details-service">see detailes</a>  </button>
+                        <div>Working days : {{item.Workingdays}}</div>
+                        <div>Working date : {{item.Workingtime}}</div>
+                        <button class="btn rounded-pill my-2"><a routerLink="/details-service/{{item.id}}" class="fw-medium text-white">see detailes</a>  </button>
                       </div>
 
                     </div>
@@ -374,151 +379,12 @@
 
             </div>
 
-            <div class="row">
-              <div class="card mb-5 w-100 ms-1" >
-                <div class="row g-0">
-                  <div class="col-md-3">
-                    <img src="../../assets/comp.webp" class="img-fluid rounded-start" alt="..." />
-                  </div>
-                  <div class="col-md-9">
-                    <div class="row " >
-                      <div class="col-7">
-                        <div class="card-body">
-                          <h5 class="card-title">New Shahin</h5>
-                          <p class="card-text">
-                            General rating from 1 visitors
-                          </p>
-                          <p class="card-text">
-                            <small class="text-muted"
-                              >Last updated 3 mins ago</small
-                            >
-                          </p>
-                        </div>
-                      </div>
-                      <div class="col-5 lh-lg fw-bold">
-                        <div>Working days : every day</div>
-                        <div>Working date : from 9am to 5pm</div>
-                      </div>
+          }
+          <pagination-controls class="" (pageChange)="crntpage=$event"></pagination-controls>
 
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-
-
-            </div>
-
-            <div class="row">
-              <div class="card mb-5 w-100 ms-1" >
-                <div class="row g-0">
-                  <div class="col-md-3">
-                    <img src="../../assets/comp.webp" class="img-fluid rounded-start" alt="..." />
-                  </div>
-                  <div class="col-md-9">
-                    <div class="row " >
-                      <div class="col-7">
-                        <div class="card-body">
-                          <h5 class="card-title">New Shahin</h5>
-                          <p class="card-text">
-                            General rating from 1 visitors
-                          </p>
-                          <p class="card-text">
-                            <small class="text-muted"
-                              >Last updated 3 mins ago</small
-                            >
-                          </p>
-                        </div>
-                      </div>
-                      <div class="col-5 pt-1 lh-lg fw-bold">
-                        <div>Working days : every day</div>
-                        <div>Working date : from 9am to 5pm</div>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-
-
-            </div>
-
-            <div class="row">
-              <div class="card mb-5 w-100 ms-1" >
-                <div class="row g-0">
-                  <div class="col-md-3">
-                    <img src="../../assets/comp.webp" class="img-fluid rounded-start" alt="..." />
-                  </div>
-                  <div class="col-md-9">
-                    <div class="row " >
-                      <div class="col-7">
-                        <div class="card-body">
-                          <h5 class="card-title">New Shahin</h5>
-                          <p class="card-text">
-                            General rating from 1 visitors
-                          </p>
-                          <p class="card-text">
-                            <small class="text-muted"
-                              >Last updated 3 mins ago</small
-                            >
-                          </p>
-                        </div>
-                      </div>
-                      <div class="col-5 pt-1 lh-lg fw-bold">
-                        <div>Working days : every day</div>
-                        <div>Working date : from 9am to 5pm</div>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-
-
-            </div>
-
-            <div class="row">
-              <div class="card mb-5 w-100 ms-1" >
-                <div class="row g-0">
-                  <div class="col-md-3">
-                    <img src="../../assets/comp.webp" class="img-fluid rounded-start" alt="..." />
-                  </div>
-                  <div class="col-md-9">
-                    <div class="row " >
-                      <div class="col-7">
-                        <div class="card-body">
-                          <h5 class="card-title">New Shahin</h5>
-                          <p class="card-text">
-                            General rating from 1 visitors
-                          </p>
-                          <p class="card-text">
-                            <small class="text-muted"
-                              >Last updated 3 mins ago</small
-                            >
-                          </p>
-                        </div>
-                      </div>
-                      <div class="col-5 pt-5 lh-lg fw-bold">
-                        <div>Working days : every day</div>
-                        <div>Working date : from 9am to 5pm</div>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-
-
-            </div>
 
           </div>
+
         </div>
 
       </div>

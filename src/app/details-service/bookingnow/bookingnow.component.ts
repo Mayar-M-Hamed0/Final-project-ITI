@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { ServicesService } from '../../services/services.service';
 @Component({
   selector: 'app-bookingnow',
   standalone: true,
@@ -10,7 +11,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class BookingnowComponent {
   bookingnow: FormGroup;
-  constructor(private formBuilder: FormBuilder) {
+  viewdata:any = []
+  constructor(private formBuilder: FormBuilder  ,private dataService:ServicesService) {
     this.bookingnow = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       fname: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]],
@@ -19,14 +21,29 @@ export class BookingnowComponent {
       textarea: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(90)]],
       date: ['', Validators.required]
     });
-  }
+  
 
-  submitForm() {
+    this.dataService.getdata().subscribe(res=>{
+
+this.viewdata = res ;
+
+    })
+
+    console.log(this.viewdata);
+  }
+  
+  onSubmit() {
     if (this.bookingnow.valid) {
-      // إرسال البيانات هنا
-      console.log(this.bookingnow.value);
+      const formData = this.bookingnow.value;
+      this.dataService.pushdata(formData).subscribe(response => {
+    
+      });
     } else {
-      console.log("Form is invalid");
+   
     }
   }
+
+
+
+
 }
