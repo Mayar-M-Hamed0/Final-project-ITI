@@ -46,6 +46,11 @@ id:any
     this.rating = value;
   } 
 
+
+
+  
+  comments:any = comments
+
  // comments:any = comments
 
 
@@ -109,6 +114,14 @@ id:any
   }
 
 
+
+
+
+
+  
+  updateRating(newRating: number) {
+    this.rating = newRating;
+  }
 }
 
 

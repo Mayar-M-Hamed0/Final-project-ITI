@@ -11,10 +11,14 @@ import { FooterComponent } from './footer/footer.component';
 @Component({
   selector: 'app-root',
   standalone: true,
+<<<<<<< HEAD
+  imports: [RouterOutlet,NavbarComponent,FooterComponent],
+=======
 
   imports: [RouterOutlet , ServiceformComponent,NavbarComponent,FooterComponent],
 
 
+>>>>>>> main
 
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
