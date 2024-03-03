@@ -16,7 +16,7 @@
       <p class="card-text">KIA BYD CHERY-SPERANZA DAEWOO HONDA HYUNDAI MAZDA MITSUBISHI RENAULT TOYOTA NISSAN SEAT SKODA
         SUBARU SUZUKI SSANGYONG VOLVO CITROËN DAIHATSU FIAT LADA OPEL PEUGEOT BMW Chevrolet VW Ford MERCEDES</p>
         <div class="ratingCar">
-          <app-rating-stars [actualRating]="4"></app-rating-stars>
+          <app-rating-stars [actualRating]="rating"></app-rating-stars>
         </div>
         <button id="pointer" (click)="goToTop()"           class="rounded-5 "><i class="fa-solid fa-up-long"></i> </button>
 
@@ -52,6 +52,7 @@
     <fa-icon [icon]="faStar" (click)="setRating(5)" [class.rated]="rating >=5"></fa-icon>
   </div>
 </div>
+
 
 
   <div class="container px-4 py-5 shadow-lg" id="hanging-icons">

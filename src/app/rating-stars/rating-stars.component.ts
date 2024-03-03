@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component,Input } from '@angular/core';
+import { Component,Input,OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-rating-stars',
@@ -10,10 +11,9 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './rating-stars.component.html',
   styleUrl: './rating-stars.component.css'
 })
-export class RatingStarsComponent {
+export class RatingStarsComponent  {
+  
   faStar = faStar;
-
-
   @Input() actualRating:number = 0;
-
 }
+

@@ -25,7 +25,14 @@ export class DetailsServiceComponent {
     this.rating = value;
   } 
 
+
+  
   comments:any = comments
 
+
+
+  updateRating(newRating: number) {
+    this.rating = newRating;
+  }
 }
 
