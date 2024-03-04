@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component,Input,OnInit } from '@angular/core';
+import { Component,Input } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 

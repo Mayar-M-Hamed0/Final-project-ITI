@@ -114,11 +114,6 @@ id:any
   }
 
 
-
-
-
-
-  
   updateRating(newRating: number) {
     this.rating = newRating;
   }

@@ -8,7 +8,7 @@
         <p class="card-text">Location : {{data.location}} </p>
         <p class="card-text"> @for (item of data.model; track $index) { {{item}} }</p>
         <div class="ratingCar">
-          <app-rating-stars [actualRating]="4"></app-rating-stars>
+          <!-- <app-rating-stars [actualRating]="2"></app-rating-stars> -->
         </div>
         <button id="pointer" (click)="goToTop()" class="rounded-5 "><i class="fa-solid fa-up-long"></i> </button>
 
