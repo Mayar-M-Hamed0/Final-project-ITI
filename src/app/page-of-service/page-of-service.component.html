@@ -38,6 +38,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        <h4>Filtter according to</h4>
         <div class="accordion" id="accordionExample">
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
@@ -60,31 +61,31 @@
             >
               <div class="accordion-body ">
 
-                <input type="radio" id="01" name="places" value="All Egypt">
+                <input type="radio" [(ngModel)]="selectedPlace" id="01" name="pla" value="">
                 <label for="01">&nbsp;All Egypt</label> <br>
 
-                <input type="radio" id="1" name="places" value="Ain Shams">
+                <input type="radio" [(ngModel)]="selectedPlace" id="1" name="pla" value="Ain Shams">
                 <label for="1">&nbsp; Ain Shams</label> <br>
 
-                <input type="radio" id="2" name="places" value="El dokki">
+                <input type="radio" [(ngModel)]="selectedPlace" id="2" name="pla" value="El dokki">
                 <label for="2">&nbsp; El dokki</label><br>
 
-                <input type="radio" id="3" name="places"  value="Mokkatm">
+                <input type="radio" [(ngModel)]="selectedPlace" id="3" name="pla"  value="Mokkatm">
                  <label for="3">&nbsp; Mokkatm</label><br>
 
-                <input type="radio" id="4" name="places" value="Elmaadi">
+                <input type="radio" [(ngModel)]="selectedPlace" id="4" name="pla" value="Elmaadi">
                  <label for="4">&nbsp; Elmaadi</label><br>
 
-                <input type="radio" id="5" name="places" value="Faisel">
+                <input type="radio" [(ngModel)]="selectedPlace" id="5" name="pla" value="Faisel">
                  <label for="5">&nbsp; Faisel</label><br>
 
-                <input type="radio" id="6" name="places" value="Fayoum">
+                <input type="radio" [(ngModel)]="selectedPlace" id="6" name="pla" value="Fayoum">
                  <label for="6">&nbsp; Fayoum</label><br>
 
-                <input type="radio" id="7" name="places" value="Beni suif">
+                <input type="radio" [(ngModel)]="selectedPlace" id="7" name="pla" value="Beni suif">
                  <label for="7">&nbsp; Beni suif</label><br>
 
-                <input type="radio" id="8" name="places" value="Minia">
+                <input type="radio" [(ngModel)]="selectedPlace" id="8" name="pla" value="Minia">
                  <label for="8">&nbsp; Minia</label><br>
               </div>
             </div>
@@ -99,7 +100,7 @@
                 aria-expanded="false"
                 aria-controls="collapseTwo"
               >
-                Make
+                Model
               </button>
             </h2>
             <div
@@ -109,25 +110,28 @@
               data-bs-parent="#accordionExample"
             >
               <div class="accordion-body">
-                <input type="radio" name="make" value="Kia" id="11">
+                <input type="radio"[(ngModel)]="selectedMark" name="model" value="" id="10">
+                <label for="10">&nbsp; All Models</label> <br>
+
+                <input type="radio"[(ngModel)]="selectedMark" name="model" value="Kia" id="11">
                 <label for="11">&nbsp;Kia</label> <br>
 
-                <input type="radio" name="make" value="BMW" id="12">
+                <input type="radio"[(ngModel)]="selectedMark" name="model" value="BMW" id="12">
                 <label for="12">&nbsp;BMW</label> <br>
 
-                <input type="radio" name="make" value="Hundai" id="13">
+                <input type="radio"[(ngModel)]="selectedMark" name="model" value="Hundai" id="13">
                 <label for="13">&nbsp;Hundai</label> <br>
 
-                <input type="radio" name="make" value="Toyota" id="14">
+                <input type="radio"[(ngModel)]="selectedMark" name="model" value="Toyota" id="14">
                 <label for="14">&nbsp;Toyota</label> <br>
 
-                <input type="radio" name="make" value="Logan" id="15">
+                <input type="radio"[(ngModel)]="selectedMark" name="model" value="Logan" id="15">
                 <label for="15">&nbsp;Logan</label> <br>
 
-                <input type="radio" name="make" value="Borsh" id="16">
+                <input type="radio"[(ngModel)]="selectedMark" name="model" value="Borsh" id="16">
                 <label for="16">&nbsp;Borsh</label> <br>
 
-                <input type="radio" name="make" value="Nissan" id="17">
+                <input type="radio"[(ngModel)]="selectedMark" name="model" value="Nissan" id="17">
                 <label for="17">&nbsp;Nissan</label> <br>
 
 
@@ -144,7 +148,7 @@
                 aria-expanded="false"
                 aria-controls="collapseThree"
               >
-                Center Type
+                Services
               </button>
             </h2>
             <div
@@ -154,29 +158,31 @@
               data-bs-parent="#accordionExample"
             >
               <div class="accordion-body">
+                <input type="radio" [(ngModel)]="selectedService" name="Type" value="" id="20">
+                <label for="20">&nbsp;All services</label> <br>
 
-                 <input type="radio" name="Type" value="Mechanical" id="21">
+                 <input type="radio" [(ngModel)]="selectedService" name="service" value="Mechanical" id="21">
                   <label for="21">&nbsp;Mechanical</label> <br>
 
 
 
-                  <input type="radio" name="Type" value="Electrecity" id="22">
+                  <input type="radio"[(ngModel)]="selectedService" name="service" value="Electrecity" id="22">
                 <label for="22">&nbsp;Electrecity</label> <br>
 
 
-                <input type="radio" name="Type" value="suspintion" id="23">
+                <input type="radio"[(ngModel)]="selectedService" name="service" value="suspintion" id="23">
                 <label for="23">&nbsp;suspintion</label> <br>
 
-                <input type="radio" name="Type" value="Computer Detiction" id="24">
+                <input type="radio"[(ngModel)]="selectedService" name="service" value="Computer Detiction" id="24">
                 <label for="24">&nbsp;Computer detiction</label> <br>
 
-                <input type="radio" name="Type" value="car Furniture" id="25">
+                <input type="radio"[(ngModel)]="selectedService" name="service" value="car Furniture" id="25">
                 <label for="25">&nbsp;car Furniture</label> <br>
 
-                <input type="radio" name="Type" value="Oil changes Offer" id="26">
+                <input type="radio"[(ngModel)]="selectedService" name="service" value="Oil changes Offer" id="26">
                 <label for="26">&nbsp;Oil change</label> <br>
 
-                <input type="radio" name="Type" value="Car Wash" id="27">
+                <input type="radio"[(ngModel)]="selectedService" name="service" value="Car Wash" id="27">
                 <label for="27">&nbsp;Car Wash</label> <br>
 
 
@@ -194,13 +200,14 @@
       <div class="container-fluid bg-light px-3 mt-0 mb-5">
         <div class="row pt-5">
           <div class="intro col-3 bg-light rounded-2 lh-1 h-100 p-3">
+
             <div class=" d-none d-md-block lh-lg">
               <h4>Filtter according to</h4>
               <div class="accordion" id="accordionExample">
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="headingOne">
                     <button
-                      class="accordion-button by-3 text-white fw-bold"
+                      class="accordion-button by-3 text-white"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#collapseOne"
@@ -216,32 +223,33 @@
                     aria-labelledby="headingOne"
                     data-bs-parent="#accordionExample"
                   >
-                    <div class="accordion-body">
-                      <input type="radio" id="01" name="places" value="All Egypt">
+                    <div class="accordion-body ">
+
+                      <input type="radio" [(ngModel)]="selectedPlace" id="01" name="places" value="">
                       <label for="01">&nbsp;All Egypt</label> <br>
 
-                      <input type="radio" id="1" name="places" value="Ain Shams">
+                      <input type="radio" [(ngModel)]="selectedPlace" id="1" name="places" value="Ain Shams">
                       <label for="1">&nbsp; Ain Shams</label> <br>
 
-                      <input type="radio" id="2" name="places" value="El dokki">
+                      <input type="radio" [(ngModel)]="selectedPlace" id="2" name="places" value="El dokki">
                       <label for="2">&nbsp; El dokki</label><br>
 
-                      <input type="radio" id="3" name="places"  value="Mokkatm">
+                      <input type="radio" [(ngModel)]="selectedPlace" id="3" name="places"  value="Mokkatm">
                        <label for="3">&nbsp; Mokkatm</label><br>
 
-                      <input type="radio" id="4" name="places" value="Elmaadi">
+                      <input type="radio" [(ngModel)]="selectedPlace" id="4" name="places" value="Elmaadi">
                        <label for="4">&nbsp; Elmaadi</label><br>
 
-                      <input type="radio" id="5" name="places" value="Faisel">
+                      <input type="radio" [(ngModel)]="selectedPlace" id="5" name="places" value="Faisel">
                        <label for="5">&nbsp; Faisel</label><br>
 
-                      <input type="radio" id="6" name="places" value="Fayoum">
+                      <input type="radio" [(ngModel)]="selectedPlace" id="6" name="places" value="Fayoum">
                        <label for="6">&nbsp; Fayoum</label><br>
 
-                      <input type="radio" id="7" name="places" value="Beni suif">
+                      <input type="radio" [(ngModel)]="selectedPlace" id="7" name="places" value="Beni suif">
                        <label for="7">&nbsp; Beni suif</label><br>
 
-                      <input type="radio" id="8" name="places" value="Minia">
+                      <input type="radio" [(ngModel)]="selectedPlace" id="8" name="places" value="Minia">
                        <label for="8">&nbsp; Minia</label><br>
                     </div>
                   </div>
@@ -249,14 +257,14 @@
                 <div class="accordion-item py-5">
                   <h2 class="accordion-header" id="headingTwo">
                     <button
-                      class="accordion-button collapsed text-white fw-bold"
+                      class="accordion-button collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#collapseTwo"
                       aria-expanded="false"
                       aria-controls="collapseTwo"
                     >
-                      Make
+                      Model
                     </button>
                   </h2>
                   <div
@@ -266,25 +274,28 @@
                     data-bs-parent="#accordionExample"
                   >
                     <div class="accordion-body">
-                      <input type="radio" name="make" value="Kia" id="11">
+                      <input type="radio"[(ngModel)]="selectedMark" name="model" value="" id="10">
+                      <label for="10">&nbsp; All Models</label> <br>
+
+                      <input type="radio"[(ngModel)]="selectedMark" name="make" value="Kia" id="11">
                       <label for="11">&nbsp;Kia</label> <br>
 
-                      <input type="radio" name="make" value="BMW" id="12">
+                      <input type="radio"[(ngModel)]="selectedMark" name="make" value="BMW" id="12">
                       <label for="12">&nbsp;BMW</label> <br>
 
-                      <input type="radio" name="make" value="Hundai" id="13">
+                      <input type="radio"[(ngModel)]="selectedMark" name="make" value="Hundai" id="13">
                       <label for="13">&nbsp;Hundai</label> <br>
 
-                      <input type="radio" name="make" value="Toyota" id="14">
+                      <input type="radio"[(ngModel)]="selectedMark" name="make" value="Toyota" id="14">
                       <label for="14">&nbsp;Toyota</label> <br>
 
-                      <input type="radio" name="make" value="Logan" id="15">
+                      <input type="radio"[(ngModel)]="selectedMark" name="make" value="Logan" id="15">
                       <label for="15">&nbsp;Logan</label> <br>
 
-                      <input type="radio" name="make" value="Borsh" id="16">
+                      <input type="radio"[(ngModel)]="selectedMark" name="make" value="Borsh" id="16">
                       <label for="16">&nbsp;Borsh</label> <br>
 
-                      <input type="radio" name="make" value="Nissan" id="17">
+                      <input type="radio"[(ngModel)]="selectedMark" name="make" value="Nissan" id="17">
                       <label for="17">&nbsp;Nissan</label> <br>
 
 
@@ -294,14 +305,14 @@
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="headingThree">
                     <button
-                      class="accordion-button collapsed text-white fw-bold"
+                      class="accordion-button collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#collapseThree"
                       aria-expanded="false"
                       aria-controls="collapseThree"
                     >
-                      Center Type
+                      Services
                     </button>
                   </h2>
                   <div
@@ -311,25 +322,32 @@
                     data-bs-parent="#accordionExample"
                   >
                     <div class="accordion-body">
-                      <input type="radio" name="Type" value="Mechanical" id="21">
-                      <label for="21">&nbsp;Mechanical</label> <br>
 
-                      <input type="radio" name="Type" value="Electrecity" id="22">
+                       <input type="radio" [(ngModel)]="selectedService" name="Type" value="" id="20">
+                        <label for="20">&nbsp;All services</label> <br>
+
+                       <input type="radio" [(ngModel)]="selectedService" name="Type" value="Mechanical" id="21">
+                        <label for="21">&nbsp;Mechanical</label> <br>
+
+
+
+                        <input type="radio"[(ngModel)]="selectedService" name="Type" value="Electrecity" id="22">
                       <label for="22">&nbsp;Electrecity</label> <br>
 
-                      <input type="radio" name="Type" value="suspintion" id="23">
+
+                      <input type="radio"[(ngModel)]="selectedService" name="Type" value="suspintion" id="23">
                       <label for="23">&nbsp;suspintion</label> <br>
 
-                      <input type="radio" name="Type" value="Computer Detiction" id="24">
+                      <input type="radio"[(ngModel)]="selectedService" name="Type" value="Computer Detiction" id="24">
                       <label for="24">&nbsp;Computer detiction</label> <br>
 
-                      <input type="radio" name="Type" value="car Furniture" id="25">
+                      <input type="radio"[(ngModel)]="selectedService" name="Type" value="car Furniture" id="25">
                       <label for="25">&nbsp;car Furniture</label> <br>
 
-                      <input type="radio" name="Type" value="Oil changes Offer" id="26">
+                      <input type="radio"[(ngModel)]="selectedService" name="Type" value="Oil changes Offer" id="26">
                       <label for="26">&nbsp;Oil change</label> <br>
 
-                      <input type="radio" name="Type" value="Car Wash" id="27">
+                      <input type="radio"[(ngModel)]="selectedService" name="Type" value="Car Wash" id="27">
                       <label for="27">&nbsp;Car Wash</label> <br>
 
 
@@ -341,7 +359,7 @@
           </div>
 
           <div class="col-md-9 col-12 mycard ">
-            @for (item of datafromapi | filter:searchtext| paginate: { itemsPerPage: 5, currentPage: crntpage }     ; track $index ) {
+            @for (item of datafromapi | filter:searchtext |filter:selectedPlace|filter:selectedMark|filter:selectedService|filter:selectedPlace|filter:selectedMark|filter:selectedService| paginate: { itemsPerPage: 5, currentPage: crntpage }     ; track $index ) {
             <div class="row">
               <div class="card mb-5 w-100 ms-1" >
                 <div class="row g-0">
