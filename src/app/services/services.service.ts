@@ -37,11 +37,10 @@ export class ServicesService {
  
    getpost(id:number){
      
-    return this.HttpClient_.get(` https://api-generator.retool.com/wDUVbz/data/${id}`);
+    return this.HttpClient_.get(`https://api-generator.retool.com/wDUVbz/data/${id}`);
  
    }
-   
- 
+  
    savecomment(inputdata:object){
      return this.HttpClient_.post(`https://retoolapi.dev/wDUVbz/data`,inputdata);
  

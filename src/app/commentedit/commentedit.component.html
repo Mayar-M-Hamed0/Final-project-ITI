@@ -1,3 +1,25 @@
+<div class="bg-image">
+    <h1 style="color: black;font-family:Sofia;text-align: center;">REVIEWS</h1>
+    <p style="color: black;font-family:Sofia;text-align: center;font-size: larger;">from our clients</p>
+
+    <form (ngSubmit)="updatecomment()" style="width: 100% ">
+        <div class="bg-text">
+            <div *ngIf="commentdes">
+                <input id="inputrev" type="text" class="form-control " placeholder="write your user_name" name="Username" [(ngModel)]="commentdes.Username">
+                <input id="inputrev" type="text" class="form-control " placeholder="write your comment" name="comment" [(ngModel)]="commentdes.comment">
+                <br>
+                <button id="inputrev" class="inputrevbutton" type="submit" id="button-addon2" style="display: flex;float: right;">
+                <i class="fa-solid fa-paper-plane"></i> 
+            </button>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+<!-------------------------------->
+<!-- 
 <div class="commentContainer">
     <div class="CommentHolder">
         <div class="input-group mb-1 comment">
@@ -18,4 +40,4 @@
         </div>
 
     </div>
-</div>
+</div> -->

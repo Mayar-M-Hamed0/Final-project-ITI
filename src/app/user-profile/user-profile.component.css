@@ -1,0 +1,19 @@
+#imgprofile {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-repeat: repeat-x;
+    background-size: cover;
+    background-image: url(/assets/img.jpg);
+    margin: auto;
+    position: absolute;
+    top: 100px;
+    left: 640px;
+}
+
+.container {
+    margin: auto;
+    width: 25%;
+    margin-top: 110px;
+    text-align: center;
+}

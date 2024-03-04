@@ -11,6 +11,7 @@ import { BookingnowComponent } from './details-service/bookingnow/bookingnow.com
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { ServiceformComponent } from './serviceform/serviceform.component';
 import { CommenteditComponent } from './commentedit/commentedit.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 export const routes: Routes = [
   {
@@ -60,6 +61,13 @@ component:BookingnowComponent, title:"order"
 
 component:OrderDetailsComponent, title:"orderdetails"
 },
+
+{ path:"user",
+
+component:UserProfileComponent, title:"user"
+},
+
+
 { path:"**",
 
 component:NotfoundComponent, title:"Not Found 404"

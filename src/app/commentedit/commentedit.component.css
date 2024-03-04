@@ -1,0 +1,55 @@
+.bg-image {
+    /* The image used */
+    background-image: url(/assets/rev.jpg);
+    opacity: 0.9;
+    /* Add the blur effect */
+    /* Full height */
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+/* Position text in the middle of the page/image */
+
+.bg-text {
+    margin-bottom: 10px;
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Black w/opacity/see-through */
+    color: white;
+    border-radius: 40px;
+    position: relative;
+    left: 30%;
+    top: 15%;
+    width: 600px;
+    height: 170px;
+    padding: 20px;
+    text-align: center;
+}
+
+#inputrev {
+    border-radius: 30px;
+    margin-bottom: 10px;
+}
+
+.send-icon {
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.1);
+    /* Black w/opacity/see-through */
+    color: white;
+    border: none;
+}
+
+.inputrevbutton {
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.1);
+    /* Black w/opacity/see-through */
+    color: white;
+    border: none;
+}

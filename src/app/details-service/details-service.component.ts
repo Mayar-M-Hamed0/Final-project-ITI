@@ -9,24 +9,37 @@ import {comments} from '../../comments'
 import { ServicesService } from '../services/services.service';
 
 import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { FilterPipe } from '../filter.pipe';
 
 @Component({
   selector: 'app-details-service',
   standalone: true,
-  imports: [RouterLink,FontAwesomeModule,RatingStarsComponent,NgFor,FormsModule],
+  imports: [RouterLink,FontAwesomeModule,RatingStarsComponent,NgFor,FormsModule,NgxPaginationModule,FilterPipe],
   templateUrl: './details-service.component.html',
   styleUrl: './details-service.component.css'
 })
 export class DetailsServiceComponent {
 data:any =  []
 id:any
+searchtext:any;
 
-  constructor(private serv:ServicesService , private route:ActivatedRoute){
+crntpage:any
+datafromapi : any = [];
+
+  constructor(private serv:ServicesService , private route:ActivatedRoute, private resevedata:ServicesService){
     this.id = this.route.snapshot.paramMap.get("id")
     this.serv.getsinglepage(this.id).subscribe(res=>{
 
 
     this.data = res; 
+
+
+    this.resevedata.getdata().subscribe(res2 => {
+
+      this.datafromapi = res2;
+       console.log("this is the response of api",this.datafromapi,this.searchtext)
+    })
 
     })
   }
@@ -86,13 +99,11 @@ id:any
 
   deletecomment(event: any, commentid: any) {
 
-    if (confirm('Are you sure you want delete comment?')) {
-      event.target.innerTex = "Deleting..."
       this.serv.destroycomment(commentid).subscribe((res: any) => {
         this.serv.getAllposts().subscribe((res) => { console.log(res) });
 
       })
-    }
+    
   }
 
 
@@ -110,6 +121,5 @@ id:any
 
 
 }
-
 
 
