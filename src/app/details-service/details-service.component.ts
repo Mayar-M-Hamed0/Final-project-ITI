@@ -59,6 +59,11 @@ datafromapi : any = [];
     this.rating = value;
   } 
 
+
+
+  
+  comments:any = comments
+
  // comments:any = comments
 
 
@@ -120,6 +125,14 @@ datafromapi : any = [];
   }
 
 
+
+
+
+
+  
+  updateRating(newRating: number) {
+    this.rating = newRating;
+  }
 }
 
 

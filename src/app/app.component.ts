@@ -12,7 +12,10 @@ import { FooterComponent } from './footer/footer.component';
   selector: 'app-root',
   standalone: true,
 
+
+
   imports: [RouterOutlet , ServiceformComponent,NavbarComponent,FooterComponent],
+
 
 
 
