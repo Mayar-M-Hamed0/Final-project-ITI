@@ -21,11 +21,8 @@ searchtext:any;
   crntpage:any
   datafromapi : any = [];
   selectedPlace:any='';
-  fselectedPlace:any='';
   selectedMark:any='';
-  fselectedMark:any='';
   selectedService:any='';
-  fselectedService:any='';
 
 constructor( private resevedata:ServicesService){
 
