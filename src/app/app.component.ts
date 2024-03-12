@@ -2,6 +2,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ServiceformComponent } from './serviceform/serviceform.component';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 
 
