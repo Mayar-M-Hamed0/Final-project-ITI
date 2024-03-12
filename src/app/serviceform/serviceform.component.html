@@ -144,30 +144,19 @@
 
 
 
-<!-- model -->
-<p>Model</p>
-<div formArrayName="model">
-<ng-container *ngFor="let model of modelz; let i = index">
-  <label class="checkbox-label">
-    <input type="checkbox" [value]="model" [formControlName]="model" (change)="handleCheckboxChange($event, model, 'model')">
-    {{ model }}
-  </label>
-</ng-container>
-</div>
-
-<hr>
-<p>Tags</p>
-<div formArrayName="tag">
-<ng-container *ngFor="let tag of tagz; let i = index">
-  <label class="checkbox-label">
-    <input type="checkbox" [value]="tag.key" [formControlName]="tag.key" (change)="handleCheckboxChange($event, tag.key, 'tag')">
-    {{ tag.value }}
-  </label>
-</ng-container>
-</div>
 
 
-
+              <div class="form-group">
+                <label for="tag">Tags</label>
+                <ng-select [items]="tag" bindLabel="value" bindValue="key"  [closeOnSelect]="false" formControlName="tag" [multiple]="true"></ng-select>
+              </div>
+              
+              <div class="form-group">
+                <label for="model">Models</label>
+                <ng-select [items]="model" formControlName="model" [closeOnSelect]="false" [multiple]="true"></ng-select>
+              </div>
+              
+              
 
 
               
