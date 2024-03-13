@@ -12,15 +12,17 @@ import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FilterPipe } from '../filter.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { readdir } from 'fs';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-details-service',
   standalone: true,
-  imports: [FormsModule,RouterLink,FontAwesomeModule,RatingStarsComponent,FilterPipe,CommonModule],
+  imports: [FormsModule,RouterLink,FontAwesomeModule,RatingStarsComponent,FilterPipe,CommonModule,NgxPaginationModule],
   templateUrl: './details-service.component.html',
   styleUrl: './details-service.component.css'
 })
 export class DetailsServiceComponent {
+  p: number = 1;
 
 data:any =  []
 id:any
@@ -29,7 +31,7 @@ searchtext:any;
 crntpage:any
 datafromapi : any = [];
 
-  constructor(private serv:ServicesService , private route:ActivatedRoute, private resevedata:ServicesService){
+  constructor(private serv:ServicesService , private route:ActivatedRoute, private resevedata:ServicesService,private router: Router){
     this.id = this.route.snapshot.paramMap.get("id")
     this.serv.getsinglepage(this.id).subscribe(res=>{
 
@@ -108,9 +110,10 @@ datafromapi : any = [];
 
       this.serv.destroycomment(commentid).subscribe((res: any) => {
         this.serv.getAllposts().subscribe((res) => { console.log(res) });
-
+     
       })
     
+  
   }
 
 
