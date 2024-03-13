@@ -1,25 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { HostListener } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { RatingStarsComponent } from '../rating-stars/rating-stars.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { NgFor } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
 import {comments} from '../../comments'
 import { ServicesService } from '../services/services.service';
 
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FilterPipe } from '../filter.pipe';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { readdir } from 'fs';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-details-service',
   standalone: true,
-  imports: [RouterLink,FontAwesomeModule,RatingStarsComponent,NgFor,FormsModule,NgxPaginationModule,FilterPipe],
+  imports: [FormsModule,RouterLink,FontAwesomeModule,RatingStarsComponent,FilterPipe,CommonModule,NgxPaginationModule],
   templateUrl: './details-service.component.html',
   styleUrl: './details-service.component.css'
 })
 export class DetailsServiceComponent {
+  p: number = 1;
+
 data:any =  []
 id:any
 searchtext:any;
@@ -27,7 +31,7 @@ searchtext:any;
 crntpage:any
 datafromapi : any = [];
 
-  constructor(private serv:ServicesService , private route:ActivatedRoute, private resevedata:ServicesService){
+  constructor(private serv:ServicesService , private route:ActivatedRoute, private resevedata:ServicesService,private router: Router){
     this.id = this.route.snapshot.paramMap.get("id")
     this.serv.getsinglepage(this.id).subscribe(res=>{
 
@@ -106,9 +110,10 @@ datafromapi : any = [];
 
       this.serv.destroycomment(commentid).subscribe((res: any) => {
         this.serv.getAllposts().subscribe((res) => { console.log(res) });
-
+     
       })
     
+  
   }
 
 
@@ -127,6 +132,9 @@ datafromapi : any = [];
 
 
 
+  get totalPosts(): number {
+    return this.posts.length;
+  }
 
 
   
