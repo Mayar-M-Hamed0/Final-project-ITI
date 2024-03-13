@@ -26,6 +26,10 @@ button{
   color: #fff;
   background: #00000003;
 }
+img{
+ width: 100%;
+ 
+}
 
 .card{
   box-shadow: 0 10px 20px 1px grey;
