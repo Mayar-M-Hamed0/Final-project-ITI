@@ -1,25 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { HostListener } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { RatingStarsComponent } from '../rating-stars/rating-stars.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { NgFor } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
 import {comments} from '../../comments'
 import { ServicesService } from '../services/services.service';
 
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FilterPipe } from '../filter.pipe';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-details-service',
   standalone: true,
-  imports: [RouterLink,FontAwesomeModule,RatingStarsComponent,NgFor,FormsModule,NgxPaginationModule,FilterPipe],
+  imports: [FormsModule,RouterLink,FontAwesomeModule,RatingStarsComponent,FilterPipe,CommonModule],
   templateUrl: './details-service.component.html',
   styleUrl: './details-service.component.css'
 })
 export class DetailsServiceComponent {
+
 data:any =  []
 id:any
 searchtext:any;
@@ -127,6 +129,9 @@ datafromapi : any = [];
 
 
 
+  get totalPosts(): number {
+    return this.posts.length;
+  }
 
 
   
