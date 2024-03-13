@@ -12,6 +12,7 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
 import { ServiceformComponent } from './serviceform/serviceform.component';
 import { CommenteditComponent } from './commentedit/commentedit.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { DashbordComponent } from './dashbord/dashbord.component';
 
 export const routes: Routes = [
   {
@@ -23,6 +24,11 @@ export const routes: Routes = [
   {
     path:"Home",
     component:HomeComponent , title:"Home"
+  }, 
+  
+  {
+    path:"dashboard",
+    component:DashbordComponent , title:"dash"
   }, 
 
  { path:"service",
