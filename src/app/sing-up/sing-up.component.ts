@@ -1,7 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-sing-up',
   standalone: true,
@@ -11,17 +12,22 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class SingUpComponent { 
   gameForm: FormGroup;
-  constructor() {
+
+  response: any = '';
+
+  constructor(
+
+ private http:HttpClient
+,private router: Router
+
+  ) {
     this.gameForm = new FormGroup({
-       fname: new FormControl('', [
+      name: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
         
       ]), 
-      lname: new FormControl('', [
-       Validators.required,
-       Validators.minLength(3),
-     ]),
+    
      email: new FormControl('', [
        Validators.required,
        Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)
@@ -30,15 +36,22 @@ export class SingUpComponent {
        Validators.required,
        Validators.minLength(8),
      ]),
-     birthday: new FormControl('', [
-       Validators.required,
-       Validators.pattern(/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/),
-     ])
+
    });
  }
  handelForm() {
+  this.http.post('http://127.0.0.1:8000/api/register/', this.gameForm.value).subscribe(
+    res => {
+      this.response = res;
+      console.log(this.response);
+      if (this.response && this.response.status === 201) {
+      
+        this.router.navigate(['/login']);
+      }
+    }
+  );
+}
 
-   console.log(this.gameForm);
- }
 
+ 
 }
