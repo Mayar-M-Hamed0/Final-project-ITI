@@ -12,6 +12,7 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
 import { ServiceformComponent } from './serviceform/serviceform.component';
 import { CommenteditComponent } from './commentedit/commentedit.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { TheDashboardComponent } from './dashboard/the-dashboard/the-dashboard.component';
 
 export const routes: Routes = [
   {
@@ -19,11 +20,11 @@ export const routes: Routes = [
     component:HomeComponent , title:"Home"
   },
 
- 
+
   {
     path:"Home",
     component:HomeComponent , title:"Home"
-  }, 
+  },
 
  { path:"service",
   component:PageOfServiceComponent , title:"service"
@@ -42,7 +43,7 @@ component:ServiceformComponent , title:"serviceform"
 },
 
 { path:"comment/:id/edit", component:CommenteditComponent},
-    
+
 
 
 { path:"login",
@@ -65,6 +66,10 @@ component:OrderDetailsComponent, title:"orderdetails"
 { path:"user",
 
 component:UserProfileComponent, title:"user"
+},
+{ path:"dashboard",
+
+component:TheDashboardComponent, title:"dashboard"
 },
 
 
