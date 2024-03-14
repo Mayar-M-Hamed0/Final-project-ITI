@@ -3,14 +3,9 @@
     <div class="img2"></div>
     <div class="wrapper">
 
-        <form [formGroup]="gameForm" (ngSubmit)="handelForm()">
+        <form [formGroup]="gameForm" (ngSubmit)="handleForm()">
             <h1>Log In</h1>
-            <div class="mb-3">
-                <input class="inputBox" type="text" class="form-control" id="fname" formControlName="fname" placeholder="Username"> @if(gameForm.controls['fname'].invalid && gameForm.controls['fname'].touched) { @if(gameForm.controls['fname'].errors?.['required'])
-                {
-                <span> This field is required </span> } @if(gameForm.controls['fname'].errors?.['minlength']) {
-                <span>Min length is 3 </span> } }
-            </div>
+   
 
             <div class="mb-3">
                 <input class="inputBox" type="email" class="form-control" id="exampleInputEmail1" formControlName="email" placeholder="Email"> @if(gameForm.controls['email'].invalid && gameForm.controls['email'].touched) { @if(gameForm.controls['email'].errors?.['required'])
@@ -26,11 +21,11 @@
                 <span>Min length is 8 </span> } }
             </div>
 
-            <a class="btn active-classbtn " routerLink="/login">LoG In</a>
+            <button class="btn btn" type="submit">Log In</button>
             <br>
             <p class="d-inline-block register_link">You Don't have an account? </p>
 
             <a class="register_link d-inline-block " routerLink="/Singup">Sign Up</a>
-
+<p class="text-danger">{{response.user}}</p>
         </form>
     </div>
