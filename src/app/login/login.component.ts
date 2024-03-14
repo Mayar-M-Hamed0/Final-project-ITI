@@ -1,6 +1,9 @@
+
+import { HttpClient ,HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { log } from 'console';
 
 @Component({
   selector: 'app-login',
@@ -13,17 +16,12 @@ export class LoginComponent {
 
 
  gameForm: FormGroup;
-  constructor() {
+  constructor(
+    private http:HttpClient,
+    private router:Router
+  ) {
     this.gameForm = new FormGroup({
-       fname: new FormControl('', [
-        Validators.required,
-        Validators.minLength(3),
-        
-      ]), 
-      lname: new FormControl('', [
-       Validators.required,
-       Validators.minLength(3),
-     ]),
+
      email: new FormControl('', [
        Validators.required,
        Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)
@@ -32,16 +30,27 @@ export class LoginComponent {
        Validators.required,
        Validators.minLength(8),
      ]),
-     birthday: new FormControl('', [
-       Validators.required,
-       Validators.pattern(/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/),
-     ])
+  
    });
  }
- handelForm() {
+ response: any = '';
 
-   console.log(this.gameForm);
- }
+ handleForm() {
+  this.http.post('http://127.0.0.1:8000/api/login/', this.gameForm.value, { withCredentials: false })
+    .subscribe((res) => {
 
+      this.response = res;
+
+      if ( this.response.status === 200) {
+
+        sessionStorage.setItem('token', this.response.data.token);
+          this.router.navigate(['/']);
+      } else {
+
+        this.response = res;
+      
+      }
+    });
+}
 
 }

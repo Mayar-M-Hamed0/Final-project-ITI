@@ -1,3 +1,4 @@
+
 import { Routes } from '@angular/router';
 
 import { PageOfServiceComponent } from './page-of-service/page-of-service.component';
@@ -12,7 +13,8 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
 import { ServiceformComponent } from './serviceform/serviceform.component';
 import { CommenteditComponent } from './commentedit/commentedit.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { TheDashboardComponent } from './dashboard/the-dashboard/the-dashboard.component';
+
+import { AuthGuard } from './auth.guard';
 
 export const routes: Routes = [
   {
@@ -24,7 +26,13 @@ export const routes: Routes = [
   {
     path:"Home",
     component:HomeComponent , title:"Home"
-  },
+
+  }, 
+  
+ 
+  
+ 
+
 
  { path:"service",
   component:PageOfServiceComponent , title:"service"
@@ -34,8 +42,9 @@ export const routes: Routes = [
 component:DetailsServiceComponent , title:"details-service"
 },
 
+
 { path:"Singup",
-component:SingUpComponent , title:"signup"
+component:SingUpComponent , title:"signup",canActivate:[AuthGuard]
 },
 
 { path:"serviceform",
@@ -47,7 +56,7 @@ component:ServiceformComponent , title:"serviceform"
 
 
 { path:"login",
-component:LoginComponent, title:"Login"
+component:LoginComponent, title:"Login",canActivate:[AuthGuard]
 },
 
 { path:"orders",
