@@ -13,6 +13,7 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
 import { ServiceformComponent } from './serviceform/serviceform.component';
 import { CommenteditComponent } from './commentedit/commentedit.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+
 import { AuthGuard } from './auth.guard';
 import { TheDashboardComponent } from './dashboard/the-dashboard/the-dashboard.component';
 export const routes: Routes = [
@@ -20,6 +21,7 @@ export const routes: Routes = [
     path:"",
     component:HomeComponent , title:"Home"
   },
+
 
 
   {
@@ -52,6 +54,7 @@ component:ServiceformComponent , title:"serviceform"
 
 
 
+
 { path:"login",
 component:LoginComponent, title:"Login",canActivate:[AuthGuard]
 },
@@ -72,6 +75,10 @@ component:OrderDetailsComponent, title:"orderdetails"
 { path:"user",
 
 component:UserProfileComponent, title:"user"
+},
+{ path:"dashboard",
+
+component:TheDashboardComponent, title:"dashboard"
 },
 { path:"dashboard",
 
