@@ -33,6 +33,7 @@ export class ServiceformComponent {
   serviceform: FormGroup;
   model: { key: number; value: string }[] = [];
   services: { key: number; value: string }[] = [];
+  msgres:any=''
   constructor(private fb: FormBuilder, private sr: ServicesService) {
     this.serviceform = new FormGroup({
       servicename: new FormControl('', [Validators.required]),
@@ -99,9 +100,24 @@ export class ServiceformComponent {
  
 
   handelForm() {
- 
-    this.sr.pushdata(this.serviceform.value).subscribe();
+    this.sr.pushdata(this.serviceform.value).subscribe(
+      (res) => {
+   
+        if (res) {
+          window.location.reload();
+        } else {
+     
+          console.log('حدث خطأ في إرسال البيانات');
+        }
+      },
+      (error) => {
+        
+        console.error('حدث خطأ: ', error);
+      }
+    );
   }
+  
+
   resetForm() {
     this.serviceform.reset();
     this.serviceform.markAsPristine();

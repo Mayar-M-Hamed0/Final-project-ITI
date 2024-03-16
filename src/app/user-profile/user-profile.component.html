@@ -8,18 +8,36 @@
 </div>
 <div style="background-color:azure;width: 75%;height:440px;position: absolute;top:200px;left:200px;border-radius: 15px; box-shadow:2px 3px 2px 3px #888888;">
 
- 
-    <div class="container">
-        <h3 style="color:rgb(81, 81, 81);">
-            {{datauser.name}}
-        </h3>
-   
-      
-        <div style="display: inline-block; margin-right: 20px;">
-         
-            {{datauser.email}}
-        </div>
 
+    <div class="container">
+        <button class="btn btn-dark" routerLink="/EditProfile">Edit</button>
+        <p style="color:rgb(81, 81, 81);">
+            
+            Name: <span class="fw-bold">{{datauser.name}}</span> 
+        </p>
+
+        <p style="color:rgb(81, 81, 81);">
+            
+            Email: <span class="fw-bold">{{datauser.email}}</span> 
+        </p>
+   
+        <p style="color:rgb(81, 81, 81);">
+            
+            created_at: <span class="fw-bold">{{datauser.created_at}}</span> 
+        </p>
+
+        <p style="color:rgb(81, 81, 81);">
+            
+            Role: <span class="fw-bold">{{datauser.role}}</span> 
+        </p>
+
+        <p style="color:rgb(81, 81, 81);">
+            
+            Phone Number: <span class="fw-bold">0{{datauser.phone}}</span> 
+        </p>
+      
+      
+    
   
 
     </div>

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SideNavComponent } from './side-nav.component';
+import { CreateserviceComponent } from './createservice.component';
 
-describe('SideNavComponent', () => {
-  let component: SideNavComponent;
-  let fixture: ComponentFixture<SideNavComponent>;
+describe('CreateserviceComponent', () => {
+  let component: CreateserviceComponent;
+  let fixture: ComponentFixture<CreateserviceComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SideNavComponent]
+      imports: [CreateserviceComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(SideNavComponent);
+    fixture = TestBed.createComponent(CreateserviceComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
