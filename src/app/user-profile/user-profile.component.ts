@@ -22,7 +22,9 @@ export class UserProfileComponent {
 
   constructor(private datalogin:LoginService ){
   
-  
+this.datalogin.auth().subscribe(res=>{
+  this.datauser= res;
+})
   }
 
 ;  
