@@ -1,0 +1,20 @@
+.wrapper {
+    display: flex;
+}
+
+.dashboard {
+    width: 200px; /* أو أي عرض آخر تفضله لـ aside */
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.content {
+    flex: 1; /* يأخذ المحتوى المتبقي من المساحة */
+    padding: 20px;
+}
+
+li{
+    cursor: pointer;
+}

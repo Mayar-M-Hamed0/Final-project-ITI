@@ -37,7 +37,28 @@
                 <button class="btn nav-btn" type="submit">Search</button>
             </form> -->
             @if (datauser) {
-                <p class="text-white" routerLink="user">Welcome,{{datauser.name}}</p>
+             
+
+
+
+<div class="btn-group">
+    <button type="button" style="background-color: #293241 !important;" class="btn btn-primary dropdown-toggle border" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fa-solid fa-user"></i>
+    </button>
+    <ul class="dropdown-menu">
+    
+        <li><a class="dropdown-item text-dark">{{datauser.name}}</a></li>
+      <li><a class="dropdown-item  text-dark" routerLink="user">Profile</a></li>
+
+    </ul>
+  </div>
+
+
+
+
+
+
+
 
             <li class="nav-item">
                

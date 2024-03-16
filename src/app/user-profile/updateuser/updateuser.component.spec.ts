@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TopThreeCentersComponent } from './top-three-centers.component';
+import { UpdateuserComponent } from './updateuser.component';
 
-describe('TopThreeCentersComponent', () => {
-  let component: TopThreeCentersComponent;
-  let fixture: ComponentFixture<TopThreeCentersComponent>;
+describe('UpdateuserComponent', () => {
+  let component: UpdateuserComponent;
+  let fixture: ComponentFixture<UpdateuserComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TopThreeCentersComponent]
+      imports: [UpdateuserComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(TopThreeCentersComponent);
+    fixture = TestBed.createComponent(UpdateuserComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

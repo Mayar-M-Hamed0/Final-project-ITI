@@ -1,3 +1,4 @@
+import { DashbordComponent } from './dash/dashbord/dashbord.component';
 
 import { Routes } from '@angular/router';
 
@@ -15,7 +16,7 @@ import { CommenteditComponent } from './commentedit/commentedit.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 
 import { AuthGuard } from './auth.guard';
-import { TheDashboardComponent } from './dashboard/the-dashboard/the-dashboard.component';
+import { UpdateuserComponent } from './user-profile/updateuser/updateuser.component';
 export const routes: Routes = [
   {
     path:"",
@@ -76,14 +77,16 @@ component:OrderDetailsComponent, title:"orderdetails"
 
 component:UserProfileComponent, title:"user"
 },
-{ path:"dashboard",
+{ path:"EditProfile",
 
-component:TheDashboardComponent, title:"dashboard"
+component:UpdateuserComponent, title:"EditProfile"
 },
-{ path:"dashboard",
 
-component:TheDashboardComponent, title:"dashboard"
+{ path:"dash",
+
+component:DashbordComponent, title:"user"
 },
+
 
 
 { path:"**",

@@ -13,8 +13,7 @@ import { Router } from '@angular/router';
 export class SingUpComponent { 
   gameForm: FormGroup;
 
-  response: any = '';
-
+response :any = ''
   constructor(
 
  private http:HttpClient

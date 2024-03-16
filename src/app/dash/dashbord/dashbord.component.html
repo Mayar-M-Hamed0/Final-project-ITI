@@ -1,0 +1,31 @@
+<div class="wrapper">
+    <aside class="dashboard" style="height: 100vh;">
+        <h2> Dashboard</h2>
+        <nav>
+            <ul>
+                <li><a (click)="activeComponent = 'createservice'"> CreateService</a></li>
+                <li><a (click)="activeComponent = 'updateservice'"> updateService</a></li>
+                <li><a (click)="activeComponent = 'viewservice'"> MyService</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <div class="content">
+        
+        <ng-container *ngIf="activeComponent === 'createservice'">
+            <app-createservice></app-createservice>
+        </ng-container>
+
+
+        <ng-container *ngIf="activeComponent === 'updateservice'">
+            <app-updateservice></app-updateservice>
+        </ng-container>
+
+
+        <ng-container *ngIf="activeComponent === 'viewservice'">
+            <app-viewservice></app-viewservice>
+        </ng-container>
+
+
+    </div>
+</div>

@@ -31,8 +31,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
 })
 export class ServiceformComponent {
   serviceform: FormGroup;
-  model: string[] = [];
-  tag: { key: string; value: string }[] = [];
+  model: { key: number; value: string }[] = [];
+  services: { key: number; value: string }[] = [];
+  msgres:any=''
   constructor(private fb: FormBuilder, private sr: ServicesService) {
     this.serviceform = new FormGroup({
       servicename: new FormControl('', [Validators.required]),
@@ -40,57 +41,57 @@ export class ServiceformComponent {
       servicedetails: new FormControl('', [Validators.required]),
       location: new FormControl('', [Validators.required]),
       imageurl: new FormControl('', [Validators.required]),
-      services: new FormControl('', [Validators.required]),
       rate: new FormControl('', [Validators.required]),
       Workingtime: new FormControl('', [Validators.required]),
       Workingdays: new FormControl('', [Validators.required]),
-      tag: new FormControl('', Validators.required), 
+      services: new FormControl('', Validators.required), 
       model: new FormControl('', Validators.required),
     });
 
 
     this.model = [
-      'KIA',
-      'MAZDA',
-      'TOYOTA',
-      'SKODA',
-      'SSANGYONG',
-      'Ford',
-      'BMW',
-      'LADA',
-      'CITROËN',
-      'SUZUKI',
-      'SEAT',
-      'RENAULT',
-      'HYUNDAI',
-      'NISSAN',
-      'VOLVO',
-      'HONDA',
-      'BYD',
+      { key: 1, value: 'KIA' },
+      { key: 2, value: 'MAZDA' },
+      { key: 3, value: 'TOYOTA' },
+      { key: 4, value: 'SKODA' },
+      { key: 5, value: 'SSANGYONG' },
+      { key: 6, value: 'Ford' },
+      { key: 7, value: 'BMW' },
+      { key: 8, value: 'LADA' },
+      { key: 9, value: 'CITROËN' },
+      { key: 10, value: 'SUZUKI' },
+      { key: 11, value: 'SEAT' },
+      { key: 12, value: 'RENAULT' },
+      { key: 13, value: 'HYUNDAI' },
+      { key: 14, value: 'NISSAN' },
+      { key: 15, value: 'VOLVO' },
+      { key: 16, value: 'BYD' },
+      { key: 17, value: 'HONDA' },
+
     ];
   
-    this.tag= [
-      { key: 'Mechanical', value: 'Mechanical' },
-      { key: 'Electricity', value: 'Electricity' },
-      { key: 'Suspensions', value: 'Suspensions' },
-      { key: 'Car Denting', value: 'Car Denting' },
-      { key: 'paints', value: 'paints' },
-      { key: 'brakes', value: 'brakes' },
-      { key: 'lubricants', value: 'lubricants' },
-      { key: 'Tires and batteries', value: 'Tires and batteries' },
-      { key: 'gear box', value: 'gear box' },
-      { key: 'A/C Charge', value: 'A/C/Charge' },
-      { key: 'Radiator', value: 'Radiator' },
-      { key: 'Fast Service', value: 'Fast Service' },
-      { key: 'Computer detection', value: 'Computer detection' },
-      { key: 'Car wash and care', value: 'Car wash and care' },
-      { key: 'Insurance companies', value: 'Insurance companies' },
+    this.services= [
+      { key: 1, value: 'Mechanical' },
+      { key: 2, value: 'Electricity' },
+      { key: 3, value: 'Suspensions' },
+      { key: 4, value: 'Car Denting' },
+      { key: 5, value: 'paints' },
+      { key: 6, value: 'brakes' },
+      { key: 7, value: 'lubricants' },
+      { key: 8, value: 'Tires and batteries' },
+      { key: 9, value: 'gear box' },
+      { key: 10, value: 'A/C/Charge' },
+      { key: 11, value: 'Radiator' },
+      { key: 12, value: 'Fast Service' },
+      { key: 13, value: 'Computer detection' },
+      { key: 14, value: 'Car wash and care' },
+      { key: 15, value: 'Insurance companies' },
       {
-        key: 'Oil Change Offers + Preventive Maintenance',
+        key:16,
         value: 'Oil Change Offers + Preventive Maintenance',
       },
-      { key: 'El-Mikaneeky BOSCH', value: 'El-Mikaneeky BOSCH' },
-      { key: 'Labor fees Discount', value: 'Labor fees Discount' },
+      { key: 17, value: 'El-Mikaneeky BOSCH' },
+      { key: 18 , value: 'Labor fees Discount' },
     ];
   }
 
@@ -99,9 +100,24 @@ export class ServiceformComponent {
  
 
   handelForm() {
- 
-    this.sr.pushdata(this.serviceform.value).subscribe();
+    this.sr.pushdata(this.serviceform.value).subscribe(
+      (res) => {
+   
+        if (res) {
+          window.location.reload();
+        } else {
+     
+          console.log('حدث خطأ في إرسال البيانات');
+        }
+      },
+      (error) => {
+        
+        console.error('حدث خطأ: ', error);
+      }
+    );
   }
+  
+
   resetForm() {
     this.serviceform.reset();
     this.serviceform.markAsPristine();
