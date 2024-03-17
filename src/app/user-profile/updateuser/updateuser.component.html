@@ -8,9 +8,9 @@
             <div class="wrapper" >
 
                 <form [formGroup]="gameForm" (ngSubmit)="handelForm()"class=' w-100 mt-5'>
-                    <h3>uppdate My Profile</h3>
+                    <h3>Update My Profile</h3>
                     <div class="mb-3">
-                        <input class="inputBox" type="text" class="form-control" id="name" formControlName="name" placeholder="name ">
+                        <input class="inputBox" type="text" class="form-control" id="name"    formControlName="name" placeholder="name ">
                         
                         
                         
@@ -23,7 +23,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <input class="inputBox" type="file" class="form-control" id="image" formControlName="image" placeholder="image ">
+                        <input class="inputBox" type="text" class="form-control" id="image" formControlName="image" placeholder="image ">
                         
                         
                         
@@ -65,7 +65,7 @@
                         <span> This field is required </span> } @if(gameForm.controls['password'].errors?.['minlength']) {
                         <span>Min length is 8 </span> } }
                     </div>
-                    <input type="submit" class=" btn btn-sm d-inline-block btn-dark"  value="Update">
+                    <input type="submit" class=" btn btn-sm d-inline-block btn-dark mt-2 mb-3"  value="Update">
                 
                     <br>
                 
