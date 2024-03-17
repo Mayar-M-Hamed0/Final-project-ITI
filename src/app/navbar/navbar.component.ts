@@ -33,6 +33,7 @@ export class NavbarComponent {
   logout() {
     sessionStorage.removeItem('token');
     this.router.navigate(['/']);
+    window.location.reload()
   }
   
 

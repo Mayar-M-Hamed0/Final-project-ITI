@@ -22,7 +22,7 @@ resupdate :any= ' '
 errorData: any; // تفترض وجود هذه المتغيرات في كومبوننتك
 
 errorMessage:any =''
-
+oldData:any ='haha'
 
      token = sessionStorage.getItem('token')
      
@@ -35,13 +35,11 @@ errorMessage:any =''
 
 
 
-  constructor(
+  constructor(private http:HttpClient,private router: Router,private service:LoginService ) {
 
 
- private http:HttpClient
-,private router: Router,service:LoginService
+   
 
-  ) {
     this.gameForm = new FormGroup({
       name: new FormControl('', [
         Validators.required,
@@ -69,17 +67,21 @@ errorMessage:any =''
 
    });
 
-   service.auth().subscribe(res=>{
-this.response = res
-   })
 
 
+ 
  }
+
+
+
+    
+  
+
 
  handelForm() {
 
-
-  
+this.service.auth().subscribe(res=>{
+  this.response=res
   const token = sessionStorage.getItem('token');
 
 
@@ -93,11 +95,15 @@ this.response = res
     };
 
 
-    this.http.put('http://127.0.0.1:8000/api/users/2', this.gameForm.value, httpOptions).subscribe(
+    this.http.put('http://127.0.0.1:8000/api/users/'+this.response.id, this.gameForm.value, httpOptions).subscribe(
       (res) => {
         this.resupdate = res;
-        
-console.log(this.resupdate);
+    
+
+
+setTimeout(() => {
+  window.location.reload()
+}, 2000);
 
        
       },
@@ -110,6 +116,11 @@ console.log(this.resupdate);
 
     console.log('Token not found in sessionStorage');
   }
+  
+})
+
+  
+
 }
 
 

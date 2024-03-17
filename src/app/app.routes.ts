@@ -14,7 +14,7 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
 import { ServiceformComponent } from './serviceform/serviceform.component';
 import { CommenteditComponent } from './commentedit/commentedit.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-
+import { check } from './checklog.guard';
 import { AuthGuard } from './auth.guard';
 import { UpdateuserComponent } from './user-profile/updateuser/updateuser.component';
 import { CreateserviceComponent } from './dash/createservice/createservice.component';
@@ -78,11 +78,11 @@ component:OrderDetailsComponent, title:"orderdetails"
 
 { path:"user",
 
-component:UserProfileComponent, title:"user"
+component:UserProfileComponent, title:"user",canActivate: [check] 
 },
 { path:"EditProfile",
 
-component:UpdateuserComponent, title:"EditProfile"
+component:UpdateuserComponent, title:"EditProfile",canActivate: [check] 
 },
 
 { path:"dash",

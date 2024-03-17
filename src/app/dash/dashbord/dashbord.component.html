@@ -1,11 +1,38 @@
-<div class="wrapper">
+<div class="wrapper container-fluid">
     <aside class="dashboard" style="height: 100vh;">
         <h2> Dashboard</h2>
         <nav>
             <ul>
-                <li><a (click)="activeComponent = 'createservice'"> CreateService</a></li>
-                <li><a (click)="activeComponent = 'updateservice'"> updateService</a></li>
-                <li><a (click)="activeComponent = 'viewservice'"> MyService</a></li>
+
+<div class="nav-items">
+  <div class="nav-item" (click)="activeComponent = 'homepage'">
+    <i class="fa-solid fa-gauge"></i>
+    <span>Dashboard</span>
+  </div>
+  <div class="nav-item" (click)="activeComponent = 'createservice'">
+    <i class="fa-solid fa-plus"></i>
+    <span>Create services</span>
+  </div>
+  <div class="nav-item" (click)="activeComponent = 'editservice'">
+    <i class="fa-solid fa-pen-to-square"></i>
+    <span>My service</span>
+  </div>
+  <div class="nav-item" (click)="activeComponent = 'orders'">
+    <i class="fa-solid fa-cart-shopping"></i>
+    <span>orders</span>
+  </div>
+  <div class="nav-item" (click)="activeComponent = 'archive'">
+    <i class="fa-solid fa-box-archive"></i>
+    <span>archive orders</span>
+  </div>
+
+  <div class="nav-item" (click)="activeComponent = 'help'">
+    <i class="fa-solid fa-handshake-angle"></i>
+    <span>Help</span>
+  </div>
+</div>
+
+
             </ul>
         </nav>
     </aside>
@@ -13,17 +40,17 @@
     <div class="content">
 
         <ng-container *ngIf="activeComponent === 'createservice'">
-            <app-createservice></app-createservice>
+            <app-serviceform></app-serviceform>
         </ng-container>
 
 
-        <ng-container *ngIf="activeComponent === 'updateservice'">
+        <ng-container *ngIf="activeComponent === 'editeservice'">
             <app-updateservice></app-updateservice>
         </ng-container>
 
 
-        <ng-container *ngIf="activeComponent === 'viewservice'">
-            <app-viewservice></app-viewservice>
+        <ng-container *ngIf="activeComponent === 'orders'">
+            <app-center-orders></app-center-orders>
         </ng-container>
 
 
