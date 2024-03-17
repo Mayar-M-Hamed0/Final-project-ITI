@@ -3,18 +3,46 @@
 }
 
 .dashboard {
-    width: 200px; /* أو أي عرض آخر تفضله لـ aside */
-    background-color: #f2f2f2;
+    width: 300px; /* أو أي عرض آخر تفضله لـ aside */
+    background-color: #293241;
+    color: white;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+
 .content {
     flex: 1; /* يأخذ المحتوى المتبقي من المساحة */
     padding: 20px;
+    overflow-x: scroll;
+    height: 100vh;
 }
 
 li{
     cursor: pointer;
+}
+.nav-items {
+  padding-top: 40px;
+  .nav-item {
+    padding: 25px 10px;
+    cursor: pointer;
+    @media only screen and (max-width: 1300px) {
+      padding: 25px 40px;
+    }
+    &:hover {
+      background-color: #ee6c4d;
+    }
+    fa-icon {
+      margin-right: 20px;
+      font-size: 22px;
+    }
+    span {
+      padding: 7px;
+      display: inline;
+      @media only screen and (max-width: 1300px) {
+        display: none;
+      }
+    }
+  }
 }

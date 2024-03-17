@@ -20,158 +20,14 @@ section{
     <div class="col-4"></div>
     <div class="col-md-4">
       <div >
-       
+
           <form  [formGroup]="bookingnow" (ngSubmit)="onSubmit()" >
 
 
-            <!-- mail -->
-            <div class="mb-3 mt-4">
-              <label for="exampleInputEmail" class="form-label">Email</label>
-              <input type="email" class="form-control" formControlName="email"  id="exampleInputEmail" aria-describedby="emailHelp">
-
-     <!-- error -->
-     @if(bookingnow.controls['email'].invalid && bookingnow.controls['email'].touched) 
-     {
-         @if(bookingnow.controls['email'].errors?.['required'])
-         {
-             <div class="alert alert-warning p-2" role="alert">
-                 This field is required
-             </div>
-         }
-         @if(bookingnow.controls['email'].errors?.['email']) 
-         {
-             <div class="alert alert-danger p-2" role="alert">
-                 Please Enter A valid Email
-             </div>
-         }
-     }
-     @else if(bookingnow.controls['email'].valid)
-     {
-      Success<i class="fa-solid fa-check" style="color: #083248;"></i>
-     }
 
 
-<!-- error -->
-            </div>
-        <!-- mail -->
+<input type="text" value="{{id}}" hidden name="service_id">
 
-        <!-- fname -->
-            <div class="mb-3">
-              <label for="FirstName" class="form-label">First Name</label>
-      <input type="email" class="form-control" formControlName="fname" id="FirstName">
-
-<!-- error -->
-@if(bookingnow.controls['fname'].invalid && bookingnow.controls['fname'].touched) 
-{
-  @if(bookingnow.controls['fname'].errors?.['required'])
-  {
-    <div class="alert alert-warning p-2"   role="alert">
-     field is required
-    </div>
-  }
-  
-  @if(bookingnow.controls['fname'].errors?.['minlength']) 
-  {
-    <div class="alert alert-danger p-2" role="alert">
-   min length 4 char
-    </div>
-  }
-  
-  @if(bookingnow.controls['fname'].errors?.['maxlength']) 
-  {
-    <div class="alert alert-danger p-2" role="alert">
-      min length 10 char
-    </div>
-  }
-}  @else if(bookingnow.controls['fname'].valid)
-{
- Success<i class="fa-solid fa-check" style="color: #083248;"></i>
-}
-
-
-
-
-
-
-<!-- error -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            </div>
-         <!-- fname -->
-
-
-
-
-         <!-- lname -->
-            <div class="mb-3">
-              <label for="lastname" class="form-label">Last Name</label>
-              <input type="text" class="form-control" formControlName="lname"  id="lastname" >
-
-
-<!-- error -->
-
-@if(bookingnow.controls['lname'].invalid && bookingnow.controls['lname'].touched) 
-{
-  @if(bookingnow.controls['lname'].errors?.['required'])
-  {
-    <div class="alert alert-warning p-2" role="alert">
-     field is required
-    </div>
-  }
-  
-  @if(bookingnow.controls['lname'].errors?.['minlength']) 
-  {
-    <div class="alert alert-danger p-2" role="alert">
-   min length 4 char
-    </div>
-  }
-  
-  @if(bookingnow.controls['lname'].errors?.['maxlength']) 
-  {
-    <div class="alert alert-danger p-2" role="alert">
-      min length 10 char
-    </div>
-  }
-}  @else if(bookingnow.controls['lname'].valid)
-{
- Success<i class="fa-solid fa-check" style="color: #083248;"></i>
-}
-<!-- error -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
-
-            </div>
-         <!-- lname -->
-      
 
 <!-- phone -->
             <div class="mb-3">
@@ -180,7 +36,7 @@ section{
 
       <!-- error -->
 
-@if(bookingnow.controls['phone'].invalid && bookingnow.controls['phone'].touched) 
+@if(bookingnow.controls['phone'].invalid && bookingnow.controls['phone'].touched)
 {
   @if(bookingnow.controls['phone'].errors?.['required'])
   {
@@ -188,14 +44,14 @@ section{
      field is required
     </div>
   }
-  
-  @if(bookingnow.controls['phone'].errors?.['pattern']) 
+
+  @if(bookingnow.controls['phone'].errors?.['pattern'])
   {
     <div class="alert alert-danger p-2" role="alert">
    please insert a valid phone like 010********
     </div>
   }
-  
+
 
 }  @else if(bookingnow.controls['phone'].valid)
 {
@@ -208,53 +64,27 @@ section{
 
 <!-- phone -->
 
-<!-- textarea -->
-            <div class="mb-3">
-              <label for="textarea" class="form-label">Write the service you need</label>
-              <textarea class="form-control"  formControlName="textarea"        id="textarea" style="height: 100px"></textarea>
-      
+<div class="form-group">
+  <label for="tag">services</label>
+  <ng-select [items]="services" bindLabel="value" bindValue="key"  [closeOnSelect]="false" formControlName="services" [multiple]="true"></ng-select>
+</div>
 
 
-
-              @if(bookingnow.controls['textarea'].invalid && bookingnow.controls['textarea'].touched) 
-              {
-                @if(bookingnow.controls['textarea'].errors?.['required'])
-                {
-                  <div class="alert alert-warning p-2" role="alert">
-                   field is required
-                  </div>
-                }
-                
-                @if(bookingnow.controls['textarea'].errors?.['minlength']) 
-                {
-                  <div class="alert alert-danger p-2" role="alert">
-                 min length 10 char
-                  </div>
-                }
-                
-                @if(bookingnow.controls['textarea'].errors?.['maxlength']) 
-                {
-                  <div class="alert alert-warning p-2" role="alert">
-                    min length 90 char
-                  </div>
-                }
-              }  @else if(bookingnow.controls['textarea'].valid)
-              {
-               Success<i class="fa-solid fa-check" style="color: #083248;"></i>
-              }
+<div class="form-group">
+  <label for="model">Car Model</label>
+  <ng-select [items]="model"   bindLabel="value" bindValue="key"   formControlName="model" [closeOnSelect]="true" [multiple]="false"></ng-select>
+</div>
 
 
-            </div>
-<!-- textarea -->
 
 <!-- date -->
             <div class="mb-3">
-      
+
               <label for="Date" class="form-label">Date</label>
               <input type="date" class="form-control"  formControlName="date"id="Date" >
 
 
-              @if(bookingnow.controls['date'].invalid && bookingnow.controls['date'].touched) 
+              @if(bookingnow.controls['date'].invalid && bookingnow.controls['date'].touched)
               {
                 @if(bookingnow.controls['date'].errors?.['required'])
                 {
@@ -262,8 +92,8 @@ section{
                    field is required
                   </div>
                 }
-               
-          
+
+
               }  @else if(bookingnow.controls['date'].valid)
               {
                Success<i class="fa-solid fa-check" style="color: #083248;"></i>
@@ -280,14 +110,53 @@ section{
 
 <!-- date -->
 
+<!-- textarea -->
+<div class="mb-3">
+  <label for="textarea" class="form-label">Write any notice you want</label>
+  <textarea class="form-control"  formControlName="textarea"        id="textarea" style="height: 100px"></textarea>
+
+
+
+
+  @if(bookingnow.controls['textarea'].invalid && bookingnow.controls['textarea'].touched)
+  {
+    @if(bookingnow.controls['textarea'].errors?.['required'])
+    {
+      <div class="alert alert-warning p-2" role="alert">
+       field is required
+      </div>
+    }
+
+    @if(bookingnow.controls['textarea'].errors?.['minlength'])
+    {
+      <div class="alert alert-danger p-2" role="alert">
+     min length 5 char
+      </div>
+    }
+
+    @if(bookingnow.controls['textarea'].errors?.['maxlength'])
+    {
+      <div class="alert alert-warning p-2" role="alert">
+        min length 90 char
+      </div>
+    }
+  }  @else if(bookingnow.controls['textarea'].valid)
+  {
+   Success<i class="fa-solid fa-check" style="color: #083248;"></i>
+  }
+
+
+</div>
+<!-- textarea -->
+
       <div class="d-flex justify-content-center">
 
         <button type="submit" [disabled]="!bookingnow.valid"       style="background-color: #083248;" class="btn btn-danger mb-5 p-3 border-0" id="btnstyle" >Booking</button>
 
       </div>
           </form>
-    
-      
+
+
       </div>
 
     </div>
