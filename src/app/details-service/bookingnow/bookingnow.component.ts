@@ -15,7 +15,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 })
 export class BookingnowComponent implements OnInit {
   bookingnow: FormGroup;
-  id:number;
+  id:unknown;
   model: { key: number; value: string }[] = [];
   services: { key: string; value: string }[] = [];
   viewdata:unknown = []
