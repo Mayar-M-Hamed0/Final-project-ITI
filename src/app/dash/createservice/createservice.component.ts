@@ -15,16 +15,30 @@ import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ServicesService } from '../../services/services.service';
+import { UpdateserviceComponent } from '../updateservice/updateservice.component';
+import { ViewserviceComponent } from '../viewservice/viewservice.component';
+import { ServiceformComponent } from '../../serviceform/serviceform.component';
+import { CenterOrdersComponent } from '../../center-orders/center-orders.component';
+import { PageOfServiceComponent } from '../../page-of-service/page-of-service.component';
 
 @Component({
   selector: 'app-createservice',
   standalone: true,
   imports: [ ReactiveFormsModule,
+    
     NgFor,
     FormsModule,
     NgbAlertModule,
     CheckboxModule,
-    MatCheckboxModule,NgSelectModule,],
+    MatCheckboxModule,NgSelectModule,
+    UpdateserviceComponent,
+    CreateserviceComponent,
+    ViewserviceComponent,CommonModule
+    ,ServiceformComponent,
+    CenterOrdersComponent,
+    PageOfServiceComponent],
+  
+  
   templateUrl: './createservice.component.html',
   styleUrl: './createservice.component.css'
 })

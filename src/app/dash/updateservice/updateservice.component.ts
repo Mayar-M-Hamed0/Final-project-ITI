@@ -15,12 +15,13 @@ import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ServicesService } from '../../services/services.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-updateservice',
   standalone: true,
   imports: [ ReactiveFormsModule,
-    NgFor,
+    NgFor,RouterLink,
     FormsModule,
     NgbAlertModule,
     CheckboxModule,
