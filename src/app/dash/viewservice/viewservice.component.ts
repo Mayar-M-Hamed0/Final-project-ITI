@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-viewservice',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './viewservice.component.html',
   styleUrl: './viewservice.component.css'
 })
