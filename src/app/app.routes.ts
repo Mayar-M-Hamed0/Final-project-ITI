@@ -89,19 +89,19 @@ component:UpdateuserComponent, title:"EditProfile",canActivate: [check]
 
 component:DashbordComponent, title:"user"
 },
-// { path:"CreateService",
+{ path:"CreateService",
 
-// component:CreateserviceComponent, title:"CreateService"
-// },
-// { path:"viewservice",
+component:CreateserviceComponent, title:"CreateService"
+},
+{ path:"viewservice",
 
-// component:ViewserviceComponent, title:"viewservice"
-// },
+component:ViewserviceComponent, title:"viewservice"
+},
 
-// { path:"Updateservice",
+{ path:"Updateservice",
 
-// component:UpdateserviceComponent, title:"Updateservice"
-// },
+component:UpdateserviceComponent, title:"Updateservice"
+},
 
 
 

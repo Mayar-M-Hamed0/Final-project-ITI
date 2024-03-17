@@ -22,14 +22,14 @@
 
 .img2 {
     background-image: url(/assets/log.jpeg);
-    position: absolute;
+    position: relative;
     width: 500px;
     padding: 30px 40px;
     background-color: white;
     top: 10px;
-    margin-left: 200px;
-    height: 800px;
-    margin-top: 140px;
+    margin-left: 150px;
+    height: 780px;
+    margin-top: -630px;
     background-size: cover;
     margin-bottom: 50px;
 }
@@ -42,9 +42,9 @@
     padding: 30px 40px;
     background-color: white;
     top: 10px;
-    margin-left: 700px;
+    margin-left: 650px;
     height: 800px;
-    margin-top: -570px;
+    margin-top: -840px;
     margin-bottom: 50px;
 }
 
