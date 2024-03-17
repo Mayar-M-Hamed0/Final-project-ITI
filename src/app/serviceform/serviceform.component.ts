@@ -86,8 +86,7 @@ export class ServiceformComponent {
       { key: 13, value: 'Computer detection' },
       { key: 14, value: 'Car wash and care' },
       { key: 15, value: 'Insurance companies' },
-      {
-        key:16,
+      { key:16,
         value: 'Oil Change Offers + Preventive Maintenance',
       },
       { key: 17, value: 'El-Mikaneeky BOSCH' },

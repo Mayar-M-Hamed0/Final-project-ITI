@@ -7,8 +7,8 @@
 
             <div class="wrapper" >
 
-                <form [formGroup]="gameForm" (ngSubmit)="handelForm()"class=' w-75 mt-5'>
-                    <h1>Update</h1>
+                <form [formGroup]="gameForm" (ngSubmit)="handelForm()"class=' w-100 mt-5'>
+                    <h3>uppdate My Profile</h3>
                     <div class="mb-3">
                         <input class="inputBox" type="text" class="form-control" id="name" formControlName="name" placeholder="name ">
                         
@@ -21,9 +21,36 @@
                     
                     }
                     </div>
+
+                    <div class="mb-3">
+                        <input class="inputBox" type="file" class="form-control" id="image" formControlName="image" placeholder="image ">
+                        
+                        
+                        
+                        @if(gameForm.controls['image'].invalid && gameForm.controls['image'].touched) { @if(gameForm.controls['image'].errors?.['required'])
+                        {
+                        <span> This field is required </span> } @if(gameForm.controls['image'].errors?.['minlength']) {
+                        <span>Min length is 3 </span> }
+                    
+                    }
+                    </div>
+
+
+                    <div class="mb-3">
+                        <input class="inputBox" type="text" class="form-control" id="image" formControlName="phone" placeholder="phone">
+                        
+                        
+                        
+                        @if(gameForm.controls['phone'].invalid && gameForm.controls['phone'].touched) { @if(gameForm.controls['phone'].errors?.['required'])
+                        {
+                        <span> This field is required </span> } @if(gameForm.controls['phone'].errors?.['pattern']) {
+                        <span>Inset number Egy</span> }
+                    
+                    }
+                    </div>
                 
-                 
                 
+    
                 
                     <div class="mb-3">
                         <input class="inputBox" type="email" class="form-control" id="exampleInputEmail1" formControlName="email" placeholder="Email"> @if(gameForm.controls['email'].invalid && gameForm.controls['email'].touched) { @if(gameForm.controls['email'].errors?.['required'])
@@ -44,7 +71,17 @@
                 
                 
                 
+                    
+                    
                    
+                    @for (item of errorMessage; track $index) {
+
+                        <p class="fw-bold text-danger">{{item}}</p>
+                       }
+                
+
+                       {{resupdate.message
+                       }}
                    
                 
                 </form>
