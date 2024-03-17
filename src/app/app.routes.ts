@@ -64,7 +64,7 @@ component:LoginComponent, title:"Login",canActivate:[AuthGuard]
 
 component:CenterOrdersComponent, title:"center order"
 },
-{ path:"bookingnow",
+{ path:"bookingnow/:id",
 
 component:BookingnowComponent, title:"order"
 },
