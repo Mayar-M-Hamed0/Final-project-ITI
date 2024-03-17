@@ -28,6 +28,9 @@ this.datalogin.auth().subscribe(res=>{
 })
   }
 
+ 
+    
+
 ;  
 
 

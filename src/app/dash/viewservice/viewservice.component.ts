@@ -9,5 +9,8 @@ import { RouterLink } from '@angular/router';
   styleUrl: './viewservice.component.css'
 })
 export class ViewserviceComponent {
-
+  activeComponent: string = 'createservice';
+  setActiveComponent(componentName: string): void {
+      this.activeComponent = componentName;
+  }
 }
