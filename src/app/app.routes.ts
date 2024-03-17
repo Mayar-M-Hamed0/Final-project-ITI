@@ -17,6 +17,9 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { check } from './checklog.guard';
 import { AuthGuard } from './auth.guard';
 import { UpdateuserComponent } from './user-profile/updateuser/updateuser.component';
+import { CreateserviceComponent } from './dash/createservice/createservice.component';
+import { ViewserviceComponent } from './dash/viewservice/viewservice.component';
+import { UpdateserviceComponent } from './dash/updateservice/updateservice.component';
 export const routes: Routes = [
   {
     path:"",
@@ -86,6 +89,20 @@ component:UpdateuserComponent, title:"EditProfile",canActivate: [check]
 
 component:DashbordComponent, title:"user"
 },
+{ path:"CreateService",
+
+component:CreateserviceComponent, title:"CreateService"
+},
+{ path:"viewservice",
+
+component:ViewserviceComponent, title:"viewservice"
+},
+
+{ path:"Updateservice",
+
+component:UpdateserviceComponent, title:"Updateservice"
+},
+
 
 
 
