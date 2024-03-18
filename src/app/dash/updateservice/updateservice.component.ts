@@ -16,6 +16,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ServicesService } from '../../services/services.service';
 import { RouterLink } from '@angular/router';
+import { HttpClient,HttpHeaders,HttpErrorResponse  } from '@angular/common/http';
+import { map,Observable, throwError,catchError  } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-updateservice',
@@ -25,27 +29,33 @@ import { RouterLink } from '@angular/router';
     FormsModule,
     NgbAlertModule,
     CheckboxModule,
-    MatCheckboxModule,NgSelectModule,],
+    MatCheckboxModule,NgSelectModule,CommonModule],
   templateUrl: './updateservice.component.html',
   styleUrl: './updateservice.component.css'
 })
 export class UpdateserviceComponent {
+  oldnameforupdateservice:any=''
   serviceform: FormGroup;
   model: { key: number; value: string }[] = [];
   services: { key: number; value: string }[] = [];
   msgres:any=''
-  constructor(private fb: FormBuilder, private sr: ServicesService) {
+  errorMessage: any = ''; // تعريف errorMessage كمتغير عام
+  id:any = ''
+  constructor(private fb: FormBuilder, private sr: ServicesService , private http:HttpClient,private route: ActivatedRoute) {
     this.serviceform = new FormGroup({
-      servicename: new FormControl('', [Validators.required]),
-      Category: new FormControl('', [Validators.required]),
-      servicedetails: new FormControl('', [Validators.required]),
+      name: new FormControl('', [Validators.required]),
+      phone: new FormControl('', [Validators.required, Validators.pattern(/^(010|011|012|015)\d{8}$/)]),
+      description: new FormControl('', [
+        Validators.required,
+        Validators.minLength(10)
+    ]),
       location: new FormControl('', [Validators.required]),
-      imageurl: new FormControl('', [Validators.required]),
-      rate: new FormControl('', [Validators.required]),
-      Workingtime: new FormControl('', [Validators.required]),
-      Workingdays: new FormControl('', [Validators.required]),
+      image: new FormControl('', [Validators.required]),
+      rating: new FormControl('', [Validators.required]),
+      working_hours: new FormControl('', [Validators.required]),
+      working_days: new FormControl('', [Validators.required]),
       services: new FormControl('', Validators.required), 
-      model: new FormControl('', Validators.required),
+      cars: new FormControl('', Validators.required),
     });
 
 
@@ -92,15 +102,77 @@ export class UpdateserviceComponent {
       { key: 17, value: 'El-Mikaneeky BOSCH' },
       { key: 18 , value: 'Labor fees Discount' },
     ];
+
+
+
+    this.id = this.route.snapshot.params['id'];
+
+    
+    this.http.get('http://127.0.0.1:8000/api/center/'+this.id).subscribe(res=>{
+this.oldnameforupdateservice = res
+
+
+    })
   }
+
+
+
+
+
 
 
 
  
 
   handelForm() {
-   
+
+    
+    if (typeof window !== 'undefined') {
+      const token: any = sessionStorage.getItem('token');
+      if (token) {
+        const headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        });
+  
+        // إظهار التنبيه باستخدام SweetAlert
+        Swal.fire({
+          title: 'تحديث البيانات',
+          text: 'سيتم تحديث البيانات الآن. انتظر قليلاً...',
+          icon: 'info',
+          showCancelButton: false,
+          showConfirmButton: false,
+          timer: 3000 // يغلق تلقائيا بعد 3 ثواني
+          ,
+          confirmButtonText: 'نعم، قم بالتحديث!',
+          cancelButtonText: 'إلغاء'
+        });
+  
+        return this.http.put('http://127.0.0.1:8000/api/service-center/'+this.id,
+          this.serviceform.value,
+          { headers: headers }
+        ).subscribe(
+          (res) => {
+            this.msgres = res;
+            setTimeout(() => {
+              window.location.reload();
+            }, 4000);
+          },
+          (error: HttpErrorResponse) => {
+            console.error('An error occurred:', error.error);
+            this.errorMessage = error.error.data; 
+          }
+        );
+      } else {
+        // إعادة الخطأ عند عدم وجود الرمز المميز (Token)
+        return throwError('No token found');
+      }
+    } else {
+      // إعادة الخطأ عندما لا تكون النافذة متاحة
+      return throwError('Window is not available');
+    }
   }
+  
   
 
   resetForm() {

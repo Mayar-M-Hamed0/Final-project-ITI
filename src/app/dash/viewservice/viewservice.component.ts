@@ -87,6 +87,7 @@ deleteService(serviceId: number) {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
+    
   this.http.delete(`http://127.0.0.1:8000/api/service-center/${serviceId}`,{ headers: headers })
       .subscribe(
           response => {
@@ -100,6 +101,7 @@ deleteService(serviceId: number) {
           }
       );
 }
+
 
 }
 

@@ -1,75 +1,90 @@
 <div class="imgbody ">
 </div>
+
+
+
 <div class="img2"></div>
 <div class="wrapper">
-<button class="btn" style="background-color: #293241;" routerLink="/dash">Back To Dashbord</button>
+    <button class="btn" style="background-color: #293241;" routerLink="/dash">Back To Dashbord</button>
+
     <form class="form-control" [formGroup]="serviceform" (ngSubmit)="handelForm()">
         <h1>UpDate Services</h1>
 
 
-    
+        <h4 class="mb-2">Services Name : {{oldnameforupdateservice.name}} </h4>
+
 
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputName" formControlName="servicename" placeholder="service   Name" /> @if(serviceform.controls['servicename'].invalid && serviceform.controls['servicename'].touched) { @if(serviceform.controls['servicename'].errors?.['required'])
+            <input type="text" class="form-control" id="inputName" formControlName="name" placeholder="Name" /> @if(serviceform.controls['name'].invalid && serviceform.controls['name'].touched) { @if(serviceform.controls['name'].errors?.['required'])
             {
-            <div class="alert alert-warning p-2" role="alert">
-                field is required
-            </div>
-            } }
+            <span style="color: red;"> This Name is required </span> } }
         </div>
 
+
+
+        <div class="col-sm-10 mt-2">
+            <textarea type="text" class="form-control" id="description" placeholder="description" formControlName="description"></textarea>
+            <!-- Display error message for required validation -->
+            <div *ngIf="serviceform.controls['description'].invalid && serviceform.controls['description'].touched">
+                <div *ngIf="serviceform.controls['description'].errors?.['required']">
+                    <span style="color: red;">This description is required</span>
+                </div>
+                <!-- Display error message for minimum length validation -->
+                <div *ngIf="serviceform.controls['description'].errors?.['minlength']">
+                    <span style="color: red;">Description must be at least 10 characters long</span>
+                </div>
+
+            </div>
+        </div>
+        
+
+        <label for="phone" class="col-sm-2 col-form-label">phone </label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="Category" placeholder="Category" formControlName="Category" /> @if(serviceform.controls['Category'].invalid && serviceform.controls['Category'].touched) { @if(serviceform.controls['Category'].errors?.['required'])
+            <input type="text" class="form-control" id="phone" formControlName="phone" /> @if(serviceform.controls['phone'].invalid && serviceform.controls['phone'].touched) { @if(serviceform.controls['phone'].errors?.['required']) {
+            <span style="color: red;"> This phone is required </span> } }
+
+            
+  @if(serviceform.controls['phone'].errors?.['pattern'])
+  {
+    <!--  all egyption number like 011 012 015 010 -->
+    <div class="alert alert-danger p-2" role="alert">
+   please insert a valid phone like 010********
+    </div>
+  }
+
+        </div>
+
+
+
+
+
+        <label for="" class="form-control">image</label>
+
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="image" formControlName="image" /> @if(serviceform.controls['image'].invalid && serviceform.controls['image'].touched) { @if(serviceform.controls['image'].errors?.['required']) {
+            <span style="color: red;"> This image is required </span> } }
+        </div>
+
+
+
+
+        <label for="" class="form-control">Rating</label>
+
+        <div class="col-sm-10">
+            <input type="number" min="1" max="5" class="form-control" id="rating" formControlName="rating" /> @if(serviceform.controls['rating'].invalid && serviceform.controls['rating'].touched) { @if(serviceform.controls['rating'].errors?.['required'])
             {
-            <div class="alert alert-warning p-2" role="alert">
-                field is required
-            </div>
-            } }
-        </div>
-    
-        <div class="col-sm-10">
-            <textarea type="text" class="form-control" id="servicedetails" placeholder="servie details" formControlName="servicedetails"></textarea> @if(serviceform.controls['servicedetails'].invalid && serviceform.controls['servicedetails'].touched)
-            { @if(serviceform.controls['servicedetails'].errors?.['required']) {
-            <div class="alert alert-warning p-2" role="alert">
-                field is required
-            </div>
-            } }
+            <span style="color: red;"> This rating is required </span> } }
         </div>
 
 
 
 
-        <label for="imageurl" class="col-sm-2 col-form-label">imageurl </label>
+        <label for="" class="form-control">working_days</label>
+
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="imageurl" formControlName="imageurl" /> @if(serviceform.controls['imageurl'].invalid && serviceform.controls['imageurl'].touched) { @if(serviceform.controls['imageurl'].errors?.['required']) {
-            <div class="alert alert-warning p-2" role="alert">
-                field is required
-            </div>
-            } }
-        </div>
-
-
-
-
-        <label for="rate" class="col-sm-2 col-form-label">rate </label>
-        <div class="col-sm-10">
-            <input type="number" min="1" max="5" class="form-control" id="rate" formControlName="rate" /> @if(serviceform.controls['rate'].invalid && serviceform.controls['rate'].touched) { @if(serviceform.controls['rate'].errors?.['required']) {
-            <div class="alert alert-warning p-2" role="alert">
-                field is required
-            </div>
-            } }
-        </div>
-
-
-
-        <label for="Workingdays" class="col-sm-2 col-form-label">Workingdays </label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="Workingdays" formControlName="Workingdays" /> @if(serviceform.controls['Workingdays'].invalid && serviceform.controls['Workingdays'].touched) { @if(serviceform.controls['Workingdays'].errors?.['required'])
+            <input type="text" class="form-control" id="working_days" formControlName="working_days" /> @if(serviceform.controls['working_days'].invalid && serviceform.controls['working_days'].touched) { @if(serviceform.controls['working_days'].errors?.['required'])
             {
-            <div class="alert alert-warning p-2" role="alert">
-                field is required
-            </div>
-            } }
+            <span style="color: red;"> This working_days is required </span> } }
         </div>
 
 
@@ -79,8 +94,8 @@
 
 
 
-        <label for="location" class="col-sm-2 col-form-label">location </label>
-        <div class="col-sm-10">
+
+        <div class="col-sm-10 mt-2">
             <select class="form-control" id="location" formControlName="location">
                   <option value="">Select Location</option>
                   <option value="Ain Shams">Ain Shams</option>
@@ -93,11 +108,8 @@
                   <option value="Minia">Minia</option>
 
                   
-              </select> @if(serviceform.controls['location'].invalid && serviceform.controls['location'].touched) { @if(serviceform.controls['location'].errors?.['required']) {
-            <div class="alert alert-warning p-2" role="alert">
-                Field is required
-            </div>
-            } }
+              </select> @if(serviceform.controls['location'].invalid && serviceform.controls['location'].touched) { @if(serviceform.controls['locations'].errors?.['required']) {
+            <span style="color: red;"> This location is required </span> } }
         </div>
 
 
@@ -109,15 +121,20 @@
 
 
 
-        <div class="form-group">
+
+        <div class="form-group mt-2">
             <label for="tag">services</label>
-            <ng-select [items]="services" bindLabel="value" bindValue="key" [closeOnSelect]="false" formControlName="services" [multiple]="true"></ng-select>
+            <ng-select [items]="services" bindLabel="value" bindValue="key" [closeOnSelect]="false" formControlName="services" [multiple]="true" style="width: 75%;"></ng-select>
+            @if(serviceform.controls['services'].invalid && serviceform.controls['services'].touched) { @if(serviceform.controls['services'].errors?.['required']) {
+            <span style="color: red;"> This services is required </span> } }
         </div>
 
 
         <div class="form-group">
             <label for="model">Models</label>
-            <ng-select [items]="model" bindLabel="value" bindValue="key" formControlName="model" [closeOnSelect]="false" [multiple]="true"></ng-select>
+            <ng-select [items]="model" bindLabel="value" bindValue="key" formControlName="cars" [closeOnSelect]="false" [multiple]="true" style="width: 75%;"></ng-select>
+            @if(serviceform.controls['cars'].invalid && serviceform.controls['cars'].touched) { @if(serviceform.controls['cars'].errors?.['required']) {
+            <span style="color: red;"> This Models is required </span> } }
         </div>
 
 
@@ -129,22 +146,31 @@
 
 
 
-        <label for="Workingtime" class="col-sm-2 col-form-label">Workingtime</label>
+        <label for="" class="form-control">working_hours</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="Workingtime" formControlName="Workingtime" /> @if(serviceform.controls['Workingtime'].invalid && serviceform.controls['Workingtime'].touched) { @if(serviceform.controls['Workingtime'].errors?.['required'])
+            <input type="text" class="form-control" id="working_hours" formControlName="working_hours" /> @if(serviceform.controls['working_hours'].invalid && serviceform.controls['working_hours'].touched) { @if(serviceform.controls['working_hours'].errors?.['required'])
             {
-            <div class="alert alert-warning p-2" role="alert">
-                field is required
-            </div>
-            } }
+            <span style="color: red;"> This working_hours is required </span> } }
         </div>
+
         <div class="d-flex justify-content-center mt-2">
-            <input type="submit" style="background-color: #293241;" [disabled]="!serviceform.valid" class="btn btn mt-2 text-white  pl-2" />
+            <input type="submit" style="background-color: #293241;"  [disabled]="!serviceform.valid" class="btn btn mt-2 text-white  pl-2" />
 
-            <button type="reset" class="btn btn mt-2 text-white " style="background-color: #293241;">reset</button>
+            <button type="button" class="btn btn mt-2 text-white " style="background-color:  #293241;"   (click)="resetForm()">Reset Form</button>
 
         </div>
 
 
+
+
+        <p class="text-success fw-bold">{{msgres.message}}</p>
+        
+        @for (item of errorMessage; track $index) {
+
+            <p class="fw-bold text-danger">{{item}}</p>
+           }
+
+
+        
     </form>
 </div>

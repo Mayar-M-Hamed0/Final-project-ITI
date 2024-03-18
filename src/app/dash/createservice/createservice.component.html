@@ -11,21 +11,43 @@
             <input type="text" class="form-control" id="inputName" formControlName="name" placeholder="Name" /> @if(serviceform.controls['name'].invalid && serviceform.controls['name'].touched) { @if(serviceform.controls['name'].errors?.['required'])
             {
             <span style="color: red;"> This Name is required </span> } }
+            <div *ngIf="serviceform.controls['name'].errors?.['minlength']">
+                <span style="color: red;">Min Length Name 7  Characters!</span>
+            </div>
         </div>
 
 
 
         <div class="col-sm-10 mt-2">
-            <textarea type="text" class="form-control" id="description" placeholder="description " formControlName="description"></textarea> @if(serviceform.controls['description'].invalid && serviceform.controls['description'].touched) { @if(serviceform.controls['description'].errors?.['required'])
-            {
-            <span style="color: red;"> This description is required </span> } }
-        </div>
+            <textarea type="text" class="form-control" id="description" placeholder="description" formControlName="description"></textarea>
+            <!-- Display error message for required validation -->
+            <div *ngIf="serviceform.controls['description'].invalid && serviceform.controls['description'].touched">
+                <div *ngIf="serviceform.controls['description'].errors?.['required']">
+                    <span style="color: red;">This description is required</span>
+                </div>
+                <!-- Display error message for minimum length validation -->
+                <div *ngIf="serviceform.controls['description'].errors?.['minlength']">
+                    <span style="color: red;">Description must be at least 10 characters long</span>
+                </div>
 
+            </div>
+        </div>
+        
 
         <label for="phone" class="col-sm-2 col-form-label">phone </label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="phone" formControlName="phone" /> @if(serviceform.controls['phone'].invalid && serviceform.controls['phone'].touched) { @if(serviceform.controls['phone'].errors?.['required']) {
             <span style="color: red;"> This phone is required </span> } }
+
+            
+  @if(serviceform.controls['phone'].errors?.['pattern'])
+  {
+    <!--  all egyption number like 011 012 015 010 -->
+    <div class="alert alert-danger p-2" role="alert">
+   please insert a valid phone like 010********
+    </div>
+  }
+
         </div>
 
 
@@ -128,14 +150,29 @@
         </div>
 
         <div class="d-flex justify-content-center mt-2">
-            <input type="submit" style="background-color: #293241;" class="btn btn mt-2 text-white  pl-2" />
+            <input type="submit" style="background-color: #293241;"  [disabled]="!serviceform.valid" class="btn btn mt-2 text-white  pl-2" />
 
-            <button type="button" class="btn btn mt-2 text-white " style="background-color: #293241;" (click)="resetForm()">Reset Form</button>
+            <button type="button" class="btn btn mt-2 text-white " style="background-color:  #293241;"   (click)="resetForm()">Reset Form</button>
 
         </div>
 
 
 
-        <p class="text-success">{{msgres}}</p>
+
+        <p class="text-success fw-bold">{{msgres.message}}</p>
+
+
+        @for (item of errorMessage; track $index) {
+
+            <p class="fw-bold text-danger">{{item}}</p>
+           }
+
+
+
+       
+      
+
+
+  
     </form>
 </div>
