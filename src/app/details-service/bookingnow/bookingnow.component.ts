@@ -24,8 +24,11 @@ export class BookingnowComponent implements OnInit {
   services!:number;
   car_model!:number;
   date!:string;
-  order_details!:string;
-  datauser: any = ''
+  order_details:string=' ';
+  datauser: any = '';
+  errors:any;
+  response:any;
+  msgres:any='';
 
   viewdata:unknown = []
   constructor(private formBuilder: FormBuilder,private orderservice:OrdersService,private loginService:LoginService  ,private dataService:ServicesService ,private route:ActivatedRoute) {
@@ -105,17 +108,27 @@ this.viewdata = res ;
 
 
     }
-    // this.data=[this.service_center_id,this.Date,this.car_model,this.services,this.phone]
-    if (this.bookingnow.valid) {
-      // const formData = this.bookingnow.value;
-      console.log(data)
-      this.dataService.insert(data).subscribe();
-      // this.orderservice.insert(this.data).subscribe()
-      // console.log(this.Date);
+    console.log(data)
+    this.dataService.insert(data).subscribe({
+      next:res=>{
+        this.msgres = res
+             setTimeout(() => {
 
-      // console.log(this.phone);
+              window.location.reload();
+             }, 2000);
 
-    } else {console.log(data);  }
+
+
+            },
+      error: (err:any) => {
+
+          this.errors = err.error.errors;
+
+          console.log(this.errors);
+      },
+  }
+  );
+
   }
 ngOnInit(){
 this.route.params.subscribe((params:Params)=>{this.service_center_id=params['id']})
