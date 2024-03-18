@@ -99,21 +99,7 @@ export class UpdateserviceComponent {
  
 
   handelForm() {
-    this.sr.pushdata(this.serviceform.value).subscribe(
-      (res) => {
    
-        if (res) {
-          window.location.reload();
-        } else {
-     
-          console.log('حدث خطأ في إرسال البيانات');
-        }
-      },
-      (error) => {
-        
-        console.error('حدث خطأ: ', error);
-      }
-    );
   }
   
 

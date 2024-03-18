@@ -11,10 +11,13 @@
                         <span>Dashboard</span>
                       
                     </div>
-                    <div class="nav-item" (click)="activeComponent = 'createservice'">
+                    <div class="nav-item" (click)="activeComponent = 'CreateService'">
                         <i class="fa-solid fa-plus"></i>
                         <span>Create services</span>
                     </div>
+
+
+                    
                     <div class="nav-item" (click)="activeComponent = 'viewservice'">
                         <i class="fa-solid fa-pen-to-square"></i>
                         <span>My service</span>
@@ -45,8 +48,8 @@
 
     <div class="content">
 
-        <ng-container *ngIf="activeComponent === 'createservice'">
-            <app-serviceform></app-serviceform>
+        <ng-container *ngIf="activeComponent === 'CreateService'">
+            <app-createservice></app-createservice>
         </ng-container>
 
 
