@@ -51,9 +51,6 @@ component:SingUpComponent , title:"signup",canActivate:[AuthGuard]
 },
 
 
-{ path:"create",
-component:CreateserviceComponent , title:"signup",canActivate:[AuthGuard]
-},
 
 
 
