@@ -1,108 +1,106 @@
 <div class="container">
 
+    
+       <div *ngIf="loading"> <p class="text-center fs-1 fw-bold" >Loading ...</p></div>
+       <div *ngIf="!loading">
+      
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Service ID</th>
-                <th scope="col">Name OF Service</th>
-                <th scope="col">Category OF Service</th>
-                <th scope="col">Details OF Service</th>
 
-                <th scope="col">Rate </th>
-                <th scope="col">Working Days </th>
-                <th scope="col">Location</th>
-                <th scope="col">Models </th>
-                <th scope="col">Working Time</th>
-                <th scope="col">service image</th>
-                <th scope="col" style="text-align: center">Edit</th>
-                <th scope="col" style="text-align: center">Delete </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
 
-                <td>1</td>
-                <td>Chanage OLi</td>
-                <td>Services Center</td>
-                <td>Express Bosch Car Service - El Mikaneeky
-                </td>
-                <td>3 </td>
-                <td>من الاحد الي الخميس</td>
-                <td>cairo</td>
-                <td>"KIA", "BMW", "NISSAN"
-                </td>
-                <td>من 9 صباحا الي 5 مساءا</td>
-                <td> <img src="/assets/oil.jpeg" class="card-img-top img" alt="...">
-                </td>
-                <td> <a routerLink="/Updateservice" class="btn btn-primary a">Edit</a>
-                </td>
-                <td> <a href="#" class="btn btn-primary b">Delete</a>
-                </td>
-            </tr>
-            <tr>
 
-                <td>2</td>
-                <td>Periodic Inspection Service</td>
-                <td>Services Center</td>
-                <td>Express Bosch Car Service - El Mikaneeky
-                </td>
-                <td>5</td>
-                <td>من السبت الي الخميس</td>
-                <td>cairo</td>
-                <td>"KIA", "BMW", "NISSAN"
-                </td>
-                <td>من 9 صباحا الي 5 مساءا</td>
-                <td> <img src="/assets/Periodic Inspection Service.jpg" class="card-img-top img" alt="...">
-                </td>
-                <td> <a routerLink="/Updateservice" class="btn btn-primary a">Edit</a>
-                </td>
-                <td> <a href="#" class="btn btn-primary b">Delete</a>
-                </td>
-            </tr>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Service ID</th>
+                    <th scope="col">Name OF Service</th>
+               
+                    <th scope="col">Details OF Service</th>
+    
+                    <th scope="col">Rate </th>
+                    <th scope="col">Working Days </th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Models </th>
+                    <th scope="col">Working Time</th>
+                    <th scope="col">service image</th>
+                    <th scope="col" style="text-align: center">Edit</th>
+                    <th scope="col" style="text-align: center">Delete </th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                @for (service of servicedata  | paginate: { itemsPerPage: 5, currentPage: crntpage }   ; track $index ) {
+    
+                    <tr>
+    
+                        <td>{{service.id}}</td>
+                        <td>{{service.name}}</td>
+                      
+                        <td>{{service.description}}
+                        </td>
+                        <td>{{service.rating}}</td>
+                        <td>{{service.working_days}}</td>
+                        <td>cairo</td>
+                        <td>"KIA", "BMW", "NISSAN"
+                        </td>
+                        <td>{{service.working_hours}}</td>
+                        <td> 
+                         {{service.image}} 
+                         
+                            <!-- <img src="/assets/oil.jpeg" class="card-img-top img" alt="..."> -->
+                      
+                        <td> <a routerLink="/Updateservice/{{service.id}}" class="btn btn-primary a">Edit</a>
+                        </td>
+                        <td>
+                            <button class="btn btn-primary b" (click)="openConfirmationModal(service.id)">Delete</button>
+                          </td>
+                          
+                    </tr>
+    
+    
+                }
+    
+              
+            
+    
+    
+            </tbody>
+    
+        </table>
+        @if(servicedata.length===0){
+            <p class="fs-3 fw-bold text-center"> Sorry No Data Here  </p>
+           }
 
-            <tr>
 
-                <td>3</td>
-                <td>Brake Service</td>
-                <td>Services Center</td>
-                <td>Express Bosch Car Service - El Mikaneeky
-                </td>
-                <td>5</td>
-                <td>من الثلاثاء الي الخميس</td>
-                <td>cairo</td>
-                <td>"KIA", "BMW", "NISSAN"
-                </td>
-                <td>من 9 صباحا الي 5 مساءا</td>
-                <td> <img src="/assets/Brake Service.jpg" class="card-img-top img" alt="...">
-                </td>
-                <td> <a routerLink="/Updateservice" class="btn btn-primary a">Edit</a>
-                </td>
-                <td> <a href="#" class="btn btn-primary b">Delete</a>
-                </td>
-            </tr>
-            <tr>
 
-                <td>4</td>
-                <td>Chanage OLi</td>
-                <td>Services Center</td>
-                <td>Express Bosch Car Service - El Mikaneeky
-                </td>
-                <td>3 </td>
-                <td>من الاحد الي الخميس</td>
-                <td>cairo</td>
-                <td>"KIA", "BMW", "NISSAN"
-                </td>
-                <td>من 9 صباحا الي 5 مساءا</td>
-                <td> <img src="/assets/oil.jpeg" class="card-img-top img" alt="...">
-                </td>
-                <td> <a routerLink="/Updateservice" class="btn btn-primary a">Edit</a>
-                </td>
-                <td> <a href="#" class="btn btn-primary b">Delete</a>
-                </td>
-            </tr>
 
-        </tbody>
-    </table>
+     
 
+
+
+
+
+
+
+
+       </div>
+
+
+
+
+    <div class="d-flex justify-content-center">
+        <pagination-controls class="" (pageChange)="crntpage=$event"></pagination-controls>
+
+    </div>
+
+
+
+   
 </div>
+
+
+
+
+
+
+
+

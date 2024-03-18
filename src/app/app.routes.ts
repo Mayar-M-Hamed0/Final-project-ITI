@@ -99,7 +99,7 @@ component:CreateserviceComponent, title:"CreateService",canActivate:[DashboardAc
 component:ViewserviceComponent, title:"viewservice"
 },
 
-{ path:"Updateservice",
+{ path:"Updateservice/:id",
 
 component:UpdateserviceComponent, title:"Updateservice",canActivate:[DashboardAccessGuard]
 },
