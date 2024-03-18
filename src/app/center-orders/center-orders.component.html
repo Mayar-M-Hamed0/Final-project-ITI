@@ -5,171 +5,44 @@
   </div>
   <div class="component rounded-2 p-3 mb-5 mx-5 ">
 
+@for (order of orders.data; track $index) {
 
-    <div class="card mb-5 w-100 me-2 mt-3" >
-      <div class="row g-0">
-        <div class="col-md-3">
-          <img src="../../assets/usre .png" class="img-fluid rounded-start" alt="..." />
-        </div>
-        <div class="col-md-9">
-          <div class="row " >
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">car owner name</h5>
-                <p class="card-text">
-                 car key: <br>
-                 service needed:  <br>
-                 location: <br>
-                 phone number: <br>
-                 email: <br>
-                </p>
-                <p class="card-text">
-                  <small class="text-muted"
-                    >notice :...</small
-                  >
-                </p>
-              </div>
+  <div class="card mb-5 w-100 me-2 mt-3" >
+    <div class="row g-0">
+      <div class="col-md-3">
+        <img src="../../assets/usre .png" class="img-fluid rounded-start" alt="..." />
+      </div>
+      <div class="col-md-9">
+        <div class="row " >
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">car owner name</h5>
+              <p class="card-text">
+               car model:{{order['car_model']}} <br>
+               service needed: @for (item of order['service_name']; track $index) {<p>{{item}}</p> }  <br>
+               location:{{order['location']}} <br>
+               phone number:{{order['phone']}} <br>
+               email:{{order['email']}} <br>
+              </p>
+              <p class="card-text">
+                <small class="text-muted"
+                  >notice :...</small
+                >
+              </p>
             </div>
-            <div class="col-md-4  m-auto ">
-              <button class="btn d-block px-4 m-auto"><a href=""></a> Show Detailes </button>
+          </div>
+          <div class="col-md-4  m-auto ">
+            <!-- <button class="btn d-block px-4 m-auto"><a href=""></a> Show Detailes </button> -->
 
-            </div>
-           </div>
-        </div>
+          </div>
+         </div>
       </div>
     </div>
+  </div>
+}
 
-    <div class="card mb-5 w-100 me-2 mt-3" >
-      <div class="row g-0">
-        <div class="col-md-3">
-          <img src="../../assets/usre .png" class="img-fluid rounded-start" alt="..." />
-        </div>
-        <div class="col-md-9">
-          <div class="row " >
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">car owner name</h5>
-                <p class="card-text">
-                 car key: <br>
-                 service needed:  <br>
-                 location: <br>
-                 phone number: <br>
-                 email: <br>
-                </p>
-                <p class="card-text">
-                  <small class="text-muted"
-                    >notice :...</small
-                  >
-                </p>
-              </div>
-            </div>
-            <div class="col-md-4  m-auto ">
-              <button class="btn d-block px-4 m-auto"><a href=""></a> Show Detailes </button>
 
-            </div>
-           </div>
-        </div>
-      </div>
-    </div>
 
-    <div class="card mb-5 w-100 me-2 mt-3" >
-      <div class="row g-0">
-        <div class="col-md-3">
-          <img src="../../assets/usre .png" class="img-fluid rounded-start" alt="..." />
-        </div>
-        <div class="col-md-9">
-          <div class="row " >
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">car owner name</h5>
-                <p class="card-text">
-                 car key: <br>
-                 service needed:  <br>
-                 location: <br>
-                 phone number: <br>
-                 email: <br>
-                </p>
-                <p class="card-text">
-                  <small class="text-muted"
-                    >notice :...</small
-                  >
-                </p>
-              </div>
-            </div>
-            <div class="col-md-4  m-auto ">
-              <button class="btn d-block px-4 m-auto"><a href=""></a> Show Detailes </button>
-
-            </div>
-           </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card mb-5 w-100 me-2 mt-3" >
-      <div class="row g-0">
-        <div class="col-md-3">
-          <img src="../../assets/usre .png" class="img-fluid rounded-start" alt="..." />
-        </div>
-        <div class="col-md-9">
-          <div class="row " >
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">car owner name</h5>
-                <p class="card-text">
-                 car key: <br>
-                 service needed:  <br>
-                 location: <br>
-                 phone number: <br>
-                 email: <br>
-                </p>
-                <p class="card-text">
-                  <small class="text-muted"
-                    >notice :...</small
-                  >
-                </p>
-              </div>
-            </div>
-            <div class="col-md-4  m-auto ">
-              <button class="btn d-block px-4 m-auto"><a href=""></a> Show Detailes </button>
-
-            </div>
-           </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card mb-5 w-100 me-2 mt-3" >
-      <div class="row g-0">
-        <div class="col-md-3">
-          <img src="../../assets/usre .png" class="img-fluid rounded-start" alt="..." />
-        </div>
-        <div class="col-md-9">
-          <div class="row " >
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">car owner name</h5>
-                <p class="card-text">
-                 car key: <br>
-                 service needed:  <br>
-                 location: <br>
-                 phone number: <br>
-                 email: <br>
-                </p>
-                <p class="card-text">
-                  <small class="text-muted"
-                    >notice :...</small
-                  >
-                </p>
-              </div>
-            </div>
-            <div class="col-md-4  m-auto ">
-              <button class="btn d-block px-4 m-auto"><a href=""></a> Show Detailes </button>
-
-            </div>
-           </div>
-        </div>
-      </div>
-    </div>
 
 
   </div>

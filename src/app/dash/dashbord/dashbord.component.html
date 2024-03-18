@@ -46,7 +46,7 @@
     <div class="content">
 
         <ng-container *ngIf="activeComponent === 'createservice'">
-            <app-createservice></app-createservice>
+            <app-serviceform></app-serviceform>
         </ng-container>
 
 
@@ -57,6 +57,10 @@
 
         <ng-container *ngIf="activeComponent === 'viewservice'">
             <app-viewservice></app-viewservice>
+        </ng-container>
+
+        <ng-container *ngIf="activeComponent === 'orders'">
+            <app-center-orders></app-center-orders>
         </ng-container>
 
 
