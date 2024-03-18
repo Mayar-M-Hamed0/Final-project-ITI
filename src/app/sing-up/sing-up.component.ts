@@ -17,7 +17,7 @@ response :any = ''
   constructor(
 
  private http:HttpClient
-,private router: Router
+,private router: Router,
 
   ) {
     this.gameForm = new FormGroup({
@@ -50,6 +50,9 @@ response :any = ''
     }
   );
 }
+
+
+
 
 
  

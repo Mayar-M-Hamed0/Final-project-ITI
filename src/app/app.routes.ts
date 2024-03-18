@@ -20,6 +20,7 @@ import { UpdateuserComponent } from './user-profile/updateuser/updateuser.compon
 import { CreateserviceComponent } from './dash/createservice/createservice.component';
 import { ViewserviceComponent } from './dash/viewservice/viewservice.component';
 import { UpdateserviceComponent } from './dash/updateservice/updateservice.component';
+import { DashboardAccessGuard } from './dashboard.guard';
 export const routes: Routes = [
   {
     path:"",
@@ -50,9 +51,9 @@ component:DetailsServiceComponent , title:"details-service"
 component:SingUpComponent , title:"signup",canActivate:[AuthGuard]
 },
 
-{ path:"serviceform",
-component:ServiceformComponent , title:"serviceform"
-},
+// { path:"serviceform",
+// component:ServiceformComponent , title:"serviceform"
+// },
 
 { path:"comment/:id/edit", component:CommenteditComponent},
 
@@ -87,20 +88,20 @@ component:UpdateuserComponent, title:"EditProfile",canActivate: [check]
 
 { path:"dash",
 
-component:DashbordComponent, title:"user"
+component:DashbordComponent, title:"user",canActivate:[DashboardAccessGuard]
 },
 { path:"CreateService",
 
-component:CreateserviceComponent, title:"CreateService"
+component:CreateserviceComponent, title:"CreateService",canActivate:[DashboardAccessGuard]
 },
 { path:"viewservice",
 
 component:ViewserviceComponent, title:"viewservice"
 },
 
-{ path:"Updateservice",
+{ path:"Updateservice/:id",
 
-component:UpdateserviceComponent, title:"Updateservice"
+component:UpdateserviceComponent, title:"Updateservice",canActivate:[DashboardAccessGuard]
 },
 
 

@@ -19,6 +19,9 @@ export class PageOfServiceComponent {
 
 searchtext:any;
   crntpage:any
+
+
+  
   datafromapi : any = [];
   selectedPlace:any='';
   selectedMark:any='';

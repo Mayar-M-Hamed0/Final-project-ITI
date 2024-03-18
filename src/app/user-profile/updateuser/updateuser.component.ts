@@ -5,6 +5,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 import { CommonModule } from '@angular/common';
+import { NgbModal,NgbModalRef  } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-updateuser',
@@ -14,6 +15,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './updateuser.component.css'
 })
 export class UpdateuserComponent {
+
+  private modalRef: NgbModalRef | undefined;
   gameForm: FormGroup;
 
 response :any = ''
@@ -35,7 +38,7 @@ oldData:any ='haha'
 
 
 
-  constructor(private http:HttpClient,private router: Router,private service:LoginService ) {
+  constructor(private http:HttpClient,private router: Router,private service:LoginService, private modalService: NgbModal) {
 
 
    
@@ -74,8 +77,23 @@ oldData:any ='haha'
 
 
 
-    
+ openConfirmationModal(content: any) {
+  this.modalRef = this.modalService.open(content, { centered: true });
+}
+
+update() {
+ 
+
+
+  this.handelForm()
+
+
+
   
+  if (this.modalRef) {
+    this.modalRef.close();
+  }
+}
 
 
  handelForm() {
