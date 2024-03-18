@@ -4,6 +4,24 @@
     box-sizing: border-box;
 }
 
+input,
+label,
+textarea,
+select {
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+label {
+    border: none;
+    width: 50%;
+}
+
+.wrapper {
+    position: relative;
+    height: 300px;
+}
+
 .imgbody {
     /* The image used */
     background-image: url(/assets/back.jpeg);
