@@ -1,23 +1,22 @@
 import { Component } from '@angular/core';
 import { UpdateserviceComponent } from '../updateservice/updateservice.component';
-import { CreateserviceComponent } from '../createservice/createservice.component';
 import { ViewserviceComponent } from '../viewservice/viewservice.component';
 import { CommonModule } from '@angular/common';
-import { ServiceformComponent } from '../../serviceform/serviceform.component';
 import { CenterOrdersComponent } from '../../center-orders/center-orders.component';
 import { PageOfServiceComponent } from '../../page-of-service/page-of-service.component';
 import { LoginService } from '../../services/login.service';
+import { CreateserviceComponent } from '../createservice/createservice.component';
 
 @Component({
   selector: 'app-dashbord',
   standalone: true,
-  imports: [UpdateserviceComponent,CreateserviceComponent,ViewserviceComponent,CommonModule,ServiceformComponent,CenterOrdersComponent,PageOfServiceComponent],
+  imports: [UpdateserviceComponent,CreateserviceComponent,ViewserviceComponent,CommonModule,CenterOrdersComponent,PageOfServiceComponent],
   templateUrl: './dashbord.component.html',
   styleUrl: './dashbord.component.css'
 })
 export class DashbordComponent {
 
-    activeComponent: string = 'createservice';
+    activeComponent: string = 'CreateService';
 resp :any =''
     ngOnInit(): void {
 

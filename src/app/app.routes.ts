@@ -11,7 +11,6 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { CenterOrdersComponent } from './center-orders/center-orders.component';
 import { BookingnowComponent } from './details-service/bookingnow/bookingnow.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
-import { ServiceformComponent } from './serviceform/serviceform.component';
 import { CommenteditComponent } from './commentedit/commentedit.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { check } from './checklog.guard';
@@ -51,9 +50,7 @@ component:DetailsServiceComponent , title:"details-service"
 component:SingUpComponent , title:"signup",canActivate:[AuthGuard]
 },
 
-// { path:"serviceform",
-// component:ServiceformComponent , title:"serviceform"
-// },
+
 
 { path:"comment/:id/edit", component:CommenteditComponent},
 

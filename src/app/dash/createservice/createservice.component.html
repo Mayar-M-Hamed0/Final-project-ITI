@@ -7,25 +7,19 @@
         <h1>Create Services</h1>
 
 
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputName" formControlName="servicename" placeholder="service   Name" /> @if(serviceform.controls['servicename'].invalid && serviceform.controls['servicename'].touched) { @if(serviceform.controls['servicename'].errors?.['required'])
+        <div class="col-sm-10 mt-2">
+            <input type="text" class="form-control" id="inputName" formControlName="name" placeholder="service   Name" /> @if(serviceform.controls['name'].invalid && serviceform.controls['name'].touched) { @if(serviceform.controls['name'].errors?.['required'])
             {
             <div class="alert alert-warning p-2" role="alert">
                 field is required
             </div>
             } }
         </div>
-        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputName" formControlName="servicename" placeholder="service   Name" /> @if(serviceform.controls['servicename'].invalid && serviceform.controls['servicename'].touched) { @if(serviceform.controls['servicename'].errors?.['required'])
-            {
-            <div class="alert alert-warning p-2" role="alert">
-                field is required
-            </div>
-            } }
-        </div>
-        <label for="Category" class="col-sm-2 col-form-label">Category</label>
-        <div class="col-sm-10">
+
+     
+
+
+        <div class="col-sm-10 mt-2">
             <input type="text" class="form-control" id="Category" placeholder="Category" formControlName="Category" /> @if(serviceform.controls['Category'].invalid && serviceform.controls['Category'].touched) { @if(serviceform.controls['Category'].errors?.['required'])
             {
             <div class="alert alert-warning p-2" role="alert">
@@ -33,8 +27,7 @@
             </div>
             } }
         </div>
-        <label for="servicedetails" class="col-sm-2 col-form-label">details</label>
-        <div class="col-sm-10">
+        <div class="col-sm-10 mt-2">
             <textarea type="text" class="form-control" id="servicedetails" placeholder="servie details" formControlName="servicedetails"></textarea> @if(serviceform.controls['servicedetails'].invalid && serviceform.controls['servicedetails'].touched)
             { @if(serviceform.controls['servicedetails'].errors?.['required']) {
             <div class="alert alert-warning p-2" role="alert">
@@ -42,6 +35,18 @@
             </div>
             } }
         </div>
+
+
+        <label for="phone" class="col-sm-2 col-form-label">phone </label>
+        <div class="col-sm-10 mt-2">
+            <input type="text" class="form-control" id="phone" formControlName="phone" /> @if(serviceform.controls['phone'].invalid && serviceform.controls['phone'].touched) { @if(serviceform.controls['phone'].errors?.['required']) {
+            <div class="alert alert-warning p-2" role="alert">
+                field is required
+            </div>
+            } }
+        </div>
+
+        
 
 
 
@@ -86,7 +91,7 @@
 
 
 
-        <label for="location" class="col-sm-2 col-form-label">location </label>
+   
         <div class="col-sm-10">
             <select class="form-control" id="location" formControlName="location">
                   <option value="">Select Location</option>
@@ -145,7 +150,7 @@
             </div>
             } }
         </div>
-        <div class="d-flex justify-content-center mt-2">
+        <div class="d-flex justify-content-center mt-2 mt-2">
             <input type="submit" style="background-color: #293241;" [disabled]="!serviceform.valid" class="btn btn mt-2 text-white  pl-2" />
 
             <button type="button" class="btn btn mt-2 text-white " style="background-color: #293241;" (click)="resetForm()">Reset Form</button>

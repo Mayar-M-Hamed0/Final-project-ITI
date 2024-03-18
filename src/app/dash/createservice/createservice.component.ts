@@ -11,16 +11,15 @@ import {
   Validators,
 } from '@angular/forms';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ServicesService } from '../../services/services.service';
 import { UpdateserviceComponent } from '../updateservice/updateservice.component';
 import { ViewserviceComponent } from '../viewservice/viewservice.component';
-import { ServiceformComponent } from '../../serviceform/serviceform.component';
 import { CenterOrdersComponent } from '../../center-orders/center-orders.component';
 import { PageOfServiceComponent } from '../../page-of-service/page-of-service.component';
-
+import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { map,Observable, throwError,catchError  } from 'rxjs';
 @Component({
   selector: 'app-createservice',
   standalone: true,
@@ -34,22 +33,27 @@ import { PageOfServiceComponent } from '../../page-of-service/page-of-service.co
     UpdateserviceComponent,
     CreateserviceComponent,
     ViewserviceComponent,CommonModule
-    ,ServiceformComponent,
+    ,
     CenterOrdersComponent,
     PageOfServiceComponent],
-  
-  
   templateUrl: './createservice.component.html',
   styleUrl: './createservice.component.css'
 })
+
+
+
+
+
+
 export class CreateserviceComponent {
   serviceform: FormGroup;
   model: { key: number; value: string }[] = [];
   services: { key: number; value: string }[] = [];
   msgres:any=''
-  constructor(private fb: FormBuilder, private sr: ServicesService) {
+  constructor(private fb: FormBuilder, private http:HttpClient) {
     this.serviceform = new FormGroup({
-      servicename: new FormControl('', [Validators.required]),
+      name: new FormControl('', [Validators.required]),
+      phone: new FormControl('', [Validators.required]),
       Category: new FormControl('', [Validators.required]),
       servicedetails: new FormControl('', [Validators.required]),
       location: new FormControl('', [Validators.required]),
@@ -109,30 +113,45 @@ export class CreateserviceComponent {
 
 
 
- 
+  
 
   handelForm() {
-    this.sr.pushdata(this.serviceform.value).subscribe(
-      (res) => {
-   
-        if (res) {
-          window.location.reload();
-        } else {
+if (typeof window !== 'undefined') {
      
-          console.log('حدث خطأ في إرسال البيانات');
-        }
-      },
-      (error) => {
-        
-        console.error('حدث خطأ: ', error);
-      }
-    );
+  const token: any = sessionStorage.getItem('token');
+  if (token) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.post('http://127.0.0.1:8000/api/service-center/',
+    this.serviceform.value, { headers: headers }).subscribe(res=>{
+
+      console.log(res);
+      
+    });
+  } else {
+    return throwError('No token found');
   }
-  
+} else {
+  return throwError('Window is not available');
+} 
+
+
+  }
+
+
 
   resetForm() {
     this.serviceform.reset();
     this.serviceform.markAsPristine();
     this.serviceform.markAsUntouched();
   }
-}
+
+  }
+
+
+
+
+ 
