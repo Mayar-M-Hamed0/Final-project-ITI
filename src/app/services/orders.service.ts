@@ -11,4 +11,7 @@ export class OrdersService {
   getdata (){
     return this.httpclient.get('http://127.0.0.1:8000/api/orders')
   }
+  insert (data:any){
+    return this.httpclient.post('http://127.0.0.1:8000/api/orders',data)
+  }
 }
