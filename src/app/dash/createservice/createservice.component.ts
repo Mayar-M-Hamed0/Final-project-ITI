@@ -46,23 +46,23 @@ import { map,Observable, throwError,catchError  } from 'rxjs';
 
 
 export class CreateserviceComponent {
+
+  msgres:any= ''
   serviceform: FormGroup;
   model: { key: number; value: string }[] = [];
   services: { key: number; value: string }[] = [];
-  msgres:any=''
   constructor(private fb: FormBuilder, private http:HttpClient) {
     this.serviceform = new FormGroup({
       name: new FormControl('', [Validators.required]),
       phone: new FormControl('', [Validators.required]),
-      Category: new FormControl('', [Validators.required]),
-      servicedetails: new FormControl('', [Validators.required]),
+      description: new FormControl('', [Validators.required]),
       location: new FormControl('', [Validators.required]),
-      imageurl: new FormControl('', [Validators.required]),
-      rate: new FormControl('', [Validators.required]),
-      Workingtime: new FormControl('', [Validators.required]),
-      Workingdays: new FormControl('', [Validators.required]),
+      image: new FormControl('', [Validators.required]),
+      rating: new FormControl('', [Validators.required]),
+      working_hours: new FormControl('', [Validators.required]),
+      working_days: new FormControl('', [Validators.required]),
       services: new FormControl('', Validators.required), 
-      model: new FormControl('', Validators.required),
+      cars: new FormControl('', Validators.required),
     });
 
 
@@ -127,8 +127,13 @@ if (typeof window !== 'undefined') {
 
     return this.http.post('http://127.0.0.1:8000/api/service-center/',
     this.serviceform.value, { headers: headers }).subscribe(res=>{
+this.msgres = res
+     setTimeout(() => {
+      
+      window.location.reload();
+     }, 2000);
 
-      console.log(res);
+      
       
     });
   } else {
