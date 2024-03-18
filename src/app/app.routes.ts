@@ -52,6 +52,8 @@ component:SingUpComponent , title:"signup",canActivate:[AuthGuard]
 
 
 
+
+
 { path:"comment/:id/edit", component:CommenteditComponent},
 
 
