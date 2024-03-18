@@ -28,12 +28,15 @@ export class ServicesService {
 
    }
 
-
+// orders
    insert (data:any){
     return this.HttpClient_.post('http://127.0.0.1:8000/api/orders',data)
   }
+  getordersforcenterservice(id:number){
+    return this.HttpClient_.get(`http://127.0.0.1:8000/api/orderByServiceCenter/`+id)
 
-
+  }
+// orders
 
    ////////////comment///
 

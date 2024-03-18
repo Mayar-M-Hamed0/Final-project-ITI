@@ -1,0 +1,25 @@
+.main-dev
+{
+  background-color: #EEE;
+}
+.card{
+  color:#425980 !important;
+  box-shadow: 2px 8px 12px 2px #f0e7e769;
+
+}
+.card:hover{
+  transform: scale(1.025);
+}
+.component{
+  background-color: #293241 ;
+}
+button
+{
+  background-color:  #ee6c4d !important;
+  color: #293241;
+}
+
+img
+{
+  max-height: 200px !important;
+}

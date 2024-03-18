@@ -23,3 +23,7 @@ img
 {
   max-height: 200px !important;
 }
+
+a{
+  text-decoration: none;
+}
