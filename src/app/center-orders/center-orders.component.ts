@@ -1,22 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { OrdersService } from '../services/orders.service';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-center-orders',
   standalone: true,
-  imports: [],
+  imports: [NgxPaginationModule],
   templateUrl: './center-orders.component.html',
   styleUrl: './center-orders.component.css'
 })
-export class CenterOrdersComponent {
+export class CenterOrdersComponent implements OnInit {
   orders:any;
-  constructor(private orderservice:OrdersService){}
-  grtorders(){
-    this.orderservice.getdata().subscribe((res:any)=>this.orders=res)
+  crntpage:any
+  constructor(private orderservice:OrdersService){
+
   }
 
+
   ngOnInit(){
-    this.grtorders()
+    this.orderservice.getdata().subscribe((res:any)=>this.orders=res)
+
 
 
     console.log(this.orders);
