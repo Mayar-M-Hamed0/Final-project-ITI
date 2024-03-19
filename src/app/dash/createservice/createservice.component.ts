@@ -139,9 +139,7 @@ if (typeof window !== 'undefined') {
     ).subscribe(
       (res) => {
         this.msgres = res;
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
+        
       
         
       },
