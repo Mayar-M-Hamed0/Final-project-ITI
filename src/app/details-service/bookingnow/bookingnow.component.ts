@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, Params, RouterLink, RouterLinkActive } from '@angular/router';
+import { ActivatedRoute, Params, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { ServicesService } from '../../services/services.service';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { CheckboxModule } from 'primeng/checkbox';
@@ -31,7 +31,7 @@ export class BookingnowComponent implements OnInit {
   msgres:any='';
 
   viewdata:unknown = []
-  constructor(private formBuilder: FormBuilder,private orderservice:OrdersService,private loginService:LoginService  ,private dataService:ServicesService ,private route:ActivatedRoute) {
+  constructor(private router:Router,private formBuilder: FormBuilder,private orderservice:OrdersService,private loginService:LoginService  ,private dataService:ServicesService ,private route:ActivatedRoute) {
     this.bookingnow = this.formBuilder.group({
 
       phone: ['', [Validators.required, Validators.pattern(/^(010|011|012|015)\d{8}$/)]],
@@ -114,7 +114,7 @@ this.viewdata = res ;
         this.msgres = res
              setTimeout(() => {
 
-              window.location.reload();
+              this.router.navigate(['/user']);
              }, 2000);
 
 
