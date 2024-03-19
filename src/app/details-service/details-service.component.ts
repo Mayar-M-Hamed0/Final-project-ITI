@@ -1,6 +1,6 @@
 import { Component, NgModule } from '@angular/core';
 import { HostListener } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink,Params } from '@angular/router';
 import { RatingStarsComponent } from '../rating-stars/rating-stars.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
@@ -14,6 +14,7 @@ import { FilterPipe } from '../filter.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { readdir } from 'fs';
 import { Router } from '@angular/router';
+import { LoginService } from '../services/login.service';
 @Component({
   selector: 'app-details-service',
   standalone: true,
@@ -31,7 +32,7 @@ searchtext:any;
 crntpage:any
 datafromapi : any = [];
 
-  constructor(private serv:ServicesService , private route:ActivatedRoute, private resevedata:ServicesService,private router: Router){
+  constructor(private serv:ServicesService , private route:ActivatedRoute, private resevedata:ServicesService,private router: Router,private loginService:LoginService ){
     this.id = this.route.snapshot.paramMap.get("id")
     this.serv.getsinglepage(this.id).subscribe(res=>{
 
@@ -77,27 +78,44 @@ datafromapi : any = [];
   countdislike: number = 0
 
 
+///
 
+service_center_id!:number;
+Description!:number;
+date!:string;
+
+datauser: any = ''
+
+//
 
   ngOnInit() {
     this.serv.getlike().subscribe((value) => this.countlike = value)
     this.serv.getdislike().subscribe((value) => this.countdislike = value)
 
     this.serv.getAllposts().subscribe((res) => { this.posts = res });
+    
+      this.route.params.subscribe((params:Params)=>{this.service_center_id=params['id']})
+      this.loginService.auth().subscribe(
+        (data) => {
+        this.datauser=data
+        })
+      
+      
 
   }
 
   comment!: string
   CommentId!: number
   Date!: Date
-  Username!: string
+  name!: string
   savecomment() {
     var inputsdata = {
 
-      CommentId: '',
-      Date: '',
-      comment: this.comment,
-      Username: this.Username,
+  
+      user_id:this.datauser.id,
+         service_center_id:this.service_center_id,
+        Description:this.Description
+  
     }
     this.serv.savecomment(inputsdata).subscribe({
       next: (res: any) => {
@@ -116,18 +134,6 @@ datafromapi : any = [];
   
   }
 
-
-
-  decrese() {
-    if (this.countdislike > 0) {
-      this.serv.Updatadislikecount(this.countdislike - 1)
-
-    }
-
-  }
-  increse() {
-    this.serv.Updatalikecount(this.countlike + 1)
-  }
 
 
 
