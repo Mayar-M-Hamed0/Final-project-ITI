@@ -9,12 +9,14 @@ import { CreateserviceComponent } from '../createservice/createservice.component
 import { MESSAGEComponent } from './message/message.component';
 import { CreateAgentComponent } from './create-agent/create-agent.component';
 import { AllagentComponent } from './allagent/allagent.component';
+import { CreateSingleServiceComponent } from '../create-single-service/create-single-service.component';
+import { ViewSingleServiceComponent } from '../view-single-service/view-single-service.component';
 
 
 @Component({
   selector: 'app-dashbord',
   standalone: true,
-  imports: [UpdateserviceComponent,AllagentComponent,CreateAgentComponent,MESSAGEComponent,CreateserviceComponent,ViewserviceComponent,CommonModule,CenterOrdersComponent,PageOfServiceComponent],
+  imports: [UpdateserviceComponent,AllagentComponent,CreateAgentComponent,MESSAGEComponent,CreateserviceComponent,ViewserviceComponent,CommonModule,CenterOrdersComponent,PageOfServiceComponent,CreateSingleServiceComponent,ViewSingleServiceComponent],
   templateUrl: './dashbord.component.html',
   styleUrl: './dashbord.component.css'
 })
