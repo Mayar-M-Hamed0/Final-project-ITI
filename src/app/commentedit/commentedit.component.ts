@@ -40,11 +40,6 @@ export class CommenteditComponent {
   updatecomment() {
 
     var inputsdata = {
-
-      // id: this.commentdes.id,
-      // Date: this.commentdes.Date,
-      // comment: this.commentdes.comment,
-     // name: this.datauser.name,
      Description:this.commentdes.Description
     }
     this.singlecomment.updatecomment(inputsdata, this.commentid).subscribe({
