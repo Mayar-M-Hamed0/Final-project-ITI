@@ -1,3 +1,4 @@
+import { log } from 'console';
 import { CheckboxModule } from 'primeng/checkbox';
 import { Component } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
@@ -18,7 +19,7 @@ import { UpdateserviceComponent } from '../updateservice/updateservice.component
 import { ViewserviceComponent } from '../viewservice/viewservice.component';
 import { CenterOrdersComponent } from '../../center-orders/center-orders.component';
 import { PageOfServiceComponent } from '../../page-of-service/page-of-service.component';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient,HttpHeaders,HttpErrorResponse  } from '@angular/common/http';
 import { map,Observable, throwError,catchError  } from 'rxjs';
 @Component({
   selector: 'app-createservice',
@@ -46,6 +47,8 @@ import { map,Observable, throwError,catchError  } from 'rxjs';
 
 
 export class CreateserviceComponent {
+  errorMessage: any = ''; // تعريف errorMessage كمتغير عام
+  fullResponse: any;
 
   msgres:any= ''
   serviceform: FormGroup;
@@ -54,8 +57,11 @@ export class CreateserviceComponent {
   constructor(private fb: FormBuilder, private http:HttpClient) {
     this.serviceform = new FormGroup({
       name: new FormControl('', [Validators.required]),
-      phone: new FormControl('', [Validators.required]),
-      description: new FormControl('', [Validators.required]),
+      phone: new FormControl('', [Validators.required, Validators.pattern(/^(010|011|012|015)\d{8}$/)]),
+      description: new FormControl('', [
+        Validators.required,
+        Validators.minLength(10)
+    ]),
       location: new FormControl('', [Validators.required]),
       image: new FormControl('', [Validators.required]),
       rating: new FormControl('', [Validators.required]),
@@ -109,6 +115,8 @@ export class CreateserviceComponent {
       { key: 17, value: 'El-Mikaneeky BOSCH' },
       { key: 18 , value: 'Labor fees Discount' },
     ];
+
+    
   }
 
 
@@ -126,23 +134,31 @@ if (typeof window !== 'undefined') {
     });
 
     return this.http.post('http://127.0.0.1:8000/api/service-center/',
-    this.serviceform.value, { headers: headers }).subscribe(res=>{
-this.msgres = res
-     setTimeout(() => {
+      this.serviceform.value,
+      { headers: headers }
+    ).subscribe(
+      (res) => {
+        this.msgres = res;
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
       
-      window.location.reload();
-     }, 2000);
+        
+      },
+      (error: HttpErrorResponse) => {
+        console.error('An error occurred:', error.error);
+        this.errorMessage = error.error.data; 
+    }
 
-      
-      
-    });
+    );
   } else {
+    // إعادة الخطأ عند عدم وجود الرمز المميز (Token)
     return throwError('No token found');
   }
 } else {
+  // إعادة الخطأ عندما لا تكون النافذة متاحة
   return throwError('Window is not available');
-} 
-
+}
 
   }
 

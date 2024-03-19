@@ -14,12 +14,7 @@ export class SingUpComponent {
   gameForm: FormGroup;
 
 response :any = ''
-  constructor(
-
- private http:HttpClient
-,private router: Router,
-
-  ) {
+  constructor(private http:HttpClient,private router: Router,) {
     this.gameForm = new FormGroup({
       name: new FormControl('', [
         Validators.required,

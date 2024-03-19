@@ -2,10 +2,11 @@
     <aside class="dashboard" style="height: 100vh;">
         <h2> Dashboard</h2>
         <p>Welcome      <span class="fw-bold">{{resp.name}}</span></p>
+        <p>Role      <span class="fw-bold">{{resp.role}}</span></p>
         <nav>
             <ul>
 
-                <div class="nav-items">
+                <div class="nav-items" >
                     <div class="nav-item" (click)="activeComponent = 'homepage'">
                         <i class="fa-solid fa-gauge"></i>
                         <span>Dashboard</span>
@@ -15,8 +16,8 @@
                         <i class="fa-solid fa-plus"></i>
                         <span>Create services</span>
                     </div>
-
-
+                
+                 
                     
                     <div class="nav-item" (click)="activeComponent = 'viewservice'">
                         <i class="fa-solid fa-pen-to-square"></i>
@@ -24,6 +25,7 @@
                     </div>
 
 
+                
 
                     
                     <div class="nav-item" (click)="activeComponent = 'orders'">
@@ -41,6 +43,29 @@
                     </div>
                 </div>
 
+@if (resp.role == 'admin') {
+
+    <hr>
+    <div class="nav-item mt-2" (click)="activeComponent = 'message'">
+        <i class="fa-solid fa-comment-sms"></i>
+                                <span>message</span>
+    </div>
+
+<br>
+    <div class="nav-item mt-3" (click)="activeComponent = 'CreateAgent'">
+        <i class="fa-solid fa-user-plus"></i>
+                                <span>Create Agent</span>
+    </div>
+
+    <div class="nav-item mt-3" (click)="activeComponent = 'Allagent'">
+        <i class="fa-solid fa-user-plus"></i>
+                                <span>View Agent</span>
+    </div>
+    
+    
+}
+
+
 
             </ul>
         </nav>
@@ -56,7 +81,13 @@
         <ng-container *ngIf="activeComponent === 'Updateservice'">
             <app-updateservice></app-updateservice>
         </ng-container>
+        <ng-container *ngIf="activeComponent === 'message'">
+            <app-message></app-message>
+        </ng-container>
 
+        <ng-container *ngIf="activeComponent === 'Allagent'">
+            <app-allagent></app-allagent>
+        </ng-container>
 
         <ng-container *ngIf="activeComponent === 'viewservice'">
             <app-viewservice></app-viewservice>
@@ -64,6 +95,10 @@
 
         <ng-container *ngIf="activeComponent === 'orders'">
             <app-center-orders></app-center-orders>
+        </ng-container>
+
+        <ng-container *ngIf="activeComponent === 'CreateAgent'">
+          <app-create-agent></app-create-agent>
         </ng-container>
 
 
