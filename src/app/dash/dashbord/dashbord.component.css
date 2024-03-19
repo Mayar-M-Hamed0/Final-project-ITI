@@ -2,6 +2,10 @@
     display: flex;
 }
 
+.nav-item{
+    cursor: pointer;
+}
+
 .dashboard {
     width: 300px;
 

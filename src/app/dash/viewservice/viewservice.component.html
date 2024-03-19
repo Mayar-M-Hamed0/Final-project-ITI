@@ -22,13 +22,13 @@
                    
                     <th scope="col">Working Time</th>
                     <th scope="col">service image</th>
-                    <th scope="col" style="text-align: center">Edit</th>
+        
                     <th scope="col" style="text-align: center">Delete </th>
                 </tr>
             </thead>
             <tbody>
                 
-                @for (service of servicedata  | paginate: { itemsPerPage: 5, currentPage: crntpage }   ; track $index ) {
+                @for (service of servicedata  | paginate: { itemsPerPage: 7, currentPage: crntpage }   ; track $index ) {
     
                     <tr>
     

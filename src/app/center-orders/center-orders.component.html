@@ -1,4 +1,5 @@
 <div class="main-dev pb-5">
+
     <div class="title py-5 mx-5">
         <h1>our center orders</h1>
         <p class="">can view , accept and delete all orders here</p>
@@ -25,17 +26,53 @@
                                     <small class="text-muted">notice :...</small
                 >
               </p>
+
+  <div class="title py-5 mx-5">
+    <h1>our center orders</h1>
+    <p class="">can view , accept and delete all orders here</p>
+  </div>
+  <div class="component rounded-2 p-3 mb-5 mx-5 ">
+    @for (item of servicedata| paginate: { itemsPerPage: 5, currentPage: crntpage }     ; track $index ) {
+      <div class="row">
+        <div class="card mb-5 w-75 mx-auto" >
+          <div class="row g-0">
+            <div class="col-md-3">
+              <img src="{{item.imageurl}}" class="img-fluid rounded-start" alt="..." />
+            </div>
+            <div class="col-md-9">
+              <div class="row " >
+                <div class="col-7">
+                  <div class="card-body">
+                    <h5 class="card-title">Service Center {{item.name}}</h5>
+                    <p>location:....</p>
+
+
+                  </div>
+                  <button class="btn btn-primary text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                   <a class="text-white" routerLink="/orderforcenter/{{item.id}}">orders</a>
+                  </button>
+                   </div>
+                   <div style="min-height: 120px;">
+                    <div class="collapse collapse-horizontal" id="collapseWidthExample">
+
+
+                    </div>
+                  </div>
+
+              </div>
+
             </div>
           </div>
-          <div class="col-md-4  m-auto ">
-            <!-- <button class="btn d-block px-4 m-auto"><a href=""></a> Show Detailes </button> -->
+        </div>
 
-          </div>
-         </div>
+
+
+
       </div>
-    </div>
-  </div>
-}
+
+    }
+    <pagination-controls class="" (pageChange)="crntpage=$event"></pagination-controls>
+
 
 
 

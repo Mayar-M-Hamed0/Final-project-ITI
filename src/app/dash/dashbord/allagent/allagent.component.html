@@ -1,0 +1,53 @@
+<P class="fw-bold fs-1">All Agent</P>
+
+<div *ngIf="loading"> <p class="text-center fs-1 fw-bold" >Loading ...</p></div>
+<div *ngIf="!loading"></div>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Name</th>
+        <th scope="col">role</th>
+        <th scope="col">phone</th>
+        <th scope="col" >Delete </th>
+      </tr> 
+    </thead>
+    <tbody>
+@for (agent of agents | paginate: { itemsPerPage: 5, currentPage: crntpage }   ; track $index) {
+
+  <tr>
+    <th scope="row">{{agent.id}}</th>
+    <td>{{agent.name}}</td>
+    <td>{{agent.role}}</td>
+    @if(!agent.phone){
+        <td>No Phone Added</td>  
+    }@else {
+        <td>{{agent.phone}}</td>
+
+    }
+   
+    <td>
+
+      <button class="btn btn-danger b" (click)="openConfirmationModal(agent.id)">Delete</button>
+    </td>
+  </tr>
+ 
+}
+
+    
+    </tbody>
+  </table>
+
+  @if(agents.length===0){
+    <p class="fs-3 fw-bold text-center"> Sorry No Data Here  </p>
+   }@else{
+
+    <div class="d-flex justify-content-center">
+      <pagination-controls class="" (pageChange)="crntpage=$event"></pagination-controls>
+  
+  </div>
+   }
+
+
+  

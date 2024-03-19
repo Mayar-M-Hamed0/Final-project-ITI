@@ -28,12 +28,49 @@ export class ServicesService {
 
    }
 
-
+// start orders
    insert (data:any){
     return this.HttpClient_.post('http://127.0.0.1:8000/api/orders',data)
   }
 
+  getordersforcenterservice(id:number){
+    return this.HttpClient_.get(`http://127.0.0.1:8000/api/orderByServiceCenter/`+id)
 
+  }
+  getordersforuser(id:number){
+    return this.HttpClient_.get(`http://127.0.0.1:8000/api/orderByUserid/`+id)
+
+  }
+  softdelete(id:number){
+    return this.HttpClient_.delete(`http://127.0.0.1:8000/api/orders/`+id,)
+
+  }
+  showorder(id:number){
+    return this.HttpClient_.get(`http://127.0.0.1:8000/api/orders/`+id,)
+
+  }
+  updateorder(id:number,formdata:any){
+    return this.HttpClient_.put(`http://127.0.0.1:8000/api/orders/`+id,formdata)
+
+  }
+  restore(id:number){
+    return this.HttpClient_.get(`http://127.0.0.1:8000/api/orders-archeive/`+id)
+
+  }
+  forcedeleteorder(id:number){
+    return this.HttpClient_.delete(`http://127.0.0.1:8000/api/orders-archeive/`+id)
+
+  }
+
+  getarchived(id:number){
+    return this.HttpClient_.get(`http://127.0.0.1:8000/api/showorders-archeive/`+id)
+
+  }
+  getarchivedforuser(id:number){
+    return this.HttpClient_.get(`http://127.0.0.1:8000/api/showuserorders-archeive/`+id)
+
+  }
+// end orders
 
    ////////////comment///
 

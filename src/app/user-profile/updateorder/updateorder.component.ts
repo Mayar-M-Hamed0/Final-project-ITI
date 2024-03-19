@@ -1,22 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, Params, RouterLink, RouterLinkActive } from '@angular/router';
-import { ServicesService } from '../../services/services.service';
-import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
-import { CheckboxModule } from 'primeng/checkbox';
-import { NgSelectModule } from '@ng-select/ng-select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { CheckboxModule } from 'primeng/checkbox';
 import { OrdersService } from '../../services/orders.service';
 import { LoginService } from '../../services/login.service';
+import { ServicesService } from '../../services/services.service';
+import { ActivatedRoute ,Params, Router} from '@angular/router';
+
 @Component({
-  selector: 'app-bookingnow',
+  selector: 'app-updateorder',
   standalone: true,
   imports: [ReactiveFormsModule,NgbAlertModule,CheckboxModule,NgSelectModule,MatCheckboxModule,FormsModule],
-  templateUrl: './bookingnow.component.html',
-  styleUrl: './bookingnow.component.css'
+  templateUrl: './updateorder.component.html',
+  styleUrl: './updateorder.component.css'
 })
-export class BookingnowComponent implements OnInit {
+export class UpdateOrderComponent implements OnInit {
   bookingnow: FormGroup;
+  order:any;
   service_center_id!:number;
   model: { key: string; value: string }[] = [];
   car_services: { key: number; value: string }[] = [];
@@ -29,9 +31,10 @@ export class BookingnowComponent implements OnInit {
   errors:any;
   response:any;
   msgres:any='';
+  id!:number;
 
   viewdata:unknown = []
-  constructor(private formBuilder: FormBuilder,private orderservice:OrdersService,private loginService:LoginService  ,private dataService:ServicesService ,private route:ActivatedRoute) {
+  constructor(private router:Router,private formBuilder: FormBuilder,private orderservice:OrdersService,private loginService:LoginService  ,private dataService:ServicesService ,private route:ActivatedRoute) {
     this.bookingnow = this.formBuilder.group({
 
       phone: ['', [Validators.required, Validators.pattern(/^(010|011|012|015)\d{8}$/)]],
@@ -98,7 +101,7 @@ this.viewdata = res ;
     let data={
       user_id:this.datauser.id,
       phone:this.phone,
-      service_center_id:this.service_center_id,
+      service_center_id:this.order.data['service_center_id'],
       order_date:this.date,
       car_model:this.car_model,
       services:this.services,
@@ -109,12 +112,12 @@ this.viewdata = res ;
 
     }
     console.log(data)
-    this.dataService.insert(data).subscribe({
+    this.dataService.updateorder(this.id,data).subscribe({
       next:res=>{
         this.msgres = res
              setTimeout(() => {
 
-              window.location.reload();
+              this.router.navigate(['/user']);
              }, 2000);
 
 
@@ -131,11 +134,12 @@ this.viewdata = res ;
 
   }
 ngOnInit(){
-this.route.params.subscribe((params:Params)=>{this.service_center_id=params['id']})
+this.route.params.subscribe((params:Params)=>{this.id=params['id']})
 this.loginService.auth().subscribe(
   (data) => {
   this.datauser=data
   })
+  this.dataService.showorder(this.id).subscribe(res=>{this.order=res; console.log(this.order.data['id'])})
 }
 
 

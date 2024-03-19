@@ -1,0 +1,58 @@
+<div class="img">
+</div>
+<div class="img2"></div>
+<div class="wrapper">
+
+    <form [formGroup]="gameForm" (ngSubmit)="handelForm()">
+        <h1>New Agent</h1>
+        <div class="mb-3">
+            <input class="inputBox" type="text" class="form-control" id="name" formControlName="name" placeholder="name "> @if(gameForm.controls['name'].invalid && gameForm.controls['name'].touched) { @if(gameForm.controls['name'].errors?.['required'])
+            {
+            <span> This field is required </span> } @if(gameForm.controls['name'].errors?.['minlength']) {
+            <span>Min length is 3 </span> } }
+        </div>
+
+
+
+
+        <div class="mb-3">
+            <input class="inputBox" type="email" class="form-control" id="exampleInputEmail1" formControlName="email" placeholder="Email"> @if(gameForm.controls['email'].invalid && gameForm.controls['email'].touched) { @if(gameForm.controls['email'].errors?.['required'])
+            {
+            <span> This field is required </span> } @if(gameForm.controls['email'].errors?.['pattern']) {
+            <span>invalid format email </span> } }
+        </div>
+
+        <div class="mb-3">
+            <input class="inputBox" type="password" class="form-control" id="exampleInputPassword1" formControlName="password" placeholder="Password" /> @if(gameForm.controls['password'].invalid && gameForm.controls['password'].touched) { @if(gameForm.controls['password'].errors?.['required'])
+            {
+            <span> This field is required </span> } @if(gameForm.controls['password'].errors?.['minlength']) {
+            <span>Min length is 8 </span> } }
+        </div>
+
+
+        <div class="mb-3">
+            <p>Role</p>
+            <select class="form-select" formControlName="role">
+              
+                <option value="agent">agent</option>
+                <option value="user">user</option>
+            </select>
+        
+        </div>
+
+        <input type="submit" class=" btn btn-sm d-inline-block "  [disabled]="!gameForm.valid" value="Register">
+
+        <br>
+
+
+        <p>{{ msgres }}</p>
+
+    
+        {{ errorMessage.email }}
+       <p>{{ errorMessage.name }}</p>
+       <p>{{ errorMessage.password }}</p>
+       <p>{{ errorMessage.role }}</p>
+       
+
+    </form>
+</div>
