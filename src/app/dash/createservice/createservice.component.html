@@ -35,14 +35,14 @@
 
             </div>
         </div>
-        
+
 
         <label for="phone" class="col-sm-2 col-form-label">phone </label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="phone" formControlName="phone" /> @if(serviceform.controls['phone'].invalid && serviceform.controls['phone'].touched) { @if(serviceform.controls['phone'].errors?.['required']) {
             <span style="color: red;"> This phone is required </span> } }
 
-            
+
   @if(serviceform.controls['phone'].errors?.['pattern'])
   {
     {{ errorMessage.phone }}
@@ -62,7 +62,7 @@
 
         <div class="col-sm-10">
             <input type="text" class="form-control" id="image" formControlName="image" /> @if(serviceform.controls['image'].invalid && serviceform.controls['image'].touched) { @if(serviceform.controls['image'].errors?.['required']) {
-            <span style="color: red;"> This image is required </span> } 
+            <span style="color: red;"> This image is required </span> }
             {{ errorMessage.image }}
         }
         </div>
@@ -112,7 +112,7 @@
                   <option value="Beni suif">Beni suif</option>
                   <option value="Minia">Minia</option>
 
-                  
+
               </select> @if(serviceform.controls['location'].invalid && serviceform.controls['location'].touched) { @if(serviceform.controls['locations'].errors?.['required']) {
             <span style="color: red;"> This location is required </span>
             {{ errorMessage.location }}
@@ -133,7 +133,7 @@
             <label for="tag">services</label>
             <ng-select [items]="services" bindLabel="value" bindValue="key" [closeOnSelect]="false" formControlName="services" [multiple]="true" style="width: 75%;"></ng-select>
             @if(serviceform.controls['services'].invalid && serviceform.controls['services'].touched) { @if(serviceform.controls['services'].errors?.['required']) {
-            <span style="color: red;"> This services is required </span> 
+            <span style="color: red;"> This services is required </span>
             {{ errorMessage.services }}
         } }
         </div>
@@ -143,9 +143,9 @@
             <label for="model">Models</label>
             <ng-select [items]="model" bindLabel="value" bindValue="key" formControlName="cars" [closeOnSelect]="false" [multiple]="true" style="width: 75%;"></ng-select>
             @if(serviceform.controls['cars'].invalid && serviceform.controls['cars'].touched) { @if(serviceform.controls['cars'].errors?.['required']) {
-            <span style="color: red;"> This Models is required </span> 
+            <span style="color: red;"> This Models is required </span>
             {{ errorMessage.cars }}
-        
+
         } }
         </div>
 
@@ -162,8 +162,8 @@
         <div class="col-sm-10">
             <input type="text" class="form-control" id="working_hours" formControlName="working_hours" /> @if(serviceform.controls['working_hours'].invalid && serviceform.controls['working_hours'].touched) { @if(serviceform.controls['working_hours'].errors?.['required'])
             {
-            <span style="color: red;"> This working_hours is required </span> 
-        
+            <span style="color: red;"> This working_hours is required </span>
+
             {{ errorMessage.working_hours }}
         } }
         </div>
@@ -181,14 +181,14 @@
         <p class="text-success fw-bold">{{msgres.message}}</p>
 
 
-     
 
 
 
-       
-      
 
 
-  
+
+
+
+
     </form>
 </div>

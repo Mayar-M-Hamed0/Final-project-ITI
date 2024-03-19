@@ -25,7 +25,7 @@ import { map,Observable, throwError,catchError  } from 'rxjs';
   selector: 'app-createservice',
   standalone: true,
   imports: [ ReactiveFormsModule,
-    
+
     NgFor,
     FormsModule,
     NgbAlertModule,
@@ -67,7 +67,7 @@ export class CreateserviceComponent {
       rating: new FormControl('', [Validators.required]),
       working_hours: new FormControl('', [Validators.required]),
       working_days: new FormControl('', [Validators.required]),
-      services: new FormControl('', Validators.required), 
+      services: new FormControl('', Validators.required),
       cars: new FormControl('', Validators.required),
     });
 
@@ -92,7 +92,7 @@ export class CreateserviceComponent {
       { key: 17, value: 'HONDA' },
 
     ];
-  
+
     this.services= [
       { key: 1, value: 'Mechanical' },
       { key: 2, value: 'Electricity' },
@@ -116,16 +116,16 @@ export class CreateserviceComponent {
       { key: 18 , value: 'Labor fees Discount' },
     ];
 
-    
+
   }
 
 
 
-  
+
 
   handelForm() {
 if (typeof window !== 'undefined') {
-     
+
   const token: any = sessionStorage.getItem('token');
   if (token) {
     const headers = new HttpHeaders({
@@ -142,12 +142,12 @@ if (typeof window !== 'undefined') {
         setTimeout(() => {
           window.location.reload();
         }, 3000);
-      
-        
+
+
       },
       (error: HttpErrorResponse) => {
         console.error('An error occurred:', error.error);
-        this.errorMessage = error.error.data; 
+        this.errorMessage = error.error.data;
     }
 
     );
@@ -175,4 +175,4 @@ if (typeof window !== 'undefined') {
 
 
 
- 
+

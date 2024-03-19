@@ -4,6 +4,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 
 import { NgxPaginationModule } from 'ngx-pagination';
 import { RouterLink } from '@angular/router';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-center-orders',
@@ -16,7 +17,8 @@ export class CenterOrdersComponent implements OnInit {
 
   crntpage:any
   servicedata:any;
-  constructor(private orderservice:OrdersService ,private http:HttpClient){
+  datauser:any;
+  constructor(private orderservice:OrdersService ,private http:HttpClient,private loginService:LoginService){
 
   }
 
@@ -31,15 +33,15 @@ export class CenterOrdersComponent implements OnInit {
       'Authorization': `Bearer ${token}`
     });
 
+        this.http.get('http://127.0.0.1:8000/api/service-center', this.datauser['id'] ).subscribe(
+            (res:any)=>{
+        this.servicedata = res ;
 
-      this.http.get('http://127.0.0.1:8000/api/service-center',{ headers: headers }).subscribe(
-        (res:any)=>{
-  this.servicedata = res ;
-
-  console.log(res ,"hhh");
-  })
-
-    }
+        console.log(res ,"hhh");
+        })
+      }
+      this.loginService.auth().subscribe(res=>{this.datauser=res;console.log(this.datauser['id'])})
+        console.log(this.datauser)
 
 
 

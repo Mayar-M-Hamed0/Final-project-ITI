@@ -36,8 +36,8 @@ datafromapi : any = [];
     this.serv.getsinglepage(this.id).subscribe(res=>{
 
 
-    this.data = res; 
-
+    this.data = res;
+      console.log(this.data)
 
     this.resevedata.getdata().subscribe(res2 => {
 
@@ -61,17 +61,17 @@ datafromapi : any = [];
   rating = 0;
   setRating(value: number){
     this.rating = value;
-  } 
+  }
 
 
 
-  
+
   comments:any = comments
 
  // comments:any = comments
 
 
-  
+
   posts: any;
   countlike: number = 0
   countdislike: number = 0
@@ -92,7 +92,7 @@ datafromapi : any = [];
   Date!: Date
   Username!: string
   savecomment() {
-    var inputsdata = {
+    let inputsdata = {
 
       CommentId: '',
       Date: '',
@@ -110,10 +110,10 @@ datafromapi : any = [];
 
       this.serv.destroycomment(commentid).subscribe((res: any) => {
         this.serv.getAllposts().subscribe((res) => { console.log(res) });
-     
+
       })
-    
-  
+
+
   }
 
 
@@ -137,7 +137,7 @@ datafromapi : any = [];
   }
 
 
-  
+
   updateRating(newRating: number) {
     this.rating = newRating;
   }

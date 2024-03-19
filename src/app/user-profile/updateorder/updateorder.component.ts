@@ -8,11 +8,12 @@ import { OrdersService } from '../../services/orders.service';
 import { LoginService } from '../../services/login.service';
 import { ServicesService } from '../../services/services.service';
 import { ActivatedRoute ,Params, Router} from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-updateorder',
   standalone: true,
-  imports: [ReactiveFormsModule,NgbAlertModule,CheckboxModule,NgSelectModule,MatCheckboxModule,FormsModule],
+  imports: [ReactiveFormsModule,NgbAlertModule,CheckboxModule,NgSelectModule,MatCheckboxModule,CommonModule,FormsModule],
   templateUrl: './updateorder.component.html',
   styleUrl: './updateorder.component.css'
 })
@@ -139,7 +140,7 @@ this.loginService.auth().subscribe(
   (data) => {
   this.datauser=data
   })
-  this.dataService.showorder(this.id).subscribe(res=>{this.order=res; console.log(this.order.data['id'])})
+  this.dataService.showorder(this.id).subscribe(res=>{this.order=res; console.log(this.order.data)})
 }
 
 

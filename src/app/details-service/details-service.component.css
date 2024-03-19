@@ -383,3 +383,8 @@ fa-icon {
     color: white;
     border: none;
 }
+.servicee
+{
+  display: flex;
+  justify-content: center;
+}
