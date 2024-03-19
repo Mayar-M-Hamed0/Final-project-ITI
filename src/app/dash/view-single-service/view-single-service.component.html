@@ -1,0 +1,92 @@
+<div class="container">
+
+    
+    <div *ngIf="loading"> <p class="text-center fs-1 fw-bold" >Loading ...</p></div>
+    <div *ngIf="!loading">
+   
+
+
+
+
+     <table class="table">
+         <thead>
+             <tr>
+                 <th scope="col">Service</th>
+                 <th scope="col">Details OF Service</th>
+                 <th scope="col"> price </th>
+                 <th scope="col">image</th>
+                 <th scope="col" style="text-align: center">Delete </th>
+             </tr>
+         </thead>
+         <tbody>
+             
+             @for (service of singleservicedata  | paginate: { itemsPerPage: 7, currentPage: crntpage }   ; track $index ) {
+ 
+                 <tr>
+ 
+                     <td>{{service.name}}</td>
+                     <td>{{service.service_details}}</td>
+                   
+                     <td>{{service.price}}
+                     </td>
+                     <td> 
+                      {{service.image}} 
+                      
+                         <!-- <img src="/assets/oil.jpeg" class="card-img-top img" alt="..."> -->
+                     <td>
+                     <a routerLink="/Updateservice/{{service.id}}" class="btn btn-primary a">Edit</a>
+                     </td>
+                     <td>
+                         <!-- <button class="btn btn-primary b" (click)="openConfirmationModal(service.id)">Delete</button> -->
+                       </td>
+                       
+                 </tr>
+ 
+ 
+             }
+ 
+           
+         
+ 
+ 
+         </tbody>
+ 
+     </table>
+     @if(singleservicedata.length===0){
+         <p class="fs-3 fw-bold text-center"> Sorry No Data Here  </p>
+        }
+
+
+
+
+  
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+ <div class="d-flex justify-content-center">
+     <pagination-controls class="" (pageChange)="crntpage=$event"></pagination-controls>
+
+ </div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
