@@ -38,21 +38,23 @@ export class ServicesService {
    ////////////comment///
 
    getAllposts(){
-    return this.HttpClient_.get(`https://retoolapi.dev/wDUVbz/data`);
+   // return this.HttpClient_.get(`https://retoolapi.dev/wDUVbz/data`);
+    return this.HttpClient_.get('http://127.0.0.1:8000/api/reviews');
+  
    }
 
    getpost(id:number){
 
-    return this.HttpClient_.get(`https://api-generator.retool.com/wDUVbz/data/${id}`);
+    return this.HttpClient_.get(`http://127.0.0.1:8000/api/reviews/${id}`);
 
    }
 
    savecomment(inputdata:object){
-     return this.HttpClient_.post(`https://retoolapi.dev/wDUVbz/data`,inputdata);
+     return this.HttpClient_.post('http://127.0.0.1:8000/api/reviews',inputdata);
 
    }
    updatecomment(inputdate :object,commentid:number){
-     return this.HttpClient_.put(`https://api-generator.retool.com/wDUVbz/data/${commentid}`,inputdate);
+     return this.HttpClient_.put(`http://127.0.0.1:8000/api/reviews/${commentid}`,inputdate);
    }
    addpost(data :any)
    {
