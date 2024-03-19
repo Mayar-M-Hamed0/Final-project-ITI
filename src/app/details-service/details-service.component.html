@@ -260,8 +260,8 @@
 
     <form (ngSubmit)="savecomment()" style="width: 100% ">
         <div class="bg-text">
-            <input id="inputrev" type="text" class="form-control " placeholder="write your user_name" name="Username" [(ngModel)]="Username">
-            <input id="inputrev" type="text" class="form-control " placeholder="write your comment" name="comment" [(ngModel)]="comment">
+            <input id="inputrev" type="text" class="form-control " placeholder="write your user_name" name="name" [(ngModel)]="name">
+            <input id="inputrev" type="text" class="form-control " placeholder="write your comment" name="Description" [(ngModel)]="Description">
             <br>
             <button id="inputrev" class="inputrevbutton" type="submit" id="button-addon2" style="display: flex;float: right;">
                 <i class="fa-solid fa-paper-plane"></i>
@@ -271,13 +271,13 @@
 
     </form><br>
     <ul>
-        <li *ngFor="let post of posts| paginate: { itemsPerPage: 1, currentPage: p }">
+        <li *ngFor="let post of posts.data| paginate: { itemsPerPage: 1, currentPage: p }">
 
             <div class="bg-text">
                 <a (click)="deletecomment($event,post.id)" style="display: flex; float: right;margin-right:-20px;margin-top: -20px;" class="btn btn-outline-info inputrevbutton " type="submit" id="button-addon2">
                     <i class="fa-solid fa-times-circle send-icon"></i>
                 </a>
-                <a routerLink="/comment/{{post.id}}/edit" style="display: flex; float: right;margin-right:0px;" class="btn btn-outline-info inputrevbutton" type="submit" id="button-addon2">
+                <a routerLink="/details-service/{{post.service_center_id}}" style="display: flex; float: right;margin-right:0px;" class="btn btn-outline-info inputrevbutton" type="submit" id="button-addon2">
 
                     <i class="fa-solid fa-pen send-icon"></i>
 
@@ -288,9 +288,9 @@
                 <div style="display: flex; float: right; margin-top:80px;margin-right:-15px; width:50px;height: 50px;border-radius: 50%;background-color: rgb(205, 159, 144);opacity :0.5"></div>
                 <div style="display: flex;  float: right; margin-top:110px;margin-right:-10px; width:20px;height:20px;border-radius: 50%;background-color:rgb(205, 159, 144);opacity :0.5"></div>
                 <img src="/assets/user.png" style="width:40px;height:40px; border-radius: 50%;"><br>
-                <p style="padding-left:20px;">{{post.Username}}</p>
+                <p style="padding-left:20px;"> {{post['name']}} </p>
 
-                <p style="padding-left:20px;">{{post.comment}}</p>
+                <p style="padding-left:20px;">{{post['Description']}} </p>
 
 
 

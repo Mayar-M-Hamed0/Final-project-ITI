@@ -20,6 +20,9 @@ import { CreateserviceComponent } from './dash/createservice/createservice.compo
 import { ViewserviceComponent } from './dash/viewservice/viewservice.component';
 import { UpdateserviceComponent } from './dash/updateservice/updateservice.component';
 import { DashboardAccessGuard } from './dashboard.guard';
+import { OrdersForAgentComponent } from './orders-for-agent/orders-for-agent.component';
+import { ArchiveComponent } from './orders-for-agent/archive/archive.component';
+import { UpdateOrderComponent } from './user-profile/updateorder/updateorder.component';
 export const routes: Routes = [
   {
     path:"",
@@ -51,6 +54,9 @@ component:SingUpComponent , title:"signup",canActivate:[AuthGuard]
 },
 
 
+{ path:"create",
+component:CreateserviceComponent , title:"signup",canActivate:[AuthGuard]
+},
 
 
 
@@ -71,6 +77,10 @@ component:CenterOrdersComponent, title:"center order"
 
 component:BookingnowComponent, title:"order"
 },
+{
+path:"orderforcenter/:id",
+component:OrdersForAgentComponent
+},
 { path:"orderdetails",
 
 component:OrderDetailsComponent, title:"orderdetails"
@@ -78,11 +88,20 @@ component:OrderDetailsComponent, title:"orderdetails"
 
 { path:"user",
 
-component:UserProfileComponent, title:"user",canActivate: [check] 
+component:UserProfileComponent, title:"user",canActivate: [check]
 },
 { path:"EditProfile",
 
-component:UpdateuserComponent, title:"EditProfile",canActivate: [check] 
+component:UpdateuserComponent, title:"EditProfile",canActivate: [check]
+},
+
+{ path:"archive/:id",
+
+component:ArchiveComponent, title:"archive"
+},
+{ path:"updateorder/:id",
+
+component:UpdateOrderComponent, title:"updateorder"
 },
 
 { path:"dash",
