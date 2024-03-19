@@ -6,7 +6,7 @@
   <div class="component rounded-2 p-3 mb-5 mx-5 ">
     @for (item of servicedata| paginate: { itemsPerPage: 5, currentPage: crntpage }     ; track $index ) {
       <div class="row">
-        <div class="card mb-5 w-100 ms-1" >
+        <div class="card mb-5 w-75 mx-auto" >
           <div class="row g-0">
             <div class="col-md-3">
               <img src="{{item.imageurl}}" class="img-fluid rounded-start" alt="..." />
@@ -26,47 +26,7 @@
                    </div>
                    <div style="min-height: 120px;">
                     <div class="collapse collapse-horizontal" id="collapseWidthExample">
-                      <!-- @if(orders){
 
-                        @for (order of orders.data | paginate: { itemsPerPage: 3, currentPage: crntpage } ; track $index) {
-
-                          <div class="card mb-5 w-100 me-2 mt-3" >
-                            <div class="row g-0">
-                              <div class="col-md-3">
-                                <img src="../../assets/usre .png" class="img-fluid rounded-start" alt="..." />
-                              </div>
-                              <div class="col-md-9">
-                                <div class="row " >
-                                  <div class="col-md-8">
-                                    <div class="card-body">
-                                      <h5 class="card-title">car owner name</h5>
-                                      <p class="card-text">
-                                       car model:{{order['car_model']}} <br>
-                                       service needed:  {{order['service_name']}} <br>
-                                       location:{{order['location']}} <br>
-                                       phone number:{{order['phone']}} <br>
-                                       email:{{order['email']}} <br>
-
-                                      <p class="card-text">
-                                        <small class="text-muted"
-                                          >notice :{{order['notice']}}</small
-                                        >
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-4  m-auto ">
-                                    <button class="btn my-2 d-block px-4 m-auto"> Delete </button>
-                                    <button class="btn my-2 d-block px-4 m-auto"> Accept </button>
-
-                                  </div>
-                                 </div>
-                              </div>
-                            </div>
-                          </div>
-                        }
-                      }
-                      <pagination-controls class="text-white-50 mx-auto" (pageChange)="crntpage=$event"></pagination-controls>
- -->
 
                     </div>
                   </div>

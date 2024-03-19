@@ -21,6 +21,7 @@ import { ViewserviceComponent } from './dash/viewservice/viewservice.component';
 import { UpdateserviceComponent } from './dash/updateservice/updateservice.component';
 import { DashboardAccessGuard } from './dashboard.guard';
 import { OrdersForAgentComponent } from './orders-for-agent/orders-for-agent.component';
+import { ArchiveComponent } from './orders-for-agent/archive/archive.component';
 export const routes: Routes = [
   {
     path:"",
@@ -88,6 +89,11 @@ component:UserProfileComponent, title:"user",canActivate: [check]
 { path:"EditProfile",
 
 component:UpdateuserComponent, title:"EditProfile",canActivate: [check]
+},
+
+{ path:"archive",
+
+component:ArchiveComponent, title:"archive"
 },
 
 { path:"dash",

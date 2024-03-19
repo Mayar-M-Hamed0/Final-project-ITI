@@ -13,7 +13,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './center-orders.component.css'
 })
 export class CenterOrdersComponent implements OnInit {
-  orders:any;
+
   crntpage:any
   servicedata:any;
   constructor(private orderservice:OrdersService ,private http:HttpClient){
@@ -21,7 +21,9 @@ export class CenterOrdersComponent implements OnInit {
   }
 
 
-  data(){
+
+
+  ngOnInit(){
     const token: any = sessionStorage.getItem('token');
   if (token) {
     const headers = new HttpHeaders({
@@ -35,16 +37,13 @@ export class CenterOrdersComponent implements OnInit {
   this.servicedata = res ;
 
   console.log(res ,"hhh");
-})
+  })
 
-    }}
-
-  ngOnInit(){
-    this.orderservice.getdata().subscribe((res:any)=>this.orders=res)
+    }
 
 
-    this.data()
-    console.log(this.orders);
+
+
   }
 
 

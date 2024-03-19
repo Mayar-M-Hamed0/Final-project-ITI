@@ -28,15 +28,28 @@ export class ServicesService {
 
    }
 
-// orders
+// start orders
    insert (data:any){
     return this.HttpClient_.post('http://127.0.0.1:8000/api/orders',data)
   }
+
   getordersforcenterservice(id:number){
     return this.HttpClient_.get(`http://127.0.0.1:8000/api/orderByServiceCenter/`+id)
 
   }
-// orders
+  softdelete(id:number){
+    return this.HttpClient_.delete(`http://127.0.0.1:8000/api/orders/`+id)
+
+  }
+  restore(id:number){
+    return this.HttpClient_.get(`http://127.0.0.1:8000/api/orders-archeive/`+id)
+
+  }
+  getarchived(){
+    return this.HttpClient_.get(`http://127.0.0.1:8000/api/orders-archeive`)
+
+  }
+// end orders
 
    ////////////comment///
 

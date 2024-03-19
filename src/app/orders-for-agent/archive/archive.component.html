@@ -4,7 +4,7 @@
     <p class="">can view , accept and delete all orders here</p>
     <div class="mx-auto my-2 pe-auto">
       <button class="btn mx-3"> <a routerLink="/dash"> Back to dashboard</a>  </button>
-      <button class="btn mx-1 "> <a routerLink="/archive"> Go to Archive</a>  </button>
+      <button class="btn mx-1 "> <a routerLink="/orders"> Go to orders</a>  </button>
     </div>
   </div>
   <div class="component rounded-2 p-3 mb-5 mx-5 ">
@@ -38,9 +38,8 @@
                   </div>
                 </div>
                 <div class="col-md-4  m-auto ">
-                  <button class="btn my-2 d-block px-4 m-auto" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="ondelete(order['id'])"> Delete </button>
+                  <button class="btn my-2 d-block px-4 m-auto" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="restore(order['id'])"> Restore </button>
 
-                  <button class="btn my-2 d-block px-4 m-auto" > Accept </button>
 
                 </div>
                </div>
@@ -64,13 +63,14 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">ARCHIVE</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">RESTORE</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        order has been archived
+        order has been restored
       </div>
 
     </div>
   </div>
 </div>
+
