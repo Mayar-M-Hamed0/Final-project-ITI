@@ -1,0 +1,41 @@
+<P class="fw-bold fs-1">All Massage</P>
+
+<div *ngIf="loading"> <p class="text-center fs-1 fw-bold" >Loading ...</p></div>
+<div *ngIf="!loading"></div>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">id_msg</th>
+        <th scope="col">Name</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Message</th>
+       
+        <th scope="col" style="text-align: center">Delete </th>
+      </tr>
+    </thead>
+    <tbody>
+@for (mssge of msg | paginate: { itemsPerPage: 5, currentPage: crntpage }   ; track $index) {
+
+  <tr>
+    <th scope="row">{{mssge.id}}</th>
+    <td>{{mssge.name}}</td>
+    <td>{{mssge.phone}}</td>
+    <td>{{mssge.message}}</td>
+    <td>
+
+      <button class="btn btn-danger b" (click)="openConfirmationModal(mssge.id)">Delete</button>
+    </td>
+  </tr>
+ 
+}
+   
+    
+    </tbody>
+  </table>
+
+
+  <div class="d-flex justify-content-center">
+    <pagination-controls class="" (pageChange)="crntpage=$event"></pagination-controls>
+
+</div>

@@ -6,11 +6,14 @@ import { CenterOrdersComponent } from '../../center-orders/center-orders.compone
 import { PageOfServiceComponent } from '../../page-of-service/page-of-service.component';
 import { LoginService } from '../../services/login.service';
 import { CreateserviceComponent } from '../createservice/createservice.component';
+import { MESSAGEComponent } from './message/message.component';
+import { CreateAgentComponent } from './create-agent/create-agent.component';
+
 
 @Component({
   selector: 'app-dashbord',
   standalone: true,
-  imports: [UpdateserviceComponent,CreateserviceComponent,ViewserviceComponent,CommonModule,CenterOrdersComponent,PageOfServiceComponent],
+  imports: [UpdateserviceComponent,CreateAgentComponent,MESSAGEComponent,CreateserviceComponent,ViewserviceComponent,CommonModule,CenterOrdersComponent,PageOfServiceComponent],
   templateUrl: './dashbord.component.html',
   styleUrl: './dashbord.component.css'
 })
