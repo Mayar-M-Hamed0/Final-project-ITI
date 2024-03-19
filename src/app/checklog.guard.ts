@@ -12,18 +12,16 @@ export class check implements CanActivate {
   constructor(private authService: LoginService, private router: Router) {}
 
   canActivate(): boolean {
- 
-    const isLoggedIn = this.authService.auth().subscribe(res=>{
 
-        
-    });
+    const token = sessionStorage.getItem('token');
 
-    if (isLoggedIn) {
+    if (token) {
       return true;
-    } else {
-
-      this.router.navigate(['/login']);
-      return false;
+     
+   
     }
+    return false;
+    
+   
   }
 }
