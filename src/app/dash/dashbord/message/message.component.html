@@ -29,13 +29,20 @@
   </tr>
  
 }
-   
+
     
     </tbody>
   </table>
 
+  @if(msg.length===0){
+    <p class="fs-3 fw-bold text-center"> Sorry No Data Here  </p>
+   }@else{
 
-  <div class="d-flex justify-content-center">
-    <pagination-controls class="" (pageChange)="crntpage=$event"></pagination-controls>
+    <div class="d-flex justify-content-center">
+      <pagination-controls class="" (pageChange)="crntpage=$event"></pagination-controls>
+  
+  </div>
+   }
 
-</div>
+
+  
