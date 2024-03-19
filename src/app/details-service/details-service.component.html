@@ -302,7 +302,7 @@
                 <a (click)="deletecomment($event,post.id)" style="display: flex; float: right;margin-right:-20px;margin-top: -20px;" class="btn btn-outline-info inputrevbutton " type="submit" id="button-addon2">
                     <i class="fa-solid fa-times-circle send-icon"></i>
                 </a>
-                <a routerLink="/details-service/{{post.service_center_id}}" style="display: flex; float: right;margin-right:0px;" class="btn btn-outline-info inputrevbutton" type="submit" id="button-addon2">
+                <a routerLink="/comment/{{post['id']}}/edit" style="display: flex; float: right;margin-right:0px;" class="btn btn-outline-info inputrevbutton" type="submit" id="button-addon2">
 
                     <i class="fa-solid fa-pen send-icon"></i>
 
