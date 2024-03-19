@@ -3,21 +3,19 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { NgxPaginationModule, } from 'ngx-pagination';
 import Swal from 'sweetalert2';
+
 @Component({
-  selector: 'app-message',
+  selector: 'app-allagent',
   standalone: true,
   imports: [CommonModule,NgxPaginationModule],
-  templateUrl: './message.component.html',
-  styleUrl: './message.component.css'
+  templateUrl: './allagent.component.html',
+  styleUrl: './allagent.component.css'
 })
-export class MESSAGEComponent {
-msg : any = ''
-loading: boolean = true; 
-serviceIdToDelete: number | null = null;
-crntpage:any  
-
-
-
+export class AllagentComponent {
+  agents : any = ''
+  loading: boolean = true; 
+  serviceIdToDelete: number | null = null;
+  crntpage:any  
 
   constructor(private http:HttpClient){
 
@@ -31,10 +29,10 @@ crntpage:any
     
     
     
-      this.http.get('http://127.0.0.1:8000/api/GetContact',{ headers: headers }).subscribe(res=>{
+      this.http.get('http://127.0.0.1:8000/api/Getagents',{ headers: headers }).subscribe(res=>{
 
       
-      this.msg = res
+      this.agents = res
       this.loading = false;
       })
     }
@@ -63,7 +61,7 @@ crntpage:any
   }
   
   
-  deleteService(serviceId: number) {
+  deleteService(agent: number) {
     const token: any = sessionStorage.getItem('token');
     if (token) {
       const headers = new HttpHeaders({
@@ -71,7 +69,7 @@ crntpage:any
         'Authorization': `Bearer ${token}`
       });
       
-    this.http.delete(`http://127.0.0.1:8000/api/DelContact/${serviceId}`,{ headers: headers })
+    this.http.delete(`http://127.0.0.1:8000/api/Delagents/${agent}`,{ headers: headers })
         .subscribe(
             response => {
             
@@ -85,8 +83,4 @@ crntpage:any
         );
   }
   }
-
-
-
-
 }
