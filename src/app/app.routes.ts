@@ -22,6 +22,7 @@ import { UpdateserviceComponent } from './dash/updateservice/updateservice.compo
 import { DashboardAccessGuard } from './dashboard.guard';
 import { OrdersForAgentComponent } from './orders-for-agent/orders-for-agent.component';
 import { ArchiveComponent } from './orders-for-agent/archive/archive.component';
+import { UpdateOrderComponent } from './user-profile/updateorder/updateorder.component';
 export const routes: Routes = [
   {
     path:"",
@@ -91,9 +92,13 @@ component:UserProfileComponent, title:"user",canActivate: [check]
 component:UpdateuserComponent, title:"EditProfile",canActivate: [check]
 },
 
-{ path:"archive",
+{ path:"archive/:id",
 
 component:ArchiveComponent, title:"archive"
+},
+{ path:"updateorder/:id",
+
+component:UpdateOrderComponent, title:"updateorder"
 },
 
 { path:"dash",

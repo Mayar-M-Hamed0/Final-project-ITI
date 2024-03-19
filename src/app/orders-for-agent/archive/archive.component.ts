@@ -18,7 +18,7 @@ export class ArchiveComponent {
   ngOnInit(): void {
     this.route.params.subscribe((params:Params)=>{this.service_center_id=params['id']})
     console.log(this.service_center_id)
-    this.service.getarchived().subscribe(res=>{this.orders=res; console.log(res) } )
+    this.service.getarchived(this.service_center_id).subscribe(res=>{this.orders=res; console.log(res) } )
   }
   restore(id:number){
     this.service.restore(id).subscribe({

@@ -2,12 +2,12 @@
   <div class="title py-5 mx-5">
     <h1>our center orders</h1>
     <p class="">can view , accept and delete all orders here</p>
+  </div>
+  <div class="component rounded-2 p-3 mb-5 mx-5 ">
     <div class="mx-auto my-2 pe-auto">
       <button class="btn mx-3"> <a routerLink="/dash"> Back to dashboard</a>  </button>
       <button class="btn mx-1 "> <a routerLink="/orders"> Go to orders</a>  </button>
     </div>
-  </div>
-  <div class="component rounded-2 p-3 mb-5 mx-5 ">
 
     @if(orders){
 
@@ -38,7 +38,7 @@
                   </div>
                 </div>
                 <div class="col-md-4  m-auto ">
-                  <button class="btn my-2 d-block px-4 m-auto" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="restore(order['id'])"> Restore </button>
+                  <!-- <button class="btn my-2 d-block px-4 m-auto" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="restore(order['id'])"> Restore </button> -->
 
 
                 </div>

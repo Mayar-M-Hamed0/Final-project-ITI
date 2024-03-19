@@ -30,4 +30,14 @@ export class OrdersForAgentComponent implements OnInit {
              }, 2000);}
     });
   }
+  forcedelete(id:number){
+    this.service.forcedeleteorder(id).subscribe({
+      next:res=>{
+
+             setTimeout(() => {
+
+              window.location.reload();
+             }, 2000);}
+    });
+  }
 }
