@@ -3,7 +3,6 @@ import { ServicesService } from '../services/services.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-commentedit',
@@ -16,36 +15,27 @@ export class CommenteditComponent {
 
   commentid !: any
   commentdes!: any
-  service_center_id!:number;
-  Description!:number;
-  date!:string;
-  name!: string
-  datauser: any = ''
-  
-  constructor(private route: ActivatedRoute, private singlecomment: ServicesService,private loginService:LoginService) { }
+
+  constructor(private route: ActivatedRoute, private singlecomment: ServicesService) { }
   ngOnInit() {
     this.commentid = this.route.snapshot.paramMap.get('id');
     this.singlecomment.getpost(this.commentid).subscribe((res: any) => {
       console.log(res)
-      this.commentdes = res;
-       this.loginService.auth().subscribe(
-        (data) => {
-        this.datauser=data
-        console.log(this.datauser.name)
-        })
+      this.commentdes = res
     });
   }
-
-
   updatecomment() {
 
     var inputsdata = {
-     Description:this.commentdes.Description
+
+      id: this.commentdes.id,
+      Date: this.commentdes.Date,
+      comment: this.commentdes.comment,
+      Username: this.commentdes.Username,
     }
     this.singlecomment.updatecomment(inputsdata, this.commentid).subscribe({
       next: (res: any) => {
         console.log(res)
-      
       }
     });
   }

@@ -10,6 +10,8 @@ export class ServicesService {
 
 
 
+
+
   }
   getsinglepage(id:any){
     return this.HttpClient_.get(`https://api-generator.retool.com/5746Su/service/`+id)
@@ -98,7 +100,7 @@ export class ServicesService {
 
    destroycomment(commentid:number)
    {
-     return this.HttpClient_.delete(`http://127.0.0.1:8000/api/reviews/${commentid}`);
+     return this.HttpClient_.delete(`https://api-generator.retool.com/wDUVbz/data/${commentid}`);
    }
 
 

@@ -4,15 +4,16 @@
 
     <form (ngSubmit)="updatecomment()" style="width: 100% ">
         <div class="bg-text">
-            <input id="inputrev" type="text" class="form-control " placeholder="write your user_name" name="name" [(ngModel)]="this.datauser.name">
-            <input id="inputrev" type="text" class="form-control " placeholder="write your comment" name="Description" [(ngModel)]="commentdes.Description">
-            <br>
-            <button id="inputrev" class="inputrevbutton" type="submit" id="button-addon2" style="display: flex;float: right;">
-                <i class="fa-solid fa-paper-plane"></i>
+            <div *ngIf="commentdes">
+                <input id="inputrev" type="text" class="form-control " placeholder="write your user_name" name="Username" [(ngModel)]="commentdes.Username">
+                <input id="inputrev" type="text" class="form-control " placeholder="write your comment" name="comment" [(ngModel)]="commentdes.comment">
+                <br>
+                <button id="inputrev" class="inputrevbutton" type="submit" id="button-addon2" style="display: flex;float: right;">
+                <i class="fa-solid fa-paper-plane"></i> 
             </button>
-
+            </div>
         </div>
 
-    </form><br>
+    </form>
 
 </div>
