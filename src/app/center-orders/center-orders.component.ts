@@ -33,7 +33,7 @@ export class CenterOrdersComponent implements OnInit {
       'Authorization': `Bearer ${token}`
     });
 
-        this.http.get('http://127.0.0.1:8000/api/service-center', this.datauser['id'] ).subscribe(
+        this.http.get('http://127.0.0.1:8000/api/service-center',{headers:headers} ).subscribe(
             (res:any)=>{
         this.servicedata = res ;
 

@@ -24,7 +24,7 @@ import { LoginService } from '../services/login.service';
 })
 export class DetailsServiceComponent {
   p: number = 1;
-
+  Username!:string;
 data:any =  []
 id:any
 searchtext:any;
@@ -93,14 +93,14 @@ datauser: any = ''
     this.serv.getdislike().subscribe((value) => this.countdislike = value)
 
     this.serv.getAllposts().subscribe((res) => { this.posts = res });
-    
+
       this.route.params.subscribe((params:Params)=>{this.service_center_id=params['id']})
       this.loginService.auth().subscribe(
         (data) => {
         this.datauser=data
         })
-      
-      
+
+
 
   }
 
@@ -111,11 +111,11 @@ datauser: any = ''
   savecomment() {
     let inputsdata = {
 
-  
+
       user_id:this.datauser.id,
          service_center_id:this.service_center_id,
         Description:this.Description
-  
+
     }
     this.serv.savecomment(inputsdata).subscribe({
       next: (res: any) => {
