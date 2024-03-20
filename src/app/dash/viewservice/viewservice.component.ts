@@ -72,12 +72,11 @@ openConfirmationModal(serviceId: number) {
   }).then((result) => {
     if (result.isConfirmed) {
       this.deleteService(serviceId);
-      setTimeout(() => {
-        window.location.reload();
-      }, 500);
+     
     }
   });
 }
+
 
 
 deleteService(serviceId: number) {
@@ -87,24 +86,33 @@ deleteService(serviceId: number) {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    
-  this.http.delete(`http://127.0.0.1:8000/api/service-center/${serviceId}`,{ headers: headers })
+
+    this.http.delete(`http://127.0.0.1:8000/api/service-center/${serviceId}`, { headers: headers })
       .subscribe(
-          response => {
-          
-              console.log('Deleted successfully', response);
-          
-          },
-          error => {
-           
-              console.error('Error deleting:', error);
-          }
+        response => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Deleted successfully',
+            text: 'Service has been deleted successfully.',
+            confirmButtonText: 'Ok'
+          });
+          console.log('Deleted successfully', response);
+          // تحديث البيانات المحلية بعد حذف الخدمة
+          this.servicedata = this.servicedata.filter((service: any) => service.id !== serviceId);
+        },
+        error => {
+          console.error('Error deleting:', error);
+          // عرض رسالة الخطأ إذا حدث خطأ أثناء الحذف
+          Swal.fire({
+            icon: 'error',
+            title: 'Error!',
+            text: 'An error occurred while deleting the service.',
+            confirmButtonText: 'Ok'
+          });
+        }
       );
+  }
 }
-
-
-}
-
 
 
 

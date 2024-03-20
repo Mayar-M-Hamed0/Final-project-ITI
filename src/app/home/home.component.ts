@@ -56,12 +56,12 @@ handelForm() {
       }).then((result) => {
         if (result.isConfirmed) {
        
-          setTimeout(() => {
-            window.location.reload();
-          }, 1000);
+          this.gameForm.reset()
         }
       });
-      this.resmassge = res;
+      this.resmassge = "Thank you, we will contact you soon";
+
+      
     },
     (error) => {
      

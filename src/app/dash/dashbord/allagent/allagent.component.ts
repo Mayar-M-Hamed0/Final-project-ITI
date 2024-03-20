@@ -53,9 +53,7 @@ export class AllagentComponent {
     }).then((result) => {
       if (result.isConfirmed) {
         this.deleteService(serviceId);
-        setTimeout(() => {
-          window.location.reload();
-        }, 500);
+   
       }
     });
   }
@@ -74,6 +72,8 @@ export class AllagentComponent {
             response => {
             
                 console.log('Deleted successfully', response);
+                this.agents = this.agents.filter((item: any) => item.id !== agent);
+
             
             },
             error => {
