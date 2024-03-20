@@ -32,7 +32,7 @@
   <!-- phone -->
               <div class="mb-3">
                 <label for="Phone" class="form-label">Phone</label>
-                <input type="text" class="form-control"  value="{{order.data['phone']}}" id="Phone" >
+                <input type="text" class="form-control" [(ngModel)]="phone" formControlName="phone" id="Phone" >
                 @if (errors) {
 
                   @if (errors.phone) {
@@ -111,7 +111,7 @@
               <div class="mb-3">
 
                 <label for="Date" class="form-label">Date</label>
-                <input type="date" class="form-control" [(ngModel)]="date" value="{{order.data['order_date']}}" id="Date" >
+                <input type="date" class="form-control" [(ngModel)]="date" formControlName="date" value="{{order.data['order_date']}}" id="Date" >
 
                 @if (errors) {
 
@@ -135,7 +135,7 @@
   <!-- textarea -->
   <div class="mb-3">
     <label for="textarea" class="form-label">Write any notice you want</label>
-    <textarea class="form-control"   value="{{order.data['order_details']}}"   id="textarea" style="height: 100px"></textarea>
+    <textarea class="form-control"   value="{{order.data['order_details']}}" formControlName="textarea"  id="textarea" style="height: 100px"></textarea>
 
 
     @if (errors) {
