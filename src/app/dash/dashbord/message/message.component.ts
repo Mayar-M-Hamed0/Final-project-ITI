@@ -55,9 +55,7 @@ crntpage:any
     }).then((result) => {
       if (result.isConfirmed) {
         this.deleteService(serviceId);
-        setTimeout(() => {
-          window.location.reload();
-        }, 500);
+
       }
     });
   }
@@ -75,7 +73,7 @@ crntpage:any
         .subscribe(
             response => {
             
-                console.log('Deleted successfully', response);
+              this.msg = this.msg.filter((item: any) => item.id !== serviceId);
             
             },
             error => {
