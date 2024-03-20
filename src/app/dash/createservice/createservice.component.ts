@@ -20,14 +20,11 @@ import { ViewserviceComponent } from '../viewservice/viewservice.component';
 import { CenterOrdersComponent } from '../../center-orders/center-orders.component';
 import { PageOfServiceComponent } from '../../page-of-service/page-of-service.component';
 import { HttpClient,HttpHeaders,HttpErrorResponse  } from '@angular/common/http';
-import { map,Observable, throwError,catchError  } from 'rxjs';
+import {  throwError } from 'rxjs';
 @Component({
   selector: 'app-createservice',
   standalone: true,
-  imports: [ ReactiveFormsModule,
-
-    NgFor,
-    FormsModule,
+  imports: [ReactiveFormsModule, NgFor,FormsModule,
     NgbAlertModule,
     CheckboxModule,
     MatCheckboxModule,NgSelectModule,
@@ -56,27 +53,9 @@ export class CreateserviceComponent {
   services: { key: number; value: string }[] = [];
 
 
-  constructor(private fb: FormBuilder, private http:HttpClient) {
-    this.serviceform = new FormGroup({
-      name: new FormControl('', [Validators.required]),
-      phone: new FormControl('', [Validators.required, Validators.pattern(/^(010|011|012|015)\d{8}$/)]),
-      description: new FormControl('', [
-        Validators.required,
-        Validators.minLength(10)
-    ]),
-      location: new FormControl('', [Validators.required]),
-      image: new FormControl('', [Validators.required]),
-      rating: new FormControl('', [Validators.required]),
-      working_hours: new FormControl('', [Validators.required]),
-      working_days: new FormControl('', [Validators.required]),
-      services: new FormControl('', Validators.required),
-      cars: new FormControl('', Validators.required),
-    });
-
-
-
   userImageUrl:any = '';
   userImageFile:any = ' ';
+
   constructor(private fb: FormBuilder, private http: HttpClient) {
     this.serviceform = this.fb.group({
       name: ['', [Validators.required]],
@@ -87,9 +66,10 @@ export class CreateserviceComponent {
       rating: ['', [Validators.required]],
       working_hours: ['', [Validators.required]],
       working_days: ['', [Validators.required]],
-      services: ['', [Validators.required]], 
+      services: ['', [Validators.required]],
       cars: ['', [Validators.required]],
     });
+
 
     this.model = [
       { key: 1, value: 'KIA' },
@@ -138,7 +118,8 @@ export class CreateserviceComponent {
 
   }
 
-  
+
+
   onFileSelected(event:any){
     this.userImageUrl = URL.createObjectURL(event.target.files[0]);
     this.userImageFile = event.target.files[0];
@@ -147,7 +128,7 @@ export class CreateserviceComponent {
 
 
   handelForm(e:any) {
-    e.preventDefault(); 
+    e.preventDefault();
 
 let formData = new FormData();
 formData.append('image',this.userImageFile);
@@ -163,40 +144,14 @@ this.serviceform.value.services.forEach((service: { key: number, value: string }
   formData.append('services[]', String(service.key));
 });
 
-
-
-  handelForm() {
-if (typeof window !== 'undefined') {
-
-  const token: any = sessionStorage.getItem('token');
-  if (token) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    });
-
-    return this.http.post('http://127.0.0.1:8000/api/service-center/',
-      this.serviceform.value,
-      { headers: headers }
-    ).subscribe(
-      (res) => {
-        this.msgres = res;
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
-
-
-      },
-      (error: HttpErrorResponse) => {
-        console.error('An error occurred:', error.error);
-        this.errorMessage = error.error.data;
-    }
-
-
 this.serviceform.value.cars.forEach((car: { key: number, value: string }) => {
   formData.append('cars[]', String(car.key));
 });
 
+
+formData.forEach((value: any, key: string) => {
+  console.log(key + ': ' + value);
+});
 
 
 
@@ -205,18 +160,18 @@ console.log(this.serviceform.value);
 
 
 
-
-   
   if (typeof window !== 'undefined') {
     const token: any = sessionStorage.getItem('token');
     if (token) {
+
       const headers = new HttpHeaders({
         'Authorization': `Bearer ${token}`
       });
 
-      return this.http.post('http://127.0.0.1:8000/api/service-center/',
-      formData,
-        { headers: headers }
+
+
+
+      return this.http.post('http://127.0.0.1:8000/api/service-center/',formData,{ headers: headers }
       ).subscribe(
         (res) => {
           this.msgres = res;
@@ -226,7 +181,7 @@ console.log(this.serviceform.value);
         },
         (error: HttpErrorResponse) => {
           console.error('An error occurred:', error.error);
-          this.errorMessage = error.error.data; 
+          this.errorMessage = error.error.data;
         }
       );
     } else {
