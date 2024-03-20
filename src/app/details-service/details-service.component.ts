@@ -24,7 +24,7 @@ import { LoginService } from '../services/login.service';
 })
 export class DetailsServiceComponent {
   p: number = 1;
-
+  Username!:string;
 data:any =  []
 id:any
 searchtext:any;
@@ -37,8 +37,8 @@ datafromapi : any = [];
     this.serv.getsinglepage(this.id).subscribe(res=>{
 
 
-    this.data = res; 
-
+    this.data = res;
+      console.log(this.data)
 
     this.resevedata.getdata().subscribe(res2 => {
 
@@ -62,17 +62,17 @@ datafromapi : any = [];
   rating = 0;
   setRating(value: number){
     this.rating = value;
-  } 
+  }
 
 
 
-  
+
   comments:any = comments
 
  // comments:any = comments
 
 
-  
+
   posts: any;
   countlike: number = 0
   countdislike: number = 0
@@ -93,14 +93,14 @@ datauser: any = ''
     this.serv.getdislike().subscribe((value) => this.countdislike = value)
 
     this.serv.getAllposts().subscribe((res) => { this.posts = res });
-    
+
       this.route.params.subscribe((params:Params)=>{this.service_center_id=params['id']})
       this.loginService.auth().subscribe(
         (data) => {
         this.datauser=data
         })
-      
-      
+
+
 
   }
 
@@ -109,13 +109,13 @@ datauser: any = ''
   Date!: Date
   name!: string
   savecomment() {
-    var inputsdata = {
+    let inputsdata = {
 
-  
+
       user_id:this.datauser.id,
          service_center_id:this.service_center_id,
         Description:this.Description
-  
+
     }
     this.serv.savecomment(inputsdata).subscribe({
       next: (res: any) => {
@@ -128,10 +128,10 @@ datauser: any = ''
 
       this.serv.destroycomment(commentid).subscribe((res: any) => {
         this.serv.getAllposts().subscribe((res) => { console.log(res) });
-     
+
       })
-    
-  
+
+
   }
 
 
@@ -143,7 +143,7 @@ datauser: any = ''
   }
 
 
-  
+
   updateRating(newRating: number) {
     this.rating = newRating;
   }

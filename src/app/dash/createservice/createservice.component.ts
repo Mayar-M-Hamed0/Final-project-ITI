@@ -25,7 +25,7 @@ import { map,Observable, throwError,catchError  } from 'rxjs';
   selector: 'app-createservice',
   standalone: true,
   imports: [ ReactiveFormsModule,
-    
+
     NgFor,
     FormsModule,
     NgbAlertModule,
@@ -54,6 +54,25 @@ export class CreateserviceComponent {
   serviceform: FormGroup;
   model: { key: number; value: string }[] = [];
   services: { key: number; value: string }[] = [];
+
+
+  constructor(private fb: FormBuilder, private http:HttpClient) {
+    this.serviceform = new FormGroup({
+      name: new FormControl('', [Validators.required]),
+      phone: new FormControl('', [Validators.required, Validators.pattern(/^(010|011|012|015)\d{8}$/)]),
+      description: new FormControl('', [
+        Validators.required,
+        Validators.minLength(10)
+    ]),
+      location: new FormControl('', [Validators.required]),
+      image: new FormControl('', [Validators.required]),
+      rating: new FormControl('', [Validators.required]),
+      working_hours: new FormControl('', [Validators.required]),
+      working_days: new FormControl('', [Validators.required]),
+      services: new FormControl('', Validators.required),
+      cars: new FormControl('', Validators.required),
+    });
+
 
 
   userImageUrl:any = '';
@@ -92,7 +111,7 @@ export class CreateserviceComponent {
       { key: 17, value: 'HONDA' },
 
     ];
-  
+
     this.services= [
       { key: 1, value: 'Mechanical' },
       { key: 2, value: 'Electricity' },
@@ -143,6 +162,36 @@ formData.append('working_days', this.serviceform.value.working_days);
 this.serviceform.value.services.forEach((service: { key: number, value: string }) => {
   formData.append('services[]', String(service.key));
 });
+
+
+
+  handelForm() {
+if (typeof window !== 'undefined') {
+
+  const token: any = sessionStorage.getItem('token');
+  if (token) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.post('http://127.0.0.1:8000/api/service-center/',
+      this.serviceform.value,
+      { headers: headers }
+    ).subscribe(
+      (res) => {
+        this.msgres = res;
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
+
+
+      },
+      (error: HttpErrorResponse) => {
+        console.error('An error occurred:', error.error);
+        this.errorMessage = error.error.data;
+    }
+
 
 this.serviceform.value.cars.forEach((car: { key: number, value: string }) => {
   formData.append('cars[]', String(car.key));
@@ -202,4 +251,4 @@ console.log(this.serviceform.value);
 
 
 
- 
+

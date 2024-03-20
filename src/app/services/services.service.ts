@@ -10,18 +10,20 @@ export class ServicesService {
 
 
 
-
-
   }
   getsinglepage(id:any){
-    return this.HttpClient_.get(`https://api-generator.retool.com/5746Su/service/`+id)
+    return this.HttpClient_.get(`http://127.0.0.1:8000/api/center/`+id)
 
    }
 
   getdata(){
-   return this.HttpClient_.get(`https://api-generator.retool.com/5746Su/service`)
+   return this.HttpClient_.get(`http://127.0.0.1:8000/api/Allservice-center`)
 
   }
+
+  // createservice(data){
+  //   return this.HttpClient_.post(`http://127.0.0.1:8000/api/service-center`,data)
+  // }
 
   pushdata(formdata:any){
     return this.HttpClient_.post(`https://api-generator.retool.com/5746Su/service`,formdata)
@@ -100,7 +102,7 @@ export class ServicesService {
 
    destroycomment(commentid:number)
    {
-     return this.HttpClient_.delete(`https://api-generator.retool.com/wDUVbz/data/${commentid}`);
+     return this.HttpClient_.delete(`http://127.0.0.1:8000/api/reviews/${commentid}`);
    }
 
 

@@ -21,7 +21,7 @@ searchtext:any;
   crntpage:any
 
 
-  
+
   datafromapi : any = [];
   selectedPlace:any='';
   selectedMark:any='';
@@ -32,7 +32,7 @@ constructor( private resevedata:ServicesService){
   this.resevedata.getdata().subscribe(res => {
 
     this.datafromapi = res;
-     console.log("this is the response of api",this.datafromapi,this.searchtext)
+     console.log(res)
     })
   }
 
