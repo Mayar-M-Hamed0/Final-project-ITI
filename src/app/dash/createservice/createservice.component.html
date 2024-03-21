@@ -181,7 +181,18 @@
             <span style="color: red;"> This working_hours is required </span>
 
             {{ errorMessage.working_hours }}
-        } }
+          } }
+        </div>
+        <div *ngFor="let day of days; let i = index">
+          <div *ngIf="currentIndex === i">
+            <label for="day{{i}}">Day {{i + 1}}</label>
+            <input id="day{{i}}" type="text" [(ngModel)]="schedule[i].day">
+            <label for="startTime{{i}}">Start Time:</label>
+            <input id="startTime{{i}}" type="time" [(ngModel)]="schedule[i].startTime">
+            <label for="endTime{{i}}">End Time:</label>
+            <input id="endTime{{i}}" type="time" [(ngModel)]="schedule[i].endTime">
+            <button (click)="toggleVisibility(i)">Next</button>
+          </div>
         </div>
 
         <div class="d-flex justify-content-center mt-2">
@@ -199,18 +210,7 @@
 
 
       </form>
-      
-              <div *ngFor="let day of days; let i = index">
-                <div *ngIf="currentIndex === i">
-                  <label for="day{{i}}">Day {{i + 1}}</label>
-                  <input id="day{{i}}" type="text" [(ngModel)]="schedule[i].day">
-                  <label for="startTime{{i}}">Start Time:</label>
-                  <input id="startTime{{i}}" type="time" [(ngModel)]="schedule[i].startTime">
-                  <label for="endTime{{i}}">End Time:</label>
-                  <input id="endTime{{i}}" type="time" [(ngModel)]="schedule[i].endTime">
-                  <button (click)="toggleVisibility(i)">Next</button>
-                </div>
-              </div>
+
 </div>
 
 @for (item of errorMessage; track $index) {

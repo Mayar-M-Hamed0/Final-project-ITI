@@ -121,6 +121,7 @@ export class CreateserviceComponent {
 
   }
 
+
   currentIndex: number = 0;
   days: number[] = [0, 1, 2, 3, 4, 5, 6]; // Days of the week
   schedule: any[] = []; // Array to store schedules
@@ -147,6 +148,12 @@ export class CreateserviceComponent {
   handelForm(e:any) {
     e.preventDefault();
 
+    const scheduleData = this.schedule.map(item => ({
+      day: item.day,
+      startTime: item.startTime,
+      endTime: item.endTime
+    }));
+
 let formData = new FormData();
 formData.append('image',this.userImageFile);
 formData.append('name', this.serviceform.value.name);
@@ -159,7 +166,7 @@ formData.append('working_hours', this.serviceform.value.working_hours);
 formData.append('working_days', this.serviceform.value.working_days);
 formData.append('services[]', this.serviceform.value.services);
 formData.append('cars[]', this.serviceform.value.cars);
-
+formData.append('schedule', JSON.stringify(scheduleData));
 
 
   if (typeof window !== 'undefined') {
