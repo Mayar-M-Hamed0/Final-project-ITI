@@ -117,10 +117,24 @@ export class CreateserviceComponent {
       { key: 18 , value: 'Labor fees Discount' },
     ];
 
+    this.schedule = this.days.map(() => ({ day: '', startTime: '', endTime: '' }));
 
   }
 
-  
+  currentIndex: number = 0;
+  days: number[] = [0, 1, 2, 3, 4, 5, 6]; // Days of the week
+  schedule: any[] = []; // Array to store schedules
+
+
+  toggleVisibility(index: number): void {
+    if (index < this.days.length - 1) {
+      this.currentIndex = index + 1;
+    } else {
+      // If it's the last day, loop back to the first day
+      this.currentIndex = 0;
+    }
+    console.log(this.schedule);
+  }
   onFileSelected(event:any){
     this.userImageUrl = URL.createObjectURL(event.target.files[0]);
     this.userImageFile = event.target.files[0];
@@ -178,6 +192,7 @@ formData.append('cars[]', this.serviceform.value.cars);
     return throwError('Window is not available');
   }
 }
+
 
 
 

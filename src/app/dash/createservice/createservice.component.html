@@ -54,7 +54,7 @@
 
         </div>
 
-        
+
         <label for="phone" class="col-sm-2 col-form-label">Price </label>
         <div class="col-sm-10">
             <input type="number" class="form-control" id="Price" formControlName="price" /> @if(serviceform.controls['price'].invalid && serviceform.controls['price'].touched) { @if(serviceform.controls['price'].errors?.['required']) {
@@ -95,7 +95,7 @@
         </div>
 
 
-        
+
 
 
 
@@ -198,8 +198,19 @@
 
 
 
-
-    </form>
+      </form>
+      
+              <div *ngFor="let day of days; let i = index">
+                <div *ngIf="currentIndex === i">
+                  <label for="day{{i}}">Day {{i + 1}}</label>
+                  <input id="day{{i}}" type="text" [(ngModel)]="schedule[i].day">
+                  <label for="startTime{{i}}">Start Time:</label>
+                  <input id="startTime{{i}}" type="time" [(ngModel)]="schedule[i].startTime">
+                  <label for="endTime{{i}}">End Time:</label>
+                  <input id="endTime{{i}}" type="time" [(ngModel)]="schedule[i].endTime">
+                  <button (click)="toggleVisibility(i)">Next</button>
+                </div>
+              </div>
 </div>
 
 @for (item of errorMessage; track $index) {
