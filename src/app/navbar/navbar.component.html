@@ -23,9 +23,6 @@
        
 
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="ay7aga">Products</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" routerLinkActive="avtive" routerLink="service">Service</a>
                 </li>
 
@@ -38,16 +35,20 @@
             </form> -->
             @if (datauser) {
              
+@if (datauser.image) {
+    <img src="http://127.0.0.1:8000/{{datauser.image}}" width="40" height="50" class="rounded" alt="Cinque Terre">
 
+}
 
 
 <div class="btn-group">
     <button type="button" style="background-color: #293241 !important;" class="btn btn-primary dropdown-toggle border" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="fa-solid fa-user"></i>
     </button>
+
     <ul class="dropdown-menu">
     
-        <li><a class="dropdown-item text-dark">{{datauser.name}}</a></li>
+
       <li><a class="dropdown-item  text-dark" routerLink="user">Profile</a></li>
 
     </ul>

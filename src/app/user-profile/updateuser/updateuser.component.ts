@@ -35,21 +35,28 @@ export class UpdateuserComponent  {
   msgres:any= ''
   serviceform: FormGroup;
 
-id:any = ""
+datauser:any = ""
+
   userImageUrl:any = '';
   userImageFile:any = ' ';
+
+  formdata:any = ''
   constructor(private fb: FormBuilder, private http: HttpClient,private login:LoginService) {
 
     this.login.auth().subscribe(res=>{
-      this.id = res
+      this.datauser = res
           })
 
     this.serviceform = this.fb.group({
-      name: ['', [Validators.required]],
-      phone: ['', [Validators.required, Validators.pattern(/^(010|011|012|015)\d{8}$/)]],
-      email: ['', [Validators.required, Validators.minLength(10)]],
-      password: ['', [Validators.required]],
-      image: ['', [Validators.required]], 
+      name: ['', [Validators.required,Validators.minLength(3)] ],
+      phone: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^(010|011|012|015)\d{8}$/)
+    ]),
+
+    password: ['', [Validators.required, Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,}$/)]]
+    ,
+      image: ['', [Validators.required]],
     
     });
 
@@ -66,13 +73,12 @@ id:any = ""
   handelForm(e:any) {
     e.preventDefault(); 
 
+this.formdata = new FormData();
+this.formdata.append('image', this.userImageFile);
+this.formdata.append('name', this.serviceform.value.name);
+this.formdata.append('phone', this.serviceform.value.phone);
+this.formdata.append('password',  this.serviceform.value.password);
 
-let formData = new FormData();
-formData.append('image',this.userImageFile);
-formData.append('name', this.serviceform.value.name);
-formData.append('phone', this.serviceform.value.phone);
-formData.append('email', this.serviceform.value.email);
-formData.append('password', this.serviceform.value.password);
 
 
   if (typeof window !== 'undefined') {
@@ -81,13 +87,15 @@ formData.append('password', this.serviceform.value.password);
 
       const headers = new HttpHeaders({
         'Authorization': `Bearer ${token}`
+        
       });
 
-return this.http.put('http://127.0.0.1:8000/api/users/'+ this.id.id,formData,{ headers: headers }
+this.http.post('http://127.0.0.1:8000/api/users/'+this.datauser.id,this.formdata,{ headers: headers }
       ).subscribe(
         (res) => {
           this.msgres = res;
           this.serviceform.reset();
+         
         },
         (error: HttpErrorResponse) => {
           console.error('An error occurred:', error.error);
@@ -100,6 +108,7 @@ return this.http.put('http://127.0.0.1:8000/api/users/'+ this.id.id,formData,{ h
   } else {
     return throwError('Window is not available');
   }
+  return "x";
 }
   resetForm() {
     this.serviceform.reset();

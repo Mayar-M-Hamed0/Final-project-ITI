@@ -36,11 +36,14 @@ import Swal from 'sweetalert2';
 export class UpdateserviceComponent {
   oldnameforupdateservice:any=''
   serviceform: FormGroup;
-  model: { key: number; value: string }[] = [];
+  cars: { key: number; value: string }[] = [];
   services: { key: number; value: string }[] = [];
   msgres:any=''
   errorMessage: any = ''; // تعريف errorMessage كمتغير عام
   id:any = ''
+  userImageUrl:any = '';
+  userImageFile:any = ' ';
+  formData:any = ''
   constructor(private fb: FormBuilder, private sr: ServicesService , private http:HttpClient,private route: ActivatedRoute) {
     this.serviceform = new FormGroup({
       name: new FormControl('', [Validators.required]),
@@ -50,16 +53,16 @@ export class UpdateserviceComponent {
         Validators.minLength(10)
     ]),
       location: new FormControl('', [Validators.required]),
-      image: new FormControl('', [Validators.required]),
       rating: new FormControl('', [Validators.required]),
       working_hours: new FormControl('', [Validators.required]),
       working_days: new FormControl('', [Validators.required]),
       services: new FormControl('', Validators.required), 
       cars: new FormControl('', Validators.required),
+      image: new FormControl('', [Validators.required]),
     });
 
 
-    this.model = [
+    this.cars = [
       { key: 1, value: 'KIA' },
       { key: 2, value: 'MAZDA' },
       { key: 3, value: 'TOYOTA' },
@@ -118,24 +121,40 @@ this.oldnameforupdateservice = res
 
 
 
-
+  onFileSelected(event:any){
+    this.userImageUrl = URL.createObjectURL(event.target.files[0]);
+    this.userImageFile = event.target.files[0];
+  }
 
 
 
  
 
-  handelForm() {
+  handelForm(e:any) {
+    e.preventDefault();
+    this.formData = new FormData();
+    this.formData.append('image',this.userImageFile);
+    this.formData.append('name', this.serviceform.value.name);
+    this.formData.append('phone', this.serviceform.value.phone);
+    this.formData.append('description', this.serviceform.value.description);
+    this.formData.append('location', this.serviceform.value.location);
+this.formData.append('rating', this.serviceform.value.rating);
+this.formData.append('working_hours', this.serviceform.value.working_hours);
+this.formData.append('working_days', this.serviceform.value.working_days);
+this.formData.append('services[]', this.serviceform.value.services);
+this.formData.append('cars[]', this.serviceform.value.cars);
 
-    
+
+
     if (typeof window !== 'undefined') {
       const token: any = sessionStorage.getItem('token');
       if (token) {
         const headers = new HttpHeaders({
-          'Content-Type': 'application/json',
+
           'Authorization': `Bearer ${token}`
         });
   
-        // إظهار التنبيه باستخدام SweetAlert
+    
         Swal.fire({
           title: 'تحديث البيانات',
           text: 'سيتم تحديث البيانات الآن. انتظر قليلاً...',
@@ -148,15 +167,14 @@ this.oldnameforupdateservice = res
           cancelButtonText: 'إلغاء'
         });
   
-        return this.http.put('http://127.0.0.1:8000/api/service-center/'+this.id,
-          this.serviceform.value,
+      this.http.post('http://127.0.0.1:8000/api/service-centerss/'+this.id,
+        this.formData,
           { headers: headers }
         ).subscribe(
           (res) => {
             this.msgres = res;
-            setTimeout(() => {
-              window.location.reload();
-            }, 4000);
+           console.log(res);
+           
           },
           (error: HttpErrorResponse) => {
             console.error('An error occurred:', error.error);
@@ -171,6 +189,8 @@ this.oldnameforupdateservice = res
       // إعادة الخطأ عندما لا تكون النافذة متاحة
       return throwError('Window is not available');
     }
+
+    return "x";
   }
   
   
