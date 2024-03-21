@@ -46,11 +46,11 @@
 
 
   </div>
-  <div class=" mt-5 pb-3 container-fluid component">
-    <h4 class="mt-5 ">appende orders</h4>
-    @if(orders){
+  @if(orders){
 
-      @for (order of orders.data | paginate: { itemsPerPage: 3, currentPage: crntpage } ; track $index) {
+    @for (order of orders.data | paginate: { itemsPerPage: 3, currentPage: crntpage } ; track $index) {
+        <div class=" mt-5 pb-3 container-fluid component">
+          <h4 class="mt-5 ">appende orders</h4>
 
         <div class="card mb-5 w-100 me-2 mt-3" >
           <div class="row g-0">
@@ -86,17 +86,17 @@
             </div>
           </div>
         </div>
+        <pagination-controls class="text-white-50 mx-auto" (pageChange)="crntpage=$event"></pagination-controls>
+
+      </div>
       }
     }
-    <pagination-controls class="text-white-50 mx-auto" (pageChange)="crntpage=$event"></pagination-controls>
 
-  </div>
+  @if(archive){
 
-  <div class=" mt-5 pb-3 container-fluid component">
-    <h4 class="mt-5 ">Accepted orders</h4>
-    @if(archive){
-
-      @for (order of archive.data | paginate: { itemsPerPage: 3, currentPage: crntpage } ; track $index) {
+    @for (order of archive.data | paginate: { itemsPerPage: 3, currentPage: crntpage } ; track $index) {
+        <div class=" mt-5 pb-3 container-fluid component">
+        <h4 class="mt-5 ">Accepted orders</h4>
 
         <div class="card mb-5 w-100 me-2 mt-3" >
           <div class="row g-0">
@@ -130,11 +130,11 @@
             </div>
           </div>
         </div>
+        <pagination-controls class="text-white-50 mx-auto" (pageChange)="crntpage=$event"></pagination-controls>
+
+      </div>
       }
     }
-    <pagination-controls class="text-white-50 mx-auto" (pageChange)="crntpage=$event"></pagination-controls>
-
-  </div>
 
 <div style="width: 100%;height:500px;background-color:azure">
 

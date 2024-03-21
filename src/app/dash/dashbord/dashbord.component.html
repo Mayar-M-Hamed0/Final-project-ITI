@@ -10,35 +10,25 @@
                     <div class="nav-item" (click)="activeComponent = 'homepage'">
                         <i class="fa-solid fa-gauge"></i>
                         <span>Dashboard</span>
-                      
+
                     </div>
                     <div class="nav-item" (click)="activeComponent = 'CreateService'">
                         <i class="fa-solid fa-plus"></i>
                         <span>Create service center</span>
                     </div>
-                
-                 
-                    
+
+
+
                     <div class="nav-item" (click)="activeComponent = 'viewservice'">
                         <i class="fa-solid fa-pen-to-square"></i>
                         <span>My service center</span>
                     </div>
 
-                    <div class="nav-item" (click)="activeComponent = 'createsingleservice'">
-                        <i class="fa-solid fa-plus"></i>
-                        <span>Create service</span>
-                    </div>
 
 
-                    <div class="nav-item" (click)="activeComponent = 'viewsingleservice'">
-                        <i class="fa-solid fa-pen-to-square"></i>
-                        <span>view service</span>
-                    </div>
 
+                  
 
-                
-
-                    
                     <div class="nav-item" (click)="activeComponent = 'orders'">
                         <i class="fa-solid fa-cart-shopping"></i>
                         <span>orders</span>
@@ -72,8 +62,8 @@
         <i class="fa-solid fa-user-plus"></i>
                                 <span>View Agent</span>
     </div>
-    
-    
+
+
 }
 
 
@@ -113,13 +103,8 @@
         </ng-container>
 
 
-        <ng-container *ngIf="activeComponent === 'createsingleservice'">
-            <app-create-single-service></app-create-single-service>
-          </ng-container>
 
-          <ng-container *ngIf="activeComponent === 'viewsingleservice'">
-            <app-view-single-service></app-view-single-service>
-          </ng-container>
+
 
 
     </div>

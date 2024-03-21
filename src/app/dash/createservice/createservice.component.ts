@@ -66,9 +66,10 @@ export class CreateserviceComponent {
       rating: ['', [Validators.required]],
       working_hours: ['', [Validators.required]],
       working_days: ['', [Validators.required]],
-      services: ['', [Validators.required]], 
+      services: ['', [Validators.required]],
       cars: ['', [Validators.required]],
     });
+
 
 
     this.cars = [
@@ -91,7 +92,7 @@ export class CreateserviceComponent {
       { key: 17, value: 'HONDA' },
 
     ];
-  
+
     this.services= [
       { key: 1, value: 'Mechanical' },
       { key: 2, value: 'Electricity' },
@@ -118,19 +119,18 @@ export class CreateserviceComponent {
 
   }
 
-
-  
   
   onFileSelected(event:any){
     this.userImageUrl = URL.createObjectURL(event.target.files[0]);
     this.userImageFile = event.target.files[0];
-
   }
 
 
 
+
+
   handelForm(e:any) {
-    e.preventDefault(); 
+    e.preventDefault();
 
 let formData = new FormData();
 formData.append('image',this.userImageFile);
@@ -141,11 +141,25 @@ formData.append('location', this.serviceform.value.location);
 formData.append('rating', this.serviceform.value.rating);
 formData.append('working_hours', this.serviceform.value.working_hours);
 formData.append('working_days', this.serviceform.value.working_days);
-formData.append('services[]', this.serviceform.value.services);
-formData.append('cars[]', this.serviceform.value.cars);
+
+this.serviceform.value.services.forEach((service: { key: number, value: string }) => {
+  formData.append('services[]', String(service.key));
+});
+
+this.serviceform.value.cars.forEach((car: { key: number, value: string }) => {
+  formData.append('cars[]', String(car.key));
+});
 
 
-   
+
+
+console.log();
+console.log(this.serviceform.value);
+
+
+
+
+
   if (typeof window !== 'undefined') {
     const token: any = sessionStorage.getItem('token');
     if (token) {
@@ -154,10 +168,9 @@ formData.append('cars[]', this.serviceform.value.cars);
         'Authorization': `Bearer ${token}`
       });
 
-
-
-
-      return this.http.post('http://127.0.0.1:8000/api/service-center/',formData,{ headers: headers }
+      return this.http.post('http://127.0.0.1:8000/api/service-center/',
+      formData,
+        { headers: headers }
       ).subscribe(
         (res) => {
           this.msgres = res;
@@ -167,7 +180,7 @@ formData.append('cars[]', this.serviceform.value.cars);
         },
         (error: HttpErrorResponse) => {
           console.error('An error occurred:', error.error);
-          this.errorMessage = error.error.data; 
+          this.errorMessage = error.error.data;
         }
       );
     } else {
@@ -192,4 +205,4 @@ formData.append('cars[]', this.serviceform.value.cars);
 
 
 
- 
+
