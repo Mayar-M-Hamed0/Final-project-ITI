@@ -178,7 +178,7 @@ this.formData.append('cars[]', this.serviceform.value.cars);
           (res) => {
             this.msgres = res;
            console.log(res);
-           
+           this.serviceform.reset();
           },
           (error: HttpErrorResponse) => {
             console.error('An error occurred:', error.error);
