@@ -56,8 +56,11 @@ export class UpdateserviceComponent {
       rating: new FormControl('', [Validators.required]),
       working_hours: new FormControl('', [Validators.required]),
       working_days: new FormControl('', [Validators.required]),
+      price: new FormControl('', [Validators.required]),
       services: new FormControl('', Validators.required), 
+      
       cars: new FormControl('', Validators.required),
+      
       image: new FormControl('', [Validators.required]),
     });
 
@@ -135,6 +138,7 @@ this.oldnameforupdateservice = res
     this.formData = new FormData();
     this.formData.append('image',this.userImageFile);
     this.formData.append('name', this.serviceform.value.name);
+    this.formData.append('price', this.serviceform.value.price);
     this.formData.append('phone', this.serviceform.value.phone);
     this.formData.append('description', this.serviceform.value.description);
     this.formData.append('location', this.serviceform.value.location);

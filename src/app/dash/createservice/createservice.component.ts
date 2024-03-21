@@ -66,6 +66,7 @@ export class CreateserviceComponent {
       rating: ['', [Validators.required]],
       working_hours: ['', [Validators.required]],
       working_days: ['', [Validators.required]],
+      price: ['', [Validators.required]],
       services: ['', [Validators.required]],
       cars: ['', [Validators.required]],
     });
@@ -135,6 +136,7 @@ export class CreateserviceComponent {
 let formData = new FormData();
 formData.append('image',this.userImageFile);
 formData.append('name', this.serviceform.value.name);
+formData.append('price', this.serviceform.value.price);
 formData.append('phone', this.serviceform.value.phone);
 formData.append('description', this.serviceform.value.description);
 formData.append('location', this.serviceform.value.location);
