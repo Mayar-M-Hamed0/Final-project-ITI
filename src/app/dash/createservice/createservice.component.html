@@ -197,3 +197,8 @@
 
     </form>
 </div>
+
+@for (item of errorMessage; track $index) {
+
+    <p class="fw-bold text-danger">{{item}}</p>
+   }

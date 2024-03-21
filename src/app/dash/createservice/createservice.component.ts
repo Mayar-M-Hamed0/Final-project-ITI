@@ -141,22 +141,8 @@ formData.append('location', this.serviceform.value.location);
 formData.append('rating', this.serviceform.value.rating);
 formData.append('working_hours', this.serviceform.value.working_hours);
 formData.append('working_days', this.serviceform.value.working_days);
-
-this.serviceform.value.services.forEach((service: { key: number, value: string }) => {
-  formData.append('services[]', String(service.key));
-});
-
-this.serviceform.value.cars.forEach((car: { key: number, value: string }) => {
-  formData.append('cars[]', String(car.key));
-});
-
-
-
-
-console.log();
-console.log(this.serviceform.value);
-
-
+formData.append('services[]', this.serviceform.value.services);
+formData.append('cars[]', this.serviceform.value.cars);
 
 
 
