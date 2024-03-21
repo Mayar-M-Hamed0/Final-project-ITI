@@ -359,6 +359,10 @@
           </div>
 
           <div class="col-md-9 col-12 mycard ">
+            @if (datafromapi.length===0) {
+
+              <p class="text-center fs-4 fw-bold">No service Here !</p>
+            }
             @for (item of datafromapi | filter:searchtext |filter:selectedPlace|filter:selectedMark|filter:selectedService| paginate: { itemsPerPage: 5, currentPage: crntpage }     ; track $index ) {
             <div class="row">
               <div class="card mb-5 w-100 ms-1" >

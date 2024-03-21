@@ -35,6 +35,8 @@ export class UserProfileComponent {
 ngOnInit(){
   this.datalogin.auth().subscribe(res=>{
     this.datauser= res;
+    console.log( this.datauser);
+    
     this.service.getordersforuser(this.datauser['id']).subscribe(res=>{this.orders=res; console.log(this.orders)})
     this.service.getarchivedforuser(this.datauser['id']).subscribe(res=>{this.archive=res; console.log(this.orders)})
   })
