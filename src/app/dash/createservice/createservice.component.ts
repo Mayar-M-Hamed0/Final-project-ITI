@@ -49,7 +49,7 @@ export class CreateserviceComponent {
   files:any
   msgres:any= ''
   serviceform: FormGroup;
-  model: { key: number; value: string }[] = [];
+  cars: { key: number; value: string }[] = [];
   services: { key: number; value: string }[] = [];
 
 
@@ -71,7 +71,8 @@ export class CreateserviceComponent {
     });
 
 
-    this.model = [
+
+    this.cars = [
       { key: 1, value: 'KIA' },
       { key: 2, value: 'MAZDA' },
       { key: 3, value: 'TOYOTA' },
@@ -118,12 +119,10 @@ export class CreateserviceComponent {
 
   }
 
-
-
+  
   onFileSelected(event:any){
     this.userImageUrl = URL.createObjectURL(event.target.files[0]);
     this.userImageFile = event.target.files[0];
-    console.log(this.userImageFile.name)
   }
 
 
@@ -142,24 +141,8 @@ formData.append('location', this.serviceform.value.location);
 formData.append('rating', this.serviceform.value.rating);
 formData.append('working_hours', this.serviceform.value.working_hours);
 formData.append('working_days', this.serviceform.value.working_days);
-
-
-let formDataObject: any = {
-  userImage: this.userImageFile ,
-  name: this.serviceform.value.name,
-  phone: this.serviceform.value.phone,
-  description: this.serviceform.value.description,
-  location: this.serviceform.value.location,
-  rating: this.serviceform.value.rating,
-  working_hours: this.serviceform.value.working_hours,
-  working_days: this.serviceform.value.working_days,
-  services: this.serviceform.value.services,
-  cars: this.serviceform.value.cars
-};
-
-
-console.log();
-console.log(this.serviceform.value);
+formData.append('services[]', this.serviceform.value.services);
+formData.append('cars[]', this.serviceform.value.cars);
 
 
 
@@ -171,10 +154,9 @@ console.log(this.serviceform.value);
         'Authorization': `Bearer ${token}`
       });
 
-
-
-
-      return this.http.post('http://127.0.0.1:8000/api/service-center/',formDataObject,{ headers: headers }
+      return this.http.post('http://127.0.0.1:8000/api/service-center/',
+      formData,
+        { headers: headers }
       ).subscribe(
         (res) => {
           this.msgres = res;
