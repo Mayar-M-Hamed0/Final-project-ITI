@@ -123,7 +123,10 @@ export class CreateserviceComponent {
   onFileSelected(event:any){
     this.userImageUrl = URL.createObjectURL(event.target.files[0]);
     this.userImageFile = event.target.files[0];
+    console.log(this.userImageFile.name)
   }
+
+
 
 
 
