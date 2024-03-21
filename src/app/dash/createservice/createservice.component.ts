@@ -20,14 +20,11 @@ import { ViewserviceComponent } from '../viewservice/viewservice.component';
 import { CenterOrdersComponent } from '../../center-orders/center-orders.component';
 import { PageOfServiceComponent } from '../../page-of-service/page-of-service.component';
 import { HttpClient,HttpHeaders,HttpErrorResponse  } from '@angular/common/http';
-import { map,Observable, throwError,catchError  } from 'rxjs';
+import {  throwError } from 'rxjs';
 @Component({
   selector: 'app-createservice',
   standalone: true,
-  imports: [ ReactiveFormsModule,
-    
-    NgFor,
-    FormsModule,
+  imports: [ReactiveFormsModule, NgFor,FormsModule,
     NgbAlertModule,
     CheckboxModule,
     MatCheckboxModule,NgSelectModule,
@@ -52,12 +49,13 @@ export class CreateserviceComponent {
   files:any
   msgres:any= ''
   serviceform: FormGroup;
-  model: { key: number; value: string }[] = [];
+  cars: { key: number; value: string }[] = [];
   services: { key: number; value: string }[] = [];
 
 
   userImageUrl:any = '';
   userImageFile:any = ' ';
+
   constructor(private fb: FormBuilder, private http: HttpClient) {
     this.serviceform = this.fb.group({
       name: ['', [Validators.required]],
@@ -72,7 +70,8 @@ export class CreateserviceComponent {
       cars: ['', [Validators.required]],
     });
 
-    this.model = [
+
+    this.cars = [
       { key: 1, value: 'KIA' },
       { key: 2, value: 'MAZDA' },
       { key: 3, value: 'TOYOTA' },
@@ -119,10 +118,13 @@ export class CreateserviceComponent {
 
   }
 
+
+  
   
   onFileSelected(event:any){
     this.userImageUrl = URL.createObjectURL(event.target.files[0]);
     this.userImageFile = event.target.files[0];
+
   }
 
 
@@ -139,35 +141,23 @@ formData.append('location', this.serviceform.value.location);
 formData.append('rating', this.serviceform.value.rating);
 formData.append('working_hours', this.serviceform.value.working_hours);
 formData.append('working_days', this.serviceform.value.working_days);
-
-this.serviceform.value.services.forEach((service: { key: number, value: string }) => {
-  formData.append('services[]', String(service.key));
-});
-
-this.serviceform.value.cars.forEach((car: { key: number, value: string }) => {
-  formData.append('cars[]', String(car.key));
-});
-
-
-
-
-console.log();
-console.log(this.serviceform.value);
-
-
+formData.append('services[]', this.serviceform.value.services);
+formData.append('cars[]', this.serviceform.value.cars);
 
 
    
   if (typeof window !== 'undefined') {
     const token: any = sessionStorage.getItem('token');
     if (token) {
+
       const headers = new HttpHeaders({
         'Authorization': `Bearer ${token}`
       });
 
-      return this.http.post('http://127.0.0.1:8000/api/service-center/',
-      formData,
-        { headers: headers }
+
+
+
+      return this.http.post('http://127.0.0.1:8000/api/service-center/',formData,{ headers: headers }
       ).subscribe(
         (res) => {
           this.msgres = res;

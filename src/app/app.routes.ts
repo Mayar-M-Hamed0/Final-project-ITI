@@ -15,7 +15,6 @@ import { CommenteditComponent } from './commentedit/commentedit.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { check } from './checklog.guard';
 import { AuthGuard } from './auth.guard';
-import { UpdateuserComponent } from './user-profile/updateuser/updateuser.component';
 import { CreateserviceComponent } from './dash/createservice/createservice.component';
 import { ViewserviceComponent } from './dash/viewservice/viewservice.component';
 import { UpdateserviceComponent } from './dash/updateservice/updateservice.component';
@@ -23,6 +22,7 @@ import { DashboardAccessGuard } from './dashboard.guard';
 import { OrdersForAgentComponent } from './orders-for-agent/orders-for-agent.component';
 import { ArchiveComponent } from './orders-for-agent/archive/archive.component';
 import { UpdateOrderComponent } from './user-profile/updateorder/updateorder.component';
+import { UpdateuserComponent } from './user-profile/updateuser/updateuser.component';
 export const routes: Routes = [
   {
     path:"",
@@ -91,6 +91,7 @@ component:OrderDetailsComponent, title:"orderdetails"
 component:UserProfileComponent, title:"user",canActivate: [check]
 },
 { path:"EditProfile",
+
 
 component:UpdateuserComponent, title:"EditProfile",canActivate: [check]
 },
