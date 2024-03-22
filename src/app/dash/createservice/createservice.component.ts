@@ -69,6 +69,7 @@ export class CreateserviceComponent {
       price: ['', [Validators.required]],
       services: ['', [Validators.required]],
       cars: ['', [Validators.required]],
+
     });
 
 
@@ -136,6 +137,7 @@ export class CreateserviceComponent {
     }
     console.log(this.schedule);
   }
+
   onFileSelected(event:any){
     this.userImageUrl = URL.createObjectURL(event.target.files[0]);
     this.userImageFile = event.target.files[0];
@@ -153,6 +155,7 @@ export class CreateserviceComponent {
       startTime: item.startTime,
       endTime: item.endTime
     }));
+
 
 let formData = new FormData();
 formData.append('image',this.userImageFile);
@@ -185,7 +188,7 @@ formData.append('schedule', JSON.stringify(scheduleData));
           this.msgres = res;
 
 
-          this.serviceform.reset();
+          // this.serviceform.reset();
         },
         (error: HttpErrorResponse) => {
           console.error('An error occurred:', error.error);
