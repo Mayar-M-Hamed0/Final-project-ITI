@@ -38,7 +38,7 @@
                   </div>
                 </div>
                 <div class="col-md-4  m-auto ">
-                  <button class="btn my-2 d-block px-4 m-auto" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="ondelete(order['id'])"> Accept </button>
+                  <button class="btn my-2 d-block px-4 m-auto" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="openConfirmationModal(order['id'])"> Accept </button>
 
                   <button class="btn my-2 d-block px-4 m-auto" (click)="forcedelete(order['id'])" > Delete </button>
 
