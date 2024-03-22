@@ -64,14 +64,15 @@ export class CreateserviceComponent {
       location: ['', [Validators.required]],
       image: ['', [Validators.required]], // حقل الصورة
       rating: ['', [Validators.required]],
-      working_hours: ['', [Validators.required]],
-      working_days: ['', [Validators.required]],
       price: ['', [Validators.required]],
       services: ['', [Validators.required]],
       cars: ['', [Validators.required]],
+
+
       dayss: ['', [Validators.required]],
       startTime: ['', [Validators.required]],
       endTime: ['', [Validators.required]],
+
     });
 
 
@@ -144,6 +145,7 @@ export class CreateserviceComponent {
     }));
     console.log(scheduleData);
   }
+
   onFileSelected(event:any){
     this.userImageUrl = URL.createObjectURL(event.target.files[0]);
     this.userImageFile = event.target.files[0];
@@ -162,6 +164,7 @@ export class CreateserviceComponent {
       endTime: item.endTime
     }));
 
+
 let formData = new FormData();
 formData.append('image',this.userImageFile);
 formData.append('name', this.serviceform.value.name);
@@ -170,8 +173,6 @@ formData.append('phone', this.serviceform.value.phone);
 formData.append('description', this.serviceform.value.description);
 formData.append('location', this.serviceform.value.location);
 formData.append('rating', this.serviceform.value.rating);
-formData.append('working_hours', this.serviceform.value.working_hours);
-formData.append('working_days', this.serviceform.value.working_days);
 formData.append('services[]', this.serviceform.value.services);
 formData.append('cars[]', this.serviceform.value.cars);
 formData.append('schedule', JSON.stringify(scheduleData));
@@ -193,7 +194,7 @@ formData.append('schedule', JSON.stringify(scheduleData));
           this.msgres = res;
 
 
-          this.serviceform.reset();
+          // this.serviceform.reset();
         },
         (error: HttpErrorResponse) => {
           console.error('An error occurred:', error.error);
