@@ -20,6 +20,8 @@ export class ArchiveComponent {
     console.log(this.service_center_id)
     this.service.getarchived(this.service_center_id).subscribe(res=>{this.orders=res; console.log(res) } )
   }
+
+  
   restore(id:number){
     this.service.restore(id).subscribe({
       next:res=>{
