@@ -31,6 +31,7 @@
 
 <h4 class="text-center py-5 my-4">Our services</h4>
 <div class="servicee">
+
   @for (service of data['services']; track $index) {
 
     <div class="card border mb-3 w-25  m-auto pt-3">
@@ -45,11 +46,34 @@
           details:{{service['service_details']}}
         </p>
         <p class="card-text text-dark fw-lighter text-center card-des fs-4">
-          price:
+          Reservation value <span class="badge">{{data.price}} EGP</span>
         </p>
 
       </div>
     </div>
+  }
+
+  @if (data.services.length === 0) {
+
+    <div class="card border mb-3 w-25  m-auto pt-3">
+      <div
+        class="card-header fw-bold text-center text-body-tertiary"
+        style="background-color: #083248; color: white !important"
+      >
+    
+      </div>
+      <div class="card-body">
+        <p class="card-text text-dark fw-lighter text-center card-des fs-4">
+         
+        </p>
+        <p class="card-text text-dark fw-lighter text-center card-des fs-4">
+          Reservation value <span class="badge">{{data.price}} EGP</span>
+        </p>
+
+      </div>
+    </div>
+
+
   }
 </div>
 <div class="d-flex justify-content-center">
