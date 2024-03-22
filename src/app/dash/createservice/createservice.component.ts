@@ -70,8 +70,7 @@ export class CreateserviceComponent {
       services: ['', [Validators.required]],
       cars: ['', [Validators.required]],
 
-
-
+      
       dayss: ['', [Validators.required]],
       startTime: ['', [Validators.required]],
       endTime: ['', [Validators.required]],
