@@ -45,11 +45,40 @@
           details:{{service['service_details']}}
         </p>
         <p class="card-text text-dark fw-lighter text-center card-des fs-4 fw-bold">
-          price:{{data.price}}
+          Booking Value <br>
+          <span class="badge">{{data.price}}</span>
+          
         </p>
 
       </div>
     </div>
+  }
+
+  @if (data.services.length ===0) {
+
+
+    <div class="card border mb-3 w-25  m-auto pt-3">
+      <div
+        class="card-header fw-bold text-center text-body-tertiary"
+        style="background-color: #083248; color: white !important"
+      >
+     
+      </div>
+      <div class="card-body">
+        <p class="card-text text-dark fw-lighter text-center card-des fs-4">
+        
+        </p>
+        <p class="card-text text-dark fw-lighter text-center card-des fs-4 fw-bold">
+          Booking Value <br>
+          <span class="badge">{{data.price}}</span>
+          
+        </p>
+
+      </div>
+    </div>
+
+
+
   }
 </div>
 <div class="d-flex justify-content-center">
