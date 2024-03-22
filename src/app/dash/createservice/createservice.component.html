@@ -54,7 +54,7 @@
 
         </div>
 
-        
+
         <label for="phone" class="col-sm-2 col-form-label">Price </label>
         <div class="col-sm-10">
             <input type="number" class="form-control" id="Price" formControlName="price" /> @if(serviceform.controls['price'].invalid && serviceform.controls['price'].touched) { @if(serviceform.controls['price'].errors?.['required']) {
@@ -63,7 +63,10 @@
 
 
 
-
+   <div class="col-sm-10">
+            <input type="time" class="form-control" id="Price" formControlName="price" /> @if(serviceform.controls['price'].invalid && serviceform.controls['price'].touched) { @if(serviceform.controls['price'].errors?.['required']) {
+            <span style="color: red;"> This price is required </span> } }
+        </div>
 
 
 
