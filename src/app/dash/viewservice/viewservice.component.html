@@ -20,7 +20,8 @@
                     <th scope="col">Working Days </th>
                     <th scope="col">Location</th>
                    
-                    <th scope="col">Working Time</th>
+                    <th scope="col">Start Time</th>
+                    <th scope="col">End Time</th>
                     <th scope="col">service image</th>
         
                     <th scope="col" style="text-align: center">Delete </th>
@@ -38,10 +39,46 @@
                         <td>{{service.description}}
                         </td>
                         <td>{{service.rating}}</td>
-                        <td>{{service.working_days}}</td>
+
+                        <td>
+                            @for (item of service.days; track $index) {
+                              
+                                <span>{{item.day}}</span>   
+                                <span *ngIf="!$last">,</span>
+                            }
+
+                        
+                        
+                        </td>
+
                         <td>{{service.location}}</td>
                         
-                        <td>{{service.working_hours}}</td>
+                        <td>
+                            
+                            
+                            @for (item of service.days; track $index) {
+
+                                <p>{{item.start_hour}}</p>
+                            }
+                        
+                        
+                
+                        </td>
+
+ 
+                        <td>
+                            
+                            
+                            @for (item of service.days; track $index) {
+
+                                <p>{{item.end_hour}}</p>
+                            }
+                        
+                        
+                
+                        </td>
+
+
                         <td> 
                          
                          

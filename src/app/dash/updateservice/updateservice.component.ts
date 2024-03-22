@@ -45,23 +45,20 @@ export class UpdateserviceComponent {
   userImageFile:any = ' ';
   formData:any = ''
   constructor(private fb: FormBuilder, private sr: ServicesService , private http:HttpClient,private route: ActivatedRoute) {
-    this.serviceform = new FormGroup({
-      name: new FormControl('', [Validators.required]),
-      phone: new FormControl('', [Validators.required, Validators.pattern(/^(010|011|012|015)\d{8}$/)]),
-      description: new FormControl('', [
-        Validators.required,
-        Validators.minLength(10)
-    ]),
-      location: new FormControl('', [Validators.required]),
-      rating: new FormControl('', [Validators.required]),
-      working_hours: new FormControl('', [Validators.required]),
-      working_days: new FormControl('', [Validators.required]),
-      price: new FormControl('', [Validators.required]),
-      services: new FormControl('', Validators.required), 
-      
-      cars: new FormControl('', Validators.required),
-      
-      image: new FormControl('', [Validators.required]),
+    this.serviceform = this.fb.group({
+      name: ['', [Validators.required]],
+      phone: ['', [Validators.required, Validators.pattern(/^(010|011|012|015)\d{8}$/)]],
+      description: ['', [Validators.required, Validators.minLength(10)]],
+      location: ['', [Validators.required]],
+      image: ['', [Validators.required]], // حقل الصورة
+      rating: ['', [Validators.required]],
+      price: ['', [Validators.required]],
+      services: ['', [Validators.required]],
+      cars: ['', [Validators.required]],
+      dayss: ['', [Validators.required]],
+      startTime: ['', [Validators.required]],
+      endTime: ['', [Validators.required]],
+
     });
 
 
@@ -119,10 +116,28 @@ this.oldnameforupdateservice = res
 
 
     })
+
+    this.schedule = this.days.map(() => ({ day: '', startTime: '', endTime: '' }));
   }
 
+  currentIndex: number = 0;
+  days: number[] = [0, 1, 2, 3, 4, 5, 6]; // Days of the week
+  schedule: any[] = []; // Array to store schedules
 
-
+  toggleVisibility(index: number): void {
+    if (index < this.days.length - 1) {
+      this.currentIndex = index + 1;
+    } else {
+      // If it's the last day, loop back to the first day
+      this.currentIndex = 0;
+    }
+    const scheduleData = this.schedule.map(item => ({
+      day: item.day,
+      startTime: item.startTime,
+      endTime: item.endTime
+    }));
+    console.log(scheduleData);
+  }
 
   onFileSelected(event:any){
     this.userImageUrl = URL.createObjectURL(event.target.files[0]);
@@ -135,6 +150,13 @@ this.oldnameforupdateservice = res
 
   handelForm(e:any) {
     e.preventDefault();
+    const scheduleData = this.schedule.map(item => ({
+      day: item.day,
+      startTime: item.startTime,
+      endTime: item.endTime
+    }));
+
+    
     this.formData = new FormData();
     this.formData.append('image',this.userImageFile);
     this.formData.append('name', this.serviceform.value.name);
@@ -147,7 +169,7 @@ this.formData.append('working_hours', this.serviceform.value.working_hours);
 this.formData.append('working_days', this.serviceform.value.working_days);
 this.formData.append('services[]', this.serviceform.value.services);
 this.formData.append('cars[]', this.serviceform.value.cars);
-
+this.formData.append('schedule', JSON.stringify(scheduleData))
 
 
     if (typeof window !== 'undefined') {
