@@ -67,8 +67,6 @@ export class CreateserviceComponent {
       price: ['', [Validators.required]],
       services: ['', [Validators.required]],
       cars: ['', [Validators.required]],
-
-
       dayss: ['', [Validators.required]],
       startTime: ['', [Validators.required]],
       endTime: ['', [Validators.required]],
@@ -175,7 +173,7 @@ formData.append('location', this.serviceform.value.location);
 formData.append('rating', this.serviceform.value.rating);
 formData.append('services[]', this.serviceform.value.services);
 formData.append('cars[]', this.serviceform.value.cars);
-formData.append('schedule', JSON.stringify(scheduleData));
+formData.append('schedule[]', JSON.stringify(scheduleData));
 
 
   if (typeof window !== 'undefined') {
