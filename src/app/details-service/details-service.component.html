@@ -246,36 +246,27 @@
 <!------------------ comments --------------->
 
 <div class="bg-image">
-  <h1 style="color: black; font-family: Sofia; text-align: center">REVIEWS</h1>
-  <p
-    style="
-      color: black;
-      font-family: Sofia;
-      text-align: center;
-      font-size: larger;
-    "
-  >
-    from our clients
-  </p>
-
-  <form (ngSubmit)="savecomment()" style="width: 100% ;">
-      <div class="bg-text" style="height:120px; ">
-         <input id="inputrev" type="text" class="form-control " placeholder="write your comment" name="Description" [(ngModel)]="Description">
-          <br>
-          <button id="inputrev" class="inputrevbutton" type="submit" id="button-addon2" style="display: flex;float: right;">
-              <i class="fa-solid fa-paper-plane"></i>
-          </button>
-
+    <h1 style="color: black;font-family:Sofia;text-align: center;">REVIEWS</h1>
+    <p style="color: black;font-family:Sofia;text-align: center;font-size: larger;">from our clients</p>
+  
+    <form (ngSubmit)="savecomment()" style="width: 100% ;">
+        <div class="bg-text" style="height:120px; ">
+           <input id="inputrev" type="text" class="form-control " placeholder="write your comment" name="Description" [(ngModel)]="Description">
+            <br>
+            <button id="inputrev" class="inputrevbutton" type="submit" id="button-addon2" style="display: flex;float: right;">
+                <i class="fa-solid fa-paper-plane"></i>
+            </button>
+  
         </div>
-
+  
     </form><br>
     <ul>
         <li *ngFor="let post of posts.data| paginate: { itemsPerPage: 1, currentPage: p }">
-
-          <div class="bg-text" style="margin-left:-12px;">
-              <a (click)="deletecomment($event,post.id)" style="display: flex; float: right;margin-right:-20px;margin-top: -20px;" class="btn btn-outline-info inputrevbutton " type="submit" id="button-addon2">
-                  <i class="fa-solid fa-times-circle send-icon"></i>
-              </a>
+  
+            <div class="bg-text" style="margin-left:-12px;">
+                <a (click)="deletecomment($event,post.id)" style="display: flex; float: right;margin-right:-20px;margin-top: -20px;" class="btn btn-outline-info inputrevbutton " type="submit" id="button-addon2">
+                    <i class="fa-solid fa-times-circle send-icon"></i>
+                </a>
                 <a routerLink="/comment/{{post['id']}}/edit" style="display: flex; float: right;margin-right:0px;" class="btn btn-outline-info inputrevbutton" type="submit" id="button-addon2">
 
                     <i class="fa-solid fa-pen send-icon"></i>
@@ -283,110 +274,61 @@
                 </a>
                 <div style="display: flex; float: left; margin-top:-10px;margin-left:-10px; width:50px;height: 50px;border-radius: 50%;background-color:rgb(205, 159, 144);opacity :0.5"></div>
                 <div style="display: flex; float: left; margin-top:-10px;margin-left:-10px; width:20px;height: 20px;border-radius: 50%;background-color:rgb(205, 159, 144);opacity :0.5"></div>
-                <form (ngSubmit)="savecomment()" style="width: 100%">
-                    <div class="bg-text">
-                        <input id="inputrev" type="text" class="form-control" placeholder="write your user_name" name="Username" [(ngModel)]="Username" />
-                        <input id="inputrev" type="text" class="form-control" placeholder="write your comment" name="comment" [(ngModel)]="comment" />
-                        <br />
-                        <button id="inputrev" class="inputrevbutton" type="submit" id="button-addon2" style="display: flex; float: right">
-        <i class="fa-solid fa-paper-plane"></i>
-      </button>
-                    </div>
-                </form>
-                <br />
-                <ul>
-                    <li *ngFor="
-        let post of posts | paginate : { itemsPerPage: 1, currentPage: p }
-      ">
-                        <div class="bg-text">
-                            <a (click)="deletecomment($event, post.id)" style="
-            display: flex;
-            float: right;
-            margin-right: -20px;
-            margin-top: -20px;
-          " class="btn btn-outline-info inputrevbutton" type="submit" id="button-addon2">
-                                <i class="fa-solid fa-times-circle send-icon"></i>
-                            </a>
-                            <a routerLink="/comment/{{ post.id }}/edit" style="display: flex; float: right; margin-right: 0px" class="btn btn-outline-info inputrevbutton" type="submit" id="button-addon2">
-                                <i class="fa-solid fa-pen send-icon"></i>
-                            </a>
-                            <div style="
-            display: flex;
-            float: left;
-            margin-top: -10px;
-            margin-left: -10px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: rgb(205, 159, 144);
-            opacity: 0.5;
-          "></div>
-                            <div style="
-            display: flex;
-            float: left;
-            margin-top: -10px;
-            margin-left: -10px;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: rgb(205, 159, 144);
-            opacity: 0.5;
-          "></div>
 
-                            <div style="display: flex; float: right; margin-top:80px;margin-right:-15px; width:50px;height: 50px;border-radius: 50%;background-color: rgb(205, 159, 144);opacity :0.5"></div>
-                            <div style="display: flex;  float: right; margin-top:110px;margin-right:-10px; width:20px;height:20px;border-radius: 50%;background-color:rgb(205, 159, 144);opacity :0.5"></div>
-                            <img src="/assets/{{post['image']}}" style="width:40px;height:40px; border-radius: 50%;"><br>
-                            <p style="padding-left:30px; margin-left: 10px;"> {{post['name']}} </p>
+                <div style="display: flex; float: right; margin-top:80px;margin-right:-15px; width:50px;height: 50px;border-radius: 50%;background-color: rgb(205, 159, 144);opacity :0.5"></div>
+                <div style="display: flex;  float: right; margin-top:110px;margin-right:-10px; width:20px;height:20px;border-radius: 50%;background-color:rgb(205, 159, 144);opacity :0.5"></div>
+                <img src="/assets/{{post['image']}}" style="width:40px;height:40px; border-radius: 50%;"><br>
+                <p style="padding-left:30px; margin-left: 10px;"> {{post['name']}} </p>
 
-                            <p style="padding-left:20px;">{{post['Description']}} </p>
+                <p style="padding-left:20px;">{{post['Description']}} </p>
 
 
 
-                        </div>
-                    </li>
-                </ul>
-                <p style="padding-left: 20px">{{ post.comment }}</p>
             </div>
             </li>
             </ul>
 
             <pagination-controls (pageChange)="p = $event"></pagination-controls>
 
-            <br />
+            <br>
+
         </div>
 
-        <br /><br />
+
+
+
+        <br><br>
         <!------------------ comments --------------->
         <!-- <div class="commentContainer">
     <div class="CommentHolder">
         <div class="input-group mb-1 comment">
             <form (ngSubmit)="savecomment()" style="width: 100%">
                 <input style="margin-bottom: 10px;" type="text" class="form-control " placeholder="write your user_name" name="Username" [(ngModel)]="Username">
-
+  
                 <input style="margin-bottom: 10px;" type="text" class="form-control " placeholder="write your comment" name="comment" [(ngModel)]="comment">
-
+  
                 <button class="btn btn-outline-info" type="submit" id="button-addon2" style="display: flex;float: right;"><i class="fa-solid fa-share"></i></button>
-
+  
             </form>
         </div>
         <div class="audienceComments">
-
-
+  
+  
             @for (post of posts; track post.id) {
             <div class="commentCard">
-
+  
                 <a routerLink="/comment/{{post.id}}/edit" style="display: flex; float: right;" class="btn btn-outline-info" type="submit" id="button-addon2">
                     <i class="fa-solid fa-pen">  </i>
                 </a>
-
+  
                 <a (click)="deletecomment($event,post.id)" style="display: flex; float: right; margin-right: 5px;" class="btn btn-outline-info" type="submit" id="button-addon2">
                     <i class="fa-solid fa-trash"></i>
                 </a>
-
+  
                 <h5><i class="fa-regular fa-user"></i>{{post.Username}}</h5>
                 <p>{{post.comment}}</p>
                 <div class="likeDislike">
-
+  
                     <div>
                         <span>{{countlike}}</span><i (click)="increse()" class="fa-regular fa-thumbs-up" id="like"></i>
                     </div>
@@ -398,4 +340,4 @@
             }
         </div>
     </div>
-</div> -->
+  </div> -->
