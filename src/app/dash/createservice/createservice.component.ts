@@ -173,7 +173,7 @@ formData.append('location', this.serviceform.value.location);
 formData.append('rating', this.serviceform.value.rating);
 formData.append('services[]', this.serviceform.value.services);
 formData.append('cars[]', this.serviceform.value.cars);
-formData.append('schedule[]', JSON.stringify(scheduleData));
+formData.append('days', JSON.stringify(scheduleData));
 
 
   if (typeof window !== 'undefined') {
