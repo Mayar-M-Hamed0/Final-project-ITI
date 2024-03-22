@@ -26,6 +26,7 @@
     @for (service of data['services']; track $index) {
 
     <div class="card border mb-3 w-25  m-auto pt-3">
+
         <div class="card-header fw-bold text-center text-body-tertiary" style="background-color: #083248; color: white !important">
             {{service['service_name']}}
         </div>
@@ -37,9 +38,50 @@
                 price:
             </p>
 
+      <div
+        class="card-header fw-bold text-center text-body-tertiary"
+        style="background-color: #083248; color: white !important"
+      >
+      {{service['service_name']}}
+      </div>
+      <div class="card-body">
+        <p class="card-text text-dark fw-lighter text-center card-des fs-4">
+          details:{{service['service_details']}}
+        </p>
+        <p class="card-text text-dark fw-lighter text-center card-des fs-4 fw-bold">
+          Booking Value <br>
+          <span class="badge">{{data.price}}</span>
+          
+        </p>
+
+      </div>
+    </div>
+  }
+
+  @if (data.services.length ===0) {
+
+
+    <div class="card border mb-3 w-25  m-auto pt-3">
+      <div
+        class="card-header fw-bold text-center text-body-tertiary"
+        style="background-color: #083248; color: white !important"
+      >
+     
+      </div>
+      <div class="card-body">
+        <p class="card-text text-dark fw-lighter text-center card-des fs-4">
+        
+        </p>
+        <p class="card-text text-dark fw-lighter text-center card-des fs-4 fw-bold">
+          Booking Value <br>
+          <span class="badge">{{data.price}}</span>
+          
+        </p>
+
+
         </div>
     </div>
-    }
+
 </div>
 <div class="d-flex justify-content-center">
     <button type="submit" class="btn btn-danger p-3 border-0" id="btnstyle" routerLink="/bookingnow/{{ data.id }}">
@@ -106,6 +148,7 @@
 <hr />
 
 <div class="container" id="texxxt">
+
     <div class="row">
         <div class="col-9 lh-1 mt-3">
             <div class="row">
@@ -118,6 +161,14 @@
         </div>
         <div class="col-3 mt-5">
             <img src="../../assets/tag.png" class="card-img-bottom img-fluid m-5 w-50" alt="Service Center Cover Image" />
+
+  <div class="row">
+    <div class="col-9 lh-1 mt-3">
+      <div class="row">
+        @for (item of data.cars; track $index) {
+        <div class="col-lg-4 col-6">
+          <p><i class="fa-solid fa-tag"></i> {{ item['car_name'] }}</p>
+
         </div>
     </div>
 </div>
@@ -128,6 +179,7 @@
 <hr />
 
 <div class="container" id="texxxt">
+
     <div class="row">
         <div class="col-9 lh-1 mt-3">
             <div class="row">
@@ -140,6 +192,15 @@
         </div>
         <div class="col-3 mt-5">
             <img src="../../assets/car.png" class="card-img-bottom img-fluid m-5 w-50" alt="Service Center Cover Image" />
+
+  <div class="row">
+    <div class="col-9 lh-1 mt-3">
+      <div class="row">
+        @for (item of data.services; track $index) {
+        <div class="col-lg-4 col-6">
+          <p><i class="fa-solid fa-tag"></i> {{ item['service_name'] }}</p>
+
+          
         </div>
     </div>
 </div>
@@ -164,6 +225,7 @@
       <div class="table-responsive">
         <table class="table w-50">
           <thead>
+
             <tr>
               <th>Day</th>
               <th>Start Time</th>
@@ -171,38 +233,16 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Monday</td>
-              <td>9:00</td>
-              <td>19:00</td>
-            </tr>
+            @for (item of data.days; track $index) {
+              <tr>
+                <td>{{item.day}}</td>
+                <td>{{item.start_hour}}</td>
+                <td>{{item.end_hour}}</td>
+              </tr>
+            }
+           
 
-            <tr>
-              <td>Tuesday</td>
-              <td>9:00</td>
-              <td>19:00</td>
-            </tr>
-
-            <tr>
-              <td>Wednesday</td>
-              <td>9:00r</td>
-              <td>19:00</td>
-            </tr>
-            <tr>
-              <td>Thursday</td>
-              <td>9:00</td>
-              <td>19:00</td>
-            </tr>
-            <tr>
-              <td>Friday</td>
-              <td>9:00</td>
-              <td>19:00</td>
-            </tr>
-            <tr>
-              <td>Saturday</td>
-              <td>9:00</td>
-              <td>19:00</td>
-            </tr>
+         
           </tbody>
         </table>
       </div>

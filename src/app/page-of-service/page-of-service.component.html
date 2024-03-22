@@ -368,7 +368,8 @@
               <div class="card mb-5 w-100 ms-1" >
                 <div class="row g-0">
                   <div class="col-md-3">
-                    <img src="{{item['image']}}" class="img-fluid rounded-start" alt="..." />
+                    <img src="http://127.0.0.1:8000/{{ item.image }}" class="img-fluid rounded-start" alt="..."
+                      style="width: 200px; height: 200px;" />
                   </div>
                   <div class="col-md-9">
                     <div class="row " >
@@ -386,8 +387,44 @@
                         </div>
                       </div>
                       <div class="col-5 pt-1 lh-lg fw-bold">
-                        <div>Working days : {{item['working_days']}}</div>
-                        <div>Working date : {{item['working_hours']}}</div>
+                        <div>Working Time :
+                        
+                        
+                        </div>
+                        <div>
+                          
+ 
+                          <div style="margin-top: 20px;">
+                            <table >
+                              <thead>
+                                <tr style="background-color: #f2f2f2;">
+                                  <th style="padding: 8px; border: 1px solid #dddddd;">Day</th>
+                                  <th style="padding: 8px; border: 1px solid #dddddd;">Start Hour</th>
+                                  <th style="padding: 8px; border: 1px solid #dddddd;">End Hour</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                @for (item of item.days; track $index) {
+                                  <tr>
+                                    <td style="padding: 8px; border: 1px solid #dddddd;">{{ item.day }}</td>
+                                    <td style="padding: 8px; border: 1px solid #dddddd;">{{ item.start_hour }}</td>
+                                    <td style="padding: 8px; border: 1px solid #dddddd;">{{ item.end_hour }}</td>
+                                  </tr>
+                                }
+                               
+                              </tbody>
+                            </table>
+                          </div>
+                          
+
+
+
+
+
+
+
+                        </div>
+                      
                         <button class="btn rounded-pill my-2"><a routerLink="/details-service/{{item.id}}" class="fw-medium text-white">see detailes</a>  </button>
                       </div>
 
