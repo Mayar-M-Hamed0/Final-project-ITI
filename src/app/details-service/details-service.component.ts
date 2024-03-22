@@ -108,6 +108,7 @@ datauser: any = ''
   CommentId!: number
   Date!: Date
   name!: string
+  image!: string
   savecomment() {
     let inputsdata = {
 
