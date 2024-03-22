@@ -70,6 +70,12 @@ export class CreateserviceComponent {
       services: ['', [Validators.required]],
       cars: ['', [Validators.required]],
 
+
+
+      dayss: ['', [Validators.required]],
+      startTime: ['', [Validators.required]],
+      endTime: ['', [Validators.required]],
+
     });
 
 
@@ -135,7 +141,12 @@ export class CreateserviceComponent {
       // If it's the last day, loop back to the first day
       this.currentIndex = 0;
     }
-    console.log(this.schedule);
+    const scheduleData = this.schedule.map(item => ({
+      day: item.day,
+      startTime: item.startTime,
+      endTime: item.endTime
+    }));
+    console.log(scheduleData);
   }
 
   onFileSelected(event:any){
