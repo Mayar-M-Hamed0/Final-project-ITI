@@ -11,6 +11,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import Swal from 'sweetalert2';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -130,12 +131,26 @@ export class CreateserviceComponent {
 
 
   toggleVisibility(index: number): void {
+    // تحديث currentIndex لليوم التالي
     if (index < this.days.length - 1) {
       this.currentIndex = index + 1;
     } else {
-      // If it's the last day, loop back to the first day
+      // إذا كان اليوم الحالي هو اليوم الأخير، عودة إلى اليوم الأول
       this.currentIndex = 0;
     }
+  
+    // تحديث القيمة المختارة في السليكت بوكس لتعكس اليوم الجديد
+    const nextIndex = this.currentIndex + 1;
+    if (nextIndex < this.days.length) {
+      this.schedule[this.currentIndex].day = this.schedule[nextIndex].day;
+    } else {
+      this.schedule[this.currentIndex].day = this.schedule[0].day;
+    }
+  
+    // للتحقق من أن القيمة تم تحديثها بشكل صحيح
+    console.log('Selected day:', this.schedule[this.currentIndex].day);
+  
+    // طباعة البيانات للتحقق
     const scheduleData = this.schedule.map(item => ({
       day: item.day,
       startTime: item.startTime,
@@ -143,7 +158,6 @@ export class CreateserviceComponent {
     }));
     console.log(scheduleData);
   }
-
   onFileSelected(event:any){
     this.userImageUrl = URL.createObjectURL(event.target.files[0]);
     this.userImageFile = event.target.files[0];
@@ -162,6 +176,15 @@ export class CreateserviceComponent {
       endTime: item.endTime
     }));
 
+    const allDaysSelected = this.schedule.every(day => !!day.day);
+    if (!allDaysSelected) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Warning',
+        text: 'Please select all days before submitting.'
+      });
+      return;
+    }
 
 let formData = new FormData();
 formData.append('image',this.userImageFile);
@@ -173,7 +196,7 @@ formData.append('location', this.serviceform.value.location);
 formData.append('rating', this.serviceform.value.rating);
 formData.append('services[]', this.serviceform.value.services);
 formData.append('cars[]', this.serviceform.value.cars);
-formData.append('schedule[]', JSON.stringify(scheduleData));
+formData.append('days', JSON.stringify(scheduleData));
 
 
   if (typeof window !== 'undefined') {
@@ -192,7 +215,7 @@ formData.append('schedule[]', JSON.stringify(scheduleData));
           this.msgres = res;
 
 
-          // this.serviceform.reset();
+          this.serviceform.reset();
         },
         (error: HttpErrorResponse) => {
           console.error('An error occurred:', error.error);
