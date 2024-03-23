@@ -43,7 +43,7 @@ export class UpdateserviceComponent {
   id:any = ''
   userImageUrl:any = '';
   userImageFile:any = ' ';
-  formData:any = ''
+
   constructor(private fb: FormBuilder, private sr: ServicesService , private http:HttpClient,private route: ActivatedRoute) {
     this.serviceform = this.fb.group({
       name: ['', [Validators.required]],
@@ -157,19 +157,17 @@ this.oldnameforupdateservice = res
     }));
 
     
-    this.formData = new FormData();
-    this.formData.append('image',this.userImageFile);
-    this.formData.append('name', this.serviceform.value.name);
-    this.formData.append('price', this.serviceform.value.price);
-    this.formData.append('phone', this.serviceform.value.phone);
-    this.formData.append('description', this.serviceform.value.description);
-    this.formData.append('location', this.serviceform.value.location);
-this.formData.append('rating', this.serviceform.value.rating);
-this.formData.append('working_hours', this.serviceform.value.working_hours);
-this.formData.append('working_days', this.serviceform.value.working_days);
-this.formData.append('services[]', this.serviceform.value.services);
-this.formData.append('cars[]', this.serviceform.value.cars);
-this.formData.append('schedule', JSON.stringify(scheduleData))
+    let formData = new FormData();
+    formData.append('image',this.userImageFile);
+    formData.append('name', this.serviceform.value.name);
+    formData.append('price', this.serviceform.value.price);
+    formData.append('phone', this.serviceform.value.phone);
+    formData.append('description', this.serviceform.value.description);
+    formData.append('location', this.serviceform.value.location);
+    formData.append('rating', this.serviceform.value.rating);
+    formData.append('services[]', this.serviceform.value.services);
+    formData.append('cars[]', this.serviceform.value.cars);
+    formData.append('days', JSON.stringify(scheduleData));
 
 
     if (typeof window !== 'undefined') {
@@ -194,13 +192,13 @@ this.formData.append('schedule', JSON.stringify(scheduleData))
         });
   
       this.http.post('http://127.0.0.1:8000/api/service-centerss/'+this.id,
-        this.formData,
+        formData,
           { headers: headers }
         ).subscribe(
           (res) => {
             this.msgres = res;
            console.log(res);
-           this.serviceform.reset();
+     
           },
           (error: HttpErrorResponse) => {
             console.error('An error occurred:', error.error);

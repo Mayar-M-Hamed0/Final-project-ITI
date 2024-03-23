@@ -11,6 +11,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import Swal from 'sweetalert2';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -55,6 +56,7 @@ export class CreateserviceComponent {
 
   userImageUrl:any = '';
   userImageFile:any = ' ';
+  days: string[] = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 
   constructor(private fb: FormBuilder, private http: HttpClient) {
     this.serviceform = this.fb.group({
@@ -125,17 +127,32 @@ export class CreateserviceComponent {
 
 
   currentIndex: number = 0;
-  days: number[] = [0, 1, 2, 3, 4, 5, 6]; // Days of the week
   schedule: any[] = []; // Array to store schedules
 
 
   toggleVisibility(index: number): void {
+    // تحديث currentIndex لليوم التالي
     if (index < this.days.length - 1) {
       this.currentIndex = index + 1;
     } else {
-      // If it's the last day, loop back to the first day
+      // إذا كان اليوم الحالي هو اليوم الأخير، عودة إلى اليوم الأول
       this.currentIndex = 0;
     }
+  
+    // تحديث القيمة المختارة في السليكت بوكس لتعكس اليوم الجديد
+    const nextIndex = this.currentIndex + 1;
+    if (nextIndex < this.days.length) {
+      this.schedule[this.currentIndex].day = this.schedule[nextIndex].day;
+    } else {
+      this.schedule[this.currentIndex].day = this.schedule[0].day;
+    }
+  
+    // للتحقق من أن القيمة تم تحديثها بشكل صحيح
+    console.log('Selected day:', this.schedule[this.currentIndex].day);
+  
+
+    const selectedDay = this.days[this.currentIndex];
+
     const scheduleData = this.schedule.map(item => ({
       day: item.day,
       startTime: item.startTime,
@@ -143,7 +160,6 @@ export class CreateserviceComponent {
     }));
     console.log(scheduleData);
   }
-
   onFileSelected(event:any){
     this.userImageUrl = URL.createObjectURL(event.target.files[0]);
     this.userImageFile = event.target.files[0];
@@ -162,6 +178,15 @@ export class CreateserviceComponent {
       endTime: item.endTime
     }));
 
+    const allDaysSelected = this.schedule.every(day => !!day.day);
+    if (!allDaysSelected) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Warning',
+        text: 'Please select all days before submitting.'
+      });
+      return;
+    }
 
 let formData = new FormData();
 formData.append('image',this.userImageFile);
@@ -191,8 +216,14 @@ formData.append('days', JSON.stringify(scheduleData));
         (res) => {
           this.msgres = res;
 
+          Swal.fire({
+            icon: 'success',
+            title: 'service Created!',
+            showConfirmButton: false,
+            timer: 1500 // يمكنك ضبط مدة العرض
+          });
 
-          // this.serviceform.reset();
+          this.serviceform.reset();
         },
         (error: HttpErrorResponse) => {
           console.error('An error occurred:', error.error);
