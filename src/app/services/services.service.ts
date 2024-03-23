@@ -78,7 +78,7 @@ export class ServicesService {
 
    getAllposts(){
    // return this.HttpClient_.get(`https://retoolapi.dev/wDUVbz/data`);
-    return this.HttpClient_.get('http://127.0.0.1:8000/api/reviews');
+    return this.HttpClient_.get('http://127.0.0.1:8000/api/allcomment');
   
    }
 
@@ -88,23 +88,21 @@ export class ServicesService {
 
    }
 
-   savecomment(inputdata:object){
-    return this.HttpClient_.post('http://127.0.0.1:8000/api/reviews',inputdata);
+
+   savecomment(inputdata:object,token:any){
+    return this.HttpClient_.post('http://127.0.0.1:8000/api/reviews',inputdata,token);
 
   }
 
    updatecomment(inputdate :object,commentid:number){
      return this.HttpClient_.put(`http://127.0.0.1:8000/api/reviews/${commentid}`,inputdate);
    }
-   addpost(data :any)
-   {
-     return this.HttpClient_.get(`https://fakestoreapi.com/products`);
-   }
+ 
 
-   destroycomment(commentid:number)
-   {
-     return this.HttpClient_.delete(`http://127.0.0.1:8000/api/reviews/${commentid}`);
-   }
+  //  destroycomment(commentid:number,headers:any)
+  //  {
+  //    return this.HttpClient_.delete('http://127.0.0.1:8000/api/reviews/'+commentid ,{ headers: headers });
+  //  }
 
 
       private countlike = new BehaviorSubject<number>(5)

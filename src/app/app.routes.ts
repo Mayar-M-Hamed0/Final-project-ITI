@@ -15,6 +15,7 @@ import { CommenteditComponent } from './commentedit/commentedit.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { check } from './checklog.guard';
 import { AuthGuard } from './auth.guard';
+
 import { CreateserviceComponent } from './dash/createservice/createservice.component';
 import { ViewserviceComponent } from './dash/viewservice/viewservice.component';
 import { UpdateserviceComponent } from './dash/updateservice/updateservice.component';
@@ -60,7 +61,7 @@ component:CreateserviceComponent , title:"signup",canActivate:[AuthGuard]
 
 
 
-{ path:"comment/:id/edit", component:CommenteditComponent},
+{ path:"comment/:id/edit", component:CommenteditComponent,canActivate: [check]},
 
 
 
