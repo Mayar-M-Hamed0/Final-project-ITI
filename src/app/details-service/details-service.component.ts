@@ -83,7 +83,8 @@ mapUrl: string = '';
 ///
 
 service_center_id!:number;
-Description!:number;
+Description!:String;
+rate!:number;
 date!:string;
 
 datauser: any = ''
@@ -125,7 +126,8 @@ headers:any =''
     let inputsdata = {
       user_id: this.datauser.id,
       service_center_id: this.service_center_id,
-      Description: this.Description
+      Description: this.Description,
+      rate:this.rate
     };
 
  if (typeof window !== 'undefined') {
@@ -244,6 +246,24 @@ headers:any =''
 
   updateRating(newRating: number) {
     this.rating = newRating;
+  }
+  getStarRating(rating: number): boolean[] {
+    console.log(rating);
+    const filledStars = Math.floor(rating); // Get the number of filled stars
+    const hasHalfStar = rating % 1 !== 0; // Check if there is a half star
+
+    const starRatingArray: boolean[] = [];
+    for (let i = 0; i < rating; i++) {
+      if (i < filledStars) {
+        starRatingArray.push(true); // Push filled star
+      } else if (hasHalfStar && i === filledStars) {
+        starRatingArray.push(true); // Push half star
+      } else {
+        starRatingArray.push(false); // Push empty star
+      }
+    }
+
+    return starRatingArray;
   }
 }
 

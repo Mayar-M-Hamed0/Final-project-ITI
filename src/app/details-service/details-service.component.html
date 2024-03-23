@@ -227,6 +227,8 @@
         </table>
       </div>
       <p class="fw-bold" id="texxxt">Adress:</p>
+
+      <p>::</p>
       <div
         id="map-container-google-2"
         class="z-depth-1-half map-container"
@@ -249,9 +251,12 @@
     <p style="color: black;font-family:Sofia;text-align: center;font-size: larger;">from our clients</p>
   
     <form (ngSubmit)="savecomment()" style="width: 100% ;">
-        <div class="bg-text" style="height:120px; ">
+        <div class="bg-text" style="height:160px; ">
            <input id="inputrev" type="text" class="form-control " placeholder="write your comment" name="Description" [(ngModel)]="Description">
-            <br>
+          
+             <input id="inputrev" type="text" class="form-control " placeholder="write your rate" name="rate" [(ngModel)]="rate">
+         
+
             <button id="inputrev" class="inputrevbutton" type="submit" id="button-addon2" style="display: flex;float: right;">
                 <i class="fa-solid fa-paper-plane"></i>
             </button>
@@ -267,7 +272,7 @@
                 <a *ngIf="post.user_id === datauser.id" (click)="deletecomment($event, post.id)" style="display: flex; float: right;margin-right:-20px;margin-top: -20px;" class="btn btn-outline-info inputrevbutton " type="submit" id="button-addon2">
                     <i class="fa-solid fa-times-circle send-icon"></i>
                 </a>
-                
+
                 <a *ngIf="post.user_id === datauser.id" routerLink="/comment/{{ post.id }}/edit" style="display: flex; float: right;margin-right:0px;" class="btn btn-outline-info inputrevbutton" type="submit" id="button-addon2">
                     <i class="fa-solid fa-pen send-icon"></i>
                 </a>
@@ -278,16 +283,17 @@
 
                 <div style="display: flex; float: right; margin-top:80px;margin-right:-15px; width:50px;height: 50px;border-radius: 50%;background-color: rgb(205, 159, 144);opacity :0.5"></div>
                 <div style="display: flex;  float: right; margin-top:110px;margin-right:-10px; width:20px;height:20px;border-radius: 50%;background-color:rgb(205, 159, 144);opacity :0.5"></div>
-            
-                  @if (post.image === null) {
-                    <img src="/assets/avatar.png" style="width:40px;height:40px; border-radius: 50%;"><br>
 
-
-                  }@else{
-                    <img src="http://127.0.0.1:8000/{{ post.image }}" style="width:40px;height:40px; border-radius: 50%;"><br>
-
-                  }
-          
+                @if (post.image === null) {
+                <img src="/assets/avatar.png" style="width:40px;height:40px; border-radius: 50%;"><br> }@else{
+                <img src="http://127.0.0.1:8000/{{ post.image }}" style="width:40px;height:40px; border-radius: 50%;"><br> }
+                <div class="col-sm-4 col-4 star-par" style=" margin-left: 140px;">
+                    <ul class="stars">
+                        <div class="star-rating">
+                            <span style="color: goldenrod;" *ngFor="let filled of getStarRating(post.rate)" class="star" [ngClass]="{'filled': filled}">&#9733;</span>
+                        </div>
+                    </ul>
+                </div>
 
                 <p style="padding-left:30px; margin-left: 10px;"> {{post['name']}} </p>
 
@@ -310,6 +316,7 @@
 
         <br><br>
         <!------------------ comments --------------->
+
         <!-- <div class="commentContainer">
     <div class="CommentHolder">
         <div class="input-group mb-1 comment">
