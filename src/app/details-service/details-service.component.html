@@ -9,9 +9,7 @@
         <p class="card-text">
             @for (item of data.car; track $index) { {{ item }} }
         </p>
-        <div class="ratingCar">
-            <app-rating-stars [actualRating]="4"></app-rating-stars>
-        </div>
+
         <button id="pointer" (click)="goToTop()" class="rounded-5">
       <i class="fa-solid fa-up-long"></i>
     </button>
@@ -66,17 +64,6 @@
   </button>
 </div>
 
-<!------------ rating ------------>
-<div class="rate">
-    <h1>Rate us</h1>
-    <div class="starsClient mb-3">
-        <fa-icon [icon]="faStar" (click)="setRating(1)" [class.rated]="rating >= 1"></fa-icon>
-        <fa-icon [icon]="faStar" (click)="setRating(2)" [class.rated]="rating >= 2"></fa-icon>
-        <fa-icon [icon]="faStar" (click)="setRating(3)" [class.rated]="rating >= 3"></fa-icon>
-        <fa-icon [icon]="faStar" (click)="setRating(4)" [class.rated]="rating >= 4"></fa-icon>
-        <fa-icon [icon]="faStar" (click)="setRating(5)" [class.rated]="rating >= 5"></fa-icon>
-    </div>
-</div>
 
 <div class="container px-4 py-5 shadow-lg" id="hanging-icons">
     <h2 class="pb-2 border-bottom" style="color: #083248">
@@ -253,7 +240,7 @@
     <form (ngSubmit)="savecomment()" style="width: 100% ;">
         <div class="bg-text" style="height:160px; ">
            <input id="inputrev" type="text" class="form-control " placeholder="write your comment" name="Description" [(ngModel)]="Description">
-          
+            <br>
              <input id="inputrev" type="text" class="form-control " placeholder="write your rate" name="rate" [(ngModel)]="rate">
          
 
