@@ -33,7 +33,7 @@ searchtext:any;
 
 crntpage:any
 datafromapi : any = [];
-
+mapUrl: string = '';
   constructor(private serv:ServicesService ,private HttpClient_:HttpClient, private route:ActivatedRoute, private resevedata:ServicesService,private router: Router,private loginService:LoginService ){
     this.id = this.route.snapshot.paramMap.get("id")
     this.serv.getsinglepage(this.id).subscribe(res=>{
@@ -41,6 +41,10 @@ datafromapi : any = [];
 
     this.data = res;
       console.log(this.data)
+
+
+
+
 
   
 
@@ -100,6 +104,7 @@ headers:any =''
 
 
 
+
   }
 
 
@@ -109,6 +114,11 @@ headers:any =''
   name!: string
   image!: string
   
+
+
+
+
+
   savecomment() {
 
 

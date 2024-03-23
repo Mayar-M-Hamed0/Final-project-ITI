@@ -56,6 +56,7 @@ export class CreateserviceComponent {
 
   userImageUrl:any = '';
   userImageFile:any = ' ';
+  days: string[] = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 
   constructor(private fb: FormBuilder, private http: HttpClient) {
     this.serviceform = this.fb.group({
@@ -126,7 +127,6 @@ export class CreateserviceComponent {
 
 
   currentIndex: number = 0;
-  days: number[] = [0, 1, 2, 3, 4, 5, 6]; // Days of the week
   schedule: any[] = []; // Array to store schedules
 
 
@@ -150,7 +150,9 @@ export class CreateserviceComponent {
     // للتحقق من أن القيمة تم تحديثها بشكل صحيح
     console.log('Selected day:', this.schedule[this.currentIndex].day);
   
-    // طباعة البيانات للتحقق
+
+    const selectedDay = this.days[this.currentIndex];
+
     const scheduleData = this.schedule.map(item => ({
       day: item.day,
       startTime: item.startTime,
@@ -214,6 +216,12 @@ formData.append('days', JSON.stringify(scheduleData));
         (res) => {
           this.msgres = res;
 
+          Swal.fire({
+            icon: 'success',
+            title: 'service Created!',
+            showConfirmButton: false,
+            timer: 1500 // يمكنك ضبط مدة العرض
+          });
 
           this.serviceform.reset();
         },
