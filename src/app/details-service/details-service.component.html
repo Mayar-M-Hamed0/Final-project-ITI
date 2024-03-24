@@ -9,9 +9,7 @@
         <p class="card-text">
             @for (item of data.car; track $index) { {{ item }} }
         </p>
-        <div class="ratingCar">
-            <app-rating-stars [actualRating]="4"></app-rating-stars>
-        </div>
+
         <button id="pointer" (click)="goToTop()" class="rounded-5">
       <i class="fa-solid fa-up-long"></i>
     </button>
@@ -66,17 +64,6 @@
   </button>
 </div>
 
-<!------------ rating ------------>
-<div class="rate">
-    <h1>Rate us</h1>
-    <div class="starsClient mb-3">
-        <fa-icon [icon]="faStar" (click)="setRating(1)" [class.rated]="rating >= 1"></fa-icon>
-        <fa-icon [icon]="faStar" (click)="setRating(2)" [class.rated]="rating >= 2"></fa-icon>
-        <fa-icon [icon]="faStar" (click)="setRating(3)" [class.rated]="rating >= 3"></fa-icon>
-        <fa-icon [icon]="faStar" (click)="setRating(4)" [class.rated]="rating >= 4"></fa-icon>
-        <fa-icon [icon]="faStar" (click)="setRating(5)" [class.rated]="rating >= 5"></fa-icon>
-    </div>
-</div>
 
 <div class="container px-4 py-5 shadow-lg" id="hanging-icons">
     <h2 class="pb-2 border-bottom" style="color: #083248">
@@ -213,8 +200,13 @@
         </table>
       </div>
       <p class="fw-bold" id="texxxt">Adress:</p>
+
 <a href="https://www.google.com/maps/place/{{data.location}}?entry=ttu">Location</a>
       <p>{{data.location}}</p>
+
+
+      <p>::</p>
+
       <div
         id="map-container-google-2"
         class="z-depth-1-half map-container"
@@ -237,9 +229,12 @@
     <p style="color: black;font-family:Sofia;text-align: center;font-size: larger;">from our clients</p>
   
     <form (ngSubmit)="savecomment()" style="width: 100% ;">
-        <div class="bg-text" style="height:120px; ">
+        <div class="bg-text" style="height:160px; ">
            <input id="inputrev" type="text" class="form-control " placeholder="write your comment" name="Description" [(ngModel)]="Description">
             <br>
+             <input id="inputrev" type="text" class="form-control " placeholder="write your rate" name="rate" [(ngModel)]="rate">
+         
+
             <button id="inputrev" class="inputrevbutton" type="submit" id="button-addon2" style="display: flex;float: right;">
                 <i class="fa-solid fa-paper-plane"></i>
             </button>
@@ -255,7 +250,7 @@
                 <a *ngIf="post.user_id === datauser.id" (click)="deletecomment($event, post.id)" style="display: flex; float: right;margin-right:-20px;margin-top: -20px;" class="btn btn-outline-info inputrevbutton " type="submit" id="button-addon2">
                     <i class="fa-solid fa-times-circle send-icon"></i>
                 </a>
-                
+
                 <a *ngIf="post.user_id === datauser.id" routerLink="/comment/{{ post.id }}/edit" style="display: flex; float: right;margin-right:0px;" class="btn btn-outline-info inputrevbutton" type="submit" id="button-addon2">
                     <i class="fa-solid fa-pen send-icon"></i>
                 </a>
@@ -266,16 +261,17 @@
 
                 <div style="display: flex; float: right; margin-top:80px;margin-right:-15px; width:50px;height: 50px;border-radius: 50%;background-color: rgb(205, 159, 144);opacity :0.5"></div>
                 <div style="display: flex;  float: right; margin-top:110px;margin-right:-10px; width:20px;height:20px;border-radius: 50%;background-color:rgb(205, 159, 144);opacity :0.5"></div>
-            
-                  @if (post.image === null) {
-                    <img src="/assets/avatar.png" style="width:40px;height:40px; border-radius: 50%;"><br>
 
-
-                  }@else{
-                    <img src="http://127.0.0.1:8000/{{ post.image }}" style="width:40px;height:40px; border-radius: 50%;"><br>
-
-                  }
-          
+                @if (post.image === null) {
+                <img src="/assets/avatar.png" style="width:40px;height:40px; border-radius: 50%;"><br> }@else{
+                <img src="http://127.0.0.1:8000/{{ post.image }}" style="width:40px;height:40px; border-radius: 50%;"><br> }
+                <div class="col-sm-4 col-4 star-par" style=" margin-left: 140px;">
+                    <ul class="stars">
+                        <div class="star-rating">
+                            <span style="color: goldenrod;" *ngFor="let filled of getStarRating(post.rate)" class="star" [ngClass]="{'filled': filled}">&#9733;</span>
+                        </div>
+                    </ul>
+                </div>
 
                 <p style="padding-left:30px; margin-left: 10px;"> {{post['name']}} </p>
 
@@ -298,6 +294,7 @@
 
         <br><br>
         <!------------------ comments --------------->
+
         <!-- <div class="commentContainer">
     <div class="CommentHolder">
         <div class="input-group mb-1 comment">
