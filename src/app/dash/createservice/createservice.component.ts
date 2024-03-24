@@ -65,7 +65,7 @@ export class CreateserviceComponent {
       description: ['', [Validators.required, Validators.minLength(10)]],
       location: ['', [Validators.required]],
       image: ['', [Validators.required]], // حقل الصورة
-      rating: ['', [Validators.required]],
+  
       price: ['', [Validators.required]],
       services: ['', [Validators.required]],
       cars: ['', [Validators.required]],
@@ -195,7 +195,7 @@ formData.append('price', this.serviceform.value.price);
 formData.append('phone', this.serviceform.value.phone);
 formData.append('description', this.serviceform.value.description);
 formData.append('location', this.serviceform.value.location);
-formData.append('rating', this.serviceform.value.rating);
+
 formData.append('services[]', this.serviceform.value.services);
 formData.append('cars[]', this.serviceform.value.cars);
 formData.append('days', JSON.stringify(scheduleData));
