@@ -36,8 +36,8 @@ import Swal from 'sweetalert2';
 export class UpdateserviceComponent {
   oldnameforupdateservice:any=''
   serviceform: FormGroup;
-  cars: { key: number; value: string }[] = [];
-  services: { key: number; value: string }[] = [];
+  cars: { key: string; value: string }[] = [];
+  services: { key: string; value: string }[] = [];
   msgres:any=''
   errorMessage: any = ''; // تعريف errorMessage كمتغير عام
   id:any = ''
