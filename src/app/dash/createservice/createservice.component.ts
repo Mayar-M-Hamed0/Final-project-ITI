@@ -45,14 +45,15 @@ import {  throwError } from 'rxjs';
 
 
 export class CreateserviceComponent {
-  errorMessage: any = ''; // تعريف errorMessage كمتغير عام
+  errorMessage: any = ''; // ????? errorMessage ?????? ???
   fullResponse: any;
   files:any
   msgres:any= ''
   serviceform: FormGroup;
   cars: { key: string; value: string }[] = [];
   services: { key: string; value: string }[] = [];
-
+  selectedServicesData:any =''
+  selectedCarsData:any = ''
 
   userImageUrl:any = '';
   userImageFile:any = ' ';
@@ -63,7 +64,7 @@ export class CreateserviceComponent {
       phone: ['', [Validators.required, Validators.pattern(/^(010|011|012|015)\d{8}$/)]],
       description: ['', [Validators.required, Validators.minLength(10)]],
       location: ['', [Validators.required]],
-      image: ['', [Validators.required]], // حقل الصورة
+      image: ['', [Validators.required]], // ??? ??????
   
       price: ['', [Validators.required]],
       services: ['', [Validators.required]],
@@ -173,6 +174,13 @@ export class CreateserviceComponent {
       return;
     }
 
+
+
+
+
+
+    console.log(this.serviceform.value.services);
+    
 let formData = new FormData();
 formData.append('image',this.userImageFile);
 formData.append('name', this.serviceform.value.name);
@@ -180,10 +188,31 @@ formData.append('price', this.serviceform.value.price);
 formData.append('phone', this.serviceform.value.phone);
 formData.append('description', this.serviceform.value.description);
 formData.append('location', this.serviceform.value.location);
-
-formData.append('services[]', this.serviceform.value.services);
-formData.append('cars[]', this.serviceform.value.cars);
 formData.append('days', JSON.stringify(scheduleData));
+formData.append('cars', JSON.stringify(this.selectedCarsData));
+formData.append('services', JSON.stringify(this.selectedServicesData));
+
+const selectedCars = this.serviceform.value.cars;
+this.selectedCarsData = selectedCars.map((selectedCar: any) => {
+    const car = this.cars.find(car => car.value === selectedCar);
+    return {
+        key: car!.key,
+        value: car!.value
+    };
+});
+
+const selectedServices = this.serviceform.value.services; // تم تغيير اسم المتغير
+this.selectedServicesData = selectedServices.map((selectedService: any) => { // تم تغيير اسم المتغير
+    const service = this.services.find(service => service.value === selectedService);
+    return {
+        key: service!.key,
+        value: service!.value
+    };
+});
+
+console.log("car", this.selectedCarsData);
+console.log("ser", this.selectedServicesData);
+    
 
 
   if (typeof window !== 'undefined') {
@@ -205,7 +234,7 @@ formData.append('days', JSON.stringify(scheduleData));
             icon: 'success',
             title: 'service Created!',
             showConfirmButton: false,
-            timer: 1500 // يمكنك ضبط مدة العرض
+            timer: 1500 // ????? ??? ??? ?????
           });
 
 
