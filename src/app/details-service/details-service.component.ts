@@ -60,12 +60,6 @@ mapUrl: string = '';
     window.scrollTo({top:0,behavior:'smooth'})
   }
 
-  faStar = faStar;
-  rating = 0;
-  setRating(value: number){
-    this.rating = value;
-  }
-
 
 
 
@@ -244,9 +238,6 @@ headers:any =''
 
 
 
-  updateRating(newRating: number) {
-    this.rating = newRating;
-  }
   getStarRating(rating: number): boolean[] {
     console.log(rating);
     const filledStars = Math.floor(rating); // Get the number of filled stars
