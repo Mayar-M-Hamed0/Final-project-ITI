@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -6,7 +7,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-sing-up',
   standalone: true,
-  imports: [ReactiveFormsModule,RouterLinkActive,RouterLink],
+  imports: [ReactiveFormsModule,RouterLinkActive,RouterLink,CommonModule],
   templateUrl: './sing-up.component.html',
   styleUrl: './sing-up.component.css'
 })
@@ -19,6 +20,11 @@ response :any = ''
       name: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
+        
+      ]), role: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.pattern(/^(agent|user)$/i) 
         
       ]), 
     

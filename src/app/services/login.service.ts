@@ -16,7 +16,7 @@ export class LoginService {
 
     if (typeof window !== 'undefined') {
      
-      const token: any = sessionStorage.getItem('token');
+      const token: any = localStorage.getItem('token');
       if (token) {
         const headers = new HttpHeaders({
           'Content-Type': 'application/json',

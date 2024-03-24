@@ -11,9 +11,9 @@ export class check implements CanActivate {
 
   constructor(private authService: LoginService, private router: Router) {}
 
-  canActivate(): boolean {
-
-    const token = sessionStorage.getItem('token');
+  canActivate(): any {
+    if (typeof window !== 'undefined') {
+    const token = localStorage.getItem('token');
 
     if (token) {
       return true;
@@ -24,4 +24,5 @@ export class check implements CanActivate {
     
    
   }
+}
 }

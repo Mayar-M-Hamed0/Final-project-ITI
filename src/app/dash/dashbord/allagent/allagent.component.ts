@@ -19,7 +19,7 @@ export class AllagentComponent {
 
   constructor(private http:HttpClient){
 
-    const token: any = sessionStorage.getItem('token');
+    const token: any = localStorage.getItem('token');
     if (token) {
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ export class AllagentComponent {
   
   
   deleteService(agent: number) {
-    const token: any = sessionStorage.getItem('token');
+    const token: any = localStorage.getItem('token');
     if (token) {
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
