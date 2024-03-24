@@ -115,9 +115,9 @@
     <div class="row">
         <div class="col-9 lh-1 mt-3">
             <div class="row">
-                @for (item of data.cars; track $index) {
+                @for (item of data.services; track $index) {
                 <div class="col-lg-4 col-6">
-                    <p><i class="fa-solid fa-tag"></i> {{ item['car_name'] }}</p>
+                    <p><i class="fa-solid fa-tag"></i> {{ item.service_name }}</p>
                 </div>
                 }
             </div>
@@ -136,14 +136,14 @@
 <div class="container" id="texxxt">
     <div class="row">
         <div class="col-9 lh-1 mt-3">
-            <div class="row">
-                @for (item of data.services; track $index) {
-                <div class="col-lg-4 col-6">
-                    <p><i class="fa-solid fa-tag"></i> {{ item.service_name }}</p>
-                </div>
-                }
+        <div class="row">
+            @for (item of data.cars; track $index) {
+            <div class="col-lg-4 col-6">
+                <p><i class="fa-solid fa-tag"></i> {{ item['car_name'] }}</p>
             </div>
+            }
         </div>
+    </div>
         <div class="col-3 mt-5">
             <img src="../../assets/car.png" class="card-img-bottom img-fluid m-5 w-50" alt="Service Center Cover Image" />
         </div>
@@ -169,7 +169,15 @@
       </div>
 
       <div class="table-responsive">
+        
         <table class="table w-50">
+            <thead>
+                <tr>
+                  <th></th>
+                  <th>Working time</th>
+                  <th></th>
+                </tr>
+              </thead>
           <thead>
             <tr>
               <th>Day</th>
@@ -178,44 +186,27 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Monday</td>
-              <td>9:00</td>
-              <td>19:00</td>
-            </tr>
+            @for (item of data.days; track $index) {
 
-            <tr>
-              <td>Tuesday</td>
-              <td>9:00</td>
-              <td>19:00</td>
-            </tr>
+                <tr>
+                    <td>{{item.day}}</td>
+                    <td>{{item.start_hour}}</td>
+                    <td>{{item.end_hour}}</td>
+                  </tr>
+            }
+         
 
-            <tr>
-              <td>Wednesday</td>
-              <td>9:00r</td>
-              <td>19:00</td>
-            </tr>
-            <tr>
-              <td>Thursday</td>
-              <td>9:00</td>
-              <td>19:00</td>
-            </tr>
-            <tr>
-              <td>Friday</td>
-              <td>9:00</td>
-              <td>19:00</td>
-            </tr>
-            <tr>
-              <td>Saturday</td>
-              <td>9:00</td>
-              <td>19:00</td>
-            </tr>
           </tbody>
         </table>
       </div>
       <p class="fw-bold" id="texxxt">Adress:</p>
 
+<a href="https://www.google.com/maps/place/{{data.location}}?entry=ttu">Location</a>
+      <p>{{data.location}}</p>
+
+
       <p>::</p>
+
       <div
         id="map-container-google-2"
         class="z-depth-1-half map-container"
@@ -223,7 +214,7 @@
       >
       <iframe width="100%" height="500" src="https://maps.google.com/maps?q=cairo>&output=embed"></iframe>
 
-      <p class="fw-bold fs-4">{{data.location}}</p>
+      <p class="fw-bold fs-4"></p>
       
       </div>
     </div>
@@ -241,7 +232,7 @@
         <div class="bg-text" style="height:160px; ">
            <input id="inputrev" type="text" class="form-control " placeholder="write your comment" name="Description" [(ngModel)]="Description">
             <br>
-             <input id="inputrev" type="text" class="form-control " placeholder="write your rate" name="rate" [(ngModel)]="rate">
+             <input id="inputrev" type="number" class="form-control " placeholder="write your rate" name="rate" [(ngModel)]="rate">
          
 
             <button id="inputrev" class="inputrevbutton" type="submit" id="button-addon2" style="display: flex;float: right;">

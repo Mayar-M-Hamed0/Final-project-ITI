@@ -44,6 +44,9 @@ export class UpdateserviceComponent {
   userImageUrl:any = '';
   userImageFile:any = ' ';
 
+  selectedServicesData:any =''
+  selectedCarsData:any = ''
+
   constructor(private fb: FormBuilder, private sr: ServicesService , private http:HttpClient,private route: ActivatedRoute) {
     this.serviceform = this.fb.group({
       name: ['', [Validators.required]],
@@ -51,7 +54,7 @@ export class UpdateserviceComponent {
       description: ['', [Validators.required, Validators.minLength(10)]],
       location: ['', [Validators.required]],
       image: ['', [Validators.required]], // حقل الصورة
-      rating: ['', [Validators.required]],
+     
       price: ['', [Validators.required]],
       services: ['', [Validators.required]],
       cars: ['', [Validators.required]],
@@ -164,11 +167,29 @@ this.oldnameforupdateservice = res
     formData.append('phone', this.serviceform.value.phone);
     formData.append('description', this.serviceform.value.description);
     formData.append('location', this.serviceform.value.location);
-    formData.append('rating', this.serviceform.value.rating);
-    formData.append('services[]', this.serviceform.value.services);
-    formData.append('cars[]', this.serviceform.value.cars);
+  
+    formData.append('cars', JSON.stringify(this.selectedCarsData));
+    formData.append('services', JSON.stringify(this.selectedServicesData));
     formData.append('days', JSON.stringify(scheduleData));
 
+    
+    const selectedCars = this.serviceform.value.cars;
+    this.selectedCarsData = selectedCars.map((selectedCar: any) => {
+        const car = this.cars.find(car => car.value === selectedCar);
+        return {
+            key: car!.key,
+            value: car!.value
+        };
+    });
+    
+    const selectedServices = this.serviceform.value.services; // تم تغيير اسم المتغير
+    this.selectedServicesData = selectedServices.map((selectedService: any) => { // تم تغيير اسم المتغير
+        const service = this.services.find(service => service.value === selectedService);
+        return {
+            key: service!.key,
+            value: service!.value
+        };
+    });
 
     if (typeof window !== 'undefined') {
       const token: any = sessionStorage.getItem('token');
@@ -198,7 +219,13 @@ this.oldnameforupdateservice = res
           (res) => {
             this.msgres = res;
            console.log(res);
-     
+           
+           Swal.fire({
+            icon: 'success',
+            title: 'service Created!',
+            showConfirmButton: false,
+            timer: 1500 // يمكنك ضبط مدة العرض
+          });
           },
           (error: HttpErrorResponse) => {
             console.error('An error occurred:', error.error);

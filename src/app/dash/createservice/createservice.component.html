@@ -87,16 +87,6 @@
 
 
 
-        <label for="" class="form-control">Rating</label>
-
-        <div class="col-sm-10">
-            <input type="number" min="1"  class="form-control" id="rating" formControlName="rating" /> @if(serviceform.controls['rating'].invalid && serviceform.controls['rating'].touched) { @if(serviceform.controls['rating'].errors?.['required'])
-            {
-                {{ errorMessage.rating }}
-
-            <span style="color: red;"> This rating is required </span> } }
-        </div>
-
 
 
 
@@ -150,7 +140,7 @@
             </div>
         </div>
 
-        <!-- قائمة السيارات -->
+        <!-- ????? ???????? -->
         <div class="form-group">
             <label for="model">Models</label>
             <ng-select [items]="cars" bindLabel="value" bindValue="key" formControlName="cars" [closeOnSelect]="false" [multiple]="true" style="width: 75%;"></ng-select>
@@ -169,27 +159,25 @@
 
 
 
-      <label for="working">working days and hours</label>
+        <label for="working">working days and hours</label>
         <div id="working" *ngFor="let day of days; let i = index">
           <div *ngIf="currentIndex === i">
             <label for="day{{i}}">Day {{i + 1}}</label>
-            <select id="day{{i}}" type="text" formControlName="dayss" [(ngModel)]="schedule[currentIndex].day">
-                <option value="saturday">saturday</option>
-                <option value="sunday">sunday</option>
-                <option value="monday">monday</option>
-                <option value="tuesday">tuesday</option>
-                <option value="wednesday">wednesday</option>
-                <option value="thursday">thursday</option>
-                <option value="friday">friday</option>
+            <select id="day{{i}}" type="text" formControlName="dayss" [(ngModel)]="schedule[i].day">
+              <option value="saturday">saturday</option>
+              <option value="sunday">sunday</option>
+              <option value="monday">monday</option>
+              <option value="tusday">tusday</option>
+              <option value="wendsday">wendsday</option>
+              <option value="thursday">thursday</option>
+              <option value="friday">friday</option>
               </select>
             <!-- <input id="day{{i}}" type="text" formControlName="dayss" [(ngModel)]="schedule[i].day"> -->
             <label for="startTime{{i}}">Start Time:</label>
             <input id="startTime{{i}}" type="time" formControlName="startTime" [(ngModel)]="schedule[i].startTime">
             <label for="endTime{{i}}">End Time:</label>
             <input id="endTime{{i}}" type="time" formControlName="endTime" [(ngModel)]="schedule[i].endTime">
-            
-            <a  (click)="toggleVisibility(i)"  class="next m-2">Next &raquo;</a>
-         
+            <a (click)="toggleVisibility(i)"class=" next m-2">Next &raquo;</a>
           </div>
         </div>
         

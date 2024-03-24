@@ -76,13 +76,7 @@
 
 
 
-        <label for="" class="form-control">Rating</label>
 
-        <div class="col-sm-10">
-            <input type="number" min="1" [value]="oldnameforupdateservice?.rating" max="5" class="form-control" id="rating" formControlName="rating" /> @if(serviceform.controls['rating'].invalid && serviceform.controls['rating'].touched) { @if(serviceform.controls['rating'].errors?.['required'])
-            {
-            <span style="color: red;"> This rating is required </span> } }
-        </div>
 
 
 
@@ -156,7 +150,7 @@
             <input id="startTime{{i}}" type="time" formControlName="startTime" [(ngModel)]="schedule[i].startTime">
             <label for="endTime{{i}}">End Time:</label>
             <input id="endTime{{i}}" type="time" formControlName="endTime" [(ngModel)]="schedule[i].endTime">
-            <button (click)="toggleVisibility(i)">Next</button>
+            <a (click)="toggleVisibility(i)"class=" next m-2">Next &raquo;</a>
           </div>
         </div>
 

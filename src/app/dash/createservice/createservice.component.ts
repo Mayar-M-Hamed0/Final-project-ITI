@@ -45,18 +45,18 @@ import {  throwError } from 'rxjs';
 
 
 export class CreateserviceComponent {
-  errorMessage: any = ''; // تعريف errorMessage كمتغير عام
+  errorMessage: any = ''; // ????? errorMessage ?????? ???
   fullResponse: any;
   files:any
   msgres:any= ''
   serviceform: FormGroup;
-  cars: { key: number; value: string }[] = [];
-  services: { key: number; value: string }[] = [];
-
+  cars: { key: string; value: string }[] = [];
+  services: { key: string; value: string }[] = [];
+  selectedServicesData:any =''
+  selectedCarsData:any = ''
 
   userImageUrl:any = '';
   userImageFile:any = ' ';
-  days: string[] = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 
   constructor(private fb: FormBuilder, private http: HttpClient) {
     this.serviceform = this.fb.group({
@@ -64,8 +64,8 @@ export class CreateserviceComponent {
       phone: ['', [Validators.required, Validators.pattern(/^(010|011|012|015)\d{8}$/)]],
       description: ['', [Validators.required, Validators.minLength(10)]],
       location: ['', [Validators.required]],
-      image: ['', [Validators.required]], // حقل الصورة
-      rating: ['', [Validators.required]],
+      image: ['', [Validators.required]], // ??? ??????
+  
       price: ['', [Validators.required]],
       services: ['', [Validators.required]],
       cars: ['', [Validators.required]],
@@ -78,47 +78,47 @@ export class CreateserviceComponent {
 
 
     this.cars = [
-      { key: 1, value: 'KIA' },
-      { key: 2, value: 'MAZDA' },
-      { key: 3, value: 'TOYOTA' },
-      { key: 4, value: 'SKODA' },
-      { key: 5, value: 'SSANGYONG' },
-      { key: 6, value: 'Ford' },
-      { key: 7, value: 'BMW' },
-      { key: 8, value: 'LADA' },
-      { key: 9, value: 'CITROËN' },
-      { key: 10, value: 'SUZUKI' },
-      { key: 11, value: 'SEAT' },
-      { key: 12, value: 'RENAULT' },
-      { key: 13, value: 'HYUNDAI' },
-      { key: 14, value: 'NISSAN' },
-      { key: 15, value: 'VOLVO' },
-      { key: 16, value: 'BYD' },
-      { key: 17, value: 'HONDA' },
+      { key:'KIA', value: 'KIA' },
+      { key: 'MAZDA', value: 'MAZDA' },
+      { key: 'TOYOTA', value: 'TOYOTA' },
+      { key: 'SKODA' , value: 'SKODA' },
+      { key:'SSANGYONG', value: 'SSANGYONG' },
+      { key: 'Ford', value: 'Ford' },
+      { key: 'BMW' , value: 'BMW' },
+      { key: 'LADA', value: 'LADA' },
+      { key: 'CITROËN', value: 'CITROËN' },
+      { key: 'SUZUKI', value: 'SUZUKI' },
+      { key: 'SEAT', value: 'SEAT' },
+      { key:'RENAULT', value: 'RENAULT' },
+      { key:  'HYUNDAI', value: 'HYUNDAI' },
+      { key: 'NISSAN', value: 'NISSAN' },
+      { key: 'VOLVO', value: 'VOLVO' },
+      { key: 'BYD', value: 'BYD' },
+      { key:'HONDA', value: 'HONDA' },
 
     ];
 
     this.services= [
-      { key: 1, value: 'Mechanical' },
-      { key: 2, value: 'Electricity' },
-      { key: 3, value: 'Suspensions' },
-      { key: 4, value: 'Car Denting' },
-      { key: 5, value: 'paints' },
-      { key: 6, value: 'brakes' },
-      { key: 7, value: 'lubricants' },
-      { key: 8, value: 'Tires and batteries' },
-      { key: 9, value: 'gear box' },
-      { key: 10, value: 'A/C/Charge' },
-      { key: 11, value: 'Radiator' },
-      { key: 12, value: 'Fast Service' },
-      { key: 13, value: 'Computer detection' },
-      { key: 14, value: 'Car wash and care' },
-      { key: 15, value: 'Insurance companies' },
-      { key:16,
+      { key: 'Mechanical', value: 'Mechanical' },
+      { key: 'Electricity' , value: 'Electricity' },
+      { key: 'Suspensions' , value: 'Suspensions' },
+      { key: 'Car Denting', value: 'Car Denting' },
+      { key: 'paints', value: 'paints' },
+      { key: 'brakes', value: 'brakes' },
+      { key: 'lubricants', value: 'lubricants' },
+      { key: 'Tires and batteries', value: 'Tires and batteries' },
+      { key: 'gear box', value: 'gear box' },
+      { key: 'A/C/Charge' , value: 'A/C/Charge' },
+      { key: 'Radiator', value: 'Radiator' },
+      { key: 'Fast Service', value: 'Fast Service' },
+      { key: 'Computer detection', value: 'Computer detection' },
+      { key: 'Car wash and care', value: 'Car wash and care' },
+      { key: 'Insurance companies' , value: 'Insurance companies' },
+      { key:'Oil Change Offers + Preventive Maintenance',
         value: 'Oil Change Offers + Preventive Maintenance',
       },
-      { key: 17, value: 'El-Mikaneeky BOSCH' },
-      { key: 18 , value: 'Labor fees Discount' },
+      { key: 'El-Mikaneeky BOSCH', value: 'El-Mikaneeky BOSCH' },
+      { key: 'Labor fees Discount' , value: 'Labor fees Discount' },
     ];
 
     this.schedule = this.days.map(() => ({ day: '', startTime: '', endTime: '' }));
@@ -126,33 +126,19 @@ export class CreateserviceComponent {
   }
 
 
+
+
   currentIndex: number = 0;
+  days: number[] = [0, 1, 2, 3, 4, 5, 6]; // Days of the week
   schedule: any[] = []; // Array to store schedules
 
-
   toggleVisibility(index: number): void {
-    // تحديث currentIndex لليوم التالي
     if (index < this.days.length - 1) {
       this.currentIndex = index + 1;
     } else {
-      // إذا كان اليوم الحالي هو اليوم الأخير، عودة إلى اليوم الأول
+      // If it's the last day, loop back to the first day
       this.currentIndex = 0;
     }
-  
-    // تحديث القيمة المختارة في السليكت بوكس لتعكس اليوم الجديد
-    const nextIndex = this.currentIndex + 1;
-    if (nextIndex < this.days.length) {
-      this.schedule[this.currentIndex].day = this.schedule[nextIndex].day;
-    } else {
-      this.schedule[this.currentIndex].day = this.schedule[0].day;
-    }
-  
-    // للتحقق من أن القيمة تم تحديثها بشكل صحيح
-    console.log('Selected day:', this.schedule[this.currentIndex].day);
-  
-
-    const selectedDay = this.days[this.currentIndex];
-
     const scheduleData = this.schedule.map(item => ({
       day: item.day,
       startTime: item.startTime,
@@ -188,6 +174,13 @@ export class CreateserviceComponent {
       return;
     }
 
+
+
+
+
+
+    console.log(this.serviceform.value.services);
+    
 let formData = new FormData();
 formData.append('image',this.userImageFile);
 formData.append('name', this.serviceform.value.name);
@@ -195,10 +188,31 @@ formData.append('price', this.serviceform.value.price);
 formData.append('phone', this.serviceform.value.phone);
 formData.append('description', this.serviceform.value.description);
 formData.append('location', this.serviceform.value.location);
-formData.append('rating', this.serviceform.value.rating);
-formData.append('services[]', this.serviceform.value.services);
-formData.append('cars[]', this.serviceform.value.cars);
 formData.append('days', JSON.stringify(scheduleData));
+formData.append('cars', JSON.stringify(this.selectedCarsData));
+formData.append('services', JSON.stringify(this.selectedServicesData));
+
+const selectedCars = this.serviceform.value.cars;
+this.selectedCarsData = selectedCars.map((selectedCar: any) => {
+    const car = this.cars.find(car => car.value === selectedCar);
+    return {
+        key: car!.key,
+        value: car!.value
+    };
+});
+
+const selectedServices = this.serviceform.value.services; // تم تغيير اسم المتغير
+this.selectedServicesData = selectedServices.map((selectedService: any) => { // تم تغيير اسم المتغير
+    const service = this.services.find(service => service.value === selectedService);
+    return {
+        key: service!.key,
+        value: service!.value
+    };
+});
+
+console.log("car", this.selectedCarsData);
+console.log("ser", this.selectedServicesData);
+    
 
 
   if (typeof window !== 'undefined') {
@@ -220,10 +234,13 @@ formData.append('days', JSON.stringify(scheduleData));
             icon: 'success',
             title: 'service Created!',
             showConfirmButton: false,
-            timer: 1500 // يمكنك ضبط مدة العرض
+            timer: 1500 // ????? ??? ??? ?????
           });
 
-          this.serviceform.reset();
+
+console.log( this.msgres);
+
+          // this.serviceform.reset();
         },
         (error: HttpErrorResponse) => {
           console.error('An error occurred:', error.error);
