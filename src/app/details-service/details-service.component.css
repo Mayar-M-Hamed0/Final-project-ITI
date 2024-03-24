@@ -398,3 +398,8 @@ fa-icon {
   display: flex;
   justify-content: center;
 }
+
+.btn
+{
+  background-color: #ee6c4d !important ;
+}

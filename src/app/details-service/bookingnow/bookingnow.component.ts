@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { ServicesService } from '../../services/services.service';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
@@ -30,7 +30,7 @@ export class BookingnowComponent implements OnInit {
   errors:any;
   response:any;
   msgres:any='';
-
+ 
   viewdata:unknown = []
   constructor(private router:Router,private formBuilder: FormBuilder,private orderservice:OrdersService,private loginService:LoginService  ,private dataService:ServicesService ,private route:ActivatedRoute) {
     this.bookingnow = this.formBuilder.group({
@@ -41,7 +41,6 @@ export class BookingnowComponent implements OnInit {
       services: ['', Validators.required],
       model: ['', Validators.required]
     });
-
 
 
     this.dataService.getdata().subscribe(res=>{
@@ -87,9 +86,7 @@ this.viewdata = res ;
       { key: 13, value: 'Computer detection' },
       { key: 14, value: 'Car wash and care' },
       { key: 15, value: 'Insurance companies' },
-      { key:16,
-        value: 'Oil Change Offers + Preventive Maintenance',
-      },
+      { key:16,value: 'Oil Change Offers + Preventive Maintenance'},
       { key: 17, value: 'El-Mikaneeky BOSCH' },
       { key: 18 , value: 'Labor fees Discount' },
     ];
@@ -138,6 +135,7 @@ this.viewdata = res ;
   );
   }
   }
+
 ngOnInit(){
 this.route.params.subscribe((params:Params)=>{this.service_center_id=params['id']})
 this.loginService.auth().subscribe(
