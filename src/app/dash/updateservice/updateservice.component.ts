@@ -86,7 +86,11 @@ export class UpdateserviceComponent {
 
     ];
 
-    this.services= [
+
+
+
+   this.services= [
+
       { key: 'Mechanical', value: 'Mechanical' },
       { key: 'Electricity' , value: 'Electricity' },
       { key: 'Suspensions' , value: 'Suspensions' },
@@ -108,6 +112,7 @@ export class UpdateserviceComponent {
       { key: 'El-Mikaneeky BOSCH', value: 'El-Mikaneeky BOSCH' },
       { key: 'Labor fees Discount' , value: 'Labor fees Discount' },
     ];
+
 
 
 

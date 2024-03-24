@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ServicesService } from '../services/services.service';
-import { ActivatedRoute ,Params, RouterLink} from '@angular/router';
+import { ActivatedRoute ,Params, Router, RouterLink} from '@angular/router';
 import Swal from 'sweetalert2';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-orders-for-agent',
   standalone: true,
@@ -15,7 +16,7 @@ export class OrdersForAgentComponent implements OnInit {
   crntpage:any;
   orders:any;
   serviceIdToDelete: number | null = null;
-  constructor(private service:ServicesService , private route:ActivatedRoute){}
+  constructor(private service:ServicesService ,private http:HttpClient, private route:ActivatedRoute , private router:Router){}
   ngOnInit(): void {
     this.route.params.subscribe((params:Params)=>{this.service_center_id=params['id']})
     console.log(this.service_center_id)
@@ -23,15 +24,23 @@ export class OrdersForAgentComponent implements OnInit {
   }
 
 
-  ondelete(id:number){
+  archive(id:number){
     this.service.softdelete(id).subscribe({
       next:res=>{
 
              setTimeout(() => {
 
-              window.location.reload();
+              this.router.navigate([`/archive/`+id]);
              }, 2000);}
     });
+    this.http.get(`http://127.0.0.1:8000/api/send/`+id ).subscribe({
+      next:res=>{
+
+             setTimeout(() => {
+
+              this.router.navigate([`/archive/`+id]);
+             }, 2000);}
+    })
   }
 
 
@@ -48,12 +57,12 @@ export class OrdersForAgentComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.ondelete(serviceId);
-       
+        this.forcedelete(serviceId);
+
       }
     });
   }
-  
+
 
 
 
@@ -63,8 +72,16 @@ export class OrdersForAgentComponent implements OnInit {
 
              setTimeout(() => {
 
-              window.location.reload();
+              this.router.navigate([`/orderforcenter/`+id]);
              }, 2000);}
     });
+    this.http.get(`http://127.0.0.1:8000/api/reject/`+id ).subscribe({
+      next:res=>{
+
+             setTimeout(() => {
+
+              this.router.navigate([`/archive/`+id]);
+             }, 2000);}
+    })
   }
 }
