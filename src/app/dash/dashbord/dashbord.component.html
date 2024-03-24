@@ -1,9 +1,11 @@
 <div class="wrapper">
-    <aside class="dashboard" style="height: 100vh;">
+    <aside class="dashboard" >
         <h2> Dashboard</h2>
         <p>Welcome      <span class="fw-bold">{{resp.name}}</span></p>
         <p>Role      <span class="fw-bold">{{resp.role}}</span></p>
         <nav>
+          <div class="aside">
+
             <ul>
 
                 <div class="nav-items" >
@@ -13,62 +15,67 @@
 
                     </div>
                     <div class="nav-item" (click)="activeComponent = 'CreateService'">
-                        <i class="fa-solid fa-plus"></i>
-                        <span>Create service center</span>
+                      <i class="fa-solid fa-plus"></i>
+                      <span>Create service center</span>
                     </div>
 
 
 
                     <div class="nav-item" (click)="activeComponent = 'viewservice'">
-                        <i class="fa-solid fa-pen-to-square"></i>
-                        <span>My service center</span>
+                      <i class="fa-solid fa-pen-to-square"></i>
+                      <span>My service center</span>
                     </div>
 
 
-
-
-                  
-
+                    @if (resp.role === 'agent') {
+                    }
                     <div class="nav-item" (click)="activeComponent = 'orders'">
                         <i class="fa-solid fa-cart-shopping"></i>
                         <span>orders</span>
                     </div>
-                    <div class="nav-item" (click)="activeComponent = 'archive'">
+
+
+
+                    <!-- <div class="nav-item" (click)="activeComponent = 'archive'">
                         <i class="fa-solid fa-box-archive"></i>
                         <span>archive orders</span>
-                    </div>
+                    </div> -->
 
                     <div class="nav-item" (click)="activeComponent = 'help'">
                         <i class="fa-solid fa-handshake-angle"></i>
                         <span>Help</span>
                     </div>
+                    <div class="div">
+
+                      @if (resp.role === 'admin') {
+
+                          <hr>
+                          <div class="nav-item mt-2" (click)="activeComponent = 'message'">
+                              <i class="fa-solid fa-comment-sms"></i>
+                                                      <span>Messages</span>
+                          </div>
+
+                      <br>
+                          <div class="nav-item mt-3" (click)="activeComponent = 'CreateAgent'">
+                              <i class="fa-solid fa-user-plus"></i>
+                                                      <span>Create Agent</span>
+                          </div>
+
+                          <div class="nav-item mt-3" (click)="activeComponent = 'Allagent'">
+                            <i class="fa-solid fa-users"></i>
+                                                      <span>View Agent</span>
+                          </div>
+
+
+                      }
+                    </div>
                 </div>
 
-@if (resp.role == 'admin') {
-
-    <hr>
-    <div class="nav-item mt-2" (click)="activeComponent = 'message'">
-        <i class="fa-solid fa-comment-sms"></i>
-                                <span>message</span>
-    </div>
-
-<br>
-    <div class="nav-item mt-3" (click)="activeComponent = 'CreateAgent'">
-        <i class="fa-solid fa-user-plus"></i>
-                                <span>Create Agent</span>
-    </div>
-
-    <div class="nav-item mt-3" (click)="activeComponent = 'Allagent'">
-        <i class="fa-solid fa-user-plus"></i>
-                                <span>View Agent</span>
-    </div>
-
-
-}
 
 
 
             </ul>
+          </div>
         </nav>
     </aside>
 

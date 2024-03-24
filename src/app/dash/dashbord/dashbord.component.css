@@ -21,7 +21,7 @@
     /* يأخذ المحتوى المتبقي من المساحة */
     padding: 20px;
     overflow-x: scroll;
-    height: 100vh;
+    /* height: 100vh; */
 }
 
 li {
@@ -58,3 +58,7 @@ a {
     text-decoration: none;
     color: white;
 }
+/* .aside{
+  height: 100vh;
+  overflow-y: scroll;
+} */
