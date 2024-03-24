@@ -43,7 +43,7 @@ export class LoginComponent {
 
       if ( this.response.status === 200) {
 
-        sessionStorage.setItem('token', this.response.data.token);
+        localStorage.setItem('token', this.response.data.token);
           this.router.navigate(['/']);
           window.location.reload()
       } else {

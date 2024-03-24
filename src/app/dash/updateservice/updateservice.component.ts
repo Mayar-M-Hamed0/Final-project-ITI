@@ -36,8 +36,8 @@ import Swal from 'sweetalert2';
 export class UpdateserviceComponent {
   oldnameforupdateservice:any=''
   serviceform: FormGroup;
-  cars: { key: number; value: string }[] = [];
-  services: { key: number; value: string }[] = [];
+  cars: { key: string; value: string }[] = [];
+  services: { key: string; value: string }[] = [];
   msgres:any=''
   errorMessage: any = ''; // تعريف errorMessage كمتغير عام
   id:any = ''
@@ -66,48 +66,53 @@ export class UpdateserviceComponent {
 
 
     this.cars = [
-      { key: 1, value: 'KIA' },
-      { key: 2, value: 'MAZDA' },
-      { key: 3, value: 'TOYOTA' },
-      { key: 4, value: 'SKODA' },
-      { key: 5, value: 'SSANGYONG' },
-      { key: 6, value: 'Ford' },
-      { key: 7, value: 'BMW' },
-      { key: 8, value: 'LADA' },
-      { key: 9, value: 'CITROËN' },
-      { key: 10, value: 'SUZUKI' },
-      { key: 11, value: 'SEAT' },
-      { key: 12, value: 'RENAULT' },
-      { key: 13, value: 'HYUNDAI' },
-      { key: 14, value: 'NISSAN' },
-      { key: 15, value: 'VOLVO' },
-      { key: 16, value: 'BYD' },
-      { key: 17, value: 'HONDA' },
+      { key:'KIA', value: 'KIA' },
+      { key: 'MAZDA', value: 'MAZDA' },
+      { key: 'TOYOTA', value: 'TOYOTA' },
+      { key: 'SKODA' , value: 'SKODA' },
+      { key:'SSANGYONG', value: 'SSANGYONG' },
+      { key: 'Ford', value: 'Ford' },
+      { key: 'BMW' , value: 'BMW' },
+      { key: 'LADA', value: 'LADA' },
+      { key: 'CITROËN', value: 'CITROËN' },
+      { key: 'SUZUKI', value: 'SUZUKI' },
+      { key: 'SEAT', value: 'SEAT' },
+      { key:'RENAULT', value: 'RENAULT' },
+      { key:  'HYUNDAI', value: 'HYUNDAI' },
+      { key: 'NISSAN', value: 'NISSAN' },
+      { key: 'VOLVO', value: 'VOLVO' },
+      { key: 'BYD', value: 'BYD' },
+      { key:'HONDA', value: 'HONDA' },
 
     ];
-  
-    this.services= [
-      { key: 1, value: 'Mechanical' },
-      { key: 2, value: 'Electricity' },
-      { key: 3, value: 'Suspensions' },
-      { key: 4, value: 'Car Denting' },
-      { key: 5, value: 'paints' },
-      { key: 6, value: 'brakes' },
-      { key: 7, value: 'lubricants' },
-      { key: 8, value: 'Tires and batteries' },
-      { key: 9, value: 'gear box' },
-      { key: 10, value: 'A/C/Charge' },
-      { key: 11, value: 'Radiator' },
-      { key: 12, value: 'Fast Service' },
-      { key: 13, value: 'Computer detection' },
-      { key: 14, value: 'Car wash and care' },
-      { key: 15, value: 'Insurance companies' },
-      { key:16,
+
+
+
+
+   this.services= [
+
+      { key: 'Mechanical', value: 'Mechanical' },
+      { key: 'Electricity' , value: 'Electricity' },
+      { key: 'Suspensions' , value: 'Suspensions' },
+      { key: 'Car Denting', value: 'Car Denting' },
+      { key: 'paints', value: 'paints' },
+      { key: 'brakes', value: 'brakes' },
+      { key: 'lubricants', value: 'lubricants' },
+      { key: 'Tires and batteries', value: 'Tires and batteries' },
+      { key: 'gear box', value: 'gear box' },
+      { key: 'A/C/Charge' , value: 'A/C/Charge' },
+      { key: 'Radiator', value: 'Radiator' },
+      { key: 'Fast Service', value: 'Fast Service' },
+      { key: 'Computer detection', value: 'Computer detection' },
+      { key: 'Car wash and care', value: 'Car wash and care' },
+      { key: 'Insurance companies' , value: 'Insurance companies' },
+      { key:'Oil Change Offers + Preventive Maintenance',
         value: 'Oil Change Offers + Preventive Maintenance',
       },
-      { key: 17, value: 'El-Mikaneeky BOSCH' },
-      { key: 18 , value: 'Labor fees Discount' },
+      { key: 'El-Mikaneeky BOSCH', value: 'El-Mikaneeky BOSCH' },
+      { key: 'Labor fees Discount' , value: 'Labor fees Discount' },
     ];
+
 
 
 
@@ -167,12 +172,10 @@ this.oldnameforupdateservice = res
     formData.append('phone', this.serviceform.value.phone);
     formData.append('description', this.serviceform.value.description);
     formData.append('location', this.serviceform.value.location);
-  
-    formData.append('cars', JSON.stringify(this.selectedCarsData));
-    formData.append('services', JSON.stringify(this.selectedServicesData));
     formData.append('days', JSON.stringify(scheduleData));
+    formData.append('cars', JSON.stringify(this.selectedCarsData));
+    formData.append('services', JSON.stringify(this.selectedServicesData))
 
-    
     const selectedCars = this.serviceform.value.cars;
     this.selectedCarsData = selectedCars.map((selectedCar: any) => {
         const car = this.cars.find(car => car.value === selectedCar);
@@ -192,7 +195,7 @@ this.oldnameforupdateservice = res
     });
 
     if (typeof window !== 'undefined') {
-      const token: any = sessionStorage.getItem('token');
+      const token: any = localStorage.getItem('token');
       if (token) {
         const headers = new HttpHeaders({
 

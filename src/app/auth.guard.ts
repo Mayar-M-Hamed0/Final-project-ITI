@@ -8,9 +8,9 @@ export class AuthGuard implements CanActivate {
 
   constructor(private router: Router) {}
 
-  canActivate(): boolean {
-
-    const token = sessionStorage.getItem('token');
+  canActivate(): any {
+    if (typeof window !== 'undefined') {
+    const token = localStorage.getItem('token');
 
     if (token) {
   
@@ -20,5 +20,6 @@ export class AuthGuard implements CanActivate {
 
     
     return true;
+  }
   }
 }
