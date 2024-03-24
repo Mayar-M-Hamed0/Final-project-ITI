@@ -1,8 +1,9 @@
 import { HttpClient ,HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import {Router  , RouterLink, RouterLinkActive } from '@angular/router';
 import { log } from 'console';
 import { LoginService } from '../services/login.service';
+
 
 @Component({
   selector: 'app-navbar',
@@ -14,7 +15,7 @@ import { LoginService } from '../services/login.service';
 export class NavbarComponent {
   datauser: any = '';
 
-  constructor(private loginService:LoginService) { 
+  constructor(private loginService:LoginService, private router:Router) { 
    
   
   }
@@ -23,7 +24,10 @@ export class NavbarComponent {
     this.loginService.auth().subscribe(
       (data) => {
       this.datauser=data
+      console.log(this.datauser);
       }
+     
+      
     );
   
   }
@@ -31,9 +35,8 @@ export class NavbarComponent {
   
   logout() {
     sessionStorage.removeItem('token');
-    setTimeout(() => {
-      window.location.reload();
-    }, 2000); // بعد ثانيتين (2000 مللي ثانية)
+    this.router.navigate(['/']);
+    window.location.reload()
   }
   
 

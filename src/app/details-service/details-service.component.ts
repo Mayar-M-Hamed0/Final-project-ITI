@@ -1,19 +1,22 @@
 import { Component, NgModule } from '@angular/core';
 import { HostListener } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink,Params } from '@angular/router';
 import { RatingStarsComponent } from '../rating-stars/rating-stars.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { CommonModule, NgFor } from '@angular/common';
 import {comments} from '../../comments'
 import { ServicesService } from '../services/services.service';
-
+import Swal from 'sweetalert2';
+import { HttpClient,HttpHeaders,HttpErrorResponse  } from '@angular/common/http';
+import {  throwError } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FilterPipe } from '../filter.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { readdir } from 'fs';
 import { Router } from '@angular/router';
+import { LoginService } from '../services/login.service';
 @Component({
   selector: 'app-details-service',
   standalone: true,
@@ -23,27 +26,27 @@ import { Router } from '@angular/router';
 })
 export class DetailsServiceComponent {
   p: number = 1;
-
+  Username!:string;
 data:any =  []
 id:any
 searchtext:any;
 
 crntpage:any
 datafromapi : any = [];
-
-  constructor(private serv:ServicesService , private route:ActivatedRoute, private resevedata:ServicesService,private router: Router){
+mapUrl: string = '';
+  constructor(private serv:ServicesService ,private HttpClient_:HttpClient, private route:ActivatedRoute, private resevedata:ServicesService,private router: Router,private loginService:LoginService ){
     this.id = this.route.snapshot.paramMap.get("id")
     this.serv.getsinglepage(this.id).subscribe(res=>{
 
 
-    this.data = res; 
+    this.data = res;
+      console.log(this.data)
 
 
-    this.resevedata.getdata().subscribe(res2 => {
 
-      this.datafromapi = res2;
-       console.log("this is the response of api",this.datafromapi,this.searchtext)
-    })
+
+
+  
 
     })
   }
@@ -57,27 +60,30 @@ datafromapi : any = [];
     window.scrollTo({top:0,behavior:'smooth'})
   }
 
-  faStar = faStar;
-  rating = 0;
-  setRating(value: number){
-    this.rating = value;
-  } 
 
 
 
-  
   comments:any = comments
 
  // comments:any = comments
 
 
-  
+
   posts: any;
   countlike: number = 0
   countdislike: number = 0
 
 
+///
 
+service_center_id!:number;
+Description!:String;
+rate!:number;
+date!:string;
+
+datauser: any = ''
+
+headers:any =''
 
   ngOnInit() {
     this.serv.getlike().subscribe((value) => this.countlike = value)
@@ -85,51 +91,145 @@ datafromapi : any = [];
 
     this.serv.getAllposts().subscribe((res) => { this.posts = res });
 
+      this.route.params.subscribe((params:Params)=>{this.service_center_id=params['id']})
+      this.loginService.auth().subscribe(
+        (data) => {
+        this.datauser=data
+        })
+
+
+
+
   }
+
 
   comment!: string
   CommentId!: number
   Date!: Date
-  Username!: string
+  name!: string
+  image!: string
+  
+
+
+
+
+
   savecomment() {
-    var inputsdata = {
 
-      CommentId: '',
-      Date: '',
-      comment: this.comment,
-      Username: this.Username,
+
+    let inputsdata = {
+      user_id: this.datauser.id,
+      service_center_id: this.service_center_id,
+      Description: this.Description,
+      rate:this.rate
+    };
+
+ if (typeof window !== 'undefined') {
+    const token: any = sessionStorage.getItem('token');
+    if (token) {
+
+      this.headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
+
+      return this.HttpClient_.post('http://127.0.0.1:8000/api/reviews',inputsdata,{ headers: this.headers }).subscribe({
+        next: (res: any) => {
+          console.log(res, 'res');
+        },
+        error: (err: any) => {
+  
+          if (err.status === 401) {
+         
+            Swal.fire({
+              icon: 'warning',
+              title: 'Please Login First ',
+              showConfirmButton: true,
+              confirmButtonText: ' Login',
+              allowOutsideClick: false,
+              allowEscapeKey: false,
+                 timer: 3000 // يغلق تلقائيا بعد 3 ثواني
+            }).then((result) => {
+              if (result.isConfirmed) {
+                this.router.navigateByUrl('/login');
+              }
+            });
+          } else {
+            console.error('حدث خطأ غير معروف:', err.error);
+          }
+        }
+      });
+    
+    } else {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Please Login First ',
+        showConfirmButton: true,
+        confirmButtonText: ' Login',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+           timer: 3000 // يغلق تلقائيا بعد 3 ثواني
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.router.navigateByUrl('/login');
+        }
+      });
+      return throwError('No token found');
     }
-    this.serv.savecomment(inputsdata).subscribe({
-      next: (res: any) => {
-        console.log(res, 'res')
-      }
-    });
+  } else {
+    return throwError('Window is not available');
   }
-
-  deletecomment(event: any, commentid: any) {
-
-      this.serv.destroycomment(commentid).subscribe((res: any) => {
-        this.serv.getAllposts().subscribe((res) => { console.log(res) });
-     
-      })
     
   
+ 
+
+    return "h";
   }
 
 
 
-  decrese() {
-    if (this.countdislike > 0) {
-      this.serv.Updatadislikecount(this.countdislike - 1)
 
+
+
+  deletecomment(event: any, commentid: any) {
+    if (typeof window !== 'undefined') {
+      const token: any = sessionStorage.getItem('token');
+      if (token) {
+        this.headers = new HttpHeaders({
+          'Authorization': `Bearer ${token}`
+        });
+        Swal.fire({
+          title: 'Are you sure?',
+          text: 'You are about to delete this comment.',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.HttpClient_.delete('http://127.0.0.1:8000/api/reviews/' + commentid, { headers: this.headers }).subscribe((res: any) => {
+              this.serv.getAllposts().subscribe((res) => { console.log(res) });
+            });
+          }
+        });
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: 'Please Login First ',
+          showConfirmButton: true,
+          confirmButtonText: ' Login',
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          timer: 3000
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.router.navigateByUrl('/login');
+          }
+        });
+      }
     }
-
   }
-  increse() {
-    this.serv.Updatalikecount(this.countlike + 1)
-  }
-
-
+  
 
 
   get totalPosts(): number {
@@ -137,9 +237,24 @@ datafromapi : any = [];
   }
 
 
-  
-  updateRating(newRating: number) {
-    this.rating = newRating;
+
+  getStarRating(rating: number): boolean[] {
+    console.log(rating);
+    const filledStars = Math.floor(rating); // Get the number of filled stars
+    const hasHalfStar = rating % 1 !== 0; // Check if there is a half star
+
+    const starRatingArray: boolean[] = [];
+    for (let i = 0; i < rating; i++) {
+      if (i < filledStars) {
+        starRatingArray.push(true); // Push filled star
+      } else if (hasHalfStar && i === filledStars) {
+        starRatingArray.push(true); // Push half star
+      } else {
+        starRatingArray.push(false); // Push empty star
+      }
+    }
+
+    return starRatingArray;
   }
 }
 

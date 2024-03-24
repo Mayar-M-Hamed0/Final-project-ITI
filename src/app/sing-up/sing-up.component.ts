@@ -13,14 +13,8 @@ import { Router } from '@angular/router';
 export class SingUpComponent { 
   gameForm: FormGroup;
 
-  response: any = '';
-
-  constructor(
-
- private http:HttpClient
-,private router: Router
-
-  ) {
+response :any = ''
+  constructor(private http:HttpClient,private router: Router,) {
     this.gameForm = new FormGroup({
       name: new FormControl('', [
         Validators.required,
@@ -51,6 +45,9 @@ export class SingUpComponent {
     }
   );
 }
+
+
+
 
 
  

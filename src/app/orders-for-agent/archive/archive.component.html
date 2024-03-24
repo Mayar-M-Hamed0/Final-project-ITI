@@ -1,0 +1,76 @@
+<div class="main-dev pb-5">
+  <div class="title py-5 mx-5">
+    <h1>our center orders</h1>
+    <p class="">can view , accept and delete all orders here</p>
+  </div>
+  <div class="component rounded-2 p-3 mb-5 mx-5 ">
+    <div class="mx-auto my-2 pe-auto">
+      <button class="btn mx-3"> <a routerLink="/dash"> Back to dashboard</a>  </button>
+      <button class="btn mx-1 "> <a routerLink="/orders"> Go to orders</a>  </button>
+    </div>
+
+    @if(orders){
+
+      @for (order of orders.data | paginate: { itemsPerPage: 3, currentPage: crntpage } ; track $index) {
+
+        <div class="card mb-5 w-100 me-2 mt-3" >
+          <div class="row g-0">
+            <div class="col-md-3">
+              <img src="../../assets/usre .png" class="img-fluid rounded-start" alt="..." />
+            </div>
+            <div class="col-md-9">
+              <div class="row " >
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">car owner name: {{order['name']}}</h5>
+                    <p class="card-text">
+                     car model:{{order['car_model']}} <br>
+                     service needed:  {{order['service_name']}} <br>
+                     location:{{order['location']}} <br>
+                     phone number:{{order['phone']}} <br>
+                     email:{{order['email']}} <br>
+
+                    <p class="card-text">
+                      <small class="text-muted"
+                        >notice :{{order['notice']}}</small
+                      >
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-4  m-auto ">
+                  <!-- <button class="btn my-2 d-block px-4 m-auto" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="restore(order['id'])"> Restore </button> -->
+
+
+                </div>
+               </div>
+            </div>
+          </div>
+        </div>
+      }
+    }
+    <pagination-controls class="text-white-50 mx-auto" (pageChange)="crntpage=$event"></pagination-controls>
+
+
+
+
+
+
+  </div>
+
+
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">RESTORE</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        order has been restored
+      </div>
+
+    </div>
+  </div>
+</div>
+

@@ -1,87 +1,107 @@
-<div class="card ">
-    <img src="{{data.imageurl}}" class="card-img-top img-fluid" alt="Service Center Cover Image">
+<div class="card">
+    <img src="http://127.0.0.1:8000/{{ data['image'] }}" class="card-img-top img-fluid" alt="Service Center Cover Image" />
     <div class="card-img-overlay">
         <div class="position-relative d-inline-block">
-            <img src="{{data.imageurl}}" class="rounded-circle" alt="Circle Image" width="200">
+            <img src="http://127.0.0.1:8000/{{ data['image'] }}" class="rounded-circle" alt="Circle Image" width="200" />
         </div>
-        <h3 class="card-title fw-bold fs-1">{{data.servicename}}</h3>
-        <p class="card-text">Location : {{data.location}} </p>
-        <p class="card-text"> @for (item of data.model; track $index) { {{item}} }</p>
-        <div class="ratingCar">
-            <app-rating-stars [actualRating]="4"></app-rating-stars>
-        </div>
-        <button id="pointer" (click)="goToTop()" class="rounded-5 "><i class="fa-solid fa-up-long"></i> </button>
+        <h3 class="card-title fw-bold fs-1">{{ data["name"] }}</h3>
+        <p class="card-text">Location : {{ data["location"] }}</p>
+        <p class="card-text">
+            @for (item of data.car; track $index) { {{ item }} }
+        </p>
 
+        <button id="pointer" (click)="goToTop()" class="rounded-5">
+      <i class="fa-solid fa-up-long"></i>
+    </button>
     </div>
 </div>
-<div class="card border mb-3 w-50 m-auto pt-3">
-    <div class="card-header  fw-bold   text-center  text-body-tertiary" style="background-color: #083248; color: white !important;">
-        {{data.servicename}}</div>
-    <div class="card-body ">
+<div class="row">
 
-        <p class="card-text text-dark fw-lighter text-center  card-des fs-4">
+</div>
 
-            {{data.servicedetails}}
+<h4 class="text-center py-5 my-4">Our services</h4>
+<div class="servicee">
 
-        </p>
+    @for (service of data['services']; track $index) {
+
+    <div class="card border mb-3 w-25  m-auto pt-3">
+        <div class="card-header fw-bold text-center text-body-tertiary" style="background-color: #083248; color: white !important">
+            {{service['service_name']}}
+        </div>
+        <div class="card-body">
+            <p class="card-text text-dark fw-lighter text-center card-des fs-4">
+                details:{{service['service_details']}}
+            </p>
+            <p class="card-text text-dark fw-lighter text-center card-des fs-4">
+                Reservation value <span class="badge">{{data.price}} EGP</span>
+            </p>
+
+        </div>
+    </div>
+    } @if (data.services.length === 0) {
+
+    <div class="card border mb-3 w-25  m-auto pt-3">
+        <div class="card-header fw-bold text-center text-body-tertiary" style="background-color: #083248; color: white !important">
+
+        </div>
+        <div class="card-body">
+            <p class="card-text text-dark fw-lighter text-center card-des fs-4">
+
+            </p>
+            <p class="card-text text-dark fw-lighter text-center card-des fs-4">
+                Reservation value <span class="badge">{{data.price}} EGP</span>
+            </p>
+
+        </div>
     </div>
 
+
+    }
 </div>
 <div class="d-flex justify-content-center">
-    <button type="submit" class="btn btn-danger   p-3 border-0" id="btnstyle" routerLink="/bookingnow">Booking Now</button>
+    <button type="submit" class="btn btn-danger p-3 border-0" id="btnstyle" routerLink="/bookingnow/{{ data.id }}">
+    Booking Now
+  </button>
 </div>
-
-<!------------ rating ------------>
-<div class="rate">
-    <h1>Rate us</h1>
-    <div class="starsClient mb-3">
-        <fa-icon [icon]="faStar" (click)="setRating(1)" [class.rated]="rating >=1"></fa-icon>
-        <fa-icon [icon]="faStar" (click)="setRating(2)" [class.rated]="rating >=2"></fa-icon>
-        <fa-icon [icon]="faStar" (click)="setRating(3)" [class.rated]="rating >=3"></fa-icon>
-        <fa-icon [icon]="faStar" (click)="setRating(4)" [class.rated]="rating >=4"></fa-icon>
-        <fa-icon [icon]="faStar" (click)="setRating(5)" [class.rated]="rating >=5"></fa-icon>
-    </div>
-</div>
-
 
 
 <div class="container px-4 py-5 shadow-lg" id="hanging-icons">
-    <h2 class="pb-2 border-bottom" style="color: #083248;"> <span class="fw-bold " style="color: #083248;">S</span>ervice</h2>
+    <h2 class="pb-2 border-bottom" style="color: #083248">
+        <span class="fw-bold" style="color: #083248">S</span>ervice
+    </h2>
     <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
         <div class="col d-flex align-items-start">
             <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
-                <i style="color: #083248;" class="fa-solid fa-car-tunnel"></i>
+                <i style="color: #083248" class="fa-solid fa-car-tunnel"></i>
             </div>
             <div>
-                <h3 style="color: #083248;">Automotive Care </h3>
-                <p class="mt-4">
-                    Quality and Efficiency in Serving Our Customers
-                </p>
-                <hr>
-            </div>
-        </div>
-        <div class="col d-flex align-items-start ">
-            <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
-                <i style="color: #083248;" class="fa-solid fa-soap"></i>
-            </div>
-            <div>
-                <h3 style="color: #083248;">Car Cleaning </h3>
-                <p class="mt-4">
-                    The Optimal Solution for Maintaining Your Car's Beauty
-                </p>
-                <hr>
+                <h3 style="color: #083248">Automotive Care</h3>
+                <p class="mt-4">Quality and Efficiency in Serving Our Customers</p>
+                <hr />
             </div>
         </div>
         <div class="col d-flex align-items-start">
             <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
-                <i style="color: #083248;" class="fa-solid fa-screwdriver-wrench"></i>
+                <i style="color: #083248" class="fa-solid fa-soap"></i>
             </div>
             <div>
-                <h3 style="color: #083248;">Car Repair </h3>
+                <h3 style="color: #083248">Car Cleaning</h3>
+                <p class="mt-4">
+                    The Optimal Solution for Maintaining Your Car's Beauty
+                </p>
+                <hr />
+            </div>
+        </div>
+        <div class="col d-flex align-items-start">
+            <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+                <i style="color: #083248" class="fa-solid fa-screwdriver-wrench"></i>
+            </div>
+            <div>
+                <h3 style="color: #083248">Car Repair</h3>
                 <p class="mt-4">
                     Experience and Professionalism in Restoring Your Car to Its Best Condition
                 </p>
-                <hr>
+                <hr />
             </div>
         </div>
     </div>
@@ -89,31 +109,21 @@
 
 <!-- car tags -->
 <h3 class="text-center mt-2" id="texxxt">Tags:</h3>
-<hr>
+<hr />
 
 <div class="container" id="texxxt">
     <div class="row">
         <div class="col-9 lh-1 mt-3">
             <div class="row">
-                @for (item of data.tag; track $index) {
+                @for (item of data.services; track $index) {
                 <div class="col-lg-4 col-6">
-
-                    <p> <i class="fa-solid fa-tag"></i> {{item}}</p>
-
-
-
-
+                    <p><i class="fa-solid fa-tag"></i> {{ item.service_name }}</p>
                 </div>
                 }
-
             </div>
-
-
-
         </div>
         <div class="col-3 mt-5">
-
-            <img src="../../assets/tag.png" class="card-img-bottom img-fluid m-5 w-50" alt="Service Center Cover Image">
+            <img src="../../assets/tag.png" class="card-img-bottom img-fluid m-5 w-50" alt="Service Center Cover Image" />
         </div>
     </div>
 </div>
@@ -121,225 +131,200 @@
 <!-- car modeal -->
 
 <h3 class="text-center mt-2" id="texxxt">Car Model</h3>
-<hr>
+<hr />
 
 <div class="container" id="texxxt">
     <div class="row">
         <div class="col-9 lh-1 mt-3">
-            <div class="row">
-                @for (item of data.model; track $index) {
-                <div class="col-lg-4 col-6">
-
-                    <p> <i class="fa-solid fa-tag"></i> {{item}}</p>
-
-
-
-
-                </div>
-                }
-
-
-
+        <div class="row">
+            @for (item of data.cars; track $index) {
+            <div class="col-lg-4 col-6">
+                <p><i class="fa-solid fa-tag"></i> {{ item['car_name'] }}</p>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            }
         </div>
+    </div>
         <div class="col-3 mt-5">
-
-            <img src="../../assets/car.png" class="card-img-bottom img-fluid m-5 w-50" alt="Service Center Cover Image">
+            <img src="../../assets/car.png" class="card-img-bottom img-fluid m-5 w-50" alt="Service Center Cover Image" />
         </div>
     </div>
 </div>
 
-
-
 <!-- form  -->
 
 <!-- form  -->
-
 
 <!-- الجدول -->
+
 
 <div class="container">
     <div class="row">
         <div class="col-lg-6">
+            <div class="card-body border text-center w-75">
+                <img src="http://127.0.0.1:8000/{{ data['image'] }}" width="90" alt="" srcset="" />
+                <h5 class="text-center" id="texxxt">{{ data["name"] }}</h5>
+                <a href="tel:{{data.phone}}" class="btn btn-secondary" id="btnstyle">
+          Contact</a
+        >
+      </div>
 
-            <div class="card-body border text-center w-75 ">
-                <img src="../../assets/ser.jpg" width="90" alt="" srcset="">
-                <h5 class="text-center" id="texxxt">El Mikaneeky - ElNozha</h5>
-                <a href="tel:01128058368" class="btn btn-secondary " id="btnstyle"> Contact</a>
+      <div class="table-responsive">
+        
+        <table class="table w-50">
+            <thead>
+                <tr>
+                  <th></th>
+                  <th>Working time</th>
+                  <th></th>
+                </tr>
+              </thead>
+          <thead>
+            <tr>
+              <th>Day</th>
+              <th>Start Time</th>
+              <th>End Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of data.days; track $index) {
 
-            </div>
+                <tr>
+                    <td>{{item.day}}</td>
+                    <td>{{item.start_hour}}</td>
+                    <td>{{item.end_hour}}</td>
+                  </tr>
+            }
+         
+
+          </tbody>
+        </table>
+      </div>
+      <p class="fw-bold" id="texxxt">Adress:</p>
+
+<a href="https://www.google.com/maps/place/{{data.location}}?entry=ttu">Location</a>
+      <p>{{data.location}}</p>
 
 
+      <p>::</p>
 
+      <div
+        id="map-container-google-2"
+        class="z-depth-1-half map-container"
+        style="height: 500px"
+      >
+      <iframe width="100%" height="500" src="https://maps.google.com/maps?q=cairo>&output=embed"></iframe>
 
-            <div class="table-responsive ">
-                <table class="table w-50 ">
-                    <thead>
-                        <tr>
-                            <th>Day</th>
-                            <th>Start Time</th>
-                            <th>End Time</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Monday </td>
-                            <td>9:00 </td>
-                            <td>19:00</td>
-
-                        </tr>
-
-                        <tr>
-                            <td>Tuesday </td>
-                            <td>9:00 </td>
-                            <td>19:00</td>
-
-                        </tr>
-
-
-                        <tr>
-                            <td>Wednesday </td>
-                            <td>9:00r </td>
-                            <td>19:00</td>
-
-                        </tr>
-                        <tr>
-                            <td>Thursday </td>
-                            <td>9:00 </td>
-                            <td>19:00</td>
-
-                        </tr>
-                        <tr>
-                            <td>Friday </td>
-                            <td>9:00 </td>
-                            <td>19:00</td>
-
-                        </tr>
-                        <tr>
-                            <td>Saturday </td>
-                            <td>9:00</td>
-                            <td>19:00</td>
-
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <p class="fw-bold" id="texxxt">Adress:</p>
-            <div id="map-container-google-2" class="z-depth-1-half map-container" style="height: 500px">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3456.074084649587!2d31.135070424090987!3d29.977300821748116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14584f7de239bbcd%3A0xca7474355a6e368b!2z2KPZh9ix2KfZhdin2Kog2KfZhNis2YrYstip!5e0!3m2!1sar!2seg!4v1706989210083!5m2!1sar!2seg"
-                    frameborder="0" allowfullscreen></iframe>
-            </div>
-        </div>
-        <div class="col-3">
-        </div>
+      <p class="fw-bold fs-4"></p>
+      
+      </div>
     </div>
+    <div class="col-3"></div>
+  </div>
 </div>
-
 
 <!------------------ comments --------------->
 
 <div class="bg-image">
     <h1 style="color: black;font-family:Sofia;text-align: center;">REVIEWS</h1>
     <p style="color: black;font-family:Sofia;text-align: center;font-size: larger;">from our clients</p>
-
-    <form (ngSubmit)="savecomment()" style="width: 100% ">
-        <div class="bg-text">
-            <input id="inputrev" type="text" class="form-control " placeholder="write your user_name" name="Username" [(ngModel)]="Username">
-            <input id="inputrev" type="text" class="form-control " placeholder="write your comment" name="comment" [(ngModel)]="comment">
+  
+    <form (ngSubmit)="savecomment()" style="width: 100% ;">
+        <div class="bg-text" style="height:160px; ">
+           <input id="inputrev" type="text" class="form-control " placeholder="write your comment" name="Description" [(ngModel)]="Description">
             <br>
+             <input id="inputrev" type="number" class="form-control " placeholder="write your rate" name="rate" [(ngModel)]="rate">
+         
+
             <button id="inputrev" class="inputrevbutton" type="submit" id="button-addon2" style="display: flex;float: right;">
-                <i class="fa-solid fa-paper-plane"></i> 
+                <i class="fa-solid fa-paper-plane"></i>
             </button>
-
+  
         </div>
-
+  
     </form><br>
     <ul>
-        <li *ngFor="let post of posts| paginate: { itemsPerPage: 1, currentPage: p }">
+        <li *ngFor="let post of posts.data| paginate: { itemsPerPage: 1, currentPage: p }">
+  
+            <div class="bg-text" style="margin-left:-12px;">
 
-            <div class="bg-text">
-                <a (click)="deletecomment($event,post.id)" style="display: flex; float: right;margin-right:-20px;margin-top: -20px;" class="btn btn-outline-info inputrevbutton " type="submit" id="button-addon2">
+                <a *ngIf="post.user_id === datauser.id" (click)="deletecomment($event, post.id)" style="display: flex; float: right;margin-right:-20px;margin-top: -20px;" class="btn btn-outline-info inputrevbutton " type="submit" id="button-addon2">
                     <i class="fa-solid fa-times-circle send-icon"></i>
                 </a>
-                <a routerLink="/comment/{{post.id}}/edit" style="display: flex; float: right;margin-right:0px;" class="btn btn-outline-info inputrevbutton" type="submit" id="button-addon2">
 
+                <a *ngIf="post.user_id === datauser.id" routerLink="/comment/{{ post.id }}/edit" style="display: flex; float: right;margin-right:0px;" class="btn btn-outline-info inputrevbutton" type="submit" id="button-addon2">
                     <i class="fa-solid fa-pen send-icon"></i>
-
                 </a>
+
+
                 <div style="display: flex; float: left; margin-top:-10px;margin-left:-10px; width:50px;height: 50px;border-radius: 50%;background-color:rgb(205, 159, 144);opacity :0.5"></div>
                 <div style="display: flex; float: left; margin-top:-10px;margin-left:-10px; width:20px;height: 20px;border-radius: 50%;background-color:rgb(205, 159, 144);opacity :0.5"></div>
 
                 <div style="display: flex; float: right; margin-top:80px;margin-right:-15px; width:50px;height: 50px;border-radius: 50%;background-color: rgb(205, 159, 144);opacity :0.5"></div>
                 <div style="display: flex;  float: right; margin-top:110px;margin-right:-10px; width:20px;height:20px;border-radius: 50%;background-color:rgb(205, 159, 144);opacity :0.5"></div>
-                <img src="/assets/user.png" style="width:40px;height:40px; border-radius: 50%;"><br>
-                <p style="padding-left:20px;">{{post.Username}}</p>
 
-                <p style="padding-left:20px;">{{post.comment}}</p>
+                @if (post.image === null) {
+                <img src="/assets/avatar.png" style="width:40px;height:40px; border-radius: 50%;"><br> }@else{
+                <img src="http://127.0.0.1:8000/{{ post.image }}" style="width:40px;height:40px; border-radius: 50%;"><br> }
+                <div class="col-sm-4 col-4 star-par" style=" margin-left: 140px;">
+                    <ul class="stars">
+                        <div class="star-rating">
+                            <span style="color: goldenrod;" *ngFor="let filled of getStarRating(post.rate)" class="star" [ngClass]="{'filled': filled}">&#9733;</span>
+                        </div>
+                    </ul>
+                </div>
 
+                <p style="padding-left:30px; margin-left: 10px;"> {{post['name']}} </p>
+
+                <p style="padding-left:20px;">{{post['Description']}} </p>
 
 
 
             </div>
-        </li>
-    </ul>
+            </li>
+            </ul>
 
-    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
 
-    <br>
+            <br>
 
-</div>
-
-
+        </div>
 
 
-<br><br>
-<!------------------ comments --------------->
-<!-- <div class="commentContainer">
+
+
+        <br><br>
+        <!------------------ comments --------------->
+
+        <!-- <div class="commentContainer">
     <div class="CommentHolder">
         <div class="input-group mb-1 comment">
             <form (ngSubmit)="savecomment()" style="width: 100%">
                 <input style="margin-bottom: 10px;" type="text" class="form-control " placeholder="write your user_name" name="Username" [(ngModel)]="Username">
-
+  
                 <input style="margin-bottom: 10px;" type="text" class="form-control " placeholder="write your comment" name="comment" [(ngModel)]="comment">
-
+  
                 <button class="btn btn-outline-info" type="submit" id="button-addon2" style="display: flex;float: right;"><i class="fa-solid fa-share"></i></button>
-
+  
             </form>
         </div>
         <div class="audienceComments">
-
-
+  
+  
             @for (post of posts; track post.id) {
             <div class="commentCard">
-
+  
                 <a routerLink="/comment/{{post.id}}/edit" style="display: flex; float: right;" class="btn btn-outline-info" type="submit" id="button-addon2">
                     <i class="fa-solid fa-pen">  </i>
                 </a>
-
+  
                 <a (click)="deletecomment($event,post.id)" style="display: flex; float: right; margin-right: 5px;" class="btn btn-outline-info" type="submit" id="button-addon2">
                     <i class="fa-solid fa-trash"></i>
                 </a>
-
+  
                 <h5><i class="fa-regular fa-user"></i>{{post.Username}}</h5>
                 <p>{{post.comment}}</p>
                 <div class="likeDislike">
-
+  
                     <div>
                         <span>{{countlike}}</span><i (click)="increse()" class="fa-regular fa-thumbs-up" id="like"></i>
                     </div>
@@ -351,4 +336,4 @@
             }
         </div>
     </div>
-</div> -->
+  </div> -->

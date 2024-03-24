@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient ,HttpHeaders} from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { map,Observable, throwError,catchError  } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -32,6 +32,27 @@ export class LoginService {
     }
     
  
+  }
+
+
+
+
+  isAdmin(): Observable<boolean> {
+    if (typeof window !== 'undefined') {
+      const token = sessionStorage.getItem('token');
+      if (token) {
+        const headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        });
+  
+        return this.HttpClient_.get<any>('http://127.0.0.1:8000/api/user', { headers });
+      } else {
+        return throwError('No token found');
+      }
+    } else {
+      return throwError('Window is not available');
+    }
   }
   
  

@@ -1,0 +1,90 @@
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                @if (datauser.image) {
+                    <img class="rounded-circle mt-5" width="150px"
+                
+                    src="http://127.0.0.1:8000/{{datauser.image}}">
+                }
+               
+                Your Name :
+                <span class="font-weight-bold">{{datauser.name}}</span><span class="text-black-50">{{datauser.email}}</span><span> </span></div>
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Profile Settings</h4>
+                </div>
+
+                <div class="row mt-3">
+                  
+
+                    <form (ngSubmit)="handelForm($event)" class="form-control" [formGroup]="serviceform">
+
+<label for="">Name</label>
+                        <input type="text" class="form-control" id="inputName" formControlName="name" />
+                        @if(serviceform.controls['name'].invalid && serviceform.controls['name'].touched) {
+                        @if(serviceform.controls['name'].errors?.['required'])
+                        {
+                        <span style="color: red;"> This Name is required </span> } }
+                        <div *ngIf="serviceform.controls['name'].errors?.['minlength']">
+                            <span style="color: red;">Min Length Name 7 Characters!</span>
+                            {{ errorMessage.name }}
+                        </div>
+                        <label for="">Password</label>
+                        <input type="password" class="form-control" id="inputName" formControlName="password"  />
+                        @if(serviceform.controls['password'].invalid && serviceform.controls['password'].touched) {
+                        @if(serviceform.controls['password'].errors?.['required'])
+                        {
+                        <span style="color: red;"> This password is required </span> } }
+                        <div *ngIf="serviceform.controls['password'].errors?.['minlength']">
+                            <span style="color: red;">Min Length Name 7 Characters!</span>
+                            {{ errorMessage.password }}
+                        </div>
+                        @if(serviceform.controls['password'].errors?.['pattern'])
+                        {
+                          <div class="alert alert-danger p-2" role="alert">
+                         please insert a valid Password
+                          </div>
+                        }
+                    
+                    
+                        <label for="phone" class="col-sm-2 col-form-label">phone </label>
+                    
+                        <input type="text" class="form-control" id="phone" formControlName="phone" />
+                        @if(serviceform.controls['phone'].invalid && serviceform.controls['phone'].touched) {
+                        @if(serviceform.controls['phone'].errors?.['required']) {
+                        <span style="color: red;"> This phone is required </span> } }
+                        @if(serviceform.controls['phone'].errors?.['pattern'])
+                        {
+                          <div class="alert alert-danger p-2" role="alert">
+                         please insert a valid phone like 010********
+                          </div>
+                        }
+                    
+                        <input type="file" (change)="onFileSelected($event)" class="form-control" id="image" formControlName="image" />
+                        @if(serviceform.controls['image'].invalid && serviceform.controls['image'].touched) {
+                        @if(serviceform.controls['image'].errors?.['required']) {
+                        <span style="color: red;"> This image is required </span> }
+                        {{ errorMessage.image }}
+                        }
+                    
+                        <input type="submit"  [disabled]="!serviceform.valid"
+                            class="btn btn mt-2 text-white  pl-2 profile-button"  />
+                        <button type="button" class="btn btn mt-2 text-white " style="background-color:  #293241;"
+                            (click)="resetForm()">Reset Form</button>
+                        <p class="text-success fw-bold">{{msgres.message}}</p>
+                    </form>
+
+
+
+                </div>
+        
+            </div>
+        </div>
+        <div class="col-md-4">
+         
+        </div>
+    </div>

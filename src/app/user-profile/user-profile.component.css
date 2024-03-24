@@ -4,11 +4,12 @@
     border-radius: 50%;
     background-repeat: repeat-x;
     background-size: cover;
-    background-image: url(/assets/img.jpg);
+
     margin: auto;
-    position: absolute;
-    top: 100px;
-    left: 640px;
+    position: relative;
+    top: -214px;
+    left: 61px;
+    z-index: 10;
 }
 
 .container {
@@ -16,4 +17,47 @@
     width: 25%;
     margin-top: 110px;
     text-align: center;
+}
+
+.main-dev
+{
+  background-color: #EEE;
+}
+.card{
+  color:#425980 !important;
+  box-shadow: 2px 8px 12px 2px #f0e7e769;
+
+}
+.card:hover{
+  transform: scale(1.025);
+}
+.component{
+  background-color: #293241 ;
+  
+}
+button
+{
+  background-color:  #ee6c4d !important;
+  color: #293241;
+}
+
+img
+{
+  max-height: 200px !important;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}
+h4
+{
+  padding-top: 150px;
+  padding-bottom: 50px;
+  padding-left: 20px;
+  color: #fff;
+}
+
+.card {
+
 }

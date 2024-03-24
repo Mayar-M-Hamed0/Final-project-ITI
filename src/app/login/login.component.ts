@@ -45,6 +45,7 @@ export class LoginComponent {
 
         sessionStorage.setItem('token', this.response.data.token);
           this.router.navigate(['/']);
+          window.location.reload()
       } else {
 
         this.response = res;

@@ -1,3 +1,4 @@
+import { DashbordComponent } from './dash/dashbord/dashbord.component';
 
 import { Routes } from '@angular/router';
 
@@ -10,10 +11,19 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { CenterOrdersComponent } from './center-orders/center-orders.component';
 import { BookingnowComponent } from './details-service/bookingnow/bookingnow.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
-import { ServiceformComponent } from './serviceform/serviceform.component';
 import { CommenteditComponent } from './commentedit/commentedit.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { check } from './checklog.guard';
 import { AuthGuard } from './auth.guard';
+
+import { CreateserviceComponent } from './dash/createservice/createservice.component';
+import { ViewserviceComponent } from './dash/viewservice/viewservice.component';
+import { UpdateserviceComponent } from './dash/updateservice/updateservice.component';
+import { DashboardAccessGuard } from './dashboard.guard';
+import { OrdersForAgentComponent } from './orders-for-agent/orders-for-agent.component';
+import { ArchiveComponent } from './orders-for-agent/archive/archive.component';
+import { UpdateOrderComponent } from './user-profile/updateorder/updateorder.component';
+import { UpdateuserComponent } from './user-profile/updateuser/updateuser.component';
 export const routes: Routes = [
   {
     path:"",
@@ -21,10 +31,10 @@ export const routes: Routes = [
   },
 
 
+
   {
     path:"Home",
     component:HomeComponent , title:"Home"
-  },
   },
 
 
@@ -44,11 +54,15 @@ component:DetailsServiceComponent , title:"details-service"
 component:SingUpComponent , title:"signup",canActivate:[AuthGuard]
 },
 
-{ path:"serviceform",
-component:ServiceformComponent , title:"serviceform"
+
+{ path:"create",
+component:CreateserviceComponent , title:"signup",canActivate:[AuthGuard]
 },
 
-{ path:"comment/:id/edit", component:CommenteditComponent},
+
+
+{ path:"comment/:id/edit", component:CommenteditComponent,canActivate: [check]},
+
 
 
 
@@ -60,9 +74,13 @@ component:LoginComponent, title:"Login",canActivate:[AuthGuard]
 
 component:CenterOrdersComponent, title:"center order"
 },
-{ path:"bookingnow",
+{ path:"bookingnow/:id",
 
 component:BookingnowComponent, title:"order"
+},
+{
+path:"orderforcenter/:id",
+component:OrdersForAgentComponent
 },
 { path:"orderdetails",
 
@@ -71,12 +89,42 @@ component:OrderDetailsComponent, title:"orderdetails"
 
 { path:"user",
 
-component:UserProfileComponent, title:"user"
+component:UserProfileComponent, title:"user",canActivate: [check]
 },
-{ path:"dashboard",
+{ path:"EditProfile",
 
-component:TheDashboardComponent, title:"dashboard"
+
+component:UpdateuserComponent, title:"EditProfile",canActivate: [check]
 },
+
+{ path:"archive/:id",
+
+component:ArchiveComponent, title:"archive"
+},
+{ path:"updateorder/:id",
+
+component:UpdateOrderComponent, title:"updateorder"
+},
+
+{ path:"dash",
+
+component:DashbordComponent, title:"user",canActivate:[DashboardAccessGuard]
+},
+{ path:"CreateService",
+
+component:CreateserviceComponent, title:"CreateService",canActivate:[DashboardAccessGuard]
+},
+{ path:"viewservice",
+
+component:ViewserviceComponent, title:"viewservice"
+},
+
+{ path:"Updateservice/:id",
+
+component:UpdateserviceComponent, title:"Updateservice",canActivate:[DashboardAccessGuard]
+},
+
+
 
 
 { path:"**",
