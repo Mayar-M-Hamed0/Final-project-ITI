@@ -34,7 +34,7 @@ li {
         padding: 25px 10px;
         cursor: pointer;
         @media only screen and (max-width: 1300px) {
-            padding: 25px 40px;
+            padding: 25px 20px;
         }
         &:hover {
             background-color: #ee6c4d;
@@ -47,9 +47,7 @@ li {
             padding: 7px;
             display: inline;
             font-size: 20px;
-            @media only screen and (max-width: 1300px) {
-                display: none;
-            }
+
         }
     }
 }
