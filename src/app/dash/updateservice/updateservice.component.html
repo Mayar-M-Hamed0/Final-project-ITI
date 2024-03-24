@@ -150,7 +150,7 @@
             <input id="startTime{{i}}" type="time" formControlName="startTime" [(ngModel)]="schedule[i].startTime">
             <label for="endTime{{i}}">End Time:</label>
             <input id="endTime{{i}}" type="time" formControlName="endTime" [(ngModel)]="schedule[i].endTime">
-            <button (click)="toggleVisibility(i)">Next</button>
+            <a (click)="toggleVisibility(i)"class=" next m-2">Next &raquo;</a>
           </div>
         </div>
 
