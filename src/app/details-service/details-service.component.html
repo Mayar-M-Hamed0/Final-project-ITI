@@ -6,6 +6,7 @@
         </div>
         <h3 class="card-title fw-bold fs-1">{{ data["name"] }}</h3>
         <p class="card-text">Location : {{ data["location"] }}</p>
+        <p class="card-text">description : {{ data["description"] }}</p>
         <p class="card-text">
             @for (item of data.car; track $index) { {{ item }} }
         </p>
