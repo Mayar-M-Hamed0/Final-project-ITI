@@ -34,14 +34,21 @@ export class UserProfileComponent {
 
 
 ngOnInit(){
+  const token: any = sessionStorage.getItem('token');
+  if (token) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+          });
   this.datalogin.auth().subscribe(res=>{
     this.datauser= res;
     console.log( this.datauser);
-    
-    this.service.getordersforuser(this.datauser['id']).subscribe(res=>{this.orders=res; console.log(this.orders)})
 
-    this.service.getarchivedforuser(this.datauser['id']).subscribe(res=>{this.archive=res; console.log(this.orders)})
+    this.service.getordersforuser(this.datauser['id'],{headers:headers}).subscribe(res=>{this.orders=res; console.log(this.orders)})
+
+    this.service.getarchivedforuser(this.datauser['id'],{headers:headers}).subscribe(res=>{this.archive=res; console.log(this.orders)})
   })
+}
 }
 
 openConfirmationModal(serviceId: number) {
@@ -57,12 +64,13 @@ openConfirmationModal(serviceId: number) {
   }).then((result) => {
     if (result.isConfirmed) {
       this.ondelete(serviceId);
-     
+
     }
   });
 }
 
 ondelete(id:number){
+
   this.service.forcedeleteorder(id).subscribe({
     next:res=>{
 

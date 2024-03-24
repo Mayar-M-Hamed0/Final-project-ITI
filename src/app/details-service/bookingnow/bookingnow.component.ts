@@ -8,6 +8,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { OrdersService } from '../../services/orders.service';
 import { LoginService } from '../../services/login.service';
+import { HttpHeaders } from '@angular/common/http';
 @Component({
   selector: 'app-bookingnow',
   standalone: true,
@@ -95,6 +96,13 @@ this.viewdata = res ;
   }
 
   onSubmit() {
+    const token: any = sessionStorage.getItem('token');
+  if (token) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+          });
+
     let data={
       user_id:this.datauser.id,
       phone:this.phone,
@@ -109,7 +117,7 @@ this.viewdata = res ;
 
     }
     console.log(data)
-    this.dataService.insert(data).subscribe({
+    this.dataService.insert(data,{headers:headers}).subscribe({
       next:res=>{
         this.msgres = res
              setTimeout(() => {
@@ -128,7 +136,7 @@ this.viewdata = res ;
       },
   }
   );
-
+  }
   }
 ngOnInit(){
 this.route.params.subscribe((params:Params)=>{this.service_center_id=params['id']})

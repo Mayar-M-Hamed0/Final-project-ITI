@@ -35,6 +35,7 @@ crntpage:any
 datafromapi : any = [];
 mapUrl: string = '';
   constructor(private serv:ServicesService ,private HttpClient_:HttpClient, private route:ActivatedRoute, private resevedata:ServicesService,private router: Router,private loginService:LoginService ){
+
     this.id = this.route.snapshot.paramMap.get("id")
     this.serv.getsinglepage(this.id).subscribe(res=>{
 
@@ -46,7 +47,7 @@ mapUrl: string = '';
 
 
 
-  
+
 
     })
   }
@@ -108,7 +109,7 @@ headers:any =''
   Date!: Date
   name!: string
   image!: string
-  
+
 
 
 
@@ -137,9 +138,9 @@ headers:any =''
           console.log(res, 'res');
         },
         error: (err: any) => {
-  
+
           if (err.status === 401) {
-         
+
             Swal.fire({
               icon: 'warning',
               title: 'Please Login First ',
@@ -158,7 +159,7 @@ headers:any =''
           }
         }
       });
-    
+
     } else {
       Swal.fire({
         icon: 'warning',
@@ -178,9 +179,9 @@ headers:any =''
   } else {
     return throwError('Window is not available');
   }
-    
-  
- 
+
+
+
 
     return "h";
   }
@@ -229,7 +230,7 @@ headers:any =''
       }
     }
   }
-  
+
 
 
   get totalPosts(): number {
