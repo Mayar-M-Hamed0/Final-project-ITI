@@ -86,7 +86,11 @@ export class UpdateserviceComponent {
 
     ];
 
+
+
+
    this.services= [
+
       { key: 'Mechanical', value: 'Mechanical' },
       { key: 'Electricity' , value: 'Electricity' },
       { key: 'Suspensions' , value: 'Suspensions' },
@@ -168,12 +172,10 @@ this.oldnameforupdateservice = res
     formData.append('phone', this.serviceform.value.phone);
     formData.append('description', this.serviceform.value.description);
     formData.append('location', this.serviceform.value.location);
-  
-    formData.append('cars', JSON.stringify(this.selectedCarsData));
-    formData.append('services', JSON.stringify(this.selectedServicesData));
     formData.append('days', JSON.stringify(scheduleData));
+    formData.append('cars', JSON.stringify(this.selectedCarsData));
+    formData.append('services', JSON.stringify(this.selectedServicesData))
 
-    
     const selectedCars = this.serviceform.value.cars;
     this.selectedCarsData = selectedCars.map((selectedCar: any) => {
         const car = this.cars.find(car => car.value === selectedCar);
@@ -193,7 +195,7 @@ this.oldnameforupdateservice = res
     });
 
     if (typeof window !== 'undefined') {
-      const token: any = sessionStorage.getItem('token');
+      const token: any = localStorage.getItem('token');
       if (token) {
         const headers = new HttpHeaders({
 

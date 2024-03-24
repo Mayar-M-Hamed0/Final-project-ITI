@@ -21,6 +21,19 @@
             <span>invalid format email </span> } }
         </div>
 
+        
+        <div class="mb-3">
+            <label for="roleSelect">Role:</label>
+            <select class="form-control" id="roleSelect" formControlName="role" >
+                <option  value="agent">agent</option>
+                <option   value="user" selected>user</option>
+             
+            </select>
+            <div *ngIf="gameForm.controls['role'].invalid && gameForm.controls['role'].touched">
+                <span>This field is required</span>
+            </div>
+        </div>
+
         <div class="mb-3">
             <input class="inputBox" type="password" class="form-control" id="exampleInputPassword1" formControlName="password" placeholder="Password" /> @if(gameForm.controls['password'].invalid && gameForm.controls['password'].touched) { @if(gameForm.controls['password'].errors?.['required'])
             {

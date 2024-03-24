@@ -34,7 +34,7 @@ export class NavbarComponent {
 
   
   logout() {
-    sessionStorage.removeItem('token');
+    localStorage.removeItem('token');
     this.router.navigate(['/']);
     window.location.reload()
   }
