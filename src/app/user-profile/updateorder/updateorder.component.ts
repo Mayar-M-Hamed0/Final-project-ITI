@@ -27,7 +27,7 @@ export class UpdateOrderComponent implements OnInit {
   services!:number;
   car_model!:number;
   date!:string;
-  order_details:string=' ';
+  order_details:string='';
   datauser: any = '';
   errors:any;
   response:any;
@@ -112,7 +112,7 @@ this.viewdata = res ;
 
 
     }
-    console.log(data)
+    console.log("this",data)
     this.dataService.updateorder(this.id,data).subscribe({
       next:res=>{
         this.msgres = res
