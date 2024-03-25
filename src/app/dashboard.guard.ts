@@ -30,7 +30,7 @@ export class DashboardAccessGuard implements CanActivate {
 
         console.error(error);
         this.router.navigate(['/login']);
-        return throwError(error);
+        return throwError(error); 
       })
     );
   }
