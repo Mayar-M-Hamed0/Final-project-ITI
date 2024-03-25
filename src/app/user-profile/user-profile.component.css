@@ -1,65 +1,62 @@
 #imgprofile {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background-repeat: repeat-x;
-    background-size: cover;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-repeat: repeat-x;
+  background-size: cover;
 
-    margin: auto;
-    position: relative;
-    top: -214px;
-    left: 61px;
-    z-index: 10;
+  margin: auto;
+  position: relative;
+  top: -214px;
+  left: 61px;
+  z-index: 10;
 }
 
 
 .container {
-    margin: auto;
-    width: 25%;
-    margin-top: 10px;
-    text-align: center;
+  margin: auto;
+  width: 25%;
+  margin-top: 10px;
+  text-align: center;
 }
 
 .main-dev
 {
-  background-color: #EEE;
+background-color: #EEE;
 }
 .card{
-  color:#425980 !important;
-  box-shadow: 2px 8px 12px 2px #f0e7e769;
+color:#425980 !important;
+box-shadow: 2px 8px 12px 2px #f0e7e769;
 
 }
 .card:hover{
-  transform: scale(1.025);
+transform: scale(1.025);
 }
 .component{
-  background-color: #293241 ;
+background-color: #293241 ;
 
 }
 button
 {
-  background-color:  #ee6c4d !important;
-  color: #293241;
+background-color:  #ee6c4d !important;
+color: #293241;
 }
 
 img
 {
-  max-height: 200px !important;
-  
+max-height: 200px !important;
+
 }
 
 a{
-  text-decoration: none;
-  color: black;
+text-decoration: none;
+color: black;
 }
 h4
 {
-  padding-top: 150px;
-  padding-bottom: 50px;
-  padding-left: 20px;
-  color: #fff;
+padding-top: 150px;
+padding-bottom: 50px;
+padding-left: 20px;
+color: #fff;
 }
 
-.card {
-
-}

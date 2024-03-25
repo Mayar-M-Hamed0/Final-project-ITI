@@ -82,7 +82,7 @@ this.formdata.append('password',  this.serviceform.value.password);
 
 
   if (typeof window !== 'undefined') {
-    const token: any = sessionStorage.getItem('token');
+    const token: any = localStorage.getItem('token');
     if (token) {
 
       const headers = new HttpHeaders({
@@ -95,6 +95,7 @@ this.http.post('http://127.0.0.1:8000/api/users/'+this.datauser.id,this.formdata
         (res) => {
           this.msgres = res;
           this.serviceform.reset();
+         console.log(res);
          
         },
         (error: HttpErrorResponse) => {

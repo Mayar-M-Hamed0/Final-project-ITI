@@ -36,7 +36,11 @@
             @if (datauser) {
              
 @if (datauser.image) {
-    <img src="http://127.0.0.1:8000/{{datauser.image}}" width="40" height="50" class="rounded" alt="Cinque Terre">
+    <img src="http://127.0.0.1:8000/{{datauser.image}}" width="40" height="50" class="rounded-circle mx-3" alt="Cinque Terre">
+
+}@else {
+
+    <img src="/assets/avatar.png" alt="Admin" class="rounded-circle" width="150">
 
 }
 
