@@ -23,6 +23,8 @@ import { DashboardAccessGuard } from './dashboard.guard';
 import { OrdersForAgentComponent } from './orders-for-agent/orders-for-agent.component';
 import { ArchiveComponent } from './orders-for-agent/archive/archive.component';
 import { UpdateOrderComponent } from './user-profile/updateorder/updateorder.component';
+import { CreateSingleServiceComponent } from './dash/create-single-service/create-single-service.component';
+import { UpdateSingleServiceComponent } from './dash/update-single-service/update-single-service.component';
 export const routes: Routes = [
   {
     path:"",
@@ -122,7 +124,14 @@ component:ViewserviceComponent, title:"viewservice"
 component:UpdateserviceComponent, title:"Updateservice",canActivate:[DashboardAccessGuard]
 },
 
+{ path:"Craetesingleservice",
 
+component:CreateSingleServiceComponent, title:"Craetesingleservice",canActivate:[DashboardAccessGuard]
+},
+{ path:"Updatesingleservice/:id",
+
+component:UpdateSingleServiceComponent, title:"Updatesingleservice",canActivate:[DashboardAccessGuard]
+},
 
 
 { path:"**",
