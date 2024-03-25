@@ -18,7 +18,7 @@ export class OrdersForAgentComponent implements OnInit {
   serviceIdToDelete: number | null = null;
   constructor(private service:ServicesService ,private http:HttpClient, private route:ActivatedRoute , private router:Router){}
   ngOnInit(): void {
-    const token: any = sessionStorage.getItem('token');
+    const token: any = localStorage.getItem('token');
   if (token) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
