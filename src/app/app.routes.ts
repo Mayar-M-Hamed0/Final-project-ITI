@@ -23,6 +23,7 @@ import { DashboardAccessGuard } from './dashboard.guard';
 import { OrdersForAgentComponent } from './orders-for-agent/orders-for-agent.component';
 import { ArchiveComponent } from './orders-for-agent/archive/archive.component';
 import { UpdateOrderComponent } from './user-profile/updateorder/updateorder.component';
+
 import { UpdateuserComponent } from './user-profile/updateuser/updateuser.component';
 export const routes: Routes = [
   {
@@ -123,9 +124,6 @@ component:ViewserviceComponent, title:"viewservice"
 
 component:UpdateserviceComponent, title:"Updateservice",canActivate:[DashboardAccessGuard]
 },
-
-
-
 
 { path:"**",
 
