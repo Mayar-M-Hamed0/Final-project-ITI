@@ -8,6 +8,7 @@ import {NgForm} from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ServicesService } from '../services/services.service';
 import { NgxPaginationModule } from 'ngx-pagination';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-user-profile',
   standalone: true,
@@ -23,7 +24,7 @@ export class UserProfileComponent {
   crntpage:any;
   id!:number;
 
-
+  serviceIdToDelete: number | null = null;
 
 
 
@@ -33,13 +34,43 @@ export class UserProfileComponent {
 
 
 ngOnInit(){
+  const token: any = sessionStorage.getItem('token');
+  if (token) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+          });
   this.datalogin.auth().subscribe(res=>{
     this.datauser= res;
-    this.service.getordersforuser(this.datauser['id']).subscribe(res=>{this.orders=res; console.log(this.orders)})
-    this.service.getarchivedforuser(this.datauser['id']).subscribe(res=>{this.archive=res; console.log(this.orders)})
+    console.log( this.datauser);
+
+    this.service.getordersforuser(this.datauser['id'],{headers:headers}).subscribe(res=>{this.orders=res; console.log(this.orders)})
+
+    this.service.getarchivedforuser(this.datauser['id'],{headers:headers}).subscribe(res=>{this.archive=res; console.log(this.orders)})
   })
 }
+}
+
+openConfirmationModal(serviceId: number) {
+  this.serviceIdToDelete = serviceId;
+  Swal.fire({
+    title: 'Confirm Delete',
+    text: 'Are you sure you want to delete this ?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#d33',
+    cancelButtonColor: '#3085d6',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.ondelete(serviceId);
+
+    }
+  });
+}
+
 ondelete(id:number){
+
   this.service.forcedeleteorder(id).subscribe({
     next:res=>{
 

@@ -7,7 +7,9 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { CommonModule, NgFor } from '@angular/common';
 import {comments} from '../../comments'
 import { ServicesService } from '../services/services.service';
-
+import Swal from 'sweetalert2';
+import { HttpClient,HttpHeaders,HttpErrorResponse  } from '@angular/common/http';
+import {  throwError } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FilterPipe } from '../filter.pipe';
@@ -31,8 +33,9 @@ searchtext:any;
 
 crntpage:any
 datafromapi : any = [];
+mapUrl: string = '';
+  constructor(private serv:ServicesService ,private HttpClient_:HttpClient, private route:ActivatedRoute, private resevedata:ServicesService,private router: Router,private loginService:LoginService ){
 
-  constructor(private serv:ServicesService , private route:ActivatedRoute, private resevedata:ServicesService,private router: Router,private loginService:LoginService ){
     this.id = this.route.snapshot.paramMap.get("id")
     this.serv.getsinglepage(this.id).subscribe(res=>{
 
@@ -40,11 +43,11 @@ datafromapi : any = [];
     this.data = res;
       console.log(this.data)
 
-    this.resevedata.getdata().subscribe(res2 => {
 
-      this.datafromapi = res2;
-       console.log("this is the response of api",this.datafromapi,this.searchtext)
-    })
+
+
+
+
 
     })
   }
@@ -56,12 +59,6 @@ datafromapi : any = [];
 
   goToTop(){
     window.scrollTo({top:0,behavior:'smooth'})
-  }
-
-  faStar = faStar;
-  rating = 0;
-  setRating(value: number){
-    this.rating = value;
   }
 
 
@@ -81,12 +78,13 @@ datafromapi : any = [];
 ///
 
 service_center_id!:number;
-Description!:number;
+Description!:String;
+rate!:number;
 date!:string;
 
 datauser: any = ''
 
-//
+headers:any =''
 
   ngOnInit() {
     this.serv.getlike().subscribe((value) => this.countlike = value)
@@ -102,39 +100,136 @@ datauser: any = ''
 
 
 
+
   }
+
 
   comment!: string
   CommentId!: number
   Date!: Date
   name!: string
+  image!: string
+
+
+
+
+
+
   savecomment() {
+
+
     let inputsdata = {
+      user_id: this.datauser.id,
+      service_center_id: this.service_center_id,
+      Description: this.Description,
+      rate:this.rate
+    };
 
+ if (typeof window !== 'undefined') {
+    const token: any = sessionStorage.getItem('token');
+    if (token) {
 
-      user_id:this.datauser.id,
-         service_center_id:this.service_center_id,
-        Description:this.Description
+      this.headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
 
+      return this.HttpClient_.post('http://127.0.0.1:8000/api/reviews',inputsdata,{ headers: this.headers }).subscribe({
+        next: (res: any) => {
+          console.log(res, 'res');
+        },
+        error: (err: any) => {
+
+          if (err.status === 401) {
+
+            Swal.fire({
+              icon: 'warning',
+              title: 'Please Login First ',
+              showConfirmButton: true,
+              confirmButtonText: ' Login',
+              allowOutsideClick: false,
+              allowEscapeKey: false,
+                 timer: 3000 // يغلق تلقائيا بعد 3 ثواني
+            }).then((result) => {
+              if (result.isConfirmed) {
+                this.router.navigateByUrl('/login');
+              }
+            });
+          } else {
+            console.error('حدث خطأ غير معروف:', err.error);
+          }
+        }
+      });
+
+    } else {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Please Login First ',
+        showConfirmButton: true,
+        confirmButtonText: ' Login',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+           timer: 3000 // يغلق تلقائيا بعد 3 ثواني
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.router.navigateByUrl('/login');
+        }
+      });
+      return throwError('No token found');
     }
-    this.serv.savecomment(inputsdata).subscribe({
-      next: (res: any) => {
-        console.log(res, 'res')
-      }
-    });
+  } else {
+    return throwError('Window is not available');
   }
+
+
+
+
+    return "h";
+  }
+
+
+
+
+
 
   deletecomment(event: any, commentid: any) {
-
-      this.serv.destroycomment(commentid).subscribe((res: any) => {
-        this.serv.getAllposts().subscribe((res) => { console.log(res) });
-
-      })
-
-
+    if (typeof window !== 'undefined') {
+      const token: any = sessionStorage.getItem('token');
+      if (token) {
+        this.headers = new HttpHeaders({
+          'Authorization': `Bearer ${token}`
+        });
+        Swal.fire({
+          title: 'Are you sure?',
+          text: 'You are about to delete this comment.',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.HttpClient_.delete('http://127.0.0.1:8000/api/reviews/' + commentid, { headers: this.headers }).subscribe((res: any) => {
+              this.serv.getAllposts().subscribe((res) => { console.log(res) });
+            });
+          }
+        });
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: 'Please Login First ',
+          showConfirmButton: true,
+          confirmButtonText: ' Login',
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          timer: 3000
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.router.navigateByUrl('/login');
+          }
+        });
+      }
+    }
   }
-
-
 
 
 
@@ -144,8 +239,23 @@ datauser: any = ''
 
 
 
-  updateRating(newRating: number) {
-    this.rating = newRating;
+  getStarRating(rating: number): boolean[] {
+    console.log(rating);
+    const filledStars = Math.floor(rating); // Get the number of filled stars
+    const hasHalfStar = rating % 1 !== 0; // Check if there is a half star
+
+    const starRatingArray: boolean[] = [];
+    for (let i = 0; i < rating; i++) {
+      if (i < filledStars) {
+        starRatingArray.push(true); // Push filled star
+      } else if (hasHalfStar && i === filledStars) {
+        starRatingArray.push(true); // Push half star
+      } else {
+        starRatingArray.push(false); // Push empty star
+      }
+    }
+
+    return starRatingArray;
   }
 }
 

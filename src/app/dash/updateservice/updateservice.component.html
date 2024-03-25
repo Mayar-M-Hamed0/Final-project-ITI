@@ -7,15 +7,13 @@
 <div class="wrapper">
     <button class="btn" style="background-color: #293241;" routerLink="/dash">Back To Dashbord</button>
 
-    <form class="form-control" [formGroup]="serviceform" (ngSubmit)="handelForm()">
+    <form class="form-control" [formGroup]="serviceform" (ngSubmit)="handelForm($event)">
         <h1>UpDate Services</h1>
 
 
-        <h4 class="mb-2">Services Name : {{oldnameforupdateservice.name}} </h4>
-
 
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputName" formControlName="name" placeholder="Name" /> @if(serviceform.controls['name'].invalid && serviceform.controls['name'].touched) { @if(serviceform.controls['name'].errors?.['required'])
+            <input type="text" [value]="oldnameforupdateservice?.name" class="form-control" id="inputName" formControlName="name" placeholder="Name" /> @if(serviceform.controls['name'].invalid && serviceform.controls['name'].touched) { @if(serviceform.controls['name'].errors?.['required'])
             {
             <span style="color: red;"> This Name is required </span> } }
         </div>
@@ -23,7 +21,7 @@
 
 
         <div class="col-sm-10 mt-2">
-            <textarea type="text" class="form-control" id="description" placeholder="description" formControlName="description"></textarea>
+            <textarea type="text"  [value]="oldnameforupdateservice?.description"  class="form-control" id="description" placeholder="description" formControlName="description"></textarea>
             <!-- Display error message for required validation -->
             <div *ngIf="serviceform.controls['description'].invalid && serviceform.controls['description'].touched">
                 <div *ngIf="serviceform.controls['description'].errors?.['required']">
@@ -36,11 +34,18 @@
 
             </div>
         </div>
+
+                
+        <label for="Price" class="col-sm-2 col-form-label">Price </label>
+        <div class="col-sm-10">
+            <input  [value]="oldnameforupdateservice?.price"  type="number" class="form-control" id="Price" formControlName="price" /> @if(serviceform.controls['price'].invalid && serviceform.controls['price'].touched) { @if(serviceform.controls['price'].errors?.['required']) {
+            <span style="color: red;"> This price is required </span> } }
+        </div>
         
 
         <label for="phone" class="col-sm-2 col-form-label">phone </label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="phone" formControlName="phone" /> @if(serviceform.controls['phone'].invalid && serviceform.controls['phone'].touched) { @if(serviceform.controls['phone'].errors?.['required']) {
+            <input type="text"  [value]="oldnameforupdateservice?.phone"   class="form-control" id="phone" formControlName="phone" /> @if(serviceform.controls['phone'].invalid && serviceform.controls['phone'].touched) { @if(serviceform.controls['phone'].errors?.['required']) {
             <span style="color: red;"> This phone is required </span> } }
 
             
@@ -60,32 +65,22 @@
 
         <label for="" class="form-control">image</label>
 
+
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="image" formControlName="image" /> @if(serviceform.controls['image'].invalid && serviceform.controls['image'].touched) { @if(serviceform.controls['image'].errors?.['required']) {
-            <span style="color: red;"> This image is required </span> } }
+            <input type="file" (change)="onFileSelected($event)" class="form-control" id="image" formControlName="image" /> @if(serviceform.controls['image'].invalid && serviceform.controls['image'].touched) { @if(serviceform.controls['image'].errors?.['required']) {
+            <span style="color: red;"> This image is required </span> }
+            {{ errorMessage.image }}
+        }
         </div>
 
 
 
 
-        <label for="" class="form-control">Rating</label>
-
-        <div class="col-sm-10">
-            <input type="number" min="1" max="5" class="form-control" id="rating" formControlName="rating" /> @if(serviceform.controls['rating'].invalid && serviceform.controls['rating'].touched) { @if(serviceform.controls['rating'].errors?.['required'])
-            {
-            <span style="color: red;"> This rating is required </span> } }
-        </div>
 
 
 
 
-        <label for="" class="form-control">working_days</label>
 
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="working_days" formControlName="working_days" /> @if(serviceform.controls['working_days'].invalid && serviceform.controls['working_days'].touched) { @if(serviceform.controls['working_days'].errors?.['required'])
-            {
-            <span style="color: red;"> This working_days is required </span> } }
-        </div>
 
 
 
@@ -96,7 +91,7 @@
 
 
         <div class="col-sm-10 mt-2">
-            <select class="form-control" id="location" formControlName="location">
+            <select [value]="oldnameforupdateservice?.location" class="form-control" id="location" formControlName="location">
                   <option value="">Select Location</option>
                   <option value="Ain Shams">Ain Shams</option>
                   <option value="El dokki">El dokki</option>
@@ -113,28 +108,22 @@
         </div>
 
 
-
-
-
-
-
-
-
-
-
-        <div class="form-group mt-2">
-            <label for="tag">services</label>
+        <div class="form-group">
+            <label for="tag">Services</label>
             <ng-select [items]="services" bindLabel="value" bindValue="key" [closeOnSelect]="false" formControlName="services" [multiple]="true" style="width: 75%;"></ng-select>
-            @if(serviceform.controls['services'].invalid && serviceform.controls['services'].touched) { @if(serviceform.controls['services'].errors?.['required']) {
-            <span style="color: red;"> This services is required </span> } }
+            <div *ngIf="serviceform.controls['services'].invalid && serviceform.controls['services'].touched">
+                <span style="color: red;"> This services is required </span>
+                {{ errorMessage.services }}
+            </div>
         </div>
-
 
         <div class="form-group">
             <label for="model">Models</label>
-            <ng-select [items]="model" bindLabel="value" bindValue="key" formControlName="cars" [closeOnSelect]="false" [multiple]="true" style="width: 75%;"></ng-select>
-            @if(serviceform.controls['cars'].invalid && serviceform.controls['cars'].touched) { @if(serviceform.controls['cars'].errors?.['required']) {
-            <span style="color: red;"> This Models is required </span> } }
+            <ng-select [items]="cars" bindLabel="value" bindValue="key" formControlName="cars" [closeOnSelect]="false" [multiple]="true" style="width: 75%;"></ng-select>
+            <div *ngIf="serviceform.controls['cars'].invalid && serviceform.controls['cars'].touched">
+                <span style="color: red;"> This Models is required </span>
+                {{ errorMessage.cars }}
+            </div>
         </div>
 
 
@@ -142,16 +131,31 @@
 
 
 
-
-
-
-
-        <label for="" class="form-control">working_hours</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="working_hours" formControlName="working_hours" /> @if(serviceform.controls['working_hours'].invalid && serviceform.controls['working_hours'].touched) { @if(serviceform.controls['working_hours'].errors?.['required'])
-            {
-            <span style="color: red;"> This working_hours is required </span> } }
+     
+        <label for="working">working days and hours</label>
+        <div id="working" *ngFor="let day of days; let i = index">
+          <div *ngIf="currentIndex === i">
+            <label for="day{{i}}">Day {{i + 1}}</label>
+            <select id="day{{i}}" type="text" formControlName="dayss" [(ngModel)]="schedule[i].day">
+              <option value="saturday">saturday</option>
+              <option value="sunday">sunday</option>
+              <option value="monday">monday</option>
+              <option value="tusday">tusday</option>
+              <option value="wendsday">wendsday</option>
+              <option value="thursday">thursday</option>
+              <option value="friday">friday</option>
+              </select>
+            <!-- <input id="day{{i}}" type="text" formControlName="dayss" [(ngModel)]="schedule[i].day"> -->
+            <label for="startTime{{i}}">Start Time:</label>
+            <input id="startTime{{i}}" type="time" formControlName="startTime" [(ngModel)]="schedule[i].startTime">
+            <label for="endTime{{i}}">End Time:</label>
+            <input id="endTime{{i}}" type="time" formControlName="endTime" [(ngModel)]="schedule[i].endTime">
+            <a (click)="toggleVisibility(i)"class=" next m-2">Next &raquo;</a>
+          </div>
         </div>
+
+
+
 
         <div class="d-flex justify-content-center mt-2">
             <input type="submit" style="background-color: #293241;"  [disabled]="!serviceform.valid" class="btn btn mt-2 text-white  pl-2" />
@@ -174,3 +178,7 @@
         
     </form>
 </div>
+
+
+
+

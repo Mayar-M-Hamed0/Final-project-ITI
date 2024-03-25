@@ -9,6 +9,7 @@ import { LoginService } from '../../services/login.service';
 import { ServicesService } from '../../services/services.service';
 import { ActivatedRoute ,Params, Router} from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-updateorder',
@@ -27,7 +28,7 @@ export class UpdateOrderComponent implements OnInit {
   services!:number;
   car_model!:number;
   date!:string;
-  order_details:string=' ';
+  order_details:string='';
   datauser: any = '';
   errors:any;
   response:any;
@@ -99,6 +100,7 @@ this.viewdata = res ;
   }
 
   onSubmit() {
+
     let data={
       user_id:this.datauser.id,
       phone:this.phone,
@@ -112,8 +114,15 @@ this.viewdata = res ;
 
 
     }
-    console.log(data)
-    this.dataService.updateorder(this.id,data).subscribe({
+    console.log("this",data)
+    const token: any = sessionStorage.getItem('token');
+  if (token) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+          });
+
+    this.dataService.updateorder(this.id,data,{headers:headers}).subscribe({
       next:res=>{
         this.msgres = res
              setTimeout(() => {
@@ -132,17 +141,24 @@ this.viewdata = res ;
       },
   }
   );
-
+  }
   }
 ngOnInit(){
+  const token: any = sessionStorage.getItem('token');
+  if (token) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+          });
+
 this.route.params.subscribe((params:Params)=>{this.id=params['id']})
 this.loginService.auth().subscribe(
   (data) => {
   this.datauser=data
   })
-  this.dataService.showorder(this.id).subscribe(res=>{this.order=res; console.log(this.order.data)})
+  this.dataService.showorder(this.id,{headers:headers}).subscribe(res=>{this.order=res; console.log(this.order.data)})
 }
 
-
+}
 
 }

@@ -24,14 +24,17 @@ export class NavbarComponent {
     this.loginService.auth().subscribe(
       (data) => {
       this.datauser=data
+      console.log(this.datauser);
       }
+     
+      
     );
   
   }
 
   
   logout() {
-    sessionStorage.removeItem('token');
+    localStorage.removeItem('token');
     this.router.navigate(['/']);
     window.location.reload()
   }

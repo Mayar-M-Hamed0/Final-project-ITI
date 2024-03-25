@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import Swal from 'sweetalert2';
+import { LoginService } from '../services/login.service';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -18,7 +19,8 @@ export class HomeComponent {
   goToTop(){
     window.scrollTo({top:0,behavior:'smooth'})
   }
-constructor(private http:HttpClient){
+  login:any =''
+constructor(private http:HttpClient,private auth:LoginService){
 
   this.gameForm = new FormGroup({
     name: new FormControl('', [
@@ -37,8 +39,10 @@ constructor(private http:HttpClient){
    ]),
 
  });
+this.auth.auth().subscribe(res=>{
 
-
+  this.login = res
+})
 
 
 
@@ -56,12 +60,12 @@ handelForm() {
       }).then((result) => {
         if (result.isConfirmed) {
        
-          setTimeout(() => {
-            window.location.reload();
-          }, 1000);
+          this.gameForm.reset()
         }
       });
-      this.resmassge = res;
+      this.resmassge = "Thank you, we will contact you soon";
+
+      
     },
     (error) => {
      

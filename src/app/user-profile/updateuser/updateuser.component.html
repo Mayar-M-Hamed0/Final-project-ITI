@@ -1,113 +1,90 @@
-
-<div class="container">
+<div class="container rounded bg-white mt-5 mb-5">
     <div class="row">
-        <div class="col-4"></div>
-        <div class="col-4  d-flex justify-content-center  align-items-center mt-5"  >
+        <div class="col-md-3 border-right">
 
-
-            <div class="wrapper" >
-
-                <form [formGroup]="gameForm" class=' w-100 mt-5'>
-                    <h3>Update My Profile</h3>
-                    <div class="mb-3">
-                        <input class="inputBox" type="text" class="form-control" id="name"    formControlName="name" placeholder="name ">
-                        
-                        
-                        
-                        @if(gameForm.controls['name'].invalid && gameForm.controls['name'].touched) { @if(gameForm.controls['name'].errors?.['required'])
-                        {
-                        <span> This field is required </span> } @if(gameForm.controls['name'].errors?.['minlength']) {
-                        <span>Min length is 3 </span> }
-                    
-                    }
-                    </div>
-
-                    <div class="mb-3">
-                        <input class="inputBox" type="text" class="form-control" id="image" formControlName="image" placeholder="image ">
-                        
-                        
-                        
-                        @if(gameForm.controls['image'].invalid && gameForm.controls['image'].touched) { @if(gameForm.controls['image'].errors?.['required'])
-                        {
-                        <span> This field is required </span> } @if(gameForm.controls['image'].errors?.['minlength']) {
-                        <span>Min length is 3 </span> }
-                    
-                    }
-                    </div>
-
-
-                    <div class="mb-3">
-                        <input class="inputBox" type="text" class="form-control" id="image" formControlName="phone" placeholder="phone">
-                        
-                        
-                        
-                        @if(gameForm.controls['phone'].invalid && gameForm.controls['phone'].touched) { @if(gameForm.controls['phone'].errors?.['required'])
-                        {
-                        <span> This field is required </span> } @if(gameForm.controls['phone'].errors?.['pattern']) {
-                        <span>Inset number Egy</span> }
-                    
-                    }
-                    </div>
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                @if (datauser.image) {
+                    <img class="rounded-circle mt-5" width="150px"
                 
-                
-    
-                
-                    <div class="mb-3">
-                        <input class="inputBox" type="email" class="form-control" id="exampleInputEmail1" formControlName="email" placeholder="Email"> @if(gameForm.controls['email'].invalid && gameForm.controls['email'].touched) { @if(gameForm.controls['email'].errors?.['required'])
-                        {
-                        <span> This field is required </span> } @if(gameForm.controls['email'].errors?.['pattern']) {
-                        <span>invalid format email </span> } }
-                    </div>
-                
-                    <div class="mb-3">
-                        <input class="inputBox" type="password" class="form-control" id="exampleInputPassword1" formControlName="password" placeholder="Password" /> @if(gameForm.controls['password'].invalid && gameForm.controls['password'].touched) { @if(gameForm.controls['password'].errors?.['required'])
-                        {
-                        <span> This field is required </span> } @if(gameForm.controls['password'].errors?.['minlength']) {
-                        <span>Min length is 8 </span> } }
-                    </div>
-                   <!-- زر التحديث -->
-
-<button class="btn btn-dark" (click)="openConfirmationModal(content)">Update  </button>
-
-<ng-template #content let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title">Confirm Update</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    Are you sure you want to update?
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Cancel</button>
-    <button type="button" class="btn btn-primary" (click)="update()">Confirm Update</button>
-  </div>
-</ng-template>
-                
-                
-                    
-                    
-                   
-                    @for (item of errorMessage; track $index) {
-
-                        <p class="fw-bold text-danger">{{item}}</p>
-                       }
-                
-                       
-                       
-
-                     <p class="text-success fw-bold fs-4"> {{resupdate.message
-                    }}</p> 
-                   
-                
-                </form>
+                    src="http://127.0.0.1:8000/{{datauser.image}}">
+                }
+               
+                Your Name :
+                <span class="font-weight-bold">{{datauser.name}}</span><span class="text-black-50">{{datauser.email}}</span><span> </span></div>
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Profile Settings</h4>
                 </div>
 
+                <div class="row mt-3">
+                  
+
+                    <form (ngSubmit)="handelForm($event)" class="form-control" [formGroup]="serviceform">
+
+<label for="">Name</label>
+                        <input type="text" class="form-control" id="inputName" formControlName="name" />
+                        @if(serviceform.controls['name'].invalid && serviceform.controls['name'].touched) {
+                        @if(serviceform.controls['name'].errors?.['required'])
+                        {
+                        <span style="color: red;"> This Name is required </span> } }
+                        <div *ngIf="serviceform.controls['name'].errors?.['minlength']">
+                            <span style="color: red;">Min Length Name 7 Characters!</span>
+                            {{ errorMessage.name }}
+                        </div>
+                        <label for="">Password</label>
+                        <input type="password" class="form-control" id="inputName" formControlName="password"  />
+                        @if(serviceform.controls['password'].invalid && serviceform.controls['password'].touched) {
+                        @if(serviceform.controls['password'].errors?.['required'])
+                        {
+                        <span style="color: red;"> This password is required </span> } }
+                        <div *ngIf="serviceform.controls['password'].errors?.['minlength']">
+                            <span style="color: red;">Min Length Name 7 Characters!</span>
+                            {{ errorMessage.password }}
+                        </div>
+                        @if(serviceform.controls['password'].errors?.['pattern'])
+                        {
+                          <div class="alert alert-danger p-2" role="alert">
+                         please insert a valid Password
+                          </div>
+                        }
+                    
+                    
+                        <label for="phone" class="col-sm-2 col-form-label">phone </label>
+                    
+                        <input type="text" class="form-control" id="phone" formControlName="phone" />
+                        @if(serviceform.controls['phone'].invalid && serviceform.controls['phone'].touched) {
+                        @if(serviceform.controls['phone'].errors?.['required']) {
+                        <span style="color: red;"> This phone is required </span> } }
+                        @if(serviceform.controls['phone'].errors?.['pattern'])
+                        {
+                          <div class="alert alert-danger p-2" role="alert">
+                         please insert a valid phone like 010********
+                          </div>
+                        }
+                    
+                        <input type="file" (change)="onFileSelected($event)" class="form-control" id="image" formControlName="image" />
+                        @if(serviceform.controls['image'].invalid && serviceform.controls['image'].touched) {
+                        @if(serviceform.controls['image'].errors?.['required']) {
+                        <span style="color: red;"> This image is required </span> }
+                        {{ errorMessage.image }}
+                        }
+                    
+                        <input type="submit"  [disabled]="!serviceform.valid"
+                            class="btn btn mt-2 text-white  pl-2 profile-button"  />
+                        <button type="button" class="btn btn mt-2 text-white " style="background-color:  #293241;"
+                            (click)="resetForm()">Reset Form</button>
+                        <p class="text-success fw-bold">{{msgres.message}}</p>
+                    </form>
+
+
+
+                </div>
+        
+            </div>
         </div>
-        <div class="col-4"></div>
-
+        <div class="col-md-4">
+         
+        </div>
     </div>
-
-    
-</div>

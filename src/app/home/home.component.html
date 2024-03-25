@@ -3,8 +3,10 @@
         <div class="bg-text">
             <h1>Car Maintenance Repair and <span style="color:gold;">Detailing</span> with expert hands</h1>
             <h1>Drive with <span style="color:gold;"> Maintain</span>, with Care: Your Journey, Our Priority.</h1>
+@if(!login){
+    <a style="margin-top: 50px; background-color: #031b2b; border-radius: 20px;" class="btn btnlanding" href="http://localhost:4200/Singup"><span >signup</span><em></em></a>
 
-            <a style="margin-top: 50px; background-color: #031b2b; border-radius: 20px;" class="btn btnlanding" href="http://localhost:4200/Singup"><span >signup</span><em></em></a>
+}
         </div>
     </div>
 </div>
@@ -141,7 +143,8 @@
 <div class="aboutus" id="aboutus">
     <div class="glass-container">
         <div class="glass-content">
-            <img src="../../assets/homeAssets/carXterme.svg" alt="">
+            <p class="fs-1 text-center"> Car <span class="text-warning">X</span> tereme®</p>
+           
             <p>Car maintenance is an essential aspect of ensuring the longevity and optimal performance of your vehicle. Regular maintenance not only enhances safety on the road but also contributes to significant cost savings in the long run. One fundamental
                 aspect of car care is routine fluid checks and changes, including engine oil, transmission fluid, brake fluid, and coolant. Properly inflated tires not only improve fuel efficiency but also provide better traction and handling. Regular
                 brake inspections and replacements ensure effective stopping power, while changing air filters promotes efficient fuel combustion. Additionally, timely replacement of worn-out spark plugs and ignition components contributes to smooth engine
@@ -228,7 +231,7 @@
             </div>
 
 
-    <p>{{resmassge}}</p>
+    <p class="fw-bold fs-5">{{resmassge}}</p>
 
 
             <button class="btn btn-primary sendbutton" id="submit" type="submit" value="SEND">
