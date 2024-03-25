@@ -236,9 +236,9 @@ formData.append('services',JSON.stringify(mapservices));
           });
 
 
-console.log( this.msgres);
 
-          // this.serviceform.reset();
+
+          this.serviceform.reset();
         },
         (error: HttpErrorResponse) => {
           console.error('An error occurred:', error.error);
