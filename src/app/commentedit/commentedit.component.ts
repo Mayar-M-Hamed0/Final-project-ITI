@@ -48,7 +48,7 @@ export class CommenteditComponent {
     this.commentid = this.route.snapshot.paramMap.get('id');
 
     if (typeof window !== 'undefined') {
-      const token: any = sessionStorage.getItem('token');
+      const token: any = localStorage.getItem('token');
       if (token) {
   
         this.headers = new HttpHeaders({
