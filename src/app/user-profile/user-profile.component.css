@@ -12,10 +12,11 @@
     z-index: 10;
 }
 
+
 .container {
     margin: auto;
     width: 25%;
-    margin-top: 110px;
+    margin-top: 10px;
     text-align: center;
 }
 
@@ -33,7 +34,7 @@
 }
 .component{
   background-color: #293241 ;
-  
+
 }
 button
 {
@@ -44,6 +45,7 @@ button
 img
 {
   max-height: 200px !important;
+  
 }
 
 a{
