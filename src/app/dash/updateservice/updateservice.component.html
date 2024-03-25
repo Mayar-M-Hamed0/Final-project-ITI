@@ -110,22 +110,22 @@
 
         <div class="form-group">
             <label for="tag">Services</label>
-            <ng-select [items]="services" bindLabel="value" bindValue="key" [closeOnSelect]="false" formControlName="services" [multiple]="true" style="width: 75%;"></ng-select>
+            <ng-select [items]="services" bindLabel="key" bindValue="key" [closeOnSelect]="false" formControlName="services" [multiple]="true" style="width: 75%;"  [(ngModel)]="selectedServices"></ng-select>
             <div *ngIf="serviceform.controls['services'].invalid && serviceform.controls['services'].touched">
                 <span style="color: red;"> This services is required </span>
                 {{ errorMessage.services }}
             </div>
         </div>
-
+        
+        <!-- اختيار النماذج -->
         <div class="form-group">
             <label for="model">Models</label>
-            <ng-select [items]="cars" bindLabel="value" bindValue="key" formControlName="cars" [closeOnSelect]="false" [multiple]="true" style="width: 75%;"></ng-select>
+            <ng-select [items]="cars" bindLabel="key" bindValue="key" formControlName="cars" [closeOnSelect]="false" [multiple]="true" style="width: 75%;" [(ngModel)]="selectedCars"></ng-select>
             <div *ngIf="serviceform.controls['cars'].invalid && serviceform.controls['cars'].touched">
                 <span style="color: red;"> This Models is required </span>
                 {{ errorMessage.cars }}
             </div>
         </div>
-
 
 
 

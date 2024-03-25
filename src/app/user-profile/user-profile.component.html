@@ -9,6 +9,10 @@
 @if (datauser.image) {
 <img id="imgprofile" src="http://127.0.0.1:8000/{{datauser.image}}" alt="" srcset="">
 
+}@else {
+
+  <img src="/assets/avatar.png" alt="Admin" id="imgprofile" >
+
 }
 
 
@@ -43,7 +47,18 @@
 
       <p style="color:rgb(81, 81, 81);">
 
-          Phone Number: <span class="fw-bold">0{{datauser.phone}}</span>
+          Phone Number: <span class="fw-bold"> 
+            
+            
+            @if(datauser.phone){
+           <p>0{{datauser.phone}}</p>
+
+            }@else{
+              
+             Not Added
+            }
+
+            </span>
       </p>
 
 
