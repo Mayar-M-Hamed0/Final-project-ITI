@@ -144,7 +144,7 @@ this.oldnameforupdateservice = res
       if (selectedDaysData.length === 0) {
         alert("يرجى اختيار يوم واحد على الأقل.");
     } else {
-        console.log(selectedDaysData);
+       
     }
   
   
@@ -221,7 +221,7 @@ this.oldnameforupdateservice = res
         ).subscribe(
           (res) => {
             this.msgres = res;
-           console.log(res);
+     
            
            Swal.fire({
             icon: 'success',
@@ -229,6 +229,8 @@ this.oldnameforupdateservice = res
             showConfirmButton: false,
             timer: 1500 // يمكنك ضبط مدة العرض
           });
+
+          this.serviceform.reset();
           },
           (error: HttpErrorResponse) => {
             console.error('An error occurred:', error.error);
