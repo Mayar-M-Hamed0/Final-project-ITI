@@ -65,7 +65,7 @@ export class CreateserviceComponent {
       description: ['', [Validators.required, Validators.minLength(10)]],
       location: ['', [Validators.required]],
       image: ['', [Validators.required]], // ??? ??????
-  
+
       price: ['', [Validators.required]],
       services: ['', [Validators.required]],
       cars: ['', [Validators.required]],
@@ -180,7 +180,7 @@ export class CreateserviceComponent {
 
 
     console.log(this.serviceform.value.services);
-    
+
 let formData = new FormData();
 formData.append('image',this.userImageFile);
 formData.append('name', this.serviceform.value.name);
@@ -212,7 +212,7 @@ this.selectedServicesData = selectedServices.map((selectedService: any) => { // 
 
 console.log("car", this.selectedCarsData);
 console.log("ser", this.selectedServicesData);
-    
+
 
 
   if (typeof window !== 'undefined') {
