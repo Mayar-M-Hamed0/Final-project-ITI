@@ -33,7 +33,7 @@ export class OrdersForAgentComponent implements OnInit {
 
 
   archive(id:number){
-    const token: any = sessionStorage.getItem('token');
+    const token: any = localStorage.getItem('token');
   if (token) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
