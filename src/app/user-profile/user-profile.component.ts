@@ -42,11 +42,11 @@ ngOnInit(){
           });
   this.datalogin.auth().subscribe(res=>{
     this.datauser= res;
-    console.log( this.datauser);
 
-    this.service.getordersforuser(this.datauser['id'],{headers:headers}).subscribe(res=>{this.orders=res; console.log(this.orders)})
 
-    this.service.getarchivedforuser(this.datauser['id'],{headers:headers}).subscribe(res=>{this.archive=res; console.log(this.orders)})
+    this.service.getordersforuser(this.datauser['id'],{headers:headers}).subscribe(res=>{this.orders=res; })
+
+    this.service.getarchivedforuser(this.datauser['id'],{headers:headers}).subscribe(res=>{this.archive=res; })
   })
 }
 }

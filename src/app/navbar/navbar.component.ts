@@ -24,7 +24,7 @@ export class NavbarComponent {
     this.loginService.auth().subscribe(
       (data) => {
       this.datauser=data
-      console.log(this.datauser);
+    
       }
      
       
