@@ -19,7 +19,7 @@ export class AllagentComponent {
 
   constructor(private http:HttpClient){
 
-    const token: any = sessionStorage.getItem('token');
+    const token: any = localStorage.getItem('token');
     if (token) {
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
@@ -53,16 +53,14 @@ export class AllagentComponent {
     }).then((result) => {
       if (result.isConfirmed) {
         this.deleteService(serviceId);
-        setTimeout(() => {
-          window.location.reload();
-        }, 500);
+   
       }
     });
   }
   
   
   deleteService(agent: number) {
-    const token: any = sessionStorage.getItem('token');
+    const token: any = localStorage.getItem('token');
     if (token) {
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
@@ -74,6 +72,8 @@ export class AllagentComponent {
             response => {
             
                 console.log('Deleted successfully', response);
+                this.agents = this.agents.filter((item: any) => item.id !== agent);
+
             
             },
             error => {

@@ -11,16 +11,18 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Service ID</th>
+               
                     <th scope="col">Name OF Service</th>
                
                     <th scope="col">Details OF Service</th>
     
-                    <th scope="col">Rate </th>
-                    <th scope="col">Working Days </th>
+                
+                  
+                  
+                    <th scope="col">Working Days</th>
                     <th scope="col">Location</th>
-                   
-                    <th scope="col">Working Time</th>
+                    <th scope="col">Start Time</th>
+                    <th scope="col">End Time</th>
                     <th scope="col">service image</th>
         
                     <th scope="col" style="text-align: center">Delete </th>
@@ -32,20 +34,56 @@
     
                     <tr>
     
-                        <td>{{service.id}}</td>
+                  
                         <td>{{service.name}}</td>
                       
                         <td>{{service.description}}
                         </td>
-                        <td>{{service.rating}}</td>
-                        <td>{{service.working_days}}</td>
+                    
                         <td>{{service.location}}</td>
+                        <td>
+                            @for (item of service.days; track $index) {
+                              
+                                <p>{{item.day}}</p>   
+                              
+                            }
+
                         
-                        <td>{{service.working_hours}}</td>
+                        
+                        </td>
+
+                  
+                        
+                        <td>
+                            
+                            
+                            @for (item of service.days; track $index) {
+
+                                <p>{{item.start_hour}}</p>
+                            }
+                        
+                        
+                
+                        </td>
+
+ 
+                        <td>
+                            
+                            
+                            @for (item of service.days; track $index) {
+
+                                <p>{{item.end_hour}}</p>
+                            }
+                        
+                        
+                
+                        </td>
+
+
                         <td> 
-                         {{service.image}} 
                          
-                            <!-- <img src="/assets/oil.jpeg" class="card-img-top img" alt="..."> -->
+                         
+                            <img src="http://127.0.0.1:8000/{{service.image}}" class="card-img-top img" alt="...">
                       
                         <td> <a routerLink="/Updateservice/{{service.id}}" class="btn btn-primary a">Edit</a>
                         </td>

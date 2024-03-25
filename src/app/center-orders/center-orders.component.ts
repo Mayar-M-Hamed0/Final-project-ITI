@@ -26,12 +26,14 @@ export class CenterOrdersComponent implements OnInit {
 
 
   ngOnInit(){
+
+
     const token: any = sessionStorage.getItem('token');
   if (token) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
-    });
+          });
 
         this.http.get('http://127.0.0.1:8000/api/service-center',{headers:headers} ).subscribe(
             (res:any)=>{

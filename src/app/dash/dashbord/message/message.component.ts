@@ -55,16 +55,14 @@ crntpage:any
     }).then((result) => {
       if (result.isConfirmed) {
         this.deleteService(serviceId);
-        setTimeout(() => {
-          window.location.reload();
-        }, 500);
+
       }
     });
   }
   
   
   deleteService(serviceId: number) {
-    const token: any = sessionStorage.getItem('token');
+    const token: any = localStorage.getItem('token');
     if (token) {
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
@@ -75,7 +73,7 @@ crntpage:any
         .subscribe(
             response => {
             
-                console.log('Deleted successfully', response);
+              this.msg = this.msg.filter((item: any) => item.id !== serviceId);
             
             },
             error => {

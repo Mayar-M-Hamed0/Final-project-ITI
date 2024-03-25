@@ -31,28 +31,28 @@ export class ServicesService {
    }
 
 // start orders
-   insert (data:any){
-    return this.HttpClient_.post('http://127.0.0.1:8000/api/orders',data)
+   insert (data:any,token:any){
+    return this.HttpClient_.post('http://127.0.0.1:8000/api/orders',data,token)
   }
 
-  getordersforcenterservice(id:number){
-    return this.HttpClient_.get(`http://127.0.0.1:8000/api/orderByServiceCenter/`+id)
+  getordersforcenterservice(id:number,token:any){
+    return this.HttpClient_.get(`http://127.0.0.1:8000/api/orderByServiceCenter/`+id,token)
 
   }
-  getordersforuser(id:number){
-    return this.HttpClient_.get(`http://127.0.0.1:8000/api/orderByUserid/`+id)
+  getordersforuser(id:number,token:any){
+    return this.HttpClient_.get(`http://127.0.0.1:8000/api/orderByUserid/`+id,token)
 
   }
-  softdelete(id:number){
-    return this.HttpClient_.delete(`http://127.0.0.1:8000/api/orders/`+id,)
+  softdelete(id:number,token:any){
+    return this.HttpClient_.delete(`http://127.0.0.1:8000/api/orders/`+id,token)
 
   }
-  showorder(id:number){
-    return this.HttpClient_.get(`http://127.0.0.1:8000/api/orders/`+id,)
+  showorder(id:number,token:any){
+    return this.HttpClient_.get(`http://127.0.0.1:8000/api/orders/`+id,token)
 
   }
-  updateorder(id:number,formdata:any){
-    return this.HttpClient_.put(`http://127.0.0.1:8000/api/orders/`+id,formdata)
+  updateorder(id:number,formdata:any,token:any){
+    return this.HttpClient_.put(`http://127.0.0.1:8000/api/orders/`+id,formdata,token)
 
   }
   restore(id:number){
@@ -64,12 +64,12 @@ export class ServicesService {
 
   }
 
-  getarchived(id:number){
-    return this.HttpClient_.get(`http://127.0.0.1:8000/api/showorders-archeive/`+id)
+  getarchived(id:number,token:any){
+    return this.HttpClient_.get(`http://127.0.0.1:8000/api/showorders-archeive/`+id,token)
 
   }
-  getarchivedforuser(id:number){
-    return this.HttpClient_.get(`http://127.0.0.1:8000/api/showuserorders-archeive/`+id)
+  getarchivedforuser(id:number,token:any){
+    return this.HttpClient_.get(`http://127.0.0.1:8000/api/showuserorders-archeive/`+id,token)
 
   }
 // end orders
@@ -78,8 +78,8 @@ export class ServicesService {
 
    getAllposts(){
    // return this.HttpClient_.get(`https://retoolapi.dev/wDUVbz/data`);
-    return this.HttpClient_.get('http://127.0.0.1:8000/api/reviews');
-  
+    return this.HttpClient_.get('http://127.0.0.1:8000/api/allcomment');
+
    }
 
    getpost(id:number){
@@ -88,22 +88,21 @@ export class ServicesService {
 
    }
 
-   savecomment(inputdata:object){
-     return this.HttpClient_.post('http://127.0.0.1:8000/api/reviews',inputdata);
 
-   }
+   savecomment(inputdata:object,token:any){
+    return this.HttpClient_.post('http://127.0.0.1:8000/api/reviews',inputdata,token);
+
+  }
+
    updatecomment(inputdate :object,commentid:number){
      return this.HttpClient_.put(`http://127.0.0.1:8000/api/reviews/${commentid}`,inputdate);
    }
-   addpost(data :any)
-   {
-     return this.HttpClient_.get(`https://fakestoreapi.com/products`);
-   }
 
-   destroycomment(commentid:number)
-   {
-     return this.HttpClient_.delete(`http://127.0.0.1:8000/api/reviews/${commentid}`);
-   }
+
+  //  destroycomment(commentid:number,headers:any)
+  //  {
+  //    return this.HttpClient_.delete('http://127.0.0.1:8000/api/reviews/'+commentid ,{ headers: headers });
+  //  }
 
 
       private countlike = new BehaviorSubject<number>(5)

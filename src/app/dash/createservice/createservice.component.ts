@@ -11,6 +11,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import Swal from 'sweetalert2';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -20,14 +21,11 @@ import { ViewserviceComponent } from '../viewservice/viewservice.component';
 import { CenterOrdersComponent } from '../../center-orders/center-orders.component';
 import { PageOfServiceComponent } from '../../page-of-service/page-of-service.component';
 import { HttpClient,HttpHeaders,HttpErrorResponse  } from '@angular/common/http';
-import { map,Observable, throwError,catchError  } from 'rxjs';
+import {  throwError } from 'rxjs';
 @Component({
   selector: 'app-createservice',
   standalone: true,
-  imports: [ ReactiveFormsModule,
-
-    NgFor,
-    FormsModule,
+  imports: [ReactiveFormsModule, NgFor,FormsModule,
     NgbAlertModule,
     CheckboxModule,
     MatCheckboxModule,NgSelectModule,
@@ -47,120 +45,217 @@ import { map,Observable, throwError,catchError  } from 'rxjs';
 
 
 export class CreateserviceComponent {
-  errorMessage: any = ''; // تعريف errorMessage كمتغير عام
+  errorMessage: any = ''; // ????? errorMessage ?????? ???
   fullResponse: any;
-
+  files:any
   msgres:any= ''
   serviceform: FormGroup;
-  model: { key: number; value: string }[] = [];
-  services: { key: number; value: string }[] = [];
-  constructor(private fb: FormBuilder, private http:HttpClient) {
-    this.serviceform = new FormGroup({
-      name: new FormControl('', [Validators.required]),
-      phone: new FormControl('', [Validators.required, Validators.pattern(/^(010|011|012|015)\d{8}$/)]),
-      description: new FormControl('', [
-        Validators.required,
-        Validators.minLength(10)
-    ]),
-      location: new FormControl('', [Validators.required]),
-      image: new FormControl('', [Validators.required]),
-      rating: new FormControl('', [Validators.required]),
-      working_hours: new FormControl('', [Validators.required]),
-      working_days: new FormControl('', [Validators.required]),
-      services: new FormControl('', Validators.required),
-      cars: new FormControl('', Validators.required),
+  cars: { key: string; value: string }[] = [];
+  services: { key: string; value: string }[] = [];
+  selectedServicesData:any =''
+  selectedCarsData:any = ''
+
+  userImageUrl:any = '';
+  userImageFile:any = ' ';
+
+  constructor(private fb: FormBuilder, private http: HttpClient) {
+    this.serviceform = this.fb.group({
+      name: ['', [Validators.required]],
+      phone: ['', [Validators.required, Validators.pattern(/^(010|011|012|015)\d{8}$/)]],
+      description: ['', [Validators.required, Validators.minLength(10)]],
+      location: ['', [Validators.required]],
+      image: ['', [Validators.required]], // ??? ??????
+
+      price: ['', [Validators.required]],
+      services: ['', [Validators.required]],
+      cars: ['', [Validators.required]],
+      dayss: ['', [Validators.required]],
+      startTime: ['', [Validators.required]],
+      endTime: ['', [Validators.required]],
+
     });
 
 
-    this.model = [
-      { key: 1, value: 'KIA' },
-      { key: 2, value: 'MAZDA' },
-      { key: 3, value: 'TOYOTA' },
-      { key: 4, value: 'SKODA' },
-      { key: 5, value: 'SSANGYONG' },
-      { key: 6, value: 'Ford' },
-      { key: 7, value: 'BMW' },
-      { key: 8, value: 'LADA' },
-      { key: 9, value: 'CITROËN' },
-      { key: 10, value: 'SUZUKI' },
-      { key: 11, value: 'SEAT' },
-      { key: 12, value: 'RENAULT' },
-      { key: 13, value: 'HYUNDAI' },
-      { key: 14, value: 'NISSAN' },
-      { key: 15, value: 'VOLVO' },
-      { key: 16, value: 'BYD' },
-      { key: 17, value: 'HONDA' },
+
+    this.cars = [
+      { key:'KIA', value: 'KIA' },
+      { key: 'MAZDA', value: 'MAZDA' },
+      { key: 'TOYOTA', value: 'TOYOTA' },
+      { key: 'SKODA' , value: 'SKODA' },
+      { key:'SSANGYONG', value: 'SSANGYONG' },
+      { key: 'Ford', value: 'Ford' },
+      { key: 'BMW' , value: 'BMW' },
+      { key: 'LADA', value: 'LADA' },
+      { key: 'CITROËN', value: 'CITROËN' },
+      { key: 'SUZUKI', value: 'SUZUKI' },
+      { key: 'SEAT', value: 'SEAT' },
+      { key:'RENAULT', value: 'RENAULT' },
+      { key:  'HYUNDAI', value: 'HYUNDAI' },
+      { key: 'NISSAN', value: 'NISSAN' },
+      { key: 'VOLVO', value: 'VOLVO' },
+      { key: 'BYD', value: 'BYD' },
+      { key:'HONDA', value: 'HONDA' },
 
     ];
 
     this.services= [
-      { key: 1, value: 'Mechanical' },
-      { key: 2, value: 'Electricity' },
-      { key: 3, value: 'Suspensions' },
-      { key: 4, value: 'Car Denting' },
-      { key: 5, value: 'paints' },
-      { key: 6, value: 'brakes' },
-      { key: 7, value: 'lubricants' },
-      { key: 8, value: 'Tires and batteries' },
-      { key: 9, value: 'gear box' },
-      { key: 10, value: 'A/C/Charge' },
-      { key: 11, value: 'Radiator' },
-      { key: 12, value: 'Fast Service' },
-      { key: 13, value: 'Computer detection' },
-      { key: 14, value: 'Car wash and care' },
-      { key: 15, value: 'Insurance companies' },
-      { key:16,
+      { key: 'Mechanical', value: 'Mechanical' },
+      { key: 'Electricity' , value: 'Electricity' },
+      { key: 'Suspensions' , value: 'Suspensions' },
+      { key: 'Car Denting', value: 'Car Denting' },
+      { key: 'paints', value: 'paints' },
+      { key: 'brakes', value: 'brakes' },
+      { key: 'lubricants', value: 'lubricants' },
+      { key: 'Tires and batteries', value: 'Tires and batteries' },
+      { key: 'gear box', value: 'gear box' },
+      { key: 'A/C/Charge' , value: 'A/C/Charge' },
+      { key: 'Radiator', value: 'Radiator' },
+      { key: 'Fast Service', value: 'Fast Service' },
+      { key: 'Computer detection', value: 'Computer detection' },
+      { key: 'Car wash and care', value: 'Car wash and care' },
+      { key: 'Insurance companies' , value: 'Insurance companies' },
+      { key:'Oil Change Offers + Preventive Maintenance',
         value: 'Oil Change Offers + Preventive Maintenance',
       },
-      { key: 17, value: 'El-Mikaneeky BOSCH' },
-      { key: 18 , value: 'Labor fees Discount' },
+      { key: 'El-Mikaneeky BOSCH', value: 'El-Mikaneeky BOSCH' },
+      { key: 'Labor fees Discount' , value: 'Labor fees Discount' },
     ];
 
+    this.schedule = this.days.map(() => ({ day: '', startTime: '', endTime: '' }));
 
   }
 
 
 
 
+  currentIndex: number = 0;
+  days: number[] = [0, 1, 2, 3, 4, 5, 6]; // Days of the week
+  schedule: any[] = []; // Array to store schedules
 
-  handelForm() {
-if (typeof window !== 'undefined') {
+  toggleVisibility(index: number): void {
+    if (index < this.days.length - 1) {
+      this.currentIndex = index + 1;
+    } else {
+      // If it's the last day, loop back to the first day
+      this.currentIndex = 0;
+    }
+    const scheduleData = this.schedule.map(item => ({
+      day: item.day,
+      startTime: item.startTime,
+      endTime: item.endTime
+    }));
+    console.log(scheduleData);
+  }
+  onFileSelected(event:any){
+    this.userImageUrl = URL.createObjectURL(event.target.files[0]);
+    this.userImageFile = event.target.files[0];
+  }
 
-  const token: any = sessionStorage.getItem('token');
-  if (token) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    });
-
-    return this.http.post('http://127.0.0.1:8000/api/service-center/',
-      this.serviceform.value,
-      { headers: headers }
-    ).subscribe(
-      (res) => {
-        this.msgres = res;
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
 
 
-      },
-      (error: HttpErrorResponse) => {
-        console.error('An error occurred:', error.error);
-        this.errorMessage = error.error.data;
+
+
+  handelForm(e:any) {
+    e.preventDefault();
+
+    const scheduleData = this.schedule.map(item => ({
+      day: item.day,
+      startTime: item.startTime,
+      endTime: item.endTime
+    }));
+
+    const allDaysSelected = this.schedule.every(day => !!day.day);
+    if (!allDaysSelected) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Warning',
+        text: 'Please select all days before submitting.'
+      });
+      return;
     }
 
-    );
+
+
+
+
+
+    console.log(this.serviceform.value.services);
+
+let formData = new FormData();
+formData.append('image',this.userImageFile);
+formData.append('name', this.serviceform.value.name);
+formData.append('price', this.serviceform.value.price);
+formData.append('phone', this.serviceform.value.phone);
+formData.append('description', this.serviceform.value.description);
+formData.append('location', this.serviceform.value.location);
+formData.append('days', JSON.stringify(scheduleData));
+formData.append('cars', JSON.stringify(this.selectedCarsData));
+formData.append('services', JSON.stringify(this.selectedServicesData));
+
+const selectedCars = this.serviceform.value.cars;
+this.selectedCarsData = selectedCars.map((selectedCar: any) => {
+    const car = this.cars.find(car => car.value === selectedCar);
+    return {
+        key: car!.key,
+        value: car!.value
+    };
+});
+
+const selectedServices = this.serviceform.value.services; // تم تغيير اسم المتغير
+this.selectedServicesData = selectedServices.map((selectedService: any) => { // تم تغيير اسم المتغير
+    const service = this.services.find(service => service.value === selectedService);
+    return {
+        key: service!.key,
+        value: service!.value
+    };
+});
+
+console.log("car", this.selectedCarsData);
+console.log("ser", this.selectedServicesData);
+
+
+
+  if (typeof window !== 'undefined') {
+    const token: any = localStorage.getItem('token');
+    if (token) {
+
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
+
+      return this.http.post('http://127.0.0.1:8000/api/service-center/',
+      formData,
+        { headers: headers }
+      ).subscribe(
+        (res) => {
+          this.msgres = res;
+
+          Swal.fire({
+            icon: 'success',
+            title: 'service Created!',
+            showConfirmButton: false,
+            timer: 1500 // ????? ??? ??? ?????
+          });
+
+
+console.log( this.msgres);
+
+          // this.serviceform.reset();
+        },
+        (error: HttpErrorResponse) => {
+          console.error('An error occurred:', error.error);
+          this.errorMessage = error.error.data;
+        }
+      );
+    } else {
+      return throwError('No token found');
+    }
   } else {
-    // إعادة الخطأ عند عدم وجود الرمز المميز (Token)
-    return throwError('No token found');
+    return throwError('Window is not available');
   }
-} else {
-  // إعادة الخطأ عندما لا تكون النافذة متاحة
-  return throwError('Window is not available');
 }
 
-  }
+
 
 
 

@@ -4,6 +4,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Router } from '@angular/router';
 import { HttpClient,HttpHeaders,HttpErrorResponse  } from '@angular/common/http';
 import { map,Observable, throwError,catchError  } from 'rxjs';
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-create-agent',
   standalone: true,
@@ -57,11 +59,9 @@ response :any = ''
  handelForm() {
 
 
- 
-  
   if (typeof window !== 'undefined') {
        
-    const token: any = sessionStorage.getItem('token');
+    const token: any = localStorage.getItem('token');
     if (token) {
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
@@ -74,12 +74,15 @@ response :any = ''
       ).subscribe(
         (res) => {
           this.msgres = 'Created  Successfully';
-
-          console.log(this.msgres);
-          
-          setTimeout(() => {
-            window.location.reload();
-          }, 3000);
+          this.gameForm.reset();
+       
+          Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: 'Created Successfully',
+            confirmButtonText: 'Ok'
+          });
+     
         
           
         },
