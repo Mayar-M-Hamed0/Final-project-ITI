@@ -193,7 +193,7 @@ headers:any =''
 
   deletecomment(event: any, commentid: any) {
     if (typeof window !== 'undefined') {
-      const token: any = sessionStorage.getItem('token');
+      const token: any = localStorage.getItem('token');
       if (token) {
         this.headers = new HttpHeaders({
           'Authorization': `Bearer ${token}`
