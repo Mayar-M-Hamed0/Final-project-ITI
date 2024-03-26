@@ -15,9 +15,16 @@
 
         <div class="card mb-5 w-100 me-2 mt-3" >
           <div class="row g-0">
-            <div class="col-md-3">
-              <img src="http://127.0.0.1:8000/{{order.image}}" class="img-fluid rounded-start" alt="..." />
-            </div>
+            <div class="col-md-3"  >
+              @if (order.image) {
+                <img src="http://127.0.0.1:8000/{{order.img}}" class=" img-fluid rounded-start " alt="Cinque Terre">
+
+            }@else {
+
+                <img src="/assets/avatar.png" alt="Admin" class=" img-fluid rounded-start " >
+
+            }
+                        </div>
             <div class="col-md-9">
               <div class="row " >
                 <div class="col-md-8">
