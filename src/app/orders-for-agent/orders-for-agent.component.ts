@@ -45,7 +45,7 @@ export class OrdersForAgentComponent implements OnInit {
 
                    setTimeout(() => {
 
-                    this.router.navigate([`/archive/`+id]);
+                    this.router.navigate([`/archive/`+this.service_center_id]);
                    }, 2000);}
           })
     this.service.softdelete(id,{headers:headers}).subscribe({
