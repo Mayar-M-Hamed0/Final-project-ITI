@@ -25,10 +25,10 @@ export class UserProfileComponent {
   id!:number;
 
   serviceIdToDelete: number | null = null;
+servicedata:any =''
 
 
-
-  constructor(private datalogin:LoginService,private service:ServicesService ){}
+  constructor(private datalogin:LoginService,private service:ServicesService ,private http:HttpClient ){}
 
 
 
@@ -44,9 +44,15 @@ ngOnInit(){
     this.datauser= res;
 
 
-    this.service.getordersforuser(this.datauser['id'],{headers:headers}).subscribe(res=>{this.orders=res; })
+    this.service.getordersforuser(this.datauser['id'],{headers:headers}).subscribe(res=>{this.orders=res;
+console.log(res);
 
-    this.service.getarchivedforuser(this.datauser['id'],{headers:headers}).subscribe(res=>{this.archive=res; })
+    })
+
+    this.service.getarchivedforuser(this.datauser['id'],{headers:headers}).subscribe(res=>{this.archive=res;
+
+      console.log(res);
+    })
   })
 }
 }
