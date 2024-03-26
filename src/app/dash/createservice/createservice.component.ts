@@ -254,8 +254,17 @@ formData.append('services',JSON.stringify(mapservices));
           this.serviceform.reset();
         },
         (error: HttpErrorResponse) => {
+
           console.error('An error occurred:', error.error);
+          if (error.status === 403) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Action not allowed!',
+              text: 'Create Service for Agent only !',
+            });
+          }
           this.errorMessage = error.error.data;
+
         }
       );
     } else {
