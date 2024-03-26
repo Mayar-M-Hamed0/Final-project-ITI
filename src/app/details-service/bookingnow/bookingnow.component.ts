@@ -148,7 +148,7 @@ this.viewdata = res ;
       confirmButtonText: ' Login',
       allowOutsideClick: false,
       allowEscapeKey: false,
-         timer: 3000 // يغلق تلقائيا بعد 3 ثواني
+         timer: 3000 
     }).then((result) => {
       if (result.isConfirmed) {
         this.router.navigateByUrl('/login');
