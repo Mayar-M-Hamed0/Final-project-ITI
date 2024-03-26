@@ -12,34 +12,34 @@ import Swal from 'sweetalert2';
 })
 export class MESSAGEComponent {
 msg : any = ''
-loading: boolean = true; 
+loading: boolean = true;
 serviceIdToDelete: number | null = null;
-crntpage:any  
+crntpage:any
 
 
 
 
   constructor(private http:HttpClient){
 
-    const token: any = sessionStorage.getItem('token');
+    const token: any = localStorage.getItem('token');
     if (token) {
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
 
       });
-    
-    
-    
+
+
+
       this.http.get('http://127.0.0.1:8000/api/GetContact',{ headers: headers }).subscribe(res=>{
 
-      
+
       this.msg = res
       this.loading = false;
       })
     }
 
-  
+
   }
 
   openConfirmationModal(serviceId: number) {
@@ -59,8 +59,8 @@ crntpage:any
       }
     });
   }
-  
-  
+
+
   deleteService(serviceId: number) {
     const token: any = localStorage.getItem('token');
     if (token) {
@@ -68,16 +68,16 @@ crntpage:any
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       });
-      
+
     this.http.delete(`http://127.0.0.1:8000/api/DelContact/${serviceId}`,{ headers: headers })
         .subscribe(
             response => {
-            
+
               this.msg = this.msg.filter((item: any) => item.id !== serviceId);
-            
+
             },
             error => {
-             
+
                 console.error('Error deleting:', error);
             }
         );

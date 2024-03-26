@@ -376,7 +376,7 @@
                       <div class="col-7">
                         <div class="card-body">
                           <h5 class="card-title">{{item['name']}}</h5>
-                         
+
                           <p class="card-text">
                             <small class="text-muted"
                               >Last updated was {{item['updated_at']}}</small
@@ -385,20 +385,20 @@
                         </div>
                       </div>
                       <div class="col-5 pt-1 lh-lg fw-bold">
-                        <div>Working Time :
-                        
-                        
+                        <div> <i class="fa-solid fa-calendar-days fs-3"> </i> Working Time :
+
+
                         </div>
                         <div>
-                          
- 
+
+
                           <div style="margin-top: 20px;">
                             <table >
                               <thead>
                                 <tr style="background-color: #f2f2f2;">
-                                  <th style="padding: 8px; border: 1px solid #dddddd;">Day</th>
-                                  <th style="padding: 8px; border: 1px solid #dddddd;">Start Hour</th>
-                                  <th style="padding: 8px; border: 1px solid #dddddd;">End Hour</th>
+                                  <th style="padding: 2px; border: 1px solid #dddddd;">Day</th>
+                                  <th style="padding: 2px; border: 1px solid #dddddd;">Start Hour</th>
+                                  <th style="padding: 2px; border: 1px solid #dddddd;">End Hour</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -409,11 +409,11 @@
                                     <td style="padding: 8px; border: 1px solid #dddddd;">{{ item.end_hour }}</td>
                                   </tr>
                                 }
-                               
+
                               </tbody>
                             </table>
                           </div>
-                          
+
 
 
 
@@ -422,7 +422,7 @@
 
 
                         </div>
-                      
+
                         <button class="btn rounded-pill my-2"><a routerLink="/details-service/{{item.id}}" class="fw-medium text-white">see detailes</a>  </button>
                       </div>
 

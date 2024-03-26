@@ -70,9 +70,20 @@ export class UpdateserviceComponent {
       { key: 'TOYOTA' },
       { key: 'SKODA'},
       { key:'SSANGYONG' },
-      { key: 'Ford' },
+      { key:'CHERY-SPERANZA' },
+       { key:'SUBARU' },
+       { key:'MITSUBISHI' },
+      { key:'FIAT' },
+
+         { key:'VW' },
+          { key:'OPEL' },
+          { key:'DAIHATSU' }
+
+      ,{ key:'Chevrolet' },{ key:'MERCEDES' },
+      { key: 'PEUGEOT' },   { key: 'LADA' },
+      { key: 'Ford' },  { key: 'GEELY' }, { key: 'DAEWOO' },
       { key: 'BMW'  },
-      { key: 'LADA' },
+
       { key: 'CITROËN'},
       { key: 'SUZUKI'},
       { key: 'SEAT' },
@@ -84,6 +95,7 @@ export class UpdateserviceComponent {
       { key:'HONDA'},
 
     ];
+
 
     this.services= [
       { key: 'Mechanical'},
@@ -100,10 +112,12 @@ export class UpdateserviceComponent {
       { key: 'Fast Service', },
       { key: 'Computer detection'},
       { key: 'Car wash and care' },
-      { key: 'Insurance companies'},
+      { key: 'Insurance companies'},  { key: 'Maintenance Offers'},
       { key:'Oil Change Offers + Preventive Maintenance'},
       { key: 'El-Mikaneeky BOSCH'},
-      { key: 'Labor fees Discount'},
+      { key: 'Labor fees Discount'}, { key: 'Vehicle status detection'},
+      { key: 'Maintenance under Home'},      { key: ' GPS tracking'},
+          { key: ' glass'},
     ];
 
 
