@@ -81,9 +81,20 @@ export class CreateserviceComponent {
       { key: 'TOYOTA' },
       { key: 'SKODA'},
       { key:'SSANGYONG' },
-      { key: 'Ford' },
+      { key:'CHERY-SPERANZA' },
+       { key:'SUBARU' },
+       { key:'MITSUBISHI' },
+      { key:'FIAT' },
+
+         { key:'VW' },
+          { key:'OPEL' },
+          { key:'DAIHATSU' }
+
+      ,{ key:'Chevrolet' },{ key:'MERCEDES' },
+      { key: 'PEUGEOT' },   { key: 'LADA' },
+      { key: 'Ford' },  { key: 'GEELY' }, { key: 'DAEWOO' },
       { key: 'BMW'  },
-      { key: 'LADA' },
+
       { key: 'CITROËN'},
       { key: 'SUZUKI'},
       { key: 'SEAT' },
@@ -111,10 +122,12 @@ export class CreateserviceComponent {
       { key: 'Fast Service', },
       { key: 'Computer detection'},
       { key: 'Car wash and care' },
-      { key: 'Insurance companies'},
+      { key: 'Insurance companies'},  { key: 'Maintenance Offers'},
       { key:'Oil Change Offers + Preventive Maintenance'},
       { key: 'El-Mikaneeky BOSCH'},
-      { key: 'Labor fees Discount'},
+      { key: 'Labor fees Discount'}, { key: 'Vehicle status detection'},
+      { key: 'Maintenance under Home'},      { key: ' GPS tracking'},
+          { key: ' glass'},
     ];
 
     this.schedule = this.days.map(() => ({ day: '', startTime: '', endTime: '' }));
@@ -122,11 +135,11 @@ export class CreateserviceComponent {
   }
 
 
-  selectedServices: any[] = []; 
+  selectedServices: any[] = [];
   selectedCars: any[] = [];
 
   currentIndex: number = 0;
-  days: number[] = [0, 1, 2, 3, 4, 5, 6]; 
+  days: number[] = [0, 1, 2, 3, 4, 5, 6];
   schedule: any[] = [];
 
   toggleVisibility(index: number): void {
@@ -135,24 +148,24 @@ export class CreateserviceComponent {
     } else {
       this.currentIndex = 0;
     }
-  
-   
+
+
     const selectedDaysData = this.schedule
-      .filter(item => item.day !== "") 
+      .filter(item => item.day !== "")
       .map(item => ({
         day: item.day,
         startTime: item.startTime,
         endTime: item.endTime
       }));
-  
+
     console.log(selectedDaysData);
   }
-  
-  
 
 
 
-  
+
+
+
   onFileSelected(event:any){
     this.userImageUrl = URL.createObjectURL(event.target.files[0]);
     this.userImageFile = event.target.files[0];
@@ -164,7 +177,7 @@ export class CreateserviceComponent {
   hatelservice(){
 
   console.log(this.selectedServices);
-  
+
 }
 hatelcar(){
   console.log(this.selectedCars);
@@ -174,7 +187,7 @@ hatelcar(){
 
 
   handelForm(e:any) {
- 
+
     e.preventDefault();
 
 
@@ -188,7 +201,7 @@ hatelcar(){
 
 
 const selectedDaysData = this.schedule
-.filter(item => item.day !== "") 
+.filter(item => item.day !== "")
 .map(item => ({
   day: item.day,
   startTime: item.startTime,

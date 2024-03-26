@@ -10,11 +10,12 @@ import { OrdersService } from '../../services/orders.service';
 import { LoginService } from '../../services/login.service';
 import { HttpHeaders } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-bookingnow',
   standalone: true,
-  imports: [ReactiveFormsModule,NgbAlertModule,CheckboxModule,NgSelectModule,MatCheckboxModule,FormsModule],
+  imports: [ReactiveFormsModule,NgbAlertModule,CheckboxModule,NgSelectModule,MatCheckboxModule,FormsModule,CommonModule],
   templateUrl: './bookingnow.component.html',
   styleUrl: './bookingnow.component.css'
 })
@@ -32,8 +33,8 @@ export class BookingnowComponent implements OnInit {
   errors:any;
   response:any;
   msgres:any='';
-
   viewdata:unknown = []
+  ddd:any = false
   constructor(private router:Router,private formBuilder: FormBuilder,private orderservice:OrdersService,private loginService:LoginService  ,private dataService:ServicesService ,private route:ActivatedRoute) {
     this.bookingnow = this.formBuilder.group({
 
@@ -150,7 +151,7 @@ this.viewdata = res ;
       confirmButtonText: ' Login',
       allowOutsideClick: false,
       allowEscapeKey: false,
-         timer: 3000 // يغلق تلقائيا بعد 3 ثواني
+         timer: 3000
     }).then((result) => {
       if (result.isConfirmed) {
         this.router.navigateByUrl('/login');
@@ -166,7 +167,7 @@ this.loginService.auth().subscribe(
   this.datauser=data
   })
   this.dataService.getsinglepage(this.service_center_id).subscribe((res:any)=>{
-
+this.ddd = true
       res['services'].forEach((element: any) => (
         this.car_services.push(
           {key: element.id, value: element.service_name})));
@@ -174,6 +175,7 @@ this.loginService.auth().subscribe(
       res['cars'].forEach((element: any) => (
         this.model.push(
           {key: element.car_name, value: element.car_name})));
+
 
 
 
