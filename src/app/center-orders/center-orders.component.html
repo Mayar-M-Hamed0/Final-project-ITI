@@ -8,20 +8,19 @@
         <div class="row">
             <div class="card mb-5 w-75 mx-auto">
                 <div class="row g-0">
-                    <div class="col-md-3">
-                      <p></p>
-                        <img src="http://127.0.0.1:8000/{{item.image}}" class="img-fluid rounded-start" alt="..." />
+                    <div class="col-md-3" style=" display: inline;">
+                        <img src="http://127.0.0.1:8000/{{item.image}}" class="img-fluid rounded-start" alt="..." style="height: 200x; width: 250px;" />
                     </div>
                     <div class="col-md-9">
                         <div class="row ">
                             <div class="col-7">
                                 <div class="card-body">
                                     <h5 class="card-title">Service Center {{item.name}}</h5>
-                                    <p>location:....</p>
+                        
 
 
                                 </div>
-                                <button class="btn btn-primary text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                                <button class="btn btn-primary text-white " type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample " style="display: inline; margin-right: 20px;">
                    <a class="text-white" routerLink="/orderforcenter/{{item.id}}">orders</a>
                   </button>
                             </div>
