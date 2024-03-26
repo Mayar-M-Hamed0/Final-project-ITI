@@ -40,7 +40,7 @@ export class UpdateOrderComponent implements OnInit {
     this.bookingnow = this.formBuilder.group({
 
       phone: ['', [Validators.required, Validators.pattern(/^(010|011|012|015)\d{8}$/)]],
-      textarea: ['', [Validators.minLength(5), Validators.maxLength(90)]],
+      textarea: ['', [Validators.minLength(5),Validators.required ,Validators.maxLength(90)]],
       date: ['', Validators.required],
       services: ['', Validators.required],
       model: ['', Validators.required]
@@ -144,7 +144,7 @@ this.viewdata = res ;
   }
   }
 ngOnInit(){
-  const token: any = sessionStorage.getItem('token');
+  const token: any = localStorage.getItem('token');
   if (token) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -156,23 +156,7 @@ this.loginService.auth().subscribe(
   (data) => {
   this.datauser=data
   })
-  this.dataService.showorder(this.id,{headers:headers}).subscribe((res:any)=>{this.order=res; this.service_center_id=res.data['service_center_id']; console.log(this.service_center_id)
-
-  ;this.dataService.getsinglepage(this.service_center_id).subscribe((res:any)=>{
-
-    res['services'].forEach((element: any) => (
-      this.car_services.push(
-        {key: element.id, value: element.service_name})));
-
-    res['cars'].forEach((element: any) => (
-      this.model.push(
-        {key: element.car_name, value: element.car_name})));
-
-
-
-
-
-  console.log(res)})})
+  this.dataService.showorder(this.id,{headers:headers}).subscribe(res=>{this.order=res; console.log(this.order.data)})
 }
 
 }
