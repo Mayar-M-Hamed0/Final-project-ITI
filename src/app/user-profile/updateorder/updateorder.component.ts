@@ -156,7 +156,23 @@ this.loginService.auth().subscribe(
   (data) => {
   this.datauser=data
   })
-  this.dataService.showorder(this.id,{headers:headers}).subscribe(res=>{this.order=res; console.log(this.order.data)})
+  this.dataService.showorder(this.id,{headers:headers}).subscribe((res:any)=>{this.order=res; this.service_center_id=res.data['service_center_id']; console.log(this.service_center_id)
+
+  ;this.dataService.getsinglepage(this.service_center_id).subscribe((res:any)=>{
+
+    res['services'].forEach((element: any) => (
+      this.car_services.push(
+        {key: element.id, value: element.service_name})));
+
+    res['cars'].forEach((element: any) => (
+      this.model.push(
+        {key: element.car_name, value: element.car_name})));
+
+
+
+
+
+  console.log(res)})})
 }
 
 }

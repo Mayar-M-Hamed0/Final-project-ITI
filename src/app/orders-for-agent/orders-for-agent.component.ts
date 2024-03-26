@@ -40,6 +40,14 @@ export class OrdersForAgentComponent implements OnInit {
       'Authorization': `Bearer ${token}`
           });
 
+          this.http.get(`http://127.0.0.1:8000/api/send/`+id ).subscribe({
+            next:res=>{
+
+                   setTimeout(() => {
+
+                    this.router.navigate([`/archive/`+id]);
+                   }, 2000);}
+          })
     this.service.softdelete(id,{headers:headers}).subscribe({
       next:res=>{
 
@@ -48,14 +56,6 @@ export class OrdersForAgentComponent implements OnInit {
               this.router.navigate([`/archive/`+this.service_center_id]);
              }, 2000);}
     });}
-    this.http.get(`http://127.0.0.1:8000/api/send/`+id ).subscribe({
-      next:res=>{
-
-             setTimeout(() => {
-
-              this.router.navigate([`/archive/`+id]);
-             }, 2000);}
-    })
   }
 
 
