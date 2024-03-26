@@ -12,189 +12,173 @@ section{
 }
 </style>
 
+<body>
+  <section *ngIf="ddd">
+    <div class="container" >
 
-<section *ngIf="ddd">
-<div class="container" >
+      <P class="text-center mt-3 fs-3 fw-bold" style="color: #083248;">Booking Now !</P>
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="col-md-4">
+          <div >
 
-  <P class="text-center mt-3 fs-3 fw-bold" style="color: #083248;">Booking Now !</P>
-  <div class="row">
-    <div class="col-4"></div>
-    <div class="col-md-4">
-      <div >
-
-          <form  [formGroup]="bookingnow" (ngSubmit)="onSubmit()" >
+              <form  [formGroup]="bookingnow" (ngSubmit)="onSubmit()" >
 
 
 
-<!-- service_id -->
-<input type="text" value="{{ service_center_id}}"  hidden name="service_center_id">
-<!-- service_id -->
+    <!-- service_id -->
+    <input type="text" value="{{ service_center_id}}"  hidden name="service_center_id">
+    <!-- service_id -->
 
-<!-- phone -->
-            <div class="mb-3">
-              <label for="Phone" class="form-label">Phone</label>
-              <input type="text" class="form-control" [(ngModel)]="phone" formControlName="phone" id="Phone" >
-              @if (errors) {
+    <!-- phone -->
+                <div class="mb-3">
+                  <label for="Phone" class="form-label">Phone</label>
+                  <input type="text" class="form-control" [(ngModel)]="phone" formControlName="phone" id="Phone" >
+                  @if (errors) {
 
-                @if (errors.phone) {
+                    @if (errors.phone) {
 
-                  <span class="text-danger">{{errors.phone}}</span>
-                }
+                      <span class="text-danger">{{errors.phone}}</span>
+                    }
 
-              }@else {
-                @if(bookingnow.controls['phone'].invalid && bookingnow.controls['phone'].touched)
-                {
-                  @if(bookingnow.controls['phone'].errors?.['required'])
-                  {
-                    <div class="alert alert-warning p-2" role="alert">
-                     field is required
-                    </div>
+                  }@else {
+                    @if(bookingnow.controls['phone'].invalid && bookingnow.controls['phone'].touched)
+                    {
+                      @if(bookingnow.controls['phone'].errors?.['required'])
+                      {
+                        <div class="alert alert-warning p-2" role="alert">
+                         field is required
+                        </div>
+                      }
+
+                      @if(bookingnow.controls['phone'].errors?.['pattern'])
+                      {
+                        <div class="alert alert-danger p-2" role="alert">
+                       please insert a valid phone like 010********
+                        </div>
+                      }
+
+
+                    }  @else if(bookingnow.controls['phone'].valid)
+                    {
+                     Success<i class="fa-solid fa-check" style="color: #083248;"></i>
+                    }
+
                   }
 
-                  @if(bookingnow.controls['phone'].errors?.['pattern'])
-                  {
-                    <div class="alert alert-danger p-2" role="alert">
-                   please insert a valid phone like 010********
-                    </div>
-                  }
+          <!-- error -->
+
+    <!-- error -->
 
 
-                }  @else if(bookingnow.controls['phone'].valid)
-                {
-                 Success<i class="fa-solid fa-check" style="color: #083248;"></i>
-                }
+                </div>
 
-              }
-
-      <!-- error -->
-
-<!-- error -->
+    <!-- phone -->
 
 
+    <!-- service -->
+    <div class="form-group">
+      <label for="tag">services</label>
+      <ng-select [items]="car_services" bindLabel="value" bindValue="key" [(ngModel)]="services" [closeOnSelect]="false" formControlName="services" [multiple]="true"></ng-select>
+
+      @if (errors) {
+
+        @if (errors.services) {
+
+          <span class="text-danger">{{errors.services}}</span>
+        }
+      }@else {
+
+        @if(bookingnow.controls['services'].invalid && bookingnow.controls['services'].touched)
+        {
+          @if(bookingnow.controls['services'].errors?.['required'])
+          {
+            <div class="alert alert-warning p-2" role="alert">
+             field is required
             </div>
-
-<!-- phone -->
-
-
-<!-- service -->
-<div class="form-group">
-  <label for="tag">services</label>
-  <ng-select [items]="car_services" bindLabel="value" bindValue="key" [(ngModel)]="services" [closeOnSelect]="false" formControlName="services" [multiple]="true"></ng-select>
-
-  @if (errors) {
-
-    @if (errors.services) {
-
-      <span class="text-danger">{{errors.services}}</span>
-    }
-  }@else {
-
-    @if(bookingnow.controls['services'].invalid && bookingnow.controls['services'].touched)
-    {
-      @if(bookingnow.controls['services'].errors?.['required'])
-      {
-        <div class="alert alert-warning p-2" role="alert">
-         field is required
-        </div>
+          }
+        }
       }
-    }
-  }
 
-</div>
+    </div>
 
-<!-- service -->
+    <!-- service -->
 
-<!-- model -->
-<div class="form-group">
-  <label for="model">Car Model</label>
-  <ng-select [items]="model"  [(ngModel)]="car_model" bindLabel="value" bindValue="key"   formControlName="model" [closeOnSelect]="true" [multiple]="false"></ng-select>
-  @if (errors) {
+    <!-- model -->
+    <div class="form-group">
+      <label for="model">Car Model</label>
+      <ng-select [items]="model"  [(ngModel)]="car_model" bindLabel="value" bindValue="key"   formControlName="model" [closeOnSelect]="true" [multiple]="false"></ng-select>
+      @if (errors) {
 
-    @if (errors.car_model) {
+        @if (errors.car_model) {
 
-      <span class="text-danger">{{errors.car_model}}</span>
-    }
-  }@else {
+          <span class="text-danger">{{errors.car_model}}</span>
+        }
+      }@else {
 
-    @if(bookingnow.controls['model'].invalid && bookingnow.controls['model'].touched)
-    {
-      @if(bookingnow.controls['model'].errors?.['required'])
-      {
-        <div class="alert alert-warning p-2" role="alert">
-         field is required
-        </div>
+        @if(bookingnow.controls['model'].invalid && bookingnow.controls['model'].touched)
+        {
+          @if(bookingnow.controls['model'].errors?.['required'])
+          {
+            <div class="alert alert-warning p-2" role="alert">
+             field is required
+            </div>
+          }
+        }
       }
-    }
-  }
 
-</div>
-<!-- model -->
+    </div>
+    <!-- model -->
 
 
-<!-- date -->
-            <div class="mb-3">
+    <!-- date -->
+                <div class="mb-3">
 
-              <label for="Date" class="form-label">Date</label>
-              <input type="date" class="form-control" [(ngModel)]="date" formControlName="date"id="Date" >
+                  <label for="Date" class="form-label">Date</label>
+                  <input type="date" class="form-control" [(ngModel)]="date" formControlName="date"id="Date" >
 
-              @if (errors) {
+                  @if (errors) {
 
-                @if (errors.order_date) {
+                    @if (errors.order_date) {
 
-                  <span class="text-danger">{{errors.order_date}}</span>
-                }
-              } @else {
+                      <span class="text-danger">{{errors.order_date}}</span>
+                    }
+                  } @else {
 
-                @if(bookingnow.controls['date'].invalid && bookingnow.controls['date'].touched)
-                {
-                  @if(bookingnow.controls['date'].errors?.['required'])
-                  {
-                    <div class="alert alert-warning p-2 " role="alert">
-                     field is required
-                    </div>
+                    @if(bookingnow.controls['date'].invalid && bookingnow.controls['date'].touched)
+                    {
+                      @if(bookingnow.controls['date'].errors?.['required'])
+                      {
+                        <div class="alert alert-warning p-2 " role="alert">
+                         field is required
+                        </div>
+                      }
+
+
+                    }  @else if(bookingnow.controls['date'].valid)
+                    {
+                     Success<i class="fa-solid fa-check" style="color: #083248;"></i>
+                    }
                   }
 
 
-                }  @else if(bookingnow.controls['date'].valid)
-                {
-                 Success<i class="fa-solid fa-check" style="color: #083248;"></i>
-                }
-              }
 
 
 
 
 
 
+                </div>
 
+    <!-- date -->
 
-            </div>
-
-<!-- date -->
-
-<!-- textarea -->
-<div class="mb-3">
-  <label for="textarea" class="form-label">Write any notice you want</label>
-  <textarea class="form-control"  formControlName="textarea"    [(ngModel)]="order_details"    id="textarea" style="height: 100px"></textarea>
-
+    <!-- textarea -->
+    <div class="mb-3">
+      <label for="textarea" class="form-label">Write any notice you want</label>
+      <textarea class="form-control"  formControlName="textarea"    [(ngModel)]="order_details"    id="textarea" style="height: 100px"></textarea>
 
 
 
-  @if(bookingnow.controls['textarea'].invalid && bookingnow.controls['textarea'].touched)
-  {
-    @if(bookingnow.controls['textarea'].errors?.['required'])
-    {
-      <div class="alert alert-warning p-2" role="alert">
-       field is required
-      </div>
-    }
-    @if (errors) {
-
-      @if (errors.order_detailes) {
-
-        <span class="text-danger">{{errors.order_date}}</span>
-      }
-    }@else {
 
       @if(bookingnow.controls['textarea'].invalid && bookingnow.controls['textarea'].touched)
       {
@@ -204,12 +188,37 @@ section{
            field is required
           </div>
         }
+        @if (errors) {
 
-        @if(bookingnow.controls['textarea'].errors?.['minlength'])
-        {
-          <div class="alert alert-danger p-2" role="alert">
-         min length 5 char
-          </div>
+          @if (errors.order_detailes) {
+
+            <span class="text-danger">{{errors.order_date}}</span>
+          }
+        }@else {
+
+          @if(bookingnow.controls['textarea'].invalid && bookingnow.controls['textarea'].touched)
+          {
+            @if(bookingnow.controls['textarea'].errors?.['required'])
+            {
+              <div class="alert alert-warning p-2" role="alert">
+               field is required
+              </div>
+            }
+
+            @if(bookingnow.controls['textarea'].errors?.['minlength'])
+            {
+              <div class="alert alert-danger p-2" role="alert">
+             min length 5 char
+              </div>
+            }
+
+            @if(bookingnow.controls['textarea'].errors?.['maxlength'])
+            {
+              <div class="alert alert-warning p-2" role="alert">
+                min length 90 char
+              </div>
+            }
+          }
         }
 
         @if(bookingnow.controls['textarea'].errors?.['maxlength'])
@@ -219,33 +228,27 @@ section{
           </div>
         }
       }
-    }
 
-    @if(bookingnow.controls['textarea'].errors?.['maxlength'])
-    {
-      <div class="alert alert-warning p-2" role="alert">
-        min length 90 char
-      </div>
-    }
-  }
-
-
-</div>
-<!-- textarea -->
-
-<h4 class="text-success">{{this.msgres.message}}</h4>
-      <div class="d-flex justify-content-center">
-
-        <button type="submit"       style="background-color: #083248;" class="btn btn-danger mb-5 p-3 border-0" id="btnstyle"  >Booking</button>
-
-      </div>
-          </form>
-
-
-      </div>
 
     </div>
-    <div class="col-4 "></div>
-  </div>
-</div>
-</section>
+    <!-- textarea -->
+
+    <h4 class="text-success">{{this.msgres.message}}</h4>
+          <div class="d-flex justify-content-center">
+
+            <button type="submit"       style="background-color: #083248;" class="btn btn-danger mb-5 p-3 border-0" id="btnstyle"  >Booking</button>
+
+          </div>
+              </form>
+
+
+          </div>
+
+        </div>
+        <div class="col-4 "></div>
+      </div>
+    </div>
+    </section>
+    <div class="loader" *ngIf="!ddd"></div>
+</body>
+
