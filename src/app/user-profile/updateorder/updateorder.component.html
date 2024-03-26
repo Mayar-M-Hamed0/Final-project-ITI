@@ -13,7 +13,7 @@
   </style>
 
 
-  <section>
+  <section *ngIf="ddd">
   <div class="container" >
     <P class="text-center mt-3 fs-3 fw-bold" style="color: #083248;">Update Now !</P>
     <div class="row">
@@ -117,7 +117,7 @@
 
       @if(bookingnow.controls['model'].invalid && bookingnow.controls['model'].touched)
       {
-        @if(bookingnow.controls['model0'].errors?.['required'])
+        @if(bookingnow.controls['model'].errors?.['required'])
         {
           <div class="alert alert-warning p-2" role="alert">
            field is required
