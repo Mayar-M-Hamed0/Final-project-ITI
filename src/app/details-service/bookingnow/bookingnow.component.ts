@@ -52,46 +52,48 @@ this.viewdata = res ;
     })
 
     console.log(this.viewdata);
-    this.model = [
-      { key: 'KIA', value: 'KIA' },
-      { key: 'MAZDA', value: 'MAZDA' },
-      { key: 'TOYOTA', value: 'TOYOTA' },
-      { key: 'SKODA', value: 'SKODA' },
-      { key: 'SSANGYONG', value: 'SSANGYONG' },
-      { key: 'Ford', value: 'Ford' },
-      { key: 'BMW', value: 'BMW' },
-      { key: 'LADA', value: 'LADA' },
-      { key: 'CITROËN', value: 'CITROËN' },
-      { key: 'SUZUKI', value: 'SUZUKI' },
-      { key: 'SEAT', value: 'SEAT' },
-      { key: 'RENAULT', value: 'RENAULT' },
-      { key: 'HYUNDAI', value: 'HYUNDAI' },
-      { key: 'NISSAN', value: 'NISSAN' },
-      { key: 'VOLVO', value: 'VOLVO' },
-      { key: 'BYD', value: 'BYD' },
-      { key: 'HONDA', value: 'HONDA' },
+    // this.model =[]
+    // [
+    //   { key: 'KIA', value: 'KIA' },
+    //   { key: 'MAZDA', value: 'MAZDA' },
+    //   { key: 'TOYOTA', value: 'TOYOTA' },
+    //   { key: 'SKODA', value: 'SKODA' },
+    //   { key: 'SSANGYONG', value: 'SSANGYONG' },
+    //   { key: 'Ford', value: 'Ford' },
+    //   { key: 'BMW', value: 'BMW' },
+    //   { key: 'LADA', value: 'LADA' },
+    //   { key: 'CITROËN', value: 'CITROËN' },
+    //   { key: 'SUZUKI', value: 'SUZUKI' },
+    //   { key: 'SEAT', value: 'SEAT' },
+    //   { key: 'RENAULT', value: 'RENAULT' },
+    //   { key: 'HYUNDAI', value: 'HYUNDAI' },
+    //   { key: 'NISSAN', value: 'NISSAN' },
+    //   { key: 'VOLVO', value: 'VOLVO' },
+    //   { key: 'BYD', value: 'BYD' },
+    //   { key: 'HONDA', value: 'HONDA' },
 
-    ];
-    this.car_services= [
-      { key: 1, value: 'Mechanical' },
-      { key: 2, value: 'Electricity' },
-      { key: 3, value: 'Suspensions' },
-      { key: 4, value: 'Car Denting' },
-      { key: 5, value: 'paints' },
-      { key: 6, value: 'brakes' },
-      { key: 7, value: 'lubricants' },
-      { key: 8, value: 'Tires and batteries' },
-      { key: 9, value: 'gear box' },
-      { key: 10, value: 'A/C/Charge' },
-      { key: 11, value: 'Radiator' },
-      { key: 12, value: 'Fast Service' },
-      { key: 13, value: 'Computer detection' },
-      { key: 14, value: 'Car wash and care' },
-      { key: 15, value: 'Insurance companies' },
-      { key:16,value: 'Oil Change Offers + Preventive Maintenance'},
-      { key: 17, value: 'El-Mikaneeky BOSCH' },
-      { key: 18 , value: 'Labor fees Discount' },
-    ];
+    // ];
+    // this.car_services=
+    // [
+    //   { key: 1, value: 'Mechanical' },
+    //   { key: 2, value: 'Electricity' },
+    //   { key: 3, value: 'Suspensions' },
+    //   { key: 4, value: 'Car Denting' },
+    //   { key: 5, value: 'paints' },
+    //   { key: 6, value: 'brakes' },
+    //   { key: 7, value: 'lubricants' },
+    //   { key: 8, value: 'Tires and batteries' },
+    //   { key: 9, value: 'gear box' },
+    //   { key: 10, value: 'A/C/Charge' },
+    //   { key: 11, value: 'Radiator' },
+    //   { key: 12, value: 'Fast Service' },
+    //   { key: 13, value: 'Computer detection' },
+    //   { key: 14, value: 'Car wash and care' },
+    //   { key: 15, value: 'Insurance companies' },
+    //   { key:16,value: 'Oil Change Offers + Preventive Maintenance'},
+    //   { key: 17, value: 'El-Mikaneeky BOSCH' },
+    //   { key: 18 , value: 'Labor fees Discount' },
+    // ];
   }
 
   onSubmit() {
@@ -163,8 +165,22 @@ this.loginService.auth().subscribe(
   (data) => {
   this.datauser=data
   })
-}
+  this.dataService.getsinglepage(this.service_center_id).subscribe((res:any)=>{
 
+      res['services'].forEach((element: any) => (
+        this.car_services.push(
+          {key: element.id, value: element.service_name})));
+
+      res['cars'].forEach((element: any) => (
+        this.model.push(
+          {key: element.car_name, value: element.car_name})));
+
+
+
+
+
+    console.log(res)})
+}
 
 
 }
