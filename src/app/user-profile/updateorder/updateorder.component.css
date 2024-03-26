@@ -1,0 +1,31 @@
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 120px;
+  height: 22px;
+  border-radius: 20px;
+  color: #514b82;
+  border: 2px solid;
+  position: fixed; /* تغيير الوضع إلى ثابت */
+  top: 50%; /* تحديد المسافة من الأعلى */
+  left: 50%; /* تحديد المسافة من اليسار */
+  transform: translate(-50%, -50%); /* توسيط المركب بالكامل */
+  z-index: 9999; /* تحديد الترتيب الظاهري للعنصر */
+}
+
+.loader::before {
+  content: "";
+  position: absolute;
+  margin: 2px;
+  inset: 0 100% 0 0;
+  border-radius: inherit;
+  background: currentColor;
+  animation: l6 2s infinite;
+}
+
+@keyframes l6 {
+    100% { inset: 0; }
+}
+body{
+  width: 100vw; /* عرض الشاشة بالكامل */
+height: 100vh; /* طول الصفحة بالكامل */
+}

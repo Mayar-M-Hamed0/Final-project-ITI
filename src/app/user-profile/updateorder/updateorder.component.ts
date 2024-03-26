@@ -145,6 +145,7 @@ this.viewdata = res ;
   }
   }
 ngOnInit(){
+  if (typeof window !== 'undefined') {
   const token: any = localStorage.getItem('token');
   if (token) {
     const headers = new HttpHeaders({
@@ -178,5 +179,5 @@ this.loginService.auth().subscribe(
 }
 
 }
-
+}
 }

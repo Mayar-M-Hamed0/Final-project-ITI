@@ -17,20 +17,10 @@
 
                     <th scope="col">Details OF Service</th>
 
-
-
-               
-                    <th scope="col">Service center</th>
-               
-                    <th scope="col">Details about Service center</th>
-    
-                
-                  
-                  
                     <th scope="col">Working Days</th>
 
                     <th scope="col">Location</th>
-                    <th scope="col">Working Days</th>
+
 
                     <th scope="col">Start Time</th>
                     <th scope="col">End Time</th>
@@ -38,7 +28,7 @@
                     <th scope="col">service image</th>
 
 
-                    <th scope="col">service cenetr image</th>
+                    <th scope="col" style="text-align: center">EDIT </th>
 
                     <th scope="col" style="text-align: center">Delete </th>
                 </tr>
@@ -54,18 +44,19 @@
 
                         <td>{{service.description}}
                         </td>
+                        <td>
+                          @for (item of service.days; track $index) {
+
+                              <p>{{item.day}}</p>
+
+                          }
+
+
+
+                      </td>
 
                         <td>{{service.location}}</td>
-                        <td>
-                            @for (item of service.days; track $index) {
 
-                                <p>{{item.day}}</p>
-
-                            }
-
-
-
-                        </td>
 
 
 
