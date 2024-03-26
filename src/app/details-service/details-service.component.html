@@ -169,7 +169,7 @@
         <div class="bg-text" style="height:160px; ">
            <input id="inputrev" type="text" class="form-control " placeholder="write your comment" name="Description" [(ngModel)]="Description">
             <br>
-             <input id="inputrev" type="number" class="form-control " placeholder="write your rate" name="rate" [(ngModel)]="rate">
+             <input id="inputrev" type="number" min="1" max="5" class="form-control " placeholder="write your rate" name="rate" [(ngModel)]="rate">
 
 
             <button id="inputrev" class="inputrevbutton" type="submit" id="button-addon2" style="display: flex;float: right;">
