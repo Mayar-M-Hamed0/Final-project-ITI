@@ -1,9 +1,9 @@
 <div class="container">
 
-    
+
        <div *ngIf="loading"> <p class="text-center fs-1 fw-bold" >Loading ...</p></div>
        <div *ngIf="!loading">
-      
+
 
 
 
@@ -11,6 +11,14 @@
         <table class="table">
             <thead>
                 <tr>
+
+
+                    <th scope="col">Name OF Service</th>
+
+                    <th scope="col">Details OF Service</th>
+
+
+
                
                     <th scope="col">Service center</th>
                
@@ -20,88 +28,95 @@
                   
                   
                     <th scope="col">Working Days</th>
+
                     <th scope="col">Location</th>
+                    <th scope="col">Working Days</th>
+
                     <th scope="col">Start Time</th>
                     <th scope="col">End Time</th>
+
+                    <th scope="col">service image</th>
+
+
                     <th scope="col">service cenetr image</th>
-        
+
                     <th scope="col" style="text-align: center">Delete </th>
                 </tr>
             </thead>
             <tbody>
-                
+
                 @for (service of servicedata  | paginate: { itemsPerPage: 7, currentPage: crntpage }   ; track $index ) {
-    
+
                     <tr>
-    
-                  
+
+
                         <td>{{service.name}}</td>
-                      
+
                         <td>{{service.description}}
                         </td>
-                    
+
                         <td>{{service.location}}</td>
                         <td>
                             @for (item of service.days; track $index) {
-                              
-                                <p>{{item.day}}</p>   
-                              
+
+                                <p>{{item.day}}</p>
+
                             }
 
-                        
-                        
+
+
                         </td>
 
-                  
-                        
+
+
                         <td>
-                            
-                            
+
+
                             @for (item of service.days; track $index) {
 
                                 <p>{{item.start_hour}}</p>
                             }
-                        
-                        
-                
+
+
+
                         </td>
 
- 
+
                         <td>
-                            
-                            
+
+
                             @for (item of service.days; track $index) {
 
                                 <p>{{item.end_hour}}</p>
                             }
-                        
-                        
-                
+
+
+
                         </td>
 
 
-                        <td> 
-                         
-                         
+                        <td>
+
+
                             <img src="http://127.0.0.1:8000/{{service.image}}" class="card-img-top img" alt="...">
-                      
+
                         <td> <a routerLink="/Updateservice/{{service.id}}" class="btn btn-primary a">Edit</a>
                         </td>
                         <td>
                             <button class="btn btn-primary b" (click)="openConfirmationModal(service.id)">Delete</button>
                           </td>
-                          
+
                     </tr>
-    
-    
+
+
                 }
-    
-              
-            
-    
-    
+
+
+
+
+
             </tbody>
-    
+
         </table>
         @if(servicedata.length===0){
             <p class="fs-3 fw-bold text-center"> Sorry No Data Here  </p>
@@ -110,7 +125,7 @@
 
 
 
-     
+
 
 
 
@@ -131,7 +146,7 @@
 
 
 
-   
+
 </div>
 
 

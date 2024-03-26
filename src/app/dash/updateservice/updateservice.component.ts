@@ -44,7 +44,7 @@ export class UpdateserviceComponent {
   userImageUrl:any = '';
   userImageFile:any = ' ';
 
- 
+
 
   constructor(private fb: FormBuilder, private sr: ServicesService , private http:HttpClient,private route: ActivatedRoute) {
     this.serviceform = this.fb.group({
@@ -53,7 +53,7 @@ export class UpdateserviceComponent {
       description: ['', [Validators.required, Validators.minLength(10)]],
       location: ['', [Validators.required]],
       image: ['', [Validators.required]], // حقل الصورة
-     
+
       price: ['', [Validators.required]],
       services: ['', [Validators.required]],
       cars: ['', [Validators.required]],
@@ -111,7 +111,7 @@ export class UpdateserviceComponent {
 
     this.id = this.route.snapshot.params['id'];
 
-    
+
     this.http.get('http://127.0.0.1:8000/api/center/'+this.id).subscribe(res=>{
 this.oldnameforupdateservice = res
 
@@ -120,11 +120,11 @@ this.oldnameforupdateservice = res
 
     this.schedule = this.days.map(() => ({ day: '', startTime: '', endTime: '' }));
   }
-  selectedServices: any[] = []; 
+  selectedServices: any[] = [];
   selectedCars: any[] = [];
   currentIndex: number = 0;
   days: number[] = [0, 1, 2, 3, 4, 5, 6];
-  schedule: any[] = []; 
+  schedule: any[] = [];
 
   toggleVisibility(index: number): void {
     if (index < this.days.length - 1) {
@@ -132,10 +132,10 @@ this.oldnameforupdateservice = res
     } else {
       this.currentIndex = 0;
     }
-  
-   
+
+
     const selectedDaysData = this.schedule
-      .filter(item => item.day !== "") 
+      .filter(item => item.day !== "")
       .map(item => ({
         day: item.day,
         startTime: item.startTime,
@@ -144,10 +144,10 @@ this.oldnameforupdateservice = res
       if (selectedDaysData.length === 0) {
         alert("يرجى اختيار يوم واحد على الأقل.");
     } else {
-       
+
     }
-  
-  
+
+
   }
 
   onFileSelected(event:any){
@@ -157,14 +157,14 @@ this.oldnameforupdateservice = res
 
 
 
- 
+
 
   handelForm(e:any) {
     e.preventDefault();
 
 
   const selectedDaysData = this.schedule
-.filter(item => item.day !== "") 
+.filter(item => item.day !== "")
 .map(item => ({
   day: item.day,
   startTime: item.startTime,
@@ -201,8 +201,8 @@ this.oldnameforupdateservice = res
 
           'Authorization': `Bearer ${token}`
         });
-  
-    
+
+
         Swal.fire({
           title: 'تحديث البيانات',
           text: 'سيتم تحديث البيانات الآن. انتظر قليلاً...',
@@ -214,18 +214,18 @@ this.oldnameforupdateservice = res
           confirmButtonText: 'نعم، قم بالتحديث!',
           cancelButtonText: 'إلغاء'
         });
-  
+
       this.http.post('http://127.0.0.1:8000/api/service-centerss/'+this.id,
         formData,
           { headers: headers }
         ).subscribe(
           (res) => {
             this.msgres = res;
-     
-           
+
+
            Swal.fire({
             icon: 'success',
-            title: 'service Created!',
+            title: 'service Updated!',
             showConfirmButton: false,
             timer: 1500 // يمكنك ضبط مدة العرض
           });
@@ -234,7 +234,7 @@ this.oldnameforupdateservice = res
           },
           (error: HttpErrorResponse) => {
             console.error('An error occurred:', error.error);
-            this.errorMessage = error.error.data; 
+            this.errorMessage = error.error.data;
           }
         );
       } else {
@@ -248,8 +248,8 @@ this.oldnameforupdateservice = res
 
     return "x";
   }
-  
-  
+
+
 
   resetForm() {
     this.serviceform.reset();

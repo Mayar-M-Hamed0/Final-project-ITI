@@ -9,6 +9,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { OrdersService } from '../../services/orders.service';
 import { LoginService } from '../../services/login.service';
 import { HttpHeaders } from '@angular/common/http';
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-bookingnow',
   standalone: true,
@@ -30,7 +32,7 @@ export class BookingnowComponent implements OnInit {
   errors:any;
   response:any;
   msgres:any='';
- 
+
   viewdata:unknown = []
   constructor(private router:Router,private formBuilder: FormBuilder,private orderservice:OrdersService,private loginService:LoginService  ,private dataService:ServicesService ,private route:ActivatedRoute) {
     this.bookingnow = this.formBuilder.group({
@@ -127,12 +129,31 @@ this.viewdata = res ;
             },
       error: (err:any) => {
 
+
+
+
           this.errors = err.error.errors;
 
           console.log(this.errors);
+
       },
   }
   );
+  }else{
+
+    Swal.fire({
+      icon: 'warning',
+      title: 'Please Login First ',
+      showConfirmButton: true,
+      confirmButtonText: ' Login',
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+         timer: 3000 // يغلق تلقائيا بعد 3 ثواني
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.router.navigateByUrl('/login');
+      }
+    });
   }
   }
 
